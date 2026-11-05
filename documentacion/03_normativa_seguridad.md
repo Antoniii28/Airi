@@ -35,10 +35,10 @@ Fuente: https://www.iso.org/es/norma/27001
 
 Fuente: https://www.iso.org/standard/42001
 
-## 3. ISO/IEC 27701:2025 — Gestión de información de privacidad
+## 3. ISO/IEC 27701:2025 — Gestión de información de privacidad (referencia complementaria y condicional)
 **Objetivo:** requisitos y orientación para un sistema de gestión de privacidad respecto de información personal identificable, por responsables y encargados de su tratamiento. La edición de 2025 es una norma de sistema de gestión independiente.
 
-**Relación con AIRI:** una fotografía de un pez no es necesariamente dato personal, pero podría mostrar rostros, personas, etiquetas con nombres, ubicaciones u otros identificadores; también podrían existir cuentas de usuarios.
+**Evaluación de pertinencia:** los datos de calidad del agua, nombres de especies y fotografías exclusivamente de peces no son por sí mismos información personal identificable. Esta norma solo se considera especialmente pertinente si AIRI incorpora cuentas con datos identificables, imágenes de personas identificables u otros tratamientos de datos personales. No se exige adoptar un sistema de gestión de privacidad completo para el prototipo académico.\n\n**Relación con AIRI:** una fotografía de un pez no es necesariamente dato personal, pero podría mostrar rostros, personas, etiquetas con nombres, ubicaciones u otros identificadores; también podrían existir cuentas de usuarios.
 
 **Medidas propuestas:**
 - Solicitar solo los datos necesarios y explicar finalidad.
@@ -47,7 +47,7 @@ Fuente: https://www.iso.org/standard/42001
 - Permitir al usuario gestionar sus imágenes y registros conforme a las obligaciones aplicables.
 - No reutilizar fotografías para entrenar modelos sin base jurídica y comunicación apropiada.
 
-**Justificación:** prevenir tratamiento excesivo de datos personales. Su aplicabilidad depende del diseño final y de si se tratan datos personales.
+**Justificación:** prevenir tratamiento excesivo de datos personales cuando corresponda. **Decisión:** mantener ISO/IEC 27701 como referencia complementaria condicionada, no como requisito principal del proyecto. Su pertinencia depende del diseño final y de si se tratan datos personales.
 
 Fuente: https://www.iso.org/standard/27701
 
