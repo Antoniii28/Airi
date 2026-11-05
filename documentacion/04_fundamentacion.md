@@ -5,9 +5,9 @@
 | Decisión de AIRI | Problema que previene | Fundamento documental | Justificación concreta |
 |---|---|---|---|
 | Solicitar permiso antes de usar la cámara | Captura no autorizada de imágenes | ISO/IEC 27001; ISO/IEC 27701 cuando haya datos personales; LFPDPPP según ámbito | El usuario conserva el control de qué imagen se captura y procesa. |
-| Procesar solo imágenes elegidas | Acceso excesivo a archivos | ISO/IEC 27001; ISO/IEC 27701 | Reduce la superficie de exposición y los datos tratados. |
-| Informar si se usan servicios externos | Transmisión de imágenes no esperada | ISO/IEC 27701; legislación aplicable | Permite decidir con información suficiente sobre el tratamiento. |
-| Definir retención y eliminación | Conservación innecesaria | ISO/IEC 27701; LFPDPPP según ámbito | Limita exposición y facilita gestionar información personal cuando exista. |
+| Procesar solo imágenes elegidas | Acceso excesivo a archivos | ISO/IEC 27001; ISO/IEC 27701 si hay datos personales | Reduce la superficie de exposición y los datos tratados. |
+| Informar si se usan servicios externos | Transmisión de imágenes no esperada | ISO/IEC 27001; ISO/IEC 27701 y legislación si hay datos personales | Permite decidir con información suficiente sobre el tratamiento. |
+| Definir retención y eliminación | Conservación innecesaria | ISO/IEC 27001; ISO/IEC 27701 y LFPDPPP cuando correspondan | Limita exposición y facilita gestionar información personal cuando exista. |
 | Proteger registros y transmisiones | Filtración o alteración de datos | ISO/IEC 27001 | Protege confidencialidad e integridad de entradas y resultados. |
 | Validar mediciones antes de generar alertas | Recomendaciones basadas en datos inválidos | ISO/IEC 23894; NIST AI RMF | Reduce riesgos derivados de entradas incorrectas o incompletas. |
 | Mostrar identificación como probable | Confundir especies parecidas | ISO/IEC 42001; ISO/IEC 23894 | Comunica incertidumbre y evita aparentar certeza inexistente. |
@@ -33,4 +33,4 @@
 ## Conclusión
 La normativa propuesta establece límites claros para AIRI, protege el acceso a imágenes y registros, reconoce la incertidumbre del reconocimiento visual y mantiene las decisiones sobre el acuario bajo control humano. Antes de implementarse deberá traducirse en pruebas, documentación técnica y políticas de tratamiento reales.
 
-**Fuentes verificadas:** véase `referencias.md`.
+**Fuentes consultadas:** véase [referencias.md](referencias.md).
