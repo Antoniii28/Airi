@@ -46,8 +46,8 @@ AIRI no podrá: encender la cámara sin autorización; capturar video continuo b
 6. El agente no envía comandos a dispositivos físicos.
 
 ## 7. Fundamentación
-Las reglas de autorización, limitación de datos y seguridad se inspiran en la gestión de riesgos de ISO/IEC 27001:2022 y en ISO/IEC 27701:2025 cuando existan datos personales. La transparencia, supervisión y validación del componente visual se fundamentan en los enfoques de gestión responsable y riesgos de ISO/IEC 42001:2023 e ISO/IEC 23894:2023. Estas son **decisiones de diseño propuestas**, no citas literales de obligaciones técnicas impuestas por dichas normas.
+Las reglas de autorización, limitación de acceso y seguridad se inspiran principalmente en la gestión de riesgos de ISO/IEC 27001:2022. ISO/IEC 27701:2025 es una referencia adicional únicamente si AIRI llega a tratar información personal identificable. La transparencia, supervisión y validación del componente visual se fundamentan en los enfoques de gestión responsable y riesgos de ISO/IEC 42001:2023 e ISO/IEC 23894:2023. Estas son **decisiones de diseño propuestas**, no citas literales de obligaciones técnicas impuestas por dichas normas.
 
 **Fuentes oficiales:** https://www.iso.org/es/norma/27001 · https://www.iso.org/standard/42001 · https://www.iso.org/standard/27701 · https://www.iso.org/es/contents/data/standard/07/73/77304.html
 
-Véanse también `03_normativa_seguridad.md`, `04_fundamentacion.md` y `referencias.md`.
+Véanse también [normativa de seguridad](03_normativa_seguridad.md), [fundamentación](04_fundamentacion.md) y [referencias](referencias.md).
