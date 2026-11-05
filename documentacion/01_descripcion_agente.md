@@ -67,13 +67,12 @@ Diseñar un agente que analice parámetros del agua, evalúe compatibilidad entr
 
 La presente actividad académica se concentra en la **normativa de funcionamiento y seguridad**, no en desarrollar todavía estos módulos.
 
-## 10. Referencias normativas que se investigarán
-- **ISO/IEC 27001:2022:** sistema de gestión de seguridad de la información y controles basados en riesgos.
-- **ISO/IEC 42001:2023:** sistema de gestión de inteligencia artificial.
-- **ISO/IEC 27701:2025:** gestión de información de privacidad, si el tratamiento de datos personales lo justifica.
-- **ISO/IEC 23894:2023:** orientación para gestión de riesgos de IA.
+## 10. Referencias normativas investigadas
+- **Principales:** ISO/IEC 27001:2022 (gestión de seguridad de la información) e ISO/IEC 42001:2023 (gestión de IA).
+- **Complementaria:** ISO/IEC 23894:2023 (orientación para riesgos de IA) y NIST AI RMF 1.0.
+- **Condicional:** ISO/IEC 27701:2025 (privacidad), pertinente si se tratan datos personales identificables.
 
-Estas referencias **no implican certificación ni cumplimiento demostrado**. Su pertinencia y aplicación específica deberán fundamentarse en documentos posteriores.
+Su investigación, pertinencia y aplicación propuesta están documentadas en [normativa de seguridad](03_normativa_seguridad.md), [fundamentación](04_fundamentacion.md) y [referencias](referencias.md). **No implican certificación ni cumplimiento demostrado**.
 
 ## 11. Relación con la actividad
 Este alcance servirá para redactar la normativa funcional (capacidades, permisos y prohibiciones) y la normativa de seguridad (autorización, confidencialidad, integridad, protección de imágenes y registros), justificando cada regla.
