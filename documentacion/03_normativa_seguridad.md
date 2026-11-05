@@ -3,6 +3,10 @@
 **Alcance:** investigación documental y propuesta de medidas para AIRI, no auditoría ni certificación.  
 **Fuentes:** catálogos oficiales ISO, NIST y legislación mexicana. Las normas ISO completas pueden requerir compra; aquí se emplean sus descripciones y alcances públicos, sin atribuirles cláusulas no verificadas.
 
+## Clasificación para el proyecto
+
+**Principales:** ISO/IEC 27001 e ISO/IEC 42001. **Complementarias:** ISO/IEC 23894 y NIST AI RMF. **Condicional:** ISO/IEC 27701 si se tratan datos personales. Esta clasificación responde a la pertinencia para AIRI, no a una jerarquía oficial.
+
 ## 1. ISO/IEC 27001:2022 — Seguridad de la información
 **Objetivo:** establecer, implementar, mantener y mejorar un sistema de gestión de seguridad de la información (SGSI) para tratar riesgos. La información debe protegerse respecto a confidencialidad, integridad y disponibilidad.
 
@@ -38,7 +42,9 @@ Fuente: https://www.iso.org/standard/42001
 ## 3. ISO/IEC 27701:2025 — Gestión de información de privacidad (referencia complementaria y condicional)
 **Objetivo:** requisitos y orientación para un sistema de gestión de privacidad respecto de información personal identificable, por responsables y encargados de su tratamiento. La edición de 2025 es una norma de sistema de gestión independiente.
 
-**Evaluación de pertinencia:** los datos de calidad del agua, nombres de especies y fotografías exclusivamente de peces no son por sí mismos información personal identificable. Esta norma solo se considera especialmente pertinente si AIRI incorpora cuentas con datos identificables, imágenes de personas identificables u otros tratamientos de datos personales. No se exige adoptar un sistema de gestión de privacidad completo para el prototipo académico.\n\n**Relación con AIRI:** una fotografía de un pez no es necesariamente dato personal, pero podría mostrar rostros, personas, etiquetas con nombres, ubicaciones u otros identificadores; también podrían existir cuentas de usuarios.
+**Evaluación de pertinencia:** los datos de calidad del agua, nombres de especies y fotografías exclusivamente de peces no son por sí mismos información personal identificable. Esta norma solo se considera especialmente pertinente si AIRI incorpora cuentas con datos identificables, imágenes de personas identificables u otros tratamientos de datos personales. No se exige adoptar un sistema de gestión de privacidad completo para el prototipo académico.
+
+**Relación con AIRI:** una fotografía de un pez no es necesariamente dato personal, pero podría mostrar rostros, personas, etiquetas con nombres, ubicaciones u otros identificadores; también podrían existir cuentas de usuarios.
 
 **Medidas propuestas:**
 - Solicitar solo los datos necesarios y explicar finalidad.
