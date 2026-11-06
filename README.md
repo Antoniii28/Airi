@@ -21,3 +21,7 @@ Se documenta una **propuesta de normativa funcional y de seguridad**, con justif
 - **Condicional:** ISO/IEC 27701:2025 y legislación de protección de datos personales, según los datos que efectivamente se traten.
 
 La consulta de fichas públicas ISO no equivale a estudiar sus textos completos ni acredita cumplimiento o certificación.
+
+## Identidad visual
+
+El significado del logotipo, la paleta cromática, tipografías propuestas, variantes, reglas de uso y proceso de creación están en el [manual de identidad visual de AIRI](identidad-visual/README.md). El boceto fue seleccionado; su vectorización y subida del archivo gráfico original permanecen pendientes.
