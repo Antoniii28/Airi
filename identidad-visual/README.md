@@ -16,7 +16,7 @@
 
 ---
 
-> **Estado:** diseño seleccionado y PNG original guardado. Manual de marca documentado. **Pendiente:** vectorización, variantes y pruebas de legibilidad.
+> **Estado:** versión 1 conservada en GitHub; versión 2 submarina seleccionada y documentada, pendiente de subir su imagen. **Pendiente:** vectorización, variantes y pruebas de legibilidad.
 
 ## Guía rápida
 
@@ -38,6 +38,30 @@
 **Proyecto:** AIRI — Agente Inteligente para la Supervisión y Gestión de un Acuario Marino  
 **Estado:** identidad visual propuesta a partir del boceto seleccionado por el equipo, 6 de noviembre de 2026.  
 **Fuente visual:** [imagen original seleccionada por el equipo](AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) (pez tecnológico con visor, olas, circuitos y palabra AIRI). La imagen original es una composición rasterizada; **no debe presentarse como archivo vectorial editable**.
+
+## Evolución del logotipo: dos versiones conservadas
+
+### Versión 1 — Propuesta original
+
+![Logo original de AIRI](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png)
+
+**Archivo:** [AIRI_ Pez Mascota Marino Tecnológico.png](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png)
+
+El pez tecnológico con visor, antena, ondas y nombre AIRI sobre fondo blanco. Se conserva como antecedente del proceso creativo y opción de uso sobre fondos claros.
+
+### Versión 2 — Propuesta submarina seleccionada
+
+**Estado de imagen en GitHub:** pendiente de incorporar el archivo gráfico final. La propuesta ha sido seleccionada por el equipo y no sustituye ni elimina la versión 1.
+
+**Composición:** pez tecnológico naranja y blanco en primer plano, fondo azul submarino con luz desde la superficie, burbujas, siluetas de peces, algas y corales en los bordes. Nombre **AIRI** destacado en azul marino, acompañado por el descriptor visible en la imagen seleccionada: «Agente Inteligente para la Gestión de un Acuario Marino».
+
+**Propósito:** presentar a AIRI como asistente inteligente especializado en acuarios marinos; el ambiente acuático contextualiza sus funciones de análisis de agua, compatibilidad de especies y orientación al usuario. No significa que el software tenga sensores físicos o automatización del acuario.
+
+**Uso recomendado:** identidad principal en portada y presentaciones, cuando el detalle del fondo sea legible. Para favicon, botones y avatares pequeños se debe crear una variante simplificada del pez sin fondo ni texto.
+
+**Importante:** la paleta y las tipografías de este manual siguen siendo **propuestas de reconstrucción**, no mediciones certificadas de la imagen nueva. La nueva versión tiene una composición más ilustrativa que la original; se mantiene como arte de marca, mientras se desarrolla un isotipo sencillo para tamaños pequeños.
+
+---
 
 ## 1. ¿Qué significa AIRI?
 
