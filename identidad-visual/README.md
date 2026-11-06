@@ -10,13 +10,13 @@
 
 ![Paleta cromática propuesta de AIRI](./paleta-airi.svg)
 
-[Ver imagen original](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) · [Ver documentación del proyecto](../README.md)
+[Ver logo principal submarino](./logo%20Airi.jpeg) · [Ver primera versión](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) · [Ver documentación del proyecto](../README.md)
 
 </div>
 
 ---
 
-> **Estado:** versión 1 conservada en GitHub; versión 2 submarina seleccionada y documentada, pendiente de subir su imagen. **Pendiente:** vectorización, variantes y pruebas de legibilidad.
+> **Estado:** versión 1 y versión 2 submarina conservadas en GitHub; la versión 2 es la imagen principal seleccionada. **Pendiente:** vectorización, variantes y pruebas de legibilidad.
 
 ## Guía rápida
 
@@ -49,9 +49,11 @@
 
 El pez tecnológico con visor, antena, ondas y nombre AIRI sobre fondo blanco. Se conserva como antecedente del proceso creativo y opción de uso sobre fondos claros.
 
-### Versión 2 — Propuesta submarina seleccionada
+### Versión 2 — Propuesta submarina seleccionada (principal)
 
-**Estado de imagen en GitHub:** pendiente de incorporar el archivo gráfico final. La propuesta ha sido seleccionada por el equipo y no sustituye ni elimina la versión 1.
+![Logo submarino de AIRI](./logo%20Airi.jpeg)
+
+**Archivo:** [logo Airi.jpeg](./logo%20Airi.jpeg). **Estado:** subido y verificado en GitHub. Es la propuesta visual principal; la versión 1 se conserva como antecedente.
 
 **Composición:** pez tecnológico naranja y blanco en primer plano, fondo azul submarino con luz desde la superficie, burbujas, siluetas de peces, algas y corales en los bordes. Nombre **AIRI** destacado en azul marino, acompañado por el descriptor visible en la imagen seleccionada: «Agente Inteligente para la Gestión de un Acuario Marino».
 
@@ -164,6 +166,7 @@ identidad-visual/
   README.md                    # este manual
   AIRI_ Pez Mascota Marino Tecnológico.png  # imagen seleccionada y subida
   paleta-airi.svg              # lámina de paleta de colores
+  logo Airi.jpeg               # nueva versión submarina principal
   airi-logo-principal.svg      # pendiente de vectorización
   airi-logo-horizontal.svg     # pendiente de vectorización
   airi-isotipo.svg             # pendiente de vectorización
@@ -183,7 +186,7 @@ identidad-visual/
 
 ## 12. Alcance y estado actual
 
-**Completado:** concepto, selección de boceto, imagen PNG subida al repositorio, interpretación de símbolos, propuesta de paleta, tipografía y reglas de identidad.
+**Completado:** concepto, selección de boceto, primera versión PNG y nueva versión submarina JPEG subidas al repositorio, interpretación de símbolos, propuesta de paleta, tipografía y reglas de identidad.
 
 **Pendiente:** reconstrucción vectorial en Figma, validación de tamaño/contraste, aprobación formal y exportaciones definitivas.
 
