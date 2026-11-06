@@ -1,4 +1,39 @@
-# Identidad visual de AIRI — Manual de marca (versión 1.0)
+<div align="center">
+
+# AIRI · Identidad visual
+
+### El guardián inteligente del acuario
+
+<img src="./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png" alt="Logotipo seleccionado de AIRI: pez naranja con visor tecnológico, olas y nombre AIRI" width="700"/>
+
+**Vida marina** · **Inteligencia artificial** · **Supervisión**
+
+![Paleta cromática propuesta de AIRI](./paleta-airi.svg)
+
+[Ver imagen original](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) · [Ver documentación del proyecto](../README.md)
+
+</div>
+
+---
+
+> **Estado:** diseño seleccionado y PNG original guardado. Manual de marca documentado. **Pendiente:** vectorización, variantes y pruebas de legibilidad.
+
+## Guía rápida
+
+| Identidad | Definición |
+| :--- | :--- |
+| **Nombre** | AIRI |
+| **Descripción** | Agente Inteligente para la Supervisión y Gestión de un Acuario Marino |
+| **Concepto** | El guardián inteligente del acuario |
+| **Símbolo** | Pez con visor tecnológico y módulo de procesamiento |
+| **Colores** | Azul marino, turquesa, coral, blanco y gris azulado |
+| **Tipografías propuestas** | Sora / Poppins para marca; Inter para interfaz |
+| **Aplicaciones** | Interfaz, favicon, documentos y presentaciones |
+| **Archivo original** | [PNG seleccionado](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) |
+
+---
+
+# Manual de marca · versión 1.0
 
 **Proyecto:** AIRI — Agente Inteligente para la Supervisión y Gestión de un Acuario Marino  
 **Estado:** identidad visual propuesta a partir del boceto seleccionado por el equipo, 6 de noviembre de 2026.  
@@ -19,6 +54,9 @@ El personaje combina la forma reconocible de un pez con un visor de observación
 
 ## 3. Significado del logotipo seleccionado
 
+![Logotipo original de AIRI](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png)
+
+
 | Elemento visible | Interpretación para AIRI |
 | --- | --- |
 | Pez naranja y blanco | Identifica el entorno marino y las especies que el sistema ayuda a estudiar. |
@@ -34,6 +72,9 @@ El personaje combina la forma reconocible de un pez con un visor de observación
 Estos significados son **interpretaciones de diseño propuestas para el proyecto**, no propiedades técnicas demostradas del software.
 
 ## 4. Paleta cromática de trabajo
+
+![Muestras de los cinco colores de referencia de AIRI](./paleta-airi.svg)
+
 
 La imagen contiene matices y degradados; por eso los códigos siguientes son **colores de referencia propuestos para reconstrucción vectorial**, no una extracción exacta de cada píxel.
 
@@ -98,6 +139,7 @@ No afirmar que estas fuentes son las usadas en el archivo original. Comprobar li
 identidad-visual/
   README.md                    # este manual
   AIRI_ Pez Mascota Marino Tecnológico.png  # imagen seleccionada y subida
+  paleta-airi.svg              # lámina de paleta de colores
   airi-logo-principal.svg      # pendiente de vectorización
   airi-logo-horizontal.svg     # pendiente de vectorización
   airi-isotipo.svg             # pendiente de vectorización
