@@ -2,7 +2,7 @@
 
 **Proyecto:** AIRI — Agente Inteligente para la Supervisión y Gestión de un Acuario Marino  
 **Estado:** identidad visual propuesta a partir del boceto seleccionado por el equipo, 6 de noviembre de 2026.  
-**Fuente visual:** imagen original seleccionada por el equipo (pez tecnológico con visor, olas, circuitos y palabra AIRI). La imagen original es una composición rasterizada; **no debe presentarse como archivo vectorial editable**.
+**Fuente visual:** [imagen original seleccionada por el equipo](AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) (pez tecnológico con visor, olas, circuitos y palabra AIRI). La imagen original es una composición rasterizada; **no debe presentarse como archivo vectorial editable**.
 
 ## 1. ¿Qué significa AIRI?
 
@@ -97,7 +97,7 @@ No afirmar que estas fuentes son las usadas en el archivo original. Comprobar li
 ```text
 identidad-visual/
   README.md                    # este manual
-  airi-logo-referencia.png     # imagen seleccionada (pendiente de subida)
+  AIRI_ Pez Mascota Marino Tecnológico.png  # imagen seleccionada y subida
   airi-logo-principal.svg      # pendiente de vectorización
   airi-logo-horizontal.svg     # pendiente de vectorización
   airi-isotipo.svg             # pendiente de vectorización
@@ -117,8 +117,8 @@ identidad-visual/
 
 ## 12. Alcance y estado actual
 
-**Completado:** concepto, selección de boceto, interpretación de símbolos, propuesta de paleta, tipografía y reglas de identidad.
+**Completado:** concepto, selección de boceto, imagen PNG subida al repositorio, interpretación de símbolos, propuesta de paleta, tipografía y reglas de identidad.
 
-**Pendiente:** incorporar el PNG original al repositorio, reconstrucción vectorial en Figma, validación de tamaño/contraste, aprobación formal y exportaciones definitivas.
+**Pendiente:** reconstrucción vectorial en Figma, validación de tamaño/contraste, aprobación formal y exportaciones definitivas.
 
 Esta identidad visual documenta el diseño de la marca; **no demuestra que el agente de IA esté implementado**.
