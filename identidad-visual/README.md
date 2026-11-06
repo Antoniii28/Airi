@@ -8,7 +8,7 @@
 
 **Vida marina** · **Inteligencia artificial** · **Supervisión**
 
-![Paleta cromática propuesta de AIRI](./paleta-airi.svg)
+![Paleta de la versión principal submarina](./paleta-airi-v2.svg)
 
 [Ver logo principal submarino](./logo%20Airi.jpeg) · [Ver primera versión](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) · [Ver documentación del proyecto](../README.md)
 
@@ -26,7 +26,8 @@
 | **Descripción** | Agente Inteligente para la Supervisión y Gestión de un Acuario Marino |
 | **Concepto** | El guardián inteligente del acuario |
 | **Símbolo** | Pez con visor tecnológico y módulo de procesamiento |
-| **Colores** | Azul marino, turquesa, coral, blanco y gris azulado |
+| **Colores principales (versión 2)** | Azul profundo, azul océano, cian, aqua y naranja del pez |
+| **Paleta histórica (versión 1)** | Azul marino, turquesa, coral, blanco y gris azulado |
 | **Tipografías propuestas** | Sora / Poppins para marca; Inter para interfaz |
 | **Aplicaciones** | Interfaz, favicon, documentos y presentaciones |
 | **Archivo original** | [PNG seleccionado](./AIRI_%20Pez%20Mascota%20Marino%20Tecnol%C3%B3gico.png) |
@@ -97,22 +98,44 @@ El personaje combina la forma reconocible de un pez con un visor de observación
 
 Estos significados son **interpretaciones de diseño propuestas para el proyecto**, no propiedades técnicas demostradas del software.
 
-## 4. Paleta cromática de trabajo
+## 4. Paletas cromáticas por versión
 
-![Muestras de los cinco colores de referencia de AIRI](./paleta-airi.svg)
+### 4.1 Versión 2 — Logotipo submarino principal
 
+![Paleta de la versión 2, submarina](./paleta-airi-v2.svg)
 
-La imagen contiene matices y degradados; por eso los códigos siguientes son **colores de referencia propuestos para reconstrucción vectorial**, no una extracción exacta de cada píxel.
+Los siguientes valores HEX son **aproximaciones representativas obtenidas mediante muestreo y agrupación de colores de la imagen JPEG seleccionada**. Debido a los brillos, degradados y compresión, no constituyen una lista exhaustiva ni especificaciones originales del archivo de diseño.
 
-| Nombre | HEX | Uso |
+| Color | HEX aproximado | Función visual |
 | --- | --- | --- |
-| Azul marino | `#123B5D` | Nombre AIRI, contornos y texto principal. |
-| Turquesa tecnológico | `#17B8C8` | Visor, conexiones y detalles de agua. |
-| Naranja coral | `#F4A261` | Cuerpo, aletas y acentos. |
-| Blanco | `#FFFFFF` | Fondo, rostro y espacios negativos. |
-| Azul grisáceo muy claro | `#E8F3F7` | Fondos alternativos y áreas secundarias. |
+| Azul profundo | `#09284D` | Nombre AIRI, contornos y contraste. |
+| Azul océano | `#0982C7` | Agua y profundidad del fondo. |
+| Cian luminoso | `#39DDF8` | Visor, luz y circuitos tecnológicos. |
+| Aqua claro | `#80EAF2` | Reflejos de agua y burbujas. |
+| Naranja del pez | `#E97A25` | Identidad del personaje y aletas. |
+| Arena | `#F1D495` | Suelo del acuario y calidez del entorno. |
+| Verde algas | `#1CAB55` | Vegetación marina secundaria. |
+| Violeta coral | `#7B4DD4` | Elementos del fondo marino secundarios. |
 
-**Uso recomendado:** azul marino dominante, turquesa como acento tecnológico y coral para reconocer al pez. Priorizar contraste y legibilidad; evitar añadir colores por decoración. Las variantes monocromáticas son obligatorias para aplicaciones de bajo contraste o impresión a una tinta.
+**Jerarquía recomendada:** azul profundo + azul océano + cian como base; naranja para destacar al personaje; arena, verde y violeta solo en ilustraciones amplias. No es necesario usar los ocho colores en un icono pequeño.
+
+**Aplicaciones:** la versión ilustrada completa funciona mejor en portadas y presentaciones. En interfaces pequeñas, simplificar a azul profundo, cian, naranja y blanco, conservando contraste.
+
+### 4.2 Versión 1 — Propuesta original conservada
+
+![Paleta de la versión original](./paleta-airi.svg)
+
+Esta paleta fue **propuesta para reconstrucción vectorial de la versión 1**; no se debe confundir con la paleta muestreada del nuevo JPEG.
+
+| Color | HEX propuesto | Uso |
+| --- | --- | --- |
+| Azul marino | `#123B5D` | Nombre, contornos y texto principal. |
+| Turquesa tecnológico | `#17B8C8` | Visor, circuitos y detalles acuáticos. |
+| Naranja coral | `#F4A261` | Cuerpo y aletas. |
+| Blanco | `#FFFFFF` | Fondo y espacios negativos. |
+| Gris azulado | `#E8F3F7` | Fondos secundarios. |
+
+**Convivencia de versiones:** la versión 2 es la principal. La versión 1 permanece disponible para consultar la evolución del diseño. Para nuevas pantallas y materiales, tomar como referencia primero la versión 2 y evitar mezclar arbitrariamente ambas paletas.
 
 ## 5. Tipografía
 
@@ -165,7 +188,8 @@ No afirmar que estas fuentes son las usadas en el archivo original. Comprobar li
 identidad-visual/
   README.md                    # este manual
   AIRI_ Pez Mascota Marino Tecnológico.png  # imagen seleccionada y subida
-  paleta-airi.svg              # lámina de paleta de colores
+  paleta-airi.svg              # paleta propuesta versión 1
+  paleta-airi-v2.svg           # paleta muestreada versión 2 principal
   logo Airi.jpeg               # nueva versión submarina principal
   airi-logo-principal.svg      # pendiente de vectorización
   airi-logo-horizontal.svg     # pendiente de vectorización
