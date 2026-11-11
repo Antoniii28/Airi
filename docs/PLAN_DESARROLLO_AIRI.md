@@ -42,3 +42,7 @@ No modificar `main` directamente sin aprobación. No hacer force push, eliminar 
 
 ## Alcance inmediato
 Únicamente **diagnosticar y planificar AIRI v0.1**. La implementación requiere aprobación posterior. Véase [criterios v0.1](CRITERIOS_V0.1.md), [roadmap](ROADMAP.md) y [propuestas](PROPUESTAS_EQUIPO.md).
+
+## Repositorio y actividad prioritaria (acuerdo actualizado)
+
+**Único repositorio oficial de AIRI:** `Antoniii28/Airi`, para documentación y desarrollo. `Antoniii28/Acuario-IA` corresponde a una actividad anterior independiente; no usarlo como destino de implementación ni modificarlo. Antes de iniciar v0.1, completar la actividad académica del grafo de decisiones en una rama independiente de `Airi`, con la identidad visual V2 y sin sobrescribir recursos existentes. Véase [organización y flujo de trabajo](ORGANIZACION_Y_FLUJO_TRABAJO.md). Esta actualización aclara la organización, no autoriza por sí sola cambios de código ni la fusión de ramas.
