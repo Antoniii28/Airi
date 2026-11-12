@@ -1,0 +1,149 @@
+/* ═══ AIRI · Mascota interactiva v0.1 ═══════════════════════════════════════
+   Estilos aislados con el prefijo .airi-m-. Paleta V2 (identidad-visual/README.md).
+   No modifica estilos del prototipo. */
+.airi-m-raiz, .airi-m-flotante, .airi-m-pecera {
+  --airi-azul-profundo: #09284D; --airi-azul-oceano: #0982C7; --airi-cian: #39DDF8;
+  --airi-aqua: #80EAF2; --airi-naranja: #E97A25; --airi-arena: #F1D495;
+  --airi-verde: #1CAB55; --airi-violeta: #7B4DD4;
+  font-family: Inter, system-ui, sans-serif; box-sizing: border-box;
+}
+.airi-m-pecera *, .airi-m-flotante * { box-sizing: border-box; }
+.airi-m-solo-lector { position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; padding: 0; margin: -1px; }
+
+/* ── Personaje por capas ─────────────────────────────────────────────────── */
+.airi-m-pez { position: absolute; left: 0; top: 0; width: var(--airi-ancho-pez, 220px);
+  aspect-ratio: 470 / 290; will-change: transform; pointer-events: none; }
+.airi-m-giro { position: absolute; inset: 0; transition: transform .45s ease-in-out; }
+.airi-m-giro.airi-m-izquierda { transform: scaleX(-1); }
+.airi-m-capas { position: absolute; inset: 0; transition: filter .4s ease; }
+.airi-m-capa { position: absolute; inset: 0; width: 100%; height: 100%; user-select: none; }
+.airi-m-capa img { width: 100%; height: 100%; display: block; }
+.airi-m-cola   { transform-origin: 22.55% 65.52%; animation: airi-m-aleteo 1.1s ease-in-out infinite; }
+.airi-m-dorsal { transform-origin: 28.72% 40.52%; animation: airi-m-dorsal 1.6s ease-in-out infinite; }
+.airi-m-antena { transform-origin: 35.96% 32.07%; animation: airi-m-antena 2.4s ease-in-out infinite; }
+.airi-m-luz { position: absolute; left: 32.02%; top: 7.07%; width: 9%; aspect-ratio: 1;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(57,221,248,.85) 0%, rgba(57,221,248,0) 70%);
+  opacity: .55; animation: airi-m-brillo 2.4s ease-in-out infinite; }
+.airi-m-escaneo { position: absolute; left: 35.1%; top: 51.7%; width: 22%; aspect-ratio: 1;
+  transform: translate(-50%, -50%) scale(.6); border-radius: 50%; opacity: 0;
+  border: 3px solid var(--airi-cian); }
+.airi-m-senal { position: absolute; right: -2%; top: -6%; width: 24%; max-width: 46px; min-width: 22px;
+  aspect-ratio: 1; border-radius: 50%; display: none; align-items: center; justify-content: center;
+  font-weight: 800; font-size: clamp(12px, 2.2vw, 22px); color: var(--airi-azul-profundo);
+  border: 2px solid var(--airi-azul-profundo); background: white; }
+
+@keyframes airi-m-aleteo { 0%,100% { transform: rotate(7deg); } 50% { transform: rotate(-7deg); } }
+@keyframes airi-m-dorsal { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes airi-m-antena { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes airi-m-brillo { 0%,100% { opacity: .35; } 50% { opacity: .8; } }
+@keyframes airi-m-escaneo { 0% { opacity: .9; transform: translate(-50%,-50%) scale(.6); }
+                            100% { opacity: 0; transform: translate(-50%,-50%) scale(1.6); } }
+@keyframes airi-m-saludo { 0%,100% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-10%) rotate(-6deg); } 55% { transform: translateY(2%) rotate(4deg); } }
+@keyframes airi-m-sacudida { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-4%); }
+  40%,80% { transform: translateX(4%); } }
+@keyframes airi-m-flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+/* Estados (señales visuales; la cara del personaje no se modifica) */
+.airi-m-estado-bienvenida .airi-m-capas { animation: airi-m-saludo 1.4s ease-in-out 2; }
+.airi-m-estado-bienvenida .airi-m-antena { animation-duration: .7s; }
+.airi-m-estado-espera .airi-m-cola { animation-duration: 1.6s; }
+.airi-m-estado-analisis .airi-m-cola { animation-duration: .45s; }
+.airi-m-estado-analisis .airi-m-luz { animation: airi-m-brillo .35s ease-in-out infinite; opacity: 1; }
+.airi-m-estado-analisis .airi-m-escaneo { animation: airi-m-escaneo .9s ease-out infinite; }
+.airi-m-estado-analisis .airi-m-capas { filter: drop-shadow(0 0 10px rgba(57,221,248,.75)); }
+.airi-m-estado-insuficiente .airi-m-capas { filter: drop-shadow(0 0 10px rgba(241,212,149,.95)); }
+.airi-m-estado-insuficiente .airi-m-senal { display: flex; background: var(--airi-arena); }
+.airi-m-estado-insuficiente .airi-m-luz { background: radial-gradient(circle, rgba(241,212,149,.95) 0%, rgba(241,212,149,0) 70%); }
+.airi-m-estado-error .airi-m-capas { filter: drop-shadow(0 0 10px rgba(233,122,37,.9));
+  animation: airi-m-sacudida .5s ease-in-out 2; }
+.airi-m-estado-error .airi-m-senal { display: flex; background: var(--airi-naranja); color: white; }
+.airi-m-estado-error .airi-m-luz { background: radial-gradient(circle, rgba(233,122,37,.95) 0%, rgba(233,122,37,0) 70%); }
+.airi-m-estado-alerta .airi-m-capas { filter: drop-shadow(0 0 12px rgba(233,122,37,1)); }
+.airi-m-estado-alerta .airi-m-senal { display: flex; background: var(--airi-naranja); color: white; }
+
+/* ── Globo de mensajes ───────────────────────────────────────────────────── */
+.airi-m-globo { background: white; color: var(--airi-azul-profundo); border: 2px solid var(--airi-azul-oceano);
+  border-radius: 14px; padding: 10px 12px; font-size: 14px; line-height: 1.4;
+  box-shadow: 0 4px 14px rgba(9,40,77,.15); }
+.airi-m-globo p { margin: 0; }
+.airi-m-etiqueta { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 700;
+  padding: 2px 7px; border-radius: 8px; background: #e0f4f9; color: var(--airi-azul-profundo); }
+.airi-m-etiqueta[data-tipo="demostrativo"] { background: var(--airi-arena); }
+.airi-m-etiqueta[data-tipo="advertencia"] { background: var(--airi-arena); }
+.airi-m-etiqueta[data-tipo="error"] { background: var(--airi-naranja); color: white; }
+
+/* ── Controles ───────────────────────────────────────────────────────────── */
+.airi-m-controles { display: flex; gap: 6px; flex-wrap: wrap; }
+.airi-m-boton { cursor: pointer; border: 1px solid var(--airi-azul-oceano); border-radius: 8px;
+  padding: 6px 10px; font: 600 13px/1.2 Inter, system-ui, sans-serif; background: white;
+  color: var(--airi-azul-profundo); }
+.airi-m-boton:hover { background: #e0f6fa; }
+.airi-m-boton[aria-pressed="true"] { background: var(--airi-azul-oceano); color: white; }
+.airi-m-boton:focus-visible, .airi-m-avatar:focus-visible { outline: 3px solid var(--airi-naranja); outline-offset: 2px; }
+
+/* ── Pecera (pestaña Inicio) ─────────────────────────────────────────────── */
+.airi-m-pecera { position: relative; margin: 18px 0; }
+.airi-m-agua { position: relative; overflow: hidden; height: clamp(230px, 34vw, 330px); border-radius: 18px;
+  border: 3px solid var(--airi-azul-profundo);
+  background: linear-gradient(180deg, #8fe6f3 0%, var(--airi-cian) 12%, var(--airi-azul-oceano) 62%, #0a5f97 100%); }
+.airi-m-rayos { position: absolute; inset: -20% -10% 0; pointer-events: none;
+  background: repeating-linear-gradient(105deg, rgba(255,255,255,0) 0 60px, rgba(255,255,255,.12) 60px 95px, rgba(255,255,255,0) 95px 170px);
+  animation: airi-m-rayos 9s ease-in-out infinite alternate; }
+@keyframes airi-m-rayos { from { transform: translateX(-4%); opacity: .7; } to { transform: translateX(4%); opacity: 1; } }
+.airi-m-superficie { position: absolute; top: 0; left: 0; width: 200%; height: 18px; pointer-events: none;
+  background: radial-gradient(ellipse 40px 10px at 40px 0, rgba(255,255,255,.55) 98%, transparent 100%) repeat-x;
+  background-size: 80px 18px; animation: airi-m-ola 7s linear infinite; }
+@keyframes airi-m-ola { to { transform: translateX(-80px); } }
+.airi-m-arena { position: absolute; left: 0; right: 0; bottom: 0; height: 16%; pointer-events: none;
+  background: radial-gradient(ellipse at 30% 0, #f7e2b4, var(--airi-arena) 60%, #dcb874);
+  border-top-left-radius: 50% 30%; border-top-right-radius: 50% 40%; }
+.airi-m-burbuja { position: absolute; bottom: 12%; width: var(--t, 10px); aspect-ratio: 1; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.75); background: rgba(128,234,242,.18); pointer-events: none;
+  animation: airi-m-subir var(--d, 7s) linear infinite; animation-delay: var(--r, 0s); opacity: 0; }
+@keyframes airi-m-subir { 0% { transform: translate(0,0); opacity: 0; } 10% { opacity: .9; }
+  50% { transform: translate(8px,-45cqh); } 90% { opacity: .8; } 100% { transform: translate(-6px,-88cqh); opacity: 0; } }
+.airi-m-agua { container-type: size; }
+.airi-m-nadador { position: absolute; inset: 0; }
+.airi-m-pecera .airi-m-pez { --airi-ancho-pez: clamp(140px, 24vw, 230px); }
+.airi-m-pecera .airi-m-globo { position: absolute; top: 12px; left: 12px; max-width: min(360px, 62%); z-index: 3; }
+.airi-m-pecera .airi-m-controles { margin-top: 8px; justify-content: flex-end; }
+.airi-m-pecera-aviso { margin: 6px 2px 0; font-size: 12px; color: #47667b; }
+.airi-m-pecera.airi-m-oculta .airi-m-agua, .airi-m-pecera.airi-m-oculta .airi-m-pecera-aviso,
+.airi-m-pecera.airi-m-oculta > .airi-m-globo { display: none; }
+
+/* ── Asistente flotante (demás pestañas) ─────────────────────────────────── */
+.airi-m-flotante { position: fixed; right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; max-width: min(320px, calc(100vw - 24px));
+  pointer-events: none; }
+.airi-m-flotante > * { pointer-events: auto; }
+.airi-m-flotante[hidden] { display: none; }
+.airi-m-flotante .airi-m-globo { width: 100%; }
+.airi-m-flotante .airi-m-globo[hidden] { display: none; }
+.airi-m-flotante .airi-m-controles { margin-top: 8px; }
+.airi-m-avatar { position: relative; width: 128px; aspect-ratio: 470 / 290; cursor: pointer; border: 0; padding: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(128,234,242,.55), rgba(128,234,242,0) 70%); border-radius: 50%;
+  animation: airi-m-flotar 3s ease-in-out infinite; }
+.airi-m-avatar .airi-m-pez { --airi-ancho-pez: 100%; position: absolute; inset: 0; }
+.airi-m-mostrar { position: fixed; right: 12px; bottom: 12px; z-index: 50; }
+.airi-m-mostrar[hidden] { display: none; }
+body.airi-m-con-flotante { padding-bottom: 150px; }
+
+@media (max-width: 600px) {
+  .airi-m-avatar { width: 92px; }
+  .airi-m-flotante { max-width: calc(100vw - 24px); }
+  .airi-m-flotante .airi-m-globo { font-size: 13px; }
+  body.airi-m-con-flotante { padding-bottom: 120px; }
+  .airi-m-pecera .airi-m-globo { position: static; max-width: none; margin-top: 8px; font-size: 13px; }
+  .airi-m-flotante .airi-m-globo { padding: 8px 10px; line-height: 1.35; }
+  .airi-m-flotante .airi-m-boton { padding: 4px 8px; font-size: 12px; }
+}
+
+/* ── Movimiento reducido ─────────────────────────────────────────────────────
+   mascota.js aplica .airi-m-reducido cuando el sistema pide reducir el movimiento
+   (prefers-reduced-motion) o cuando la persona activa «Reducir animaciones». */
+.airi-m-reducido, .airi-m-reducido * { animation: none !important; transition: none !important; }
+.airi-m-reducido .airi-m-burbuja, .airi-m-reducido .airi-m-superficie { display: none; }
+.airi-m-izquierda .airi-m-senal { transform: scaleX(-1); }   /* el signo no se ve al revés */
