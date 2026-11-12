@@ -10,7 +10,7 @@
 [`AIRI_Grafo_Interactivo.ipynb`](AIRI_Grafo_Interactivo.ipynb) construye el grafo desde cero en Python (Matplotlib + ipywidgets, ya incluidos en Colab) y permite:
 
 - elegir uno de siete escenarios simulados o editar las mediciones de los seis parámetros;
-- **ejecutar la simulación** completa o avanzar **paso a paso** desde el estado inicial (E0) hasta el estado final (FIN);
+- **reproducir automáticamente** el recorrido, como un video, desde el estado inicial (E0) hasta el estado final (FIN), con **Pausar**, **Continuar**, **Reiniciar** y velocidad Lenta (1.5 s), Normal (0.8 s) o Rápida (0.3 s) por paso; *Siguiente paso* queda como avance manual opcional;
 - ver el **recorrido resaltado** (`×n` = número de parámetros que pasaron por cada transición) y seguir un solo parámetro;
 - leer el **panel de resultados**: estado de cada parámetro, valores de A e I, alertas, recomendaciones informativas y datos solicitados;
 - **reiniciar** y probar otro caso.
@@ -173,3 +173,21 @@ Realizada **fuera de Colab**, con Python 3.13 y Matplotlib 3.11, ejecutando el c
 - La celda de verificación del propio notebook pasa: estructura del grafo, los siete escenarios con su resultado esperado y las 117 649 combinaciones de estados de los seis parámetros.
 - Controles: cambiar de escenario carga las mediciones y reinicia; *Ejecutar simulación* produce el resultado esperado en los siete escenarios; *Siguiente paso* avanza de uno en uno y se detiene en el último paso (muestra entonces el informe); *Recorrido a resaltar* redibuja; *Reiniciar* limpia; editar un valor reinicia la simulación; se acepta coma decimal y se rechazan `nan`, `inf` y `1e999`.
 - Se revisaron visualmente las imágenes del grafo inicial, el recorrido completo, el modo paso a paso y el recorrido de un solo parámetro: sin texto encimado.
+
+## 11. Verificación de la reproducción automática (11 de noviembre de 2026)
+
+Igual que la verificación anterior, se hizo **fuera de Colab** (Python 3.13, Matplotlib 3.11). Se ejecutó el código del `.ipynb` dentro de un bucle de eventos `asyncio` real, con sustitutos de los widgets:
+
+- Un clic en *Reproducir* muestra el estado inicial E0 y avanza solo, sin saltar ni repetir pasos, hasta FIN. Ahí se detiene y muestra el informe.
+- Velocidad medida: 0.30 s por paso en Rápida, 0.80 s en Normal y 1.55 s en Lenta. Un cambio de velocidad durante la reproducción se aplica desde el paso siguiente.
+- *Pausar* conserva el paso y no deja tareas activas; *Continuar* reanuda desde ese paso. Pulsar *Continuar* o *Reproducir* varias veces nunca crea reproducciones simultáneas.
+- *Reiniciar*, cambiar de escenario o editar una medición durante la reproducción la detienen; después no queda ninguna tarea dibujando.
+- *Siguiente paso* pausa la reproducción y avanza exactamente un paso.
+- Los siete escenarios, reproducidos de principio a fin, dan el resultado esperado. Sus resultados, estados y trazas son idénticos a los de la versión anterior (`e8f8f72`).
+- La imagen del grafo mide siempre 1280 × 992 px, así que no cambia de tamaño ni de posición. Cada cuadro tarda unos 0.16 s en dibujarse.
+
+Cambios técnicos de esta versión:
+- Los cuadros se muestran en un widget de imagen de tamaño fijo, y el informe en un widget HTML.
+- Los extremos de las flechas se calculan una sola vez, en lugar de en cada cuadro.
+- La lógica, los rangos simulados, los escenarios y el diseño del grafo no cambiaron.
+
