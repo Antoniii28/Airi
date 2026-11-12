@@ -101,12 +101,13 @@ python herramientas/generar_casos.py --check
 | Suite | Pruebas | Qué cubre |
 |---|---|---|
 | `test_unidades.py` | 6 | factores molares, lectura numérica, unidades del prototipo, unidades rechazadas, conversiones |
-| `test_reglas.py` | 22 | Q1–Q4, límites inclusivos de pH, umbral de amoníaco con cada base, Nessler, nitritos, nitratos pendientes, contexto solo nivel B, coherencia de datos |
+| `test_reglas.py` | 23 | Q1–Q4, límites inclusivos de pH, umbral de amoníaco con cada base, Nessler, nitritos, nitratos pendientes, contexto solo nivel B, coherencia de datos |
 | `test_motor.py` | 11 | aristas de la traza ⊂ grafo (30 aristas), R1–R4, R4 sin pérdida de información, orden de alertas, ausencia de frases de seguridad o diagnóstico, determinismo |
 | `test_cli_y_conformidad.py` | 8 | CLI, archivo de conformidad al día, 34 vectores reproducidos, **barrido exhaustivo 7⁶ = 117 649 combinaciones** con el perfil real y con el de prueba |
 | `test_paridad_js.py` (v0.4 E4) | 4 | Informe **completo** idéntico en Python y JavaScript (textos incluidos) en los 34 casos y en 5 500 entradas aleatorias con semilla fija; `airi-motor-datos.js` generado de los mismos JSON |
 
-Resultado de la última ejecución (12-11-2026, E4): **51 pruebas, 0 fallos** (≈ 16 s). En E3 eran 47.
+Resultado de la última ejecución (12-11-2026, E5): **52 pruebas, 0 fallos** (≈ 15 s). En E3 eran 47 y en E4, 51.
+Historial completo de pruebas, errores y limitaciones: [`PRUEBAS_v0.4.md`](PRUEBAS_v0.4.md).
 Durante el desarrollo fallaron 2 pruebas por expectativas mal escritas (no por el motor): un caso R4 olvidaba que
 también faltaban nitratos, y 212 °F = 100 °C está dentro del límite de captura inclusivo. Se corrigieron las pruebas.
 
@@ -126,6 +127,7 @@ Todo pasaba, pero al preparar la traducción a JavaScript aparecieron estas inco
 | 3 | Con unidad ausente, el mensaje mostraba «None» | «No se indicó la unidad…»; el mensaje de límites de captura incluye la unidad capturada |
 | 4 | El caso `salinidad_ppm` probaba en realidad «g/kg» | Renombrado `salinidad_g_kg` |
 | 5 | Con amoníaco de base química desconocida y valor ≥ 0.5 en todo el intervalo, el informe mostraba un intervalo sin explicar por qué | Nota: «La unidad no indica si el valor es como N, como NH3 o como NH4+…» |
+| 6 (E5) | Con base desconocida y valor 0, aparecían la nota de intervalo (0 no lo es) y «convertido por masas molares» (no hubo conversión) | Cada nota solo aparece cuando corresponde; prueba añadida |
 
 ## Limitaciones
 

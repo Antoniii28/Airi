@@ -223,3 +223,17 @@ body.airi-m-dialogo-abierto { overflow: hidden; }
 .airi-m-dialogo input[type=range] { padding: 0; border: 0; }
 .airi-m-radio-nombre, .airi-m-radio-desc { grid-column: 2; }
 .airi-m-campo > label.airi-m-radio { display: grid; font-weight: 400; margin: 0; }
+
+/* ═══ v0.4 (E5) · Asistente flotante que no estorba la lectura ═══════════════
+   Botón «×» para cerrar el mensaje (AIRI lo reabre) y, en celular, un globo de
+   altura limitada con desplazamiento interno. */
+.airi-m-flotante .airi-m-globo { position: relative; padding-right: 40px; }
+.airi-m-cerrar-globo { position: absolute; top: 6px; right: 6px; width: 30px; height: 30px; margin: 0; padding: 0;
+  border-radius: 50%; border: 1px solid var(--airi-azul-oceano); background: white; color: var(--airi-azul-profundo);
+  font: 700 20px/1 system-ui, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.airi-m-cerrar-globo:hover { background: #e0f4f9; }
+.airi-m-cerrar-globo:focus-visible { outline: 3px solid var(--airi-azul-oceano); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .airi-m-flotante .airi-m-globo { max-height: 38vh; overflow: auto; padding-right: 46px; }
+  .airi-m-cerrar-globo { width: 36px; height: 36px; top: 4px; right: 4px; }
+}

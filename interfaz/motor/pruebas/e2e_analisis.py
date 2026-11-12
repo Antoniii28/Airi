@@ -106,14 +106,23 @@ def main():
         t = texto(pg)
         comprobar(estado(pg, "insuficiente") and pg.inner_text(f"{PEZ} .airi-m-senal") == "?" and not estado(pg, "alerta"),
                   "mascota: estado de información insuficiente («?»), sin alerta")
-        comprobar("pH, Amoníaco total y Nitritos están dentro de la referencia" in t and
-                  "No evalúo Temperatura, Salinidad y Nitratos" in t and "no garantiza" in t,
-                  f"mascota explica qué evaluó y qué no: {t!r}")
+        comprobar(t.startswith("pH, Amoníaco total y Nitritos están dentro de la referencia") and
+                  "Temperatura, Salinidad y Nitratos no se evalúan por falta de referencia" in t and "no garantiza" in t,
+                  f"mascota explica, en breve, qué evaluó y qué no: {t!r}")
         h = habladas(pg)[n_inicio:]
-        ins = [x for x in h if "No evalúo" in x["text"]]
+        ins = [x for x in h if "no se evalúan" in x["text"]]
         e_ins = pg.evaluate("AIRIVoz.prosodia(null, 'insuficiente')")
         comprobar(ins and ins[-1]["pitch"] == e_ins["tono"] and ins[-1]["rate"] == e_ins["velocidad"],
                   "voz: lee el resultado con el tono tranquilo de «insuficiente»")
+        pasos = pg.eval_on_selector_all("#resultado .airi-paso", "l => l.map(e => [e.classList.contains('airi-paso-formato') ? 'formato' : 'referencias', e.querySelector('h3').innerText])")
+        comprobar([x[0] for x in pasos] == ["formato", "referencias"] and pasos[0][1].startswith("1") and
+                  "Validación de formato" in pasos[0][1] and pasos[1][1].startswith("2") and "referencias científicas" in pasos[1][1],
+                  f"resultado en dos pasos numerados: formato y referencias {pasos}")
+        comprobar("No indica si el valor es adecuado" in pg.inner_text(".airi-paso-formato .airi-paso-que"),
+                  "el paso 1 aclara que validar el formato no juzga el valor")
+        verde = pg.eval_on_selector(".airi-paso-formato .status.ok", "e => getComputedStyle(e).backgroundColor")
+        comprobar(verde != "rgb(225, 246, 232)", f"«formato válido» ya no usa el verde de «valor adecuado» ({verde})")
+        comprobar(pg.locator("#agua .airi-pasos-guia .airi-pasos-tarjeta").count() == 2, "guía de los dos pasos visible antes de validar")
         pg.screenshot(path=str(cap / "01_escritorio_R3.png"), full_page=True)
 
         # ── 3. Anomalías + datos faltantes → R4, alerta seria sin alarmismo ──
@@ -135,18 +144,28 @@ def main():
         t = texto(pg)
         comprobar(estado(pg, "alerta") and pg.inner_text(f"{PEZ} .airi-m-senal") == "!", "mascota: estado de alerta con señal «!»")
         comprobar(pg.inner_text(f"{FLOT} .airi-m-etiqueta") == "Advertencia informativa", "etiqueta: advertencia informativa (no alarma)")
-        comprobar("Amoníaco total (por encima del valor de referencia), pH (conviene revisarlo) y Nitritos (detectable)" in t and
-                  "falta el dato de Salinidad" in t and "No evalúo Temperatura y Nitratos" in t and "No es un diagnóstico" in t,
+        comprobar("Conviene revisar 3 valores: Amoníaco total, pH y Nitritos" in t and "falta el dato de Salinidad" in t and
+                  "Temperatura y Nitratos no se evalúan" in t and "No es un diagnóstico" in t,
                   f"mensaje R4: anomalías y datos insuficientes a la vez: {t!r}")
-        comprobar("repetir" in t and not PROHIBIDO.search(t), "tono serio sin alarmismo: sugiere repetir, sin «peligro», «urgente»…")
+        comprobar(len(t.split()) <= 45, f"mensaje breve para el globo y la voz ({len(t.split())} palabras; antes de E5, 75)")
+        detalle = pg.inner_text(".airi-a")
+        comprobar(all(f in detalle for f in ["TAN ≥ 0.5 mg/L como N", "Las fuentes discrepan", "Presencia detectable (0.1 mg/L NO2−)",
+                                                 "Sugerencia (informativa)", "Proporciona la medición de salinidad"]),
+                  "la explicación completa (motivos, sugerencias, solicitudes) sigue en el panel")
+        comprobar("Repite" in t and not PROHIBIDO.search(t), "tono serio sin alarmismo: sugiere repetir, sin «peligro», «urgente»…")
         h = habladas(pg)[n:]
-        al = [x for x in h if "conviene revisar" in x["text"]]
+        al = [x for x in h if "Conviene revisar" in x["text"]]
         e_al, e_esp = pg.evaluate("[AIRIVoz.prosodia(null, 'alerta'), AIRIVoz.prosodia(null, 'espera')]")
         comprobar(al and al[0]["pitch"] == e_al["tono"] and al[0]["rate"] == e_al["velocidad"] and
                   e_al["tono"] < e_esp["tono"] and e_al["velocidad"] < e_esp["velocidad"],
                   f"voz: tono serio de «alerta» (tono {al[0]['pitch'] if al else '?'}, velocidad {al[0]['rate'] if al else '?'})")
         comprobar(not any("Revisando" in x["text"] for x in h), "voz: no lee la pausa demostrativa")
         pg.screenshot(path=str(cap / "02_escritorio_R4_alerta.png"))
+        pg.click(f"{FLOT} .airi-m-cerrar-globo"); pg.wait_for_timeout(100)
+        comprobar(pg.is_hidden(f"{FLOT} .airi-m-globo") and pg.evaluate("document.activeElement.classList.contains('airi-m-avatar')"),
+                  "botón «×»: cierra el mensaje y el foco pasa a AIRI")
+        pg.click(".airi-m-avatar", force=True); pg.wait_for_timeout(100)
+        comprobar(pg.is_visible(f"{FLOT} .airi-m-globo") and "Conviene revisar" in texto(pg), "al tocar a AIRI el mensaje vuelve a abrirse")
         pg.locator(".airi-a").screenshot(path=str(cap / "03_panel_R4.png"))
 
         # ── 4. Valores inválidos sin anomalías y nueva comprobación de captura ─
@@ -158,7 +177,7 @@ def main():
         comprobar(pg.get_attribute('.airi-a-param[data-parametro="temperatura"]', "data-estado") == "EP2",
                   "el motor añade el límite de captura: 150 °C es inválido (agua líquida)")
         t = texto(pg)
-        comprobar(estado(pg, "error") and "Temperatura y Nitratos" in t and "También falta Amoníaco total" in t,
+        comprobar(estado(pg, "error") and "Temperatura y Nitratos" in t and "También falta el dato de Amoníaco total" in t,
                   f"mascota: estado de error con los campos reales: {t!r}")
 
         # ── 5. Todo vacío y «Limpiar» ────────────────────────────────────────
@@ -203,6 +222,10 @@ def main():
         pg.tap('[data-tab="agua"]'); llenar(pg, ["26", "8.4", "", "0.8", "0.1", "10"])
         pg.tap("#evaluar"); pg.wait_for_timeout(1300)
         comprobar(estado(pg, "alerta") and pg.get_attribute(".airi-a", "data-clasificacion") == "R4", "celular: R4 con mascota en alerta")
+        alto = pg.evaluate("(() => { const g = document.querySelector('.airi-m-flotante .airi-m-globo').getBoundingClientRect(); return [g.height, innerHeight]; })()")
+        comprobar(alto[0] <= alto[1] * 0.38 + 1, f"celular: el globo ocupa como máximo el 38 % de la altura ({alto[0]:.0f} de {alto[1]} px)")
+        caja_x = pg.evaluate("(() => { const r = document.querySelector('.airi-m-flotante .airi-m-cerrar-globo').getBoundingClientRect(); return [r.width, r.height]; })()")
+        comprobar(min(caja_x) >= 36, f"celular: el botón «×» tiene un área táctil suficiente {caja_x}")
         ancho = pg.evaluate("[document.documentElement.scrollWidth, window.innerWidth]")
         comprobar(ancho[0] <= ancho[1], f"celular: sin desplazamiento horizontal {ancho}")
         caja = pg.evaluate("(() => { const r = document.querySelector('.airi-m-flotante').getBoundingClientRect(); return [r.left, r.right, window.innerWidth]; })()")
@@ -214,6 +237,11 @@ def main():
                   pg.inner_text('.airi-a-param[data-parametro="nitratos"] .airi-a-valor') == "10 mg/L (NO₃⁻)",
                   "se muestra el valor capturado, su equivalencia canónica y por qué el amoníaco es un intervalo")
         pg.screenshot(path=str(cap / "04_celular_R4_mascota.png"))
+        pg.tap(f"{FLOT} .airi-m-cerrar-globo"); pg.wait_for_timeout(150)
+        comprobar(pg.is_hidden(f"{FLOT} .airi-m-globo") and pg.is_visible(PEZ), "celular: «×» cierra el mensaje y AIRI queda visible")
+        pg.screenshot(path=str(cap / "04b_celular_globo_cerrado.png"))
+        pg.tap(".airi-m-avatar", force=True); pg.wait_for_timeout(150)   # el avatar flota animado
+        comprobar(pg.is_visible(f"{FLOT} .airi-m-globo"), "celular: tocar a AIRI vuelve a abrir el mensaje")
         destino = pg.evaluate("document.querySelector('.airi-a').getBoundingClientRect().top + scrollY - 10")
         while pg.evaluate("scrollY") < destino - 5:          # desplazamiento gradual, como con el dedo
             pg.evaluate(f"window.scrollBy(0, Math.min(120, {destino} - scrollY))"); pg.wait_for_timeout(40)

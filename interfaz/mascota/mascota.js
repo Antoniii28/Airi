@@ -254,6 +254,16 @@
     var pezFlotante = crearPez();
     pezFlotante.removeAttribute("role"); pezFlotante.removeAttribute("aria-label");
     avatar.appendChild(pezFlotante);
+    // v0.4 (E5): botón visible para cerrar el mensaje; AIRI (el avatar) lo vuelve a abrir.
+    var cerrarGlobo = el("button", "airi-m-cerrar-globo", { type: "button", title: "Cerrar mensaje",
+      "aria-label": "Cerrar el mensaje de AIRI. Toca a AIRI para volver a abrirlo" });
+    cerrarGlobo.textContent = "×";
+    cerrarGlobo.addEventListener("click", function () {
+      abrirGlobo(false);
+      avatar.focus();
+      emitir("airi:mascota-globo-cerrado", { modo: "flotante" });
+    });
+    globoFlotante.insertBefore(cerrarGlobo, globoFlotante.firstChild);
     flotante.appendChild(globoFlotante); flotante.appendChild(avatar);
     document.body.appendChild(flotante);
     var mostrarBtn = el("button", "airi-m-boton airi-m-mostrar", { type: "button" });

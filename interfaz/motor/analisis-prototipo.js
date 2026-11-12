@@ -51,6 +51,14 @@
   }
 
   // ── Mensaje de la mascota a partir del informe REAL del motor ─────────────
+  // E5: mensajes BREVES (se leen en voz alta y caben en el globo del celular). La explicación
+  // completa (motivos, severidad, fuentes, sugerencias) queda en el panel de análisis.
+  function noSeEvaluan(nombres) {
+    return lista(nombres) + plural(nombres.length, " no se evalúa", " no se evalúan") + " por falta de referencia";
+  }
+  function faltaDato(nombres) {
+    return plural(nombres.length, "falta el dato de ", "faltan los datos de ") + lista(nombres);
+  }
   function mensajeMascota(inf) {
     var por = { EP1: [], EP2: [], EP3: [], EP4: [], EP5: [] };
     inf.resultados.forEach(function (r) { por[r.estado].push(r.nombre); });
@@ -58,34 +66,30 @@
     if (inf.A) {
       estado = "alerta"; tipo = "advertencia";
       var n = inf.alertas.length;
-      partes.push("Comparé las mediciones con las referencias documentadas y " +
-        plural(n, "hay un valor que conviene revisar: ", "hay " + n + " valores que conviene revisar: ") +
-        lista(inf.alertas.map(function (a) { return a.nombre + " (" + SEV_CORTA[a.severidad] + ")"; })) + ".");
-      partes.push("Te sugiero repetir " + plural(n, "esa medición", "esas mediciones") +
-        " antes de decidir nada; debajo del formulario explico cada caso con sus fuentes.");
-      if (por.EP2.length) partes.push("También " + plural(por.EP2.length, "hay un valor inválido en ", "hay valores inválidos en ") + lista(por.EP2) + ".");
-      if (por.EP1.length) partes.push("Además " + plural(por.EP1.length, "falta el dato de ", "faltan los datos de ") + lista(por.EP1) + ".");
+      partes.push("Conviene revisar " + plural(n, "un valor: ", n + " valores: ") +
+        lista(inf.alertas.map(function (a) { return a.nombre; })) + ".");
+      var extra = [];
+      if (por.EP1.length) extra.push(faltaDato(por.EP1));
+      if (por.EP2.length) extra.push(plural(por.EP2.length, "hay un dato inválido en ", "hay datos inválidos en ") + lista(por.EP2));
+      if (por.EP3.length) extra.push(noSeEvaluan(por.EP3));
+      if (extra.length) partes.push("Además, " + extra.join("; ") + ".");
+      partes.push("Repite " + plural(n, "esa medición", "esas mediciones") + " y consulta el detalle en el análisis. No es un diagnóstico.");
     } else if (por.EP2.length) {
       estado = "error"; tipo = "error";
       partes.push(plural(por.EP2.length, "Hay un valor inválido en ", "Hay valores inválidos en ") + lista(por.EP2) +
         ". Revisa " + plural(por.EP2.length, "ese campo", "esos campos") + ".");
-      if (por.EP1.length) partes.push("También " + plural(por.EP1.length, "falta ", "faltan ") + lista(por.EP1) + ".");
+      if (por.EP1.length) partes.push("También " + faltaDato(por.EP1) + ".");
+      partes.push("El detalle está en el análisis.");
     } else if (por.EP1.length) {
       estado = "insuficiente"; tipo = "advertencia";
-      partes.push("Información insuficiente: " + plural(por.EP1.length, "falta el dato de ", "faltan los datos de ") +
-        lista(por.EP1) + ". Esto no es una alerta del acuario; solo indica que la validación está incompleta.");
+      partes.push("Información insuficiente: " + faltaDato(por.EP1) + ". Esto no es una alerta del acuario.");
+      if (por.EP3.length) partes.push(noSeEvaluan(por.EP3) + ".");
     } else {
       estado = "insuficiente"; tipo = "advertencia";
-      partes.push("Los datos tienen un formato válido y los comparé con las referencias documentadas.");
+      if (por.EP4.length) partes.push(lista(por.EP4) + plural(por.EP4.length, " está", " están") + " dentro de la referencia.");
+      if (por.EP3.length) partes.push(noSeEvaluan(por.EP3) + ".");
+      partes.push("Esto no garantiza que el agua sea adecuada.");
     }
-    if (!inf.A && por.EP4.length) {
-      partes.push(lista(por.EP4) + plural(por.EP4.length, " está", " están") + " dentro de la referencia.");
-    }
-    if (por.EP3.length) {
-      partes.push("No evalúo " + lista(por.EP3) + " porque " + plural(por.EP3.length, "no tiene", "no tienen") +
-        " una referencia verificada.");
-    }
-    partes.push(inf.A ? "No es un diagnóstico." : "Esto no garantiza que el agua sea adecuada.");
     return { estado: estado, tipo: tipo, texto: partes.join(" "), clasificacion: inf.clasificacion };
   }
 
@@ -123,8 +127,10 @@
 
   function renderizar(inf) {
     var h = [];
-    h.push('<section class="airi-a" aria-labelledby="airi-a-titulo" data-clasificacion="' + inf.clasificacion + '">');
-    h.push('<h3 id="airi-a-titulo">Análisis con referencias documentadas</h3>');
+    h.push('<section class="airi-a airi-paso airi-paso-referencias" aria-labelledby="airi-a-titulo" data-clasificacion="' + inf.clasificacion + '">');
+    h.push('<h3 id="airi-a-titulo"><span class="airi-paso-num" aria-hidden="true">2</span>Evaluación con referencias científicas</h3>');
+    h.push('<p class="airi-paso-que">Compara los datos <strong>válidos</strong> con referencias documentadas (Manual ' +
+      'Veterinario MSD, UF/IFAS). Solo se evalúan los parámetros que tienen una referencia verificada.</p>');
     h.push('<p class="airi-a-perfil"><strong>Perfil:</strong> ' + safe(inf.perfil.nombre) + ". " + safe(inf.perfil.aplica_a) + "</p>");
     h.push('<div class="airi-a-resumen airi-a-' + inf.clasificacion + '"><strong>' + safe(TITULO_RESULTADO[inf.clasificacion]) +
       ' <span class="airi-a-codigo">(' + inf.clasificacion + ")</span></strong><br>" + safe(inf.resumen) + "</div>");
@@ -177,6 +183,46 @@
     return h.join("");
   }
 
+  // ── Paso 1: la validación de formato del prototipo, sin cambiar su contenido ─
+  // Se agrupan sus nodos en una sección rotulada; el texto y las clases .status se conservan.
+  function marcarPasoFormato() {
+    var resultado = document.getElementById("resultado");
+    if (!resultado || resultado.querySelector(".airi-paso-formato")) return;
+    var seccion = document.createElement("section");
+    seccion.className = "airi-paso airi-paso-formato";
+    seccion.setAttribute("aria-labelledby", "airi-paso-formato-titulo");
+    while (resultado.firstChild) seccion.appendChild(resultado.firstChild);
+    var h3 = seccion.querySelector("h3");
+    if (h3) {
+      h3.id = "airi-paso-formato-titulo";
+      var num = document.createElement("span");
+      num.className = "airi-paso-num"; num.setAttribute("aria-hidden", "true"); num.textContent = "1";
+      h3.insertBefore(num, h3.firstChild);
+      var que = document.createElement("p");
+      que.className = "airi-paso-que";
+      que.innerHTML = "Comprueba que cada dato exista y sea un número válido. <strong>No indica si el valor es " +
+        "adecuado para el acuario</strong>: eso lo hace el paso 2.";
+      h3.parentNode.insertBefore(que, h3.nextSibling);
+    }
+    resultado.appendChild(seccion);
+  }
+
+  // Guía de los dos pasos, visible antes de validar
+  var seccionAgua = document.getElementById("agua");
+  var campos = document.getElementById("campos");
+  if (seccionAgua && campos && !document.querySelector(".airi-pasos-guia")) {
+    var guia = document.createElement("div");
+    guia.className = "airi-pasos-guia";
+    guia.innerHTML = '<div class="airi-pasos-tarjeta airi-pasos-formato"><span class="airi-paso-num" aria-hidden="true">1</span>' +
+      "<div><strong>Validación de formato</strong><br>¿El dato existe y es un número válido? No juzga si el valor es adecuado.</div></div>" +
+      '<div class="airi-pasos-tarjeta airi-pasos-referencias"><span class="airi-paso-num" aria-hidden="true">2</span>' +
+      "<div><strong>Evaluación con referencias científicas</strong><br>¿El valor está dentro de una referencia documentada? " +
+      "Solo pH, amoníaco total y nitritos tienen referencia verificada.</div></div>";
+    var etiquetaOrigen = seccionAgua.querySelector('label[for="origen"]');
+    var antes = etiquetaOrigen && etiquetaOrigen.parentNode === campos.parentNode ? etiquetaOrigen : campos;
+    campos.parentNode.insertBefore(guia, antes);
+  }
+
   // ── Conexión con el formulario ────────────────────────────────────────────
   var api = { ultimo: null, mensajeMascota: mensajeMascota, renderizar: renderizar, leerFormulario: leerFormulario };
   window.airiAnalisis = api;
@@ -191,6 +237,7 @@
         var origen = document.getElementById("origen");
         var inf = Motor.evaluar(leerFormulario(), null, origen ? origen.value : null);
         api.ultimo = { informe: inf, mensaje: mensajeMascota(inf) };
+        marcarPasoFormato();
         var contenedor = document.createElement("div");
         contenedor.className = "airi-a-contenedor";
         contenedor.innerHTML = renderizar(inf);

@@ -174,11 +174,11 @@
         lim.justificacion + ")");
     }
     r.valor_canonico = minimo === maximo ? redondear6(minimo) : [redondear6(minimo), redondear6(maximo)];
-    if (["c", "ph", "ppt", "N", "f"].indexOf(u.base) < 0 && minimo === maximo) {
+    if (["c", "ph", "ppt", "N", "f", null].indexOf(u.base) < 0 && minimo === maximo) {
       r.notas.push("Convertido de " + u.descripcion + " a " + meta.unidad_canonica + " por masas molares.");
     }
     if (u.base === "f") r.notas.push("Convertido de °F a °C.");
-    if (u.base === null && parametro === "amoniaco") {
+    if (u.base === null && parametro === "amoniaco" && minimo !== maximo) {
       r.notas.push("La unidad no indica si el valor es como N, como NH3 o como NH4+: se muestra el intervalo de equivalencias posibles en mg/L TAN-N.");
     }
 

@@ -1,6 +1,24 @@
 /* AIRI · Panel del análisis con referencias (v0.4). Prefijo airi-a-, sin estilos globales.
    El estado nunca se comunica solo con color: cada chip lleva su texto. */
-.airi-a { margin-top: 18px; padding-top: 14px; border-top: 2px solid #d6eaf1; }
+/* ── E5 · Dos pasos diferenciados: formato (gris neutro) y referencias (azul) ── */
+.airi-paso { margin-top: 16px; padding: 14px 16px; border-radius: 14px; border: 2px solid; }
+.airi-paso h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; }
+.airi-paso-num { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px;
+  border-radius: 50%; font-size: 15px; font-weight: 800; color: #fff; }
+.airi-paso-que { margin: 0 0 10px; font-size: 14px; color: #2f4b5c; line-height: 1.45; }
+.airi-paso-formato { border-color: #b9c9d2; background: #f6f9fa; }
+.airi-paso-formato .airi-paso-num, .airi-pasos-formato .airi-paso-num { background: #5d7d90; }
+/* En el paso 1 «válido» significa solo formato correcto: se evita el verde, que sugiere «valor adecuado». */
+.airi-paso-formato .status.ok { background: #eaf0f3; border-left: 4px solid #7d97a6; }
+.airi-paso-formato .status.warn { border-left: 4px solid #c07a1a; }
+.airi-paso-formato .status.unknown { border-left: 4px solid #a5b6c0; }
+.airi-paso-referencias { border-color: #0982C7; background: #fff; }
+.airi-paso-referencias .airi-paso-num, .airi-pasos-referencias .airi-paso-num { background: #0982C7; }
+.airi-pasos-guia { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 12px 0 4px; }
+.airi-pasos-tarjeta { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; border: 2px solid;
+  font-size: 14px; line-height: 1.4; }
+.airi-pasos-formato { border-color: #b9c9d2; background: #f6f9fa; }
+.airi-pasos-referencias { border-color: #0982C7; background: #eaf6fb; }
 .airi-a h3 { margin: 0 0 6px; }
 .airi-a h4 { margin: 16px 0 6px; font-size: 16px; }
 .airi-a-perfil { margin: 0 0 10px; color: #47667b; font-size: 14px; }

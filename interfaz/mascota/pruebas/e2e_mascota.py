@@ -195,7 +195,8 @@ def main():
         pg.click("#evaluar"); pg.wait_for_timeout(1100)
         texto = pg.inner_text(".airi-m-flotante .airi-m-texto")
         # v0.4: amoníaco 0.02 y nitritos 0.05 son detectables → alerta; temperatura, salinidad y nitratos sin referencia
-        comprobar("conviene revisar" in texto and "No evalúo Temperatura, Salinidad y Nitratos" in texto and
+        # v0.4 E5: mensaje breve; el detalle queda en el panel de análisis
+        comprobar("Conviene revisar" in texto and "Temperatura, Salinidad y Nitratos no se evalúan" in texto and
                   not re.search(r"(?i)\b(normal|seguro|saludable)\b", texto) and
                   pg.evaluate(f"document.querySelector('{pez}').classList.contains('airi-m-estado-alerta')"),
                   "datos válidos → compara con referencias, explica lo no evaluado y no declara normalidad")

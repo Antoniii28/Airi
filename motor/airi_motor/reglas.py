@@ -67,11 +67,11 @@ def evaluar_parametro(parametro: str, medicion: dict | None, perfil: dict) -> di
         return terminar("EP2", f"{_fmt(valor)}{' ' + unidad_texto if unidad_texto else ''} está fuera de los límites de captura "
                                f"({lim['justificacion']})")
     r["valor_canonico"] = round(minimo, 6) if minimo == maximo else [round(minimo, 6), round(maximo, 6)]
-    if reconocida["base"] not in ("c", "ph", "ppt", "N", "f") and minimo == maximo:
+    if reconocida["base"] not in ("c", "ph", "ppt", "N", "f", None) and minimo == maximo:
         r["notas"].append(f"Convertido de {reconocida['descripcion']} a {meta['unidad_canonica']} por masas molares.")
     if reconocida["base"] == "f":
         r["notas"].append("Convertido de °F a °C.")
-    if reconocida["base"] is None and parametro == "amoniaco":
+    if reconocida["base"] is None and parametro == "amoniaco" and minimo != maximo:
         r["notas"].append("La unidad no indica si el valor es como N, como NH3 o como NH4+: se muestra el intervalo de equivalencias posibles en mg/L TAN-N.")
 
     # Q5

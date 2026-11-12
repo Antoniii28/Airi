@@ -95,6 +95,12 @@ class Amoniaco(unittest.TestCase):
         self.assertEqual(ev("amoniaco", "0.7", u)["severidad"], "alerta_alta")              # mín 0.544 ≥ 0.5
         self.assertEqual(ev("amoniaco", "0.6", u)["valor_canonico"], [0.465891, 0.6])
 
+    def test_notas_de_base_desconocida_solo_si_hay_intervalo(self):
+        u = "mg/L (NH₃/NH₄⁺ total)"
+        self.assertEqual(ev("amoniaco", "0", u)["notas"], [])                    # 0 no es un intervalo ni una conversión
+        self.assertIn("intervalo de equivalencias", ev("amoniaco", "0.6", u)["notas"][0])
+        self.assertIn("por masas molares", ev("amoniaco", "0.6", "mg/L como NH3")["notas"][0])
+
     def test_metodo_nessler_no_se_compara_con_el_umbral(self):
         r = ev("amoniaco", "3", metodo="Nessler")
         self.assertEqual(r["severidad"], "revision_recomendada")

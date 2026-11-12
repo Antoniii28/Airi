@@ -238,7 +238,7 @@ node --test interfaz/mascota/pruebas/voz_personalidad.test.js # 11 pruebas unita
 python interfaz/mascota/pruebas/e2e_mascota.py                # 76 comprobaciones en Chrome (v0.1)
 python interfaz/mascota/pruebas/e2e_voz.py                    # 50 comprobaciones en Chrome (v0.2)
 python interfaz/mascota/pruebas/e2e_ajustes_voz.py            # 43 comprobaciones en Chrome (v0.3)
-python interfaz/motor/pruebas/e2e_analisis.py                 # 45 comprobaciones en Chrome (v0.4: motor + mascota + voz)
+python interfaz/motor/pruebas/e2e_analisis.py                 # 57 comprobaciones en Chrome (v0.4: motor + mascota + voz)
 ```
 
 La prueba de extremo a extremo genera una copia temporal del prototipo **sin** la mascota y comprueba que las
@@ -280,17 +280,21 @@ algunas distribuciones de Linux hay que instalarlas aparte.
 
 ## Integración con el motor de análisis (v0.4)
 
-- `mascota.js`, `voz.js`, `ayuda.js`, `ajustes-voz.js`, `interaccion.js` y `mascota.css` **no cambian**.
+- `voz.js`, `ayuda.js`, `ajustes-voz.js` e `interaccion.js` **no cambian**. `mascota.js` y `mascota.css` solo cambian en
+  E5: botón «×» en el globo flotante (cierra el mensaje; tocar a AIRI lo reabre; emite `airi:mascota-globo-cerrado`)
+  y, en celular, globo de altura máxima 38 % de la pantalla con desplazamiento interno.
 - `integracion-prototipo.js`: tras «Validar entradas», si `window.airiAnalisis.ultimo` existe (motor cargado),
   la mascota muestra y lee el mensaje construido a partir del informe del motor; si no, usa
   `interpretarValidacion` como en v0.3.
 - `interfaz/motor/analisis-prototipo.js` actualiza, **solo si el motor está cargado**, los textos que v0.4 vuelve
   inexactos (saludo de Inicio, mensaje de Parámetros del agua, pausa de análisis y respuestas «¿Qué puedes hacer?»,
-  «Parámetros del agua» y «Próximas funciones»). Sin motor, quedan los textos de v0.3.
+  «Ayúdame con los parámetros del agua» y «¿Qué funciones llegarán después?»). Sin motor, quedan los textos de v0.3.
+- Los mensajes de la mascota tras validar son **breves** (E5); el detalle está en el panel de análisis.
 - Comprobaciones de `e2e_mascota.py` y `e2e_voz.py` ajustadas a v0.4 (cada una con un comentario «v0.4»):
   la regresión con y sin mascota copia también `interfaz/motor`; los datos de ejemplo con nitritos 0.1 o amoníaco
   0.02 ahora producen estado `alerta` (antes `error`/`espera`); la ayuda ya no dice «Todavía no analizo el agua»;
-  «Repetir» se mide desde el momento de pulsarlo, porque el texto nuevo tiene más fragmentos.
+  «Repetir» se mide desde el momento de pulsarlo, porque el texto nuevo tiene más fragmentos. En E5, una comprobación
+  de `e2e_mascota.py` se adaptó al mensaje breve.
 
 ## Limitaciones de v0.3
 - Solo se ajustan el tono y la velocidad de las voces instaladas; el timbre no cambia.
