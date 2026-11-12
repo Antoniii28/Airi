@@ -3,10 +3,39 @@
 **Actividad:** Fundamentos de la IA — grafo relacionado con el proyecto AIRI.
 **Estado:** representación académica del **funcionamiento propuesto** de AIRI v0.1. No describe código implementado: el agente todavía no se ha programado.
 
+## Entregable principal: simulación interactiva en Google Colab
+
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Antoniii28/Airi/blob/feature/grafo-interactivo-airi/grafo/AIRI_Grafo_Interactivo.ipynb)
+
+[`AIRI_Grafo_Interactivo.ipynb`](AIRI_Grafo_Interactivo.ipynb) construye el grafo desde cero en Python (Matplotlib + ipywidgets, ya incluidos en Colab) y permite:
+
+- elegir uno de siete escenarios simulados o editar las mediciones de los seis parámetros;
+- **ejecutar la simulación** completa o avanzar **paso a paso** desde el estado inicial (E0) hasta el estado final (FIN);
+- ver el **recorrido resaltado** (`×n` = número de parámetros que pasaron por cada transición) y seguir un solo parámetro;
+- leer el **panel de resultados**: estado de cada parámetro, valores de A e I, alertas, recomendaciones informativas y datos solicitados;
+- **reiniciar** y probar otro caso.
+
+Uso: abrir en Colab → *Entorno de ejecución → Ejecutar todo*. No requiere instalar paquetes ni cambiar rutas. Si el repositorio es privado, Colab pedirá autorizar el acceso a GitHub.
+
+| Escenario simulado | Resultado |
+|---|---|
+| 1 · Parámetros dentro de las referencias simuladas | R1 · informe en rango |
+| 2 · Una anomalía | R2 · 1 alerta |
+| 3 · Varias anomalías | R2 · 3 alertas |
+| 4 · Información incompleta | R3 · 2 datos faltantes |
+| 5 · Datos inválidos | R3 · formato, unidad y valor no plausible |
+| 6 · Anomalías + información insuficiente | R4 · 2 alertas y 2 datos no evaluables |
+| 7 · Referencia no disponible | R3 · nitratos sin referencia |
+
+⚠ Las mediciones, los límites de captura y las referencias del notebook son **simulados, sin fuente biológica**: sirven solo para demostrar el recorrido del grafo.
+
+## Versión estática (complemento)
+
 ![Grafo de decisiones del agente AIRI](grafo_decisiones_airi.png)
 
 | Archivo | Uso |
 |---|---|
+| [`AIRI_Grafo_Interactivo.ipynb`](AIRI_Grafo_Interactivo.ipynb) | Notebook interactivo para Google Colab (entregable principal) |
 | [`grafo_decisiones_airi.png`](grafo_decisiones_airi.png) | Imagen para presentar (200 dpi) |
 | [`grafo_decisiones_airi.pdf`](grafo_decisiones_airi.pdf) | Versión vectorial para imprimir |
 | [`grafo_decisiones_airi.svg`](grafo_decisiones_airi.svg) | Versión vectorial para web |
@@ -135,3 +164,12 @@ Con Graphviz 2.43.0, a partir del DOT exportado a JSON:
 - Comprobación exhaustiva de las 117 649 combinaciones posibles de estados para los seis parámetros: nunca se informa "en rango" con anomalías o datos no evaluados, las alertas nunca se pierden y todos los recorridos terminan en FIN.
 - SVG válido; PDF de una página con fuentes incrustadas; PNG de 3046 × 5646 px.
 - Contraste de texto (WCAG): entre 4.18:1 y 14.76:1. El valor más bajo corresponde al texto blanco sobre azul océano, y supera 3:1, el mínimo para texto grande o en negrita.
+
+## 10. Verificación del notebook (11 de noviembre de 2026)
+
+Realizada **fuera de Colab**, con Python 3.13 y Matplotlib 3.11, ejecutando el código de las celdas del `.ipynb`. Como en ese entorno no estaba instalado `ipywidgets`, los controles se reemplazaron por sustitutos que simulan sus eventos:
+
+- Notebook JSON válido (nbformat 4): 16 celdas, 7 de código, todas compilan y no usan rutas de archivos locales.
+- La celda de verificación del propio notebook pasa: estructura del grafo, los siete escenarios con su resultado esperado y las 117 649 combinaciones de estados de los seis parámetros.
+- Controles: cambiar de escenario carga las mediciones y reinicia; *Ejecutar simulación* produce el resultado esperado en los siete escenarios; *Siguiente paso* avanza de uno en uno y se detiene en el último paso (muestra entonces el informe); *Recorrido a resaltar* redibuja; *Reiniciar* limpia; editar un valor reinicia la simulación; se acepta coma decimal y se rechazan `nan`, `inf` y `1e999`.
+- Se revisaron visualmente las imágenes del grafo inicial, el recorrido completo, el modo paso a paso y el recorrido de un solo parámetro: sin texto encimado.
