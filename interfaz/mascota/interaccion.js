@@ -18,6 +18,13 @@
     var voz = VozApi.crearVoz({ almacen: almacen });
     var el = mascota.elementos;
     var estado = { pestana: opciones.pestana || "inicio", listo: false, origenMenu: null };
+    // v0.3: ajustes de voz (si el módulo no está, el menú funciona igual sin esa opción)
+    var ajustes = window.AIRIAjustesVoz ? window.AIRIAjustesVoz.crear(voz, {
+      alGuardar: function () {
+        pintarControles();
+        mascota.decir(voz.activada ? Ayuda.MENSAJES_VOZ.guardada : Ayuda.MENSAJES_VOZ.guardadaSilenciada);
+      }
+    }) : null;
 
     // ── Menús (uno en cada globo) ───────────────────────────────────────────
     var menus = [];
@@ -48,6 +55,7 @@
     function pintarMenu(registro) {
       registro.lista.textContent = "";
       Ayuda.accionesPara(estado.pestana).forEach(function (accion) {
+        if (accion.id === "ajustes" && !ajustes) return;
         var b = document.createElement("button");
         b.type = "button";
         b.className = "airi-m-opcion" + (accion.recomendada ? " airi-m-recomendada" : "");
@@ -193,6 +201,10 @@
         if (origen === "flotante") el.abrirGlobo(true);
         return;
       }
+      if (id === "ajustes") {
+        if (ajustes) ajustes.abrir(disparadorDe(origen || "flotante"));
+        return;
+      }
       if (id === "silenciar") {
         voz.activar(false);
         mascota.decir(voz.soportada ? Ayuda.MENSAJES_VOZ.silenciada : Ayuda.MENSAJES_VOZ.noDisponible);
@@ -208,7 +220,7 @@
       var m = e.detail && e.detail.mensaje;
       if (!estado.listo || !m || m.hablar === false || !voz.activada) return;
       if (m === Ayuda.MENSAJES_VOZ.activada) return;     // ya se leyó junto con el mensaje anterior
-      voz.hablar(m.texto);
+      voz.hablar(m.texto, { estado: m.estado || e.detail.estado });   // v0.3: matiz según el estado
     });
     document.addEventListener("airi:mascota-visibilidad", function (e) {
       if (e.detail && e.detail.oculta) { voz.detener(); cerrarMenus(false); }
@@ -220,6 +232,7 @@
     return {
       voz: voz,
       cambiarPestana: function (p) { estado.pestana = p; cerrarMenus(false); },
+      ajustes: ajustes,
       abrirMenu: abrirMenu, cerrarMenus: cerrarMenus, ejecutar: ejecutar
     };
   }

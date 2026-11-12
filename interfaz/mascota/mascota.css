@@ -180,3 +180,46 @@ body.airi-m-con-flotante { padding-bottom: 150px; }
   .airi-m-opcion { padding: 6px 8px; font-size: 12.5px; }
   .airi-m-flotante .airi-m-globo { max-height: calc(100vh - 140px); overflow: auto; }
 }
+
+/* ═══ v0.3 · Ajustes de voz ══════════════════════════════════════════════════ */
+.airi-m-capa-dialogo { position: fixed; inset: 0; z-index: 100; background: rgba(9,40,77,.45);
+  display: flex; align-items: center; justify-content: center; padding: 12px; }
+.airi-m-capa-dialogo[hidden] { display: none; }
+.airi-m-dialogo { background: white; color: var(--airi-azul-profundo); border-radius: 16px; border: 2px solid var(--airi-azul-oceano);
+  width: min(600px, 100%); max-height: calc(100vh - 24px); overflow: auto; padding: 18px 20px;
+  box-shadow: 0 10px 30px rgba(9,40,77,.3); font-size: 14px; line-height: 1.45; }
+.airi-m-dialogo h2 { margin: 0 0 6px; font-size: 20px; }
+.airi-m-nota { margin: 0 0 8px; color: #47667b; }
+.airi-m-aviso-voces { margin: 0 0 10px; padding: 8px 10px; border-radius: 8px; background: #e0f4f9; font-size: 13px; }
+.airi-m-campo { margin: 0 0 12px; }
+.airi-m-campo > label, .airi-m-campo legend { display: block; font-weight: 700; margin-bottom: 4px; }
+.airi-m-dialogo fieldset { border: 1px solid #ccebf1; border-radius: 10px; padding: 8px 10px; }
+.airi-m-radio { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; padding: 4px 0; cursor: pointer; }
+.airi-m-radio input { grid-row: span 2; margin-top: 4px; }
+.airi-m-radio-nombre { font-weight: 600; }
+.airi-m-radio-desc { font-size: 12px; color: #47667b; }
+.airi-m-dialogo select { width: 100%; padding: 8px; border: 1px solid #a5cbd6; border-radius: 8px; font: inherit; }
+.airi-m-deslizador input[type=range] { width: 100%; accent-color: var(--airi-azul-oceano); }
+.airi-m-deslizador output { font-weight: 400; color: #47667b; }
+.airi-m-check { display: flex; gap: 6px; align-items: flex-start; font-weight: 400 !important; cursor: pointer; }
+.airi-m-aviso-enlinea { margin-top: 6px; padding: 8px 10px; border-radius: 8px; background: #fff1df; font-size: 13px; }
+.airi-m-aviso-enlinea[hidden] { display: none; }
+.airi-m-aviso-enlinea p { margin: 0 0 4px; }
+.airi-m-fila-botones { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.airi-m-estado-demo { margin: 6px 0 0; min-height: 1.4em; font-size: 13px; color: #47667b; }
+.airi-m-pie-dialogo { justify-content: flex-end; border-top: 1px solid #d6eaf1; padding-top: 12px; }
+.airi-m-btn-guardar { background: var(--airi-azul-oceano); color: white; }
+.airi-m-btn-guardar:hover { background: #0a6fa9; }
+body.airi-m-dialogo-abierto { overflow: hidden; }
+@media (max-width: 600px) {
+  .airi-m-dialogo { padding: 14px; font-size: 13px; }
+  .airi-m-dialogo h2 { font-size: 18px; }
+  .airi-m-pie-dialogo .airi-m-boton { flex: 1 1 auto; }
+}
+/* El prototipo da estilo a todos los input y label: se neutraliza dentro del diálogo */
+.airi-m-dialogo label { margin: 0; }
+.airi-m-dialogo input[type=radio], .airi-m-dialogo input[type=checkbox] { width: auto; padding: 0; margin: 3px 0 0;
+  border: 0; flex: none; accent-color: var(--airi-azul-oceano); }
+.airi-m-dialogo input[type=range] { padding: 0; border: 0; }
+.airi-m-radio-nombre, .airi-m-radio-desc { grid-column: 2; }
+.airi-m-campo > label.airi-m-radio { display: grid; font-weight: 400; margin: 0; }
