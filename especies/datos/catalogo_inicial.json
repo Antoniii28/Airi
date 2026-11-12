@@ -1,0 +1,84 @@
+{
+  "version": "0.1",
+  "estado": "fichas preliminares; sin rangos ni dictámenes de compatibilidad",
+  "especies": [
+    {
+      "nombre_comun": "Pez payaso común",
+      "nombre_cientifico": "Amphiprion ocellaris",
+      "temperatura": null,
+      "ph": null,
+      "salinidad": null,
+      "volumen_minimo": null,
+      "alimentacion": null,
+      "comportamiento": null,
+      "compatibilidad": null,
+      "fuentes_verificadas": [],
+      "estado_verificacion": "pendiente"
+    },
+    {
+      "nombre_comun": "Cardenal de Banggai",
+      "nombre_cientifico": "Pterapogon kauderni",
+      "temperatura": null,
+      "ph": null,
+      "salinidad": null,
+      "volumen_minimo": null,
+      "alimentacion": null,
+      "comportamiento": null,
+      "compatibilidad": null,
+      "fuentes_verificadas": [],
+      "estado_verificacion": "pendiente"
+    },
+    {
+      "nombre_comun": "Pez fuego",
+      "nombre_cientifico": "Nemateleotris magnifica",
+      "temperatura": null,
+      "ph": null,
+      "salinidad": null,
+      "volumen_minimo": null,
+      "alimentacion": null,
+      "comportamiento": null,
+      "compatibilidad": null,
+      "fuentes_verificadas": [],
+      "estado_verificacion": "pendiente"
+    },
+    {
+      "nombre_comun": "Gramma real",
+      "nombre_cientifico": "Gramma loreto",
+      "temperatura": null,
+      "ph": null,
+      "salinidad": null,
+      "volumen_minimo": null,
+      "alimentacion": null,
+      "comportamiento": null,
+      "compatibilidad": null,
+      "fuentes_verificadas": [],
+      "estado_verificacion": "pendiente"
+    },
+    {
+      "nombre_comun": "Cirujano amarillo",
+      "nombre_cientifico": "Zebrasoma flavescens",
+      "temperatura": null,
+      "ph": null,
+      "salinidad": null,
+      "volumen_minimo": null,
+      "alimentacion": null,
+      "comportamiento": null,
+      "compatibilidad": null,
+      "fuentes_verificadas": [],
+      "estado_verificacion": "pendiente"
+    },
+    {
+      "nombre_comun": "Damisela de cola amarilla",
+      "nombre_cientifico": "Chrysiptera parasema",
+      "temperatura": null,
+      "ph": null,
+      "salinidad": null,
+      "volumen_minimo": null,
+      "alimentacion": null,
+      "comportamiento": null,
+      "compatibilidad": null,
+      "fuentes_verificadas": [],
+      "estado_verificacion": "pendiente"
+    }
+  ]
+}
