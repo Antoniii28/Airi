@@ -3,7 +3,9 @@
 <title>AIRI · Prototipo v0.1</title>
 <style>
 :root{font-family:Inter,system-ui,sans-serif;color:#09284D;background:#eef9fc}*{box-sizing:border-box}body{margin:0}header{background:#09284D;color:white;padding:16px 5%;display:flex;align-items:center;gap:16px}header img{width:62px;height:62px;object-fit:cover;border-radius:50%}header h1{margin:0;font-size:27px}header p{margin:2px 0;color:#80EAF2}nav{display:flex;gap:8px;padding:15px 5%;background:white;flex-wrap:wrap}button{cursor:pointer;border:0;border-radius:9px;padding:11px 15px;font-weight:700;background:#e0f6fa;color:#09284D}button[aria-selected=true],button.primary{background:#0982C7;color:white}main{max-width:1100px;margin:25px auto;padding:0 18px}.panel{background:white;border:1px solid #d6eaf1;border-radius:16px;padding:23px;margin-bottom:18px;box-shadow:0 3px 12px #09284D0a}.hidden{display:none}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:#f1fbfd;border-radius:12px;padding:15px;border:1px solid #ccebf1}.card h3{margin:0 0 5px}.muted{color:#47667b}.tag{display:inline-block;padding:5px 8px;background:#e0f4f9;border-radius:8px;font-size:12px}label{display:block;margin:12px 0 4px;font-weight:600}input,select{padding:10px;width:100%;border:1px solid #a5cbd6;border-radius:8px;font:inherit}.status{padding:10px;border-radius:8px;margin-top:9px}.ok{background:#e1f6e8}.warn{background:#fff1df}.unknown{background:#eaf0f3}footer{text-align:center;color:#47667b;padding:20px}small{line-height:1.5}a{color:#076caa}
-</style></head><body>
+</style>
+<link rel="stylesheet" href="../mascota/mascota.css">
+</head><body>
 <header><img src="../../identidad-visual/logo%20Airi.jpeg" alt="Logotipo principal de AIRI"><div><h1>AIRI</h1><p>Agente Inteligente para la Supervisión y Gestión de un Acuario Marino</p></div></header>
 <nav aria-label="Secciones"><button aria-selected="true" data-tab="inicio">Inicio</button><button aria-selected="false" data-tab="agua">Parámetros del agua</button><button aria-selected="false" data-tab="especies">Fichas de especies</button><button aria-selected="false" data-tab="futuro">Próximas versiones</button></nav>
 <main>
@@ -22,4 +24,7 @@ function pintar(){const q=document.getElementById('buscar').value.trim().toLower
 document.getElementById('buscar').addEventListener('input',pintar);pintar();
 document.getElementById('evaluar').addEventListener('click',()=>{const origen=document.getElementById('origen').value;const out=params.map((p,i)=>{const raw=document.getElementById('p'+i).value.trim();if(!raw)return '<div class="status unknown">'+safe(p[0])+': INFORMACIÓN INSUFICIENTE (sin dato)</div>';const n=Number(raw.replace(',','.'));if(!Number.isFinite(n)||n<0||(p[0]==='pH'&&n>14))return '<div class="status warn">'+safe(p[0])+': VALOR INVÁLIDO; revisar entrada</div>';return '<div class="status ok">'+safe(p[0])+': '+safe(raw)+' '+safe(p[1])+' · dato con formato válido; SIN REFERENCIA BIOLÓGICA VERIFICADA</div>'}).join('');document.getElementById('resultado').innerHTML='<h3>Validación · origen '+safe(origen)+'</h3>'+out+'<p><small>Validar formato no significa que el valor sea seguro. No se evalúa normalidad sin rangos respaldados por fuentes.</small></p>'});
 document.getElementById('limpiar').addEventListener('click',()=>{params.forEach((_,i)=>document.getElementById('p'+i).value='');document.getElementById('resultado').textContent=''});
-</script></body></html>
+</script>
+<script src="../mascota/mascota.js"></script>
+<script src="../mascota/integracion-prototipo.js"></script>
+</body></html>
