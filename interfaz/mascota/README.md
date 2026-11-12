@@ -1,4 +1,4 @@
-# AIRI · Mascota interactiva v0.2
+# AIRI · Mascota interactiva v0.3
 
 Módulo de la mascota de **AIRI — Agente Inteligente para la Supervisión y Gestión de un Acuario Marino**.
 
@@ -101,6 +101,75 @@ la antena queda encendida. Al terminar vuelve a su estado normal. Con movimiento
 movimiento: solo la antena encendida. Las animaciones originales no se modifican; se agrega la clase
 `airi-m-hablando` mientras dura la voz.
 
+### Ajustes y personalidad de la voz (v0.3)
+
+> **Qué es y qué no es.** AIRI usa las **voces instaladas en el dispositivo** y ajusta su **tono y
+> velocidad**. Esto **no crea una voz personalizada**: el timbre depende de la voz elegida. Lo que se logra
+> es una voz algo más juvenil y ágil, y pequeños cambios de entonación según el tipo de mensaje.
+
+**Dónde está.** Menú de AIRI (pulsa la mascota) → **Ajustes de voz**. Es un diálogo accesible: el foco no
+sale de él, Escape lo cancela y al cerrarlo el foco vuelve a la mascota.
+
+| Opción | Detalle |
+|---|---|
+| **Perfil** | **AIRI juvenil (recomendada)**: tono 1.15, velocidad 1.04 · **Clásica (v0.2)**: tono 1.05, velocidad 1.00, idéntica a la voz anterior para compararlas · **Tranquila**: 1.05 / 0.94 · **Enérgica**: 1.25 / 1.10 · **Personalizada**: se activa al mover los controles |
+| **Voz** | Solo voces en español. Las de **México** van primero y las del dispositivo antes que las en línea. «Automática» elige la mejor voz **del dispositivo** |
+| **Tono / Velocidad** | Controles deslizantes limitados a tono 0.8–1.4 y velocidad 0.8–1.25, para que no suene exageradamente aguda, grave, lenta o atropellada |
+| **Matices de personalidad** | Pequeños ajustes según el estado del mensaje (tabla siguiente). Se pueden desactivar |
+| **Frase de prueba** | Saludo, explicación, dato faltante o advertencia |
+| **Escuchar demostración** | Reproduce la frase con los ajustes **sin guardarlos**, aunque la voz esté desactivada |
+| **Comparar perfiles** | Reproduce los cuatro perfiles seguidos con la voz elegida, anunciando cada uno |
+| **Comparar voces** | Reproduce la frase con cada voz en español del dispositivo |
+| **Detener · Cancelar · Guardar · Restablecer recomendada** | Nada se guarda hasta pulsar **Guardar**; Cancelar o Escape descartan los cambios |
+
+**Matices de personalidad** (se suman al perfil y respetan los límites):
+
+| Tipo de mensaje | Rasgo | Tono | Velocidad |
+|---|---|---|---|
+| Saludo y bienvenida | Alegre y curioso | +0.06 | +0.04 |
+| Explicaciones y ayuda | Claro y paciente | 0 | −0.02 |
+| Datos faltantes | Tranquilo | −0.03 | −0.05 |
+| Valores inválidos y alertas | Serio, sin alarmar | −0.08 | −0.06 / −0.07 |
+
+**Voces en línea.** Algunos navegadores añaden voces «en línea». Por ejemplo, Chrome incluye «Google
+español» y Edge las voces «Online (Natural)» de Microsoft. Esas voces **envían el texto del mensaje al
+proveedor**. Por eso AIRI **nunca las elige automáticamente**: aparecen en un grupo aparte y, si se
+eligen, piden una autorización expresa antes de poder escucharlas o guardarlas.
+
+**Preferencias guardadas en el navegador:** `airi.voz.activada` (v0.2) y `airi.voz.config` (voz, perfil,
+tono, velocidad, matices y autorización de voz en línea). Si lo guardado está dañado, se usa la
+configuración recomendada.
+
+#### Cómo probar y elegir la voz
+1. Abre `interfaz/prototipo/index.html` con el volumen activado.
+2. Pulsa el pez o el avatar y elige **Ajustes de voz**.
+3. Pulsa **Comparar perfiles** para escuchar los cuatro perfiles seguidos; luego **Comparar voces** para
+   escuchar cada voz instalada.
+4. Elige perfil y voz, cambia la **Frase de prueba** para oír los matices y pulsa **Escuchar demostración**.
+5. Pulsa **Guardar**. Si la voz de AIRI está desactivada, actívala con **Activar voz**.
+
+#### Si las voces instaladas no son suficientes
+En el equipo Windows donde se desarrolló esta versión solo había tres voces en español, todas de España
+(Microsoft Helena, Laura y Pablo). Alternativas, de menor a mayor cambio:
+
+1. **Instalar voces de español de México en el sistema** (gratis y local). En Windows: Configuración → Hora e
+   idioma → Voz → Agregar voces → Español (México). En macOS: Accesibilidad → Contenido leído → Voz del
+   sistema → Paulina. En Android e iOS: voces de texto a voz del sistema. Después aparecen solas en el
+   selector.
+2. **Usar las voces en línea del navegador** (Edge, Chrome) con autorización expresa. Suelen sonar más
+   naturales, pero envían el texto al proveedor y dependen de la conexión.
+3. **Motor de voz local de código abierto en el navegador** (por ejemplo, Piper compilado a WebAssembly). Es
+   local y no envía datos, pero implica descargar modelos de decenas de megabytes y más trabajo de
+   integración.
+4. **Audios grabados o generados para las frases fijas**. Los textos de ayuda son predefinidos, así que se
+   podrían grabar con una voz elegida por el equipo. Los mensajes variables (campos faltantes, búsquedas)
+   seguirían necesitando síntesis.
+5. **Servicios de voz en la nube** (Azure, Google Cloud, ElevenLabs y similares). Ofrecen voces muy
+   naturales e incluso voces propias, pero son de pago, requieren un servidor para proteger las claves y
+   envían el texto a terceros.
+
+Ninguna de estas alternativas está integrada; requieren decisión del equipo.
+
 ### Controles y accesibilidad
 - **Ocultar mascota / Mostrar AIRI**: oculta la pecera y el asistente; la preferencia se recuerda en el navegador.
   Si el navegador no permite guardarla, todo sigue funcionando.
@@ -119,6 +188,7 @@ movimiento: solo la antena encendida. Las animaciones originales no se modifican
 | `mascota.css` | Estilos aislados con el prefijo `.airi-m-`; paleta V2 |
 | `voz.js` | Síntesis de voz (`window.AIRIVoz`), separada de la parte visual (v0.2) |
 | `ayuda.js` | Respuestas predefinidas y verificadas, y opciones del menú (`window.AIRIAyuda`) (v0.2) |
+| `ajustes-voz.js` | Diálogo «Ajustes de voz»: voces, perfiles, tono, velocidad, demostración y comparación (`window.AIRIAjustesVoz`) (v0.3) |
 | `interaccion.js` | Menú de acciones, controles de voz y sincronización de la voz con la animación (`window.AIRIInteraccion`) (v0.2) |
 | `integracion-prototipo.js` | Conecta la mascota con las pestañas, la validación y el buscador del prototipo, sin modificar su lógica |
 | `assets/` | Capas del personaje derivadas del PNG oficial |
@@ -126,6 +196,8 @@ movimiento: solo la antena encendida. Las animaciones originales no se modifican
 | `pruebas/mascota.test.js` | Pruebas unitarias con el ejecutor integrado de Node |
 | `pruebas/e2e_mascota.py` | Pruebas de extremo a extremo en Chrome con Playwright |
 | `pruebas/voz.test.js` | Pruebas unitarias de voz y ayuda con síntesis simulada (v0.2) |
+| `pruebas/voz_personalidad.test.js` | Pruebas unitarias de perfiles, matices, voces y preferencias (v0.3) |
+| `pruebas/e2e_ajustes_voz.py` | Pruebas del diálogo de ajustes en Chrome (v0.3) |
 | `pruebas/e2e_voz.py`, `pruebas/simulador_voz.js` | Pruebas de voz y menú en Chrome, con síntesis simulada y real (v0.2) |
 
 En `interfaz/prototipo/index.html` solo se añadieron líneas de inclusión: en v0.1, una hoja de estilos y dos
@@ -162,8 +234,10 @@ Desde la raíz del repositorio:
 ```bash
 node --test interfaz/mascota/pruebas/mascota.test.js          # 12 pruebas unitarias (mascota)
 node --test interfaz/mascota/pruebas/voz.test.js              # 16 pruebas unitarias (voz y ayuda)
+node --test interfaz/mascota/pruebas/voz_personalidad.test.js # 11 pruebas unitarias (v0.3)
 python interfaz/mascota/pruebas/e2e_mascota.py                # 76 comprobaciones en Chrome (v0.1)
 python interfaz/mascota/pruebas/e2e_voz.py                    # 50 comprobaciones en Chrome (v0.2)
+python interfaz/mascota/pruebas/e2e_ajustes_voz.py            # 43 comprobaciones en Chrome (v0.3)
 ```
 
 La prueba de extremo a extremo genera una copia temporal del prototipo **sin** la mascota y comprueba que las
@@ -202,6 +276,18 @@ Al final repite una parte con la síntesis real de Chrome.
 
 Las voces disponibles dependen del sistema operativo. En Windows y macOS suele haber voces en español. En
 algunas distribuciones de Linux hay que instalarlas aparte.
+
+## Limitaciones de v0.3
+- Solo se ajustan el tono y la velocidad de las voces instaladas; el timbre no cambia.
+- Algunos motores de voz aplican el tono y la velocidad de forma limitada o los ignoran. En una medición
+  silenciosa (volumen 0) en el navegador integrado de la app de Claude, sobre Windows, con Helena, Laura y
+  Pablo, la duración de la frase fue prácticamente igual con velocidad 0.8, 1.0 y 1.25. No se pudo confirmar
+  que ese motor aplicara los ajustes; hay que comprobarlo de oído en Chrome o Edge. Si «Comparar perfiles»
+  suena igual en todos los casos, el motor está ignorando los ajustes y conviene considerar las alternativas.
+- Sin voces de español de México, se usa la voz en español más cercana (por ejemplo, de España).
+- Las preferencias se guardan por navegador y por dispositivo.
+- Si el navegador no tiene voces locales en español, «Automática» pide español a la voz predeterminada; algunos
+  navegadores podrían usar entonces una voz en línea por su cuenta.
 
 ## Limitaciones de v0.2
 - La calidad y el acento de la voz dependen de las voces instaladas en cada equipo.
