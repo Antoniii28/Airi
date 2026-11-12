@@ -8,9 +8,10 @@ Módulo de la mascota de **AIRI — Agente Inteligente para la Supervisión y Ge
 
 Está hecho con HTML, CSS y JavaScript, sin dependencias, sin servidor y sin compilación.
 
-> **Qué es real y qué es demostrativo.** La mascota **no analiza el agua**: AIRI todavía no tiene motor de
-> análisis. Sus reacciones repiten lo que el prototipo ya calcula: datos faltantes, valores con formato
-> inválido y cuántas fichas encontró el buscador. La breve pausa de "análisis" es una **animación
+> **Qué es real y qué es demostrativo.** La mascota **no analiza el agua por sí misma**: sus reacciones repiten
+> lo que ya calculan el prototipo (datos faltantes, valores con formato inválido, cuántas fichas encontró el
+> buscador) y, desde v0.4, el motor de análisis de `interfaz/motor` (valores fuera de una referencia documentada,
+> parámetros sin referencia). No diagnostica ni garantiza condiciones seguras. La breve pausa de "análisis" es una **animación
 > demostrativa** y se etiqueta así en pantalla. La pecera es decorativa y no representa un acuario real.
 
 ## Cómo verla
