@@ -56,7 +56,8 @@
     { id: "especies", texto: "Explícame las fichas de especies", pestana: "especies" },
     { id: "futuro", texto: "¿Qué funciones llegarán después?", pestana: "futuro" },
     { id: "repetir", texto: "Repetir mensaje" },
-    { id: "silenciar", texto: "Silenciar AIRI" }
+    { id: "silenciar", texto: "Silenciar AIRI" },
+    { id: "ajustes", texto: "Ajustes de voz" }          // v0.3
   ];
 
   var MENSAJES_VOZ = {
@@ -64,7 +65,11 @@
     silenciada: { estado: "espera", tipo: "informativo",
       texto: "Voz desactivada. Seguiré mostrando mis mensajes por escrito." },
     noDisponible: { estado: "espera", tipo: "informativo",
-      texto: "Este navegador no permite la síntesis de voz. Seguiré mostrando mis mensajes por escrito." }
+      texto: "Este navegador no permite la síntesis de voz. Seguiré mostrando mis mensajes por escrito." },
+    guardada: { estado: "bienvenida", tipo: "informativo",
+      texto: "¡Listo! Guardé mi nueva voz. Así sonaré a partir de ahora." },
+    guardadaSilenciada: { estado: "espera", tipo: "informativo",
+      texto: "Guardé los ajustes de voz. Pulsa «Activar voz» cuando quieras escucharme." }
   };
 
   /** Acciones ordenadas: primero la que corresponde a la pestaña actual. */

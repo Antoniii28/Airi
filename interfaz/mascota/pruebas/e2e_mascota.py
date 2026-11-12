@@ -22,6 +22,7 @@ LINEAS_MASCOTA = [
     '<script src="../mascota/mascota.js"></script>\n',
     '<script src="../mascota/voz.js"></script>\n',          # v0.2
     '<script src="../mascota/ayuda.js"></script>\n',        # v0.2
+    '<script src="../mascota/ajustes-voz.js"></script>\n',  # v0.3
     '<script src="../mascota/interaccion.js"></script>\n',  # v0.2
     '<script src="../mascota/integracion-prototipo.js"></script>\n',
 ]

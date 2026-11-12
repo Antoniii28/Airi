@@ -134,16 +134,17 @@ test("almacenamiento bloqueado no impide usar la voz", () => {
 });
 
 // ── Ayuda ───────────────────────────────────────────────────────────────────
-test("el menú tiene las seis acciones pedidas", () => {
+test("el menú tiene las seis acciones de v0.2 y «Ajustes de voz» (v0.3)", () => {
   assert.deepEqual(A.ACCIONES.map((a) => a.texto), ["¿Qué puedes hacer?", "Ayúdame con los parámetros del agua",
-    "Explícame las fichas de especies", "¿Qué funciones llegarán después?", "Repetir mensaje", "Silenciar AIRI"]);
+    "Explícame las fichas de especies", "¿Qué funciones llegarán después?", "Repetir mensaje", "Silenciar AIRI",
+    "Ajustes de voz"]);
 });
 
 test("la acción de la pestaña actual va primero y marcada como recomendada", () => {
   for (const [pestana, id] of [["inicio", "proyecto"], ["agua", "agua"], ["especies", "especies"], ["futuro", "futuro"]]) {
     const l = A.accionesPara(pestana);
     assert.equal(l[0].id, id); assert.equal(l[0].recomendada, true);
-    assert.equal(l.length, 6); assert.equal(l.filter((a) => a.recomendada).length, 1);
+    assert.equal(l.length, 7); assert.equal(l.filter((a) => a.recomendada).length, 1);
   }
 });
 

@@ -19,7 +19,8 @@
     const s = {
       getVoices: () => voces, addEventListener() {}, removeEventListener() {},
       get speaking() { return !!actual; },
-      speak(u) { window.__voz.habladas.push({ text: u.text, lang: u.lang, voice: u.voice ? u.voice.name : null });
+      speak(u) { window.__voz.habladas.push({ text: u.text, lang: u.lang, voice: u.voice ? u.voice.name : null,
+                                              pitch: u.pitch, rate: u.rate });
                  cola.push(u); window.__voz.maxCola = Math.max(window.__voz.maxCola, cola.length + (actual ? 1 : 0)); sig(); },
       cancel() { window.__voz.cancelaciones++; clearTimeout(t1); clearTimeout(t2);
                  const pend = (actual ? [actual] : []).concat(cola); actual = null; cola = [];
