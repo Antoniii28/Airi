@@ -104,13 +104,28 @@ python herramientas/generar_casos.py --check
 | `test_reglas.py` | 22 | Q1–Q4, límites inclusivos de pH, umbral de amoníaco con cada base, Nessler, nitritos, nitratos pendientes, contexto solo nivel B, coherencia de datos |
 | `test_motor.py` | 11 | aristas de la traza ⊂ grafo (30 aristas), R1–R4, R4 sin pérdida de información, orden de alertas, ausencia de frases de seguridad o diagnóstico, determinismo |
 | `test_cli_y_conformidad.py` | 8 | CLI, archivo de conformidad al día, 34 vectores reproducidos, **barrido exhaustivo 7⁶ = 117 649 combinaciones** con el perfil real y con el de prueba |
+| `test_paridad_js.py` (v0.4 E4) | 4 | Informe **completo** idéntico en Python y JavaScript (textos incluidos) en los 34 casos y en 5 500 entradas aleatorias con semilla fija; `airi-motor-datos.js` generado de los mismos JSON |
 
-Resultado de la última ejecución (12-11-2026): **47 pruebas, 0 fallos** (≈ 16 s, casi todo el barrido exhaustivo).
+Resultado de la última ejecución (12-11-2026, E4): **51 pruebas, 0 fallos** (≈ 16 s). En E3 eran 47.
 Durante el desarrollo fallaron 2 pruebas por expectativas mal escritas (no por el motor): un caso R4 olvidaba que
 también faltaban nitratos, y 212 °F = 100 °C está dentro del límite de captura inclusivo. Se corrigieron las pruebas.
 
 El perfil «de prueba» usado para alcanzar R1/R2 tiene valores **ficticios** y existe solo en las pruebas y en
 `casos_conformidad.json`; no es una referencia biológica.
+
+## Revisión previa a la integración web (E4)
+
+Antes de integrar se volvieron a ejecutar las 47 pruebas, los 34 casos y se repasaron las reglas frente al grafo.
+Todo pasaba, pero al preparar la traducción a JavaScript aparecieron estas inconsistencias, ya corregidas.
+**Ninguna cambia un criterio científico, un umbral ni un resultado R1–R4** (los 34 vectores no cambiaron de estado):
+
+| # | Inconsistencia | Corrección |
+|---|---|---|
+| 1 | `leer_numero` usaba `\d`, que en Python acepta dígitos de otros sistemas (p. ej. «٣»); en JavaScript no | Solo dígitos ASCII `[0-9]`; prueba añadida |
+| 2 | El comentario de Q4 decía «antes de convertir», pero los límites se aplican (correctamente) tras convertir a la unidad canónica | Comentario corregido |
+| 3 | Con unidad ausente, el mensaje mostraba «None» | «No se indicó la unidad…»; el mensaje de límites de captura incluye la unidad capturada |
+| 4 | El caso `salinidad_ppm` probaba en realidad «g/kg» | Renombrado `salinidad_g_kg` |
+| 5 | Con amoníaco de base química desconocida y valor ≥ 0.5 en todo el intervalo, el informe mostraba un intervalo sin explicar por qué | Nota: «La unidad no indica si el valor es como N, como NH3 o como NH4+…» |
 
 ## Limitaciones
 
@@ -120,4 +135,4 @@ El perfil «de prueba» usado para alcanzar R1/R2 tiene valores **ficticios** y 
 - No se calcula la fracción tóxica NH₃ (requiere pH, temperatura, salinidad y un método validado).
 - No hay historial ni tendencias: cada evaluación es independiente.
 - Las sugerencias son informativas («repite la medición…»); el motor no actúa sobre ningún equipo.
-- La interfaz web aún **no** usa este motor (siguiente etapa, pendiente de autorización).
+- Desde E4 la interfaz web usa la versión JavaScript (`interfaz/motor`), con paridad comprobada; ver `interfaz/motor/README.md`.

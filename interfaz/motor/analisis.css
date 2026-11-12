@@ -1,0 +1,41 @@
+/* AIRI · Panel del análisis con referencias (v0.4). Prefijo airi-a-, sin estilos globales.
+   El estado nunca se comunica solo con color: cada chip lleva su texto. */
+.airi-a { margin-top: 18px; padding-top: 14px; border-top: 2px solid #d6eaf1; }
+.airi-a h3 { margin: 0 0 6px; }
+.airi-a h4 { margin: 16px 0 6px; font-size: 16px; }
+.airi-a-perfil { margin: 0 0 10px; color: #47667b; font-size: 14px; }
+.airi-a-resumen { padding: 12px; border-radius: 10px; border-left: 6px solid #0982C7; background: #eaf6fb; line-height: 1.45; }
+.airi-a-resumen.airi-a-R2, .airi-a-resumen.airi-a-R4 { border-left-color: #C25A10; background: #fff3e8; }
+.airi-a-resumen.airi-a-R3 { border-left-color: #5d7d90; background: #eef3f6; }
+.airi-a-codigo { font-weight: 400; color: #47667b; }
+.airi-a-lista { margin: 0; padding-left: 20px; }
+.airi-a-lista li { margin: 6px 0; line-height: 1.45; }
+.airi-a-sugerencia { color: #09284D; }
+.airi-a-fuentes, .airi-a-nivel { font-size: 13px; color: #47667b; }
+.airi-a-chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  border: 1px solid; white-space: nowrap; }
+.airi-a-EP4 { background: #e1f6e8; border-color: #3f8f5c; color: #1d5434; }
+.airi-a-EP1, .airi-a-EP3 { background: #eef3f6; border-color: #7d97a6; color: #2f4b5c; }
+.airi-a-EP2 { background: #fdecec; border-color: #b84a4a; color: #7a1f1f; }
+.airi-a-sev-alerta_alta { background: #fde3d0; border-color: #C25A10; color: #6e2f00; }
+.airi-a-sev-fuera_de_referencia { background: #fff1df; border-color: #c07a1a; color: #6b4000; }
+.airi-a-sev-revision_recomendada { background: #fff8d6; border-color: #a88a10; color: #574500; }
+.airi-a-sev-presencia_detectable { background: #e8f1ff; border-color: #4a73b8; color: #1d3c73; }
+.airi-a-parametros { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+.airi-a-param { background: #f7fcfd; border: 1px solid #d6eaf1; border-radius: 12px; padding: 12px; min-width: 0; }
+.airi-a-param[data-estado="EP5"] { border-color: #e8b48a; }
+.airi-a-param-cabecera { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: space-between; }
+.airi-a-valor { margin: 6px 0 2px; font-size: 18px; font-weight: 700; overflow-wrap: anywhere; }
+.airi-a-motivo, .airi-a-nota, .airi-a-param p { margin: 4px 0; font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+.airi-a-equivalencia { margin: 0 0 4px; font-size: 14px; color: #2f4b5c; }
+.airi-a-nota { color: #47667b; font-style: italic; }
+.airi-a-contexto { margin-top: 6px; font-size: 14px; }
+.airi-a-contexto summary { cursor: pointer; color: #076caa; font-weight: 600; }
+.airi-a-contexto summary:focus-visible, .airi-a a:focus-visible { outline: 3px solid #0982C7; outline-offset: 2px; }
+.airi-a-ruta { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #47667b; overflow-wrap: anywhere; }
+.airi-a-aviso { margin-top: 14px; padding: 10px; border-radius: 8px; background: #09284D; color: #fff; font-size: 14px; line-height: 1.45; }
+.airi-a-fallo { padding: 10px; border-radius: 8px; background: #fdecec; }
+@media (max-width: 480px) {
+  .airi-a-parametros { grid-template-columns: 1fr; }
+  .airi-a-valor { font-size: 16px; }
+}

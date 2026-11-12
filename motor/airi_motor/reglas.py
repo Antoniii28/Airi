@@ -71,6 +71,8 @@ def evaluar_parametro(parametro: str, medicion: dict | None, perfil: dict) -> di
         r["notas"].append(f"Convertido de {reconocida['descripcion']} a {meta['unidad_canonica']} por masas molares.")
     if reconocida["base"] == "f":
         r["notas"].append("Convertido de °F a °C.")
+    if reconocida["base"] is None and parametro == "amoniaco":
+        r["notas"].append("La unidad no indica si el valor es como N, como NH3 o como NH4+: se muestra el intervalo de equivalencias posibles en mg/L TAN-N.")
 
     # Q5
     ref = perfil["referencias"][parametro]

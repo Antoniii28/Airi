@@ -96,7 +96,8 @@ def main():
         pg.keyboard.press("Enter"); pg.wait_for_timeout(200)
         comprobar("Supervisión y Gestión de un Acuario Marino" in texto(pg, PEC) and pg.is_hidden("#airi-m-menu-pecera"),
                   "«¿Qué puedes hacer?» con Enter muestra la respuesta y cierra el menú")
-        comprobar(len(voz(pg)["habladas"]) > antes and "Todavía no analizo el agua" in " ".join(h["text"] for h in voz(pg)["habladas"][antes:]),
+        # v0.4: el texto de «¿Qué puedes hacer?» se actualizó; sus límites ahora son «No diagnostico… no garantizo…»
+        comprobar(len(voz(pg)["habladas"]) > antes and "No diagnostico enfermedades" in " ".join(h["text"] for h in voz(pg)["habladas"][antes:]),
                   "y la lee en voz alta, incluyendo sus límites")
         comprobar(pg.evaluate("document.activeElement.classList.contains('airi-m-pez')"), "el foco vuelve a la mascota")
         pg.focus(f"{PEC} .airi-m-pez"); pg.keyboard.press("Enter"); pg.wait_for_timeout(100)
@@ -140,8 +141,9 @@ def main():
         comprobar(cola and all(t in v["habladas"][-len(cola):][i]["text"] for i, t in enumerate(cola)) and
                   "Supervisión y Gestión" in " ".join(cola) and not any("seis valores" in t for t in cola),
                   f"en la cola solo queda el último mensaje ({len(cola)} fragmentos), no los cinco")
+        n_rep = len(voz(pg)["habladas"])   # v0.4: el texto es más largo (más fragmentos): se mira desde «Repetir»
         pg.click(".airi-m-avatar", force=True); pg.click('#airi-m-menu-flotante [data-accion="repetir"]'); pg.wait_for_timeout(150)
-        ultimas = [h["text"] for h in voz(pg)["habladas"][-3:]]
+        ultimas = [h["text"] for h in voz(pg)["habladas"][n_rep:]]
         comprobar(any("Supervisión" in t for t in ultimas) and "Supervisión" in texto(pg, FLOT),
                   "«Repetir mensaje» lo muestra y lo lee de nuevo")
         pg.click(".airi-m-avatar", force=True); pg.click('#airi-m-menu-flotante [data-accion="silenciar"]'); pg.wait_for_timeout(150)

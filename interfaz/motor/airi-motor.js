@@ -178,6 +178,9 @@
       r.notas.push("Convertido de " + u.descripcion + " a " + meta.unidad_canonica + " por masas molares.");
     }
     if (u.base === "f") r.notas.push("Convertido de °F a °C.");
+    if (u.base === null && parametro === "amoniaco") {
+      r.notas.push("La unidad no indica si el valor es como N, como NH3 o como NH4+: se muestra el intervalo de equivalencias posibles en mg/L TAN-N.");
+    }
 
     var ref = p.referencias[parametro];
     r.contexto = ref.contexto || [];

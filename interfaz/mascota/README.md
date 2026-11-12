@@ -47,11 +47,11 @@ El personaje oficial se separó en capas **sin redibujarlo** (ver [`assets/READM
 | Estado | Señal visual | Cuándo se activa | Origen |
 |---|---|---|---|
 | `bienvenida` | Saludo y antena rápida | Al abrir Inicio | Interfaz |
-| `espera` | Nado tranquilo | En reposo; también cuando todos los datos tienen formato válido (sin declarar normalidad) | Interfaz y formulario |
+| `espera` | Nado tranquilo | En reposo. Sin el motor v0.4: también cuando todos los datos tienen formato válido (sin declarar normalidad) | Interfaz y formulario |
 | `analisis` | Antena intermitente, anillo de escaneo, halo cian | 0.9 s tras «Validar entradas» | **Animación demostrativa** |
-| `insuficiente` | Halo arena y señal «?» | El formulario marcó campos sin dato | Resultado real del formulario. **Advertencia informativa, no una alerta del acuario** |
-| `error` | Halo naranja, sacudida y señal «!» | El formulario marcó valores inválidos | Resultado real del formulario |
-| `alerta` | Halo naranja intenso | **No se activa en v0.1.** Reservado para alertas basadas en referencias con fuente | Futuro |
+| `insuficiente` | Halo arena y señal «?» | Campos sin dato o, desde v0.4, parámetros sin referencia verificada (R3) | Resultado real del formulario y del motor. **Advertencia informativa, no una alerta del acuario** |
+| `error` | Halo naranja, sacudida y señal «!» | Valores inválidos sin anomalías | Resultado real del formulario y del motor |
+| `alerta` | Halo naranja intenso y señal «!» | **Desde v0.4:** el motor encontró valores fuera de una referencia con fuente (R2 o R4). Voz con el matiz serio de «alerta», sin alarmismo; en R4 el mensaje menciona también los datos faltantes, inválidos y sin referencia | Informe real del motor (`interfaz/motor`) |
 
 Los ojos y la sonrisa no se animan, porque hacerlo requeriría redibujar el personaje.
 
@@ -238,6 +238,7 @@ node --test interfaz/mascota/pruebas/voz_personalidad.test.js # 11 pruebas unita
 python interfaz/mascota/pruebas/e2e_mascota.py                # 76 comprobaciones en Chrome (v0.1)
 python interfaz/mascota/pruebas/e2e_voz.py                    # 50 comprobaciones en Chrome (v0.2)
 python interfaz/mascota/pruebas/e2e_ajustes_voz.py            # 43 comprobaciones en Chrome (v0.3)
+python interfaz/motor/pruebas/e2e_analisis.py                 # 45 comprobaciones en Chrome (v0.4: motor + mascota + voz)
 ```
 
 La prueba de extremo a extremo genera una copia temporal del prototipo **sin** la mascota y comprueba que las
@@ -276,6 +277,20 @@ Al final repite una parte con la síntesis real de Chrome.
 
 Las voces disponibles dependen del sistema operativo. En Windows y macOS suele haber voces en español. En
 algunas distribuciones de Linux hay que instalarlas aparte.
+
+## Integración con el motor de análisis (v0.4)
+
+- `mascota.js`, `voz.js`, `ayuda.js`, `ajustes-voz.js`, `interaccion.js` y `mascota.css` **no cambian**.
+- `integracion-prototipo.js`: tras «Validar entradas», si `window.airiAnalisis.ultimo` existe (motor cargado),
+  la mascota muestra y lee el mensaje construido a partir del informe del motor; si no, usa
+  `interpretarValidacion` como en v0.3.
+- `interfaz/motor/analisis-prototipo.js` actualiza, **solo si el motor está cargado**, los textos que v0.4 vuelve
+  inexactos (saludo de Inicio, mensaje de Parámetros del agua, pausa de análisis y respuestas «¿Qué puedes hacer?»,
+  «Parámetros del agua» y «Próximas funciones»). Sin motor, quedan los textos de v0.3.
+- Comprobaciones de `e2e_mascota.py` y `e2e_voz.py` ajustadas a v0.4 (cada una con un comentario «v0.4»):
+  la regresión con y sin mascota copia también `interfaz/motor`; los datos de ejemplo con nitritos 0.1 o amoníaco
+  0.02 ahora producen estado `alerta` (antes `error`/`espera`); la ayuda ya no dice «Todavía no analizo el agua»;
+  «Repetir» se mide desde el momento de pulsarlo, porque el texto nuevo tiene más fragmentos.
 
 ## Limitaciones de v0.3
 - Solo se ajustan el tono y la velocidad de las voces instaladas; el timbre no cambia.
