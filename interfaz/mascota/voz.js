@@ -71,7 +71,10 @@
     var sintesis = entorno.sintesis !== undefined ? entorno.sintesis : raiz.speechSynthesis;
     var Utterance = entorno.Utterance !== undefined ? entorno.Utterance : raiz.SpeechSynthesisUtterance;
     var almacen = entorno.almacen !== undefined ? entorno.almacen : null;
-    var temporizador = entorno.temporizador || { poner: setTimeout, quitar: clearTimeout };
+    var temporizador = entorno.temporizador || {   // envoltorios: setTimeout no admite otro «this»
+      poner: function (f, ms) { return setTimeout(f, ms); },
+      quitar: function (id) { clearTimeout(id); }
+    };
     var soportada = !!(sintesis && typeof sintesis.speak === "function" && typeof Utterance === "function");
 
     var ctl = { soportada: soportada, hablando: false, ultimo: "", voz: null, activada: false };
