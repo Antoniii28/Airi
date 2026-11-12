@@ -101,8 +101,8 @@ python herramientas/generar_casos.py --check
 | Suite | Pruebas | Qué cubre |
 |---|---|---|
 | `test_unidades.py` | 6 | factores molares, lectura numérica, unidades del prototipo, unidades rechazadas, conversiones |
-| `test_reglas.py` | 21 | Q1–Q4, límites inclusivos de pH, umbral de amoníaco con cada base, Nessler, nitritos, nitratos pendientes, contexto solo nivel B, coherencia de datos |
-| `test_motor.py` | 12 | aristas de la traza ⊂ grafo (30 aristas), R1–R4, R4 sin pérdida de información, orden de alertas, ausencia de frases de seguridad o diagnóstico, determinismo |
+| `test_reglas.py` | 22 | Q1–Q4, límites inclusivos de pH, umbral de amoníaco con cada base, Nessler, nitritos, nitratos pendientes, contexto solo nivel B, coherencia de datos |
+| `test_motor.py` | 11 | aristas de la traza ⊂ grafo (30 aristas), R1–R4, R4 sin pérdida de información, orden de alertas, ausencia de frases de seguridad o diagnóstico, determinismo |
 | `test_cli_y_conformidad.py` | 8 | CLI, archivo de conformidad al día, 34 vectores reproducidos, **barrido exhaustivo 7⁶ = 117 649 combinaciones** con el perfil real y con el de prueba |
 
 Resultado de la última ejecución (12-11-2026): **47 pruebas, 0 fallos** (≈ 16 s, casi todo el barrido exhaustivo).
