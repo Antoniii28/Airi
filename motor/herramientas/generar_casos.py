@@ -78,7 +78,7 @@ def casos():
         ("temperatura_fahrenheit", "77 °F", m(temperatura=("77", "°F")), None),
         ("temperatura_extrema", "150 °C: fuera de captura", m(temperatura="150"), None),
         ("salinidad_densidad", "Densidad relativa: no se convierte", m(salinidad=("1.025", "densidad relativa")), None),
-        ("salinidad_ppm", "Salinidad en g/kg", m(salinidad=("35", "g/kg")), None),
+        ("salinidad_g_kg", "Salinidad en g/kg", m(salinidad=("35", "g/kg")), None),
         ("r4_mixto", "Anomalías y faltantes a la vez", m(temperatura=None, salinidad="", ph="7", amoniaco="0.8", nitritos="0.2"), None),
         ("prueba_r1", "Perfil de prueba: todo dentro", m(**ok), P),
         ("prueba_r2", "Perfil de prueba: anomalía sin faltantes", m(**ok, ph="9"), P),

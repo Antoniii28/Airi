@@ -75,7 +75,8 @@ def leer_numero(valor):
         n = float(valor)
     else:
         texto = str(valor).strip().replace(",", ".")
-        if not re.fullmatch(r"[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?", texto):
+        # Solo dígitos ASCII: igual que la versión JavaScript (\d de Python también aceptaría otros sistemas).
+        if not re.fullmatch(r"[+-]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+)?", texto):
             return None
         n = float(texto)
     return n if math.isfinite(n) else None

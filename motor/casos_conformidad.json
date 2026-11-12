@@ -10638,7 +10638,7 @@
    }
   },
   {
-   "id": "salinidad_ppm",
+   "id": "salinidad_g_kg",
    "descripcion": "Salinidad en g/kg",
    "mediciones": {
     "temperatura": {

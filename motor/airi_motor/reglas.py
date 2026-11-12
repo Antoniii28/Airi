@@ -31,6 +31,7 @@ def evaluar_parametro(parametro: str, medicion: dict | None, perfil: dict) -> di
     meta = datos.referencias()["parametros"][parametro]
     medicion = medicion or {}
     texto, unidad, metodo = medicion.get("valor"), medicion.get("unidad"), (medicion.get("metodo") or "").strip().lower()
+    unidad_texto = "" if unidad is None else str(unidad).strip()
     r = {"parametro": parametro, "nombre": meta["nombre"], "valor_original": texto, "unidad_original": unidad,
          "valor_canonico": None, "unidad_canonica": meta["unidad_canonica"], "estado": None, "severidad": None,
          "motivo": "", "fuentes": [], "contexto": [], "notas": [], "decisiones": []}
@@ -54,16 +55,17 @@ def evaluar_parametro(parametro: str, medicion: dict | None, perfil: dict) -> di
     # Q3
     reconocida = unidades.reconocer_unidad(parametro, unidad)
     if not decidir("Q3", reconocida is not None):
-        return terminar("EP2", f"La unidad «{unidad}» no se admite para {meta['nombre'].lower()}. "
-                               f"Unidad canónica: {meta['unidad_canonica']}.")
+        problema = (f"La unidad «{unidad_texto}» no se admite" if unidad_texto else "No se indicó la unidad")
+        return terminar("EP2", f"{problema} para {meta['nombre'].lower()}. Unidad canónica: {meta['unidad_canonica']}.")
     if reconocida["uso_ppm"]:
         r["notas"].append("«ppm» se interpreta como mg/L; en agua de mar difieren ligeramente por la densidad del agua.")
-    # Q4 (sobre el valor tal como se capturó, antes de convertir)
+    # Q4 (sobre el valor ya convertido a la unidad canónica, porque los límites están en esa unidad)
     lim = meta["limites_captura"]
     minimo, maximo = unidades.a_canonica(parametro, valor, reconocida)
     plausible = (lim["minimo"] is None or minimo >= lim["minimo"]) and (lim["maximo"] is None or maximo <= lim["maximo"])
     if not decidir("Q4", plausible):
-        return terminar("EP2", f"{_fmt(valor)} está fuera de los límites de captura ({lim['justificacion']})")
+        return terminar("EP2", f"{_fmt(valor)}{' ' + unidad_texto if unidad_texto else ''} está fuera de los límites de captura "
+                               f"({lim['justificacion']})")
     r["valor_canonico"] = round(minimo, 6) if minimo == maximo else [round(minimo, 6), round(maximo, 6)]
     if reconocida["base"] not in ("c", "ph", "ppt", "N", "f") and minimo == maximo:
         r["notas"].append(f"Convertido de {reconocida['descripcion']} a {meta['unidad_canonica']} por masas molares.")

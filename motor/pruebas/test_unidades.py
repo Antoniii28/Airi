@@ -15,7 +15,7 @@ class PruebasUnidades(unittest.TestCase):
         self.assertEqual(U.leer_numero(" 0.25 "), 0.25)
         self.assertEqual(U.leer_numero(7), 7.0)
         self.assertEqual(U.leer_numero("1e-2"), 0.01)
-        for malo in ["abc", "", "nan", "inf", "1e999", "8.1.2", "3x5", True, None, "-"]:
+        for malo in ["٣", "８", "1٫5", "abc", "", "nan", "inf", "1e999", "8.1.2", "3x5", True, None, "-"]:
             self.assertIsNone(U.leer_numero(malo), malo)
 
     def test_unidades_del_prototipo_reconocidas(self):
