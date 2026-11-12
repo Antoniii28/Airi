@@ -1,0 +1,164 @@
+// Grafo de decisiones del agente AIRI — propuesta de funcionamiento v0.1
+// Fuente reproducible. Generar con Graphviz:
+//   dot -Tsvg grafo_decisiones_airi.dot -o grafo_decisiones_airi.svg
+//   dot -Tpng -Gdpi=200 grafo_decisiones_airi.dot -o grafo_decisiones_airi.png
+//   dot -Tpdf grafo_decisiones_airi.dot -o grafo_decisiones_airi.pdf
+//
+// Paleta V2 de AIRI (identidad-visual/README.md):
+//   #09284D azul profundo · #0982C7 azul océano · #39DDF8 cian luminoso
+//   #80EAF2 aqua claro · #E97A25 naranja del pez · #F1D495 arena
+//   #1CAB55 verde algas · #7B4DD4 violeta coral
+//
+// Convenciones: V = Verdadero, F = Falso (valores lógicos).
+// Los nodos de decisión usan el prefijo Q (no V) para no confundirlos con el valor V.
+// Borde continuo = requisito documentado; borde discontinuo = decisión de diseño propuesta.
+// Datos simbólicos: el grafo no contiene rangos biológicos.
+
+digraph AIRI_v01 {
+  graph [
+    rankdir=TB, bgcolor="white", fontname="DejaVu Sans", fontcolor="#09284D",
+    nodesep=0.55, ranksep=0.6, pad=0.4, newrank=true, splines=true,
+    labelloc=t, labeljust=c,
+    label=<<FONT POINT-SIZE="24"><B>Grafo de decisiones del agente AIRI</B></FONT><BR/><FONT POINT-SIZE="13">Agente Inteligente para la Supervisión y Gestión de un Acuario Marino</FONT><BR/><FONT POINT-SIZE="12">Propuesta de funcionamiento de AIRI v0.1 · supervisión de parámetros del agua</FONT><BR/> >
+  ];
+  node  [fontname="DejaVu Sans", fontsize=11, penwidth=1.6, color="#09284D", style="filled", margin="0.18,0.08"];
+  edge  [fontname="DejaVu Sans", fontsize=10, color="#09284D", fontcolor="#09284D", penwidth=1.3, arrowsize=0.9];
+
+  // ── Entrada ────────────────────────────────────────────────────────────
+  E0 [shape=box, style="filled,rounded", fillcolor="#09284D", fontcolor="white",
+      label=<<B>E0 · Recibir mediciones</B><BR/>manuales o simuladas, con el origen identificado<BR/>Temperatura · pH · Salinidad · Amoníaco · Nitritos · Nitratos<BR/><FONT POINT-SIZE="9">F-01 · F-11 · T07</FONT>>];
+
+  // ── Evaluación individual de cada parámetro (propuesta de diseño) ─────
+  subgraph cluster_parametro {
+    label=<<B>Evaluación individual</B> — se repite para cada uno de los seis parámetros<BR/><FONT POINT-SIZE="10">(propuesta de diseño)</FONT>>;
+    fontsize=12; labeljust=l; style="dashed,rounded"; color="#0982C7"; penwidth=1.6; bgcolor="#F4FCFD"; margin=18;
+
+    // Validación (azul océano)
+    Q1 [shape=diamond, fillcolor="#0982C7", fontcolor="white",
+        label=<<B>Q1 · ¿Dato presente?</B><BR/><FONT POINT-SIZE="9">F-02 · F-06</FONT>>];
+    Q2 [shape=diamond, fillcolor="#0982C7", fontcolor="white",
+        label=<<B>Q2 · ¿Número válido?</B><BR/>formato numérico finito<BR/><FONT POINT-SIZE="9">F-02 · S-07</FONT>>];
+    Q3 [shape=diamond, fillcolor="#0982C7", fontcolor="white",
+        label=<<B>Q3 · ¿Unidad reconocida?</B><BR/>unidad y especie química<BR/><FONT POINT-SIZE="9">F-02</FONT>>];
+    Q4 [shape=diamond, fillcolor="#0982C7", fontcolor="white",
+        label=<<B>Q4 · ¿Valor plausible?</B><BR/>límites de medición configurados,<BR/>no son rangos biológicos<BR/><FONT POINT-SIZE="9">F-02 · S-07</FONT>>];
+
+    // Evaluación (cian luminoso)
+    Q5 [shape=diamond, fillcolor="#39DDF8", fontcolor="#09284D",
+        label=<<B>Q5 · ¿Existe referencia</B><BR/><B>con fuente?</B><BR/>para el perfil del acuario<BR/><FONT POINT-SIZE="9">F-03 · T06</FONT>>];
+    Q6 [shape=diamond, fillcolor="#39DDF8", fontcolor="#09284D",
+        label=<<B>Q6 · ¿Dentro del rango</B><BR/><B>de referencia?</B><BR/><FONT POINT-SIZE="9">F-03</FONT>>];
+
+    // Estados del parámetro
+    EP1 [shape=box, style="filled,rounded", fillcolor="#F1D495", fontcolor="#09284D",
+         label=<<B>EP1 · FALTANTE</B><BR/>el dato no se recibió<BR/><FONT POINT-SIZE="9">F-06 · T01</FONT>>];
+    EP2 [shape=box, style="filled,rounded", fillcolor="#F1D495", fontcolor="#09284D",
+         label=<<B>EP2 · INVÁLIDO</B><BR/>formato, unidad o valor no aceptado<BR/><FONT POINT-SIZE="9">F-02 · T02</FONT>>];
+    EP3 [shape=box, style="filled,rounded", fillcolor="#F1D495", fontcolor="#09284D",
+         label=<<B>EP3 · SIN REFERENCIA</B><BR/>no hay rango con fuente: no se evalúa<BR/><FONT POINT-SIZE="9">F-03 · T06</FONT>>];
+    EP4 [shape=box, style="filled,rounded", fillcolor="#1CAB55", fontcolor="#09284D",
+         label=<<B>EP4 · EN RANGO</B><BR/>dentro de la referencia documentada<BR/><FONT POINT-SIZE="9">F-03 · T03</FONT>>];
+    EP5 [shape=box, style="filled,rounded", fillcolor="#E97A25", fontcolor="#09284D",
+         label=<<B>EP5 · ANOMALÍA</B><BR/>fuera de la referencia documentada<BR/><FONT POINT-SIZE="9">F-03 · T04</FONT>>];
+
+    { rank=same; Q1; EP1; }
+    { rank=same; Q3; EP2; }
+    { rank=same; Q5; EP3; }
+    { rank=same; EP4; EP5; }
+  }
+
+  // ── Consolidación y clasificación (violeta coral, propuesta de diseño) ─
+  C1 [shape=box, style="filled,rounded,dashed", fillcolor="#7B4DD4", fontcolor="white", color="#09284D",
+      label=<<B>C1 · Consolidar los seis resultados</B><BR/>A = V si algún parámetro está en ANOMALÍA<BR/>I = V si alguno está FALTANTE, INVÁLIDO o SIN REFERENCIA<BR/><FONT POINT-SIZE="9">Propuesta de diseño · F-04</FONT>>];
+  Q7 [shape=diamond, style="filled,dashed", fillcolor="#7B4DD4", fontcolor="white",
+      label=<<B>Q7 · Clasificar</B><BR/><B>el informe según A e I</B><BR/><FONT POINT-SIZE="9">Propuesta de diseño</FONT>>];
+
+  // ── Resultados ─────────────────────────────────────────────────────────
+  R1 [shape=box, style="filled,rounded", fillcolor="#1CAB55", fontcolor="#09284D",
+      label=<<B>R1 · INFORME EN RANGO</B><BR/>todos los parámetros evaluados en rango;<BR/>no garantiza la salud del acuario<BR/><FONT POINT-SIZE="9">T03 · F-11</FONT>>];
+  R2 [shape=box, style="filled,rounded", fillcolor="#E97A25", fontcolor="#09284D",
+      label=<<B>R2 · ALERTAS</B><BR/>una por cada parámetro anómalo:<BR/>parámetro, valor y referencia<BR/><FONT POINT-SIZE="9">F-04 · T04 · T05</FONT>>];
+  R3 [shape=box, style="filled,rounded", fillcolor="#F1D495", fontcolor="#09284D",
+      label=<<B>R3 · INFORMACIÓN INSUFICIENTE</B><BR/>indica qué no se evaluó;<BR/>no declara normalidad<BR/><FONT POINT-SIZE="9">F-04 · F-06 · T01</FONT>>];
+  R4 [shape=box, style="filled,rounded,dashed", fillcolor="#E97A25:#F1D495", gradientangle=0, fontcolor="#09284D",
+      label=<<B>R4 · ALERTAS + INFORMACIÓN</B><BR/><B>INSUFICIENTE</B><BR/>conserva las alertas válidas y<BR/>señala lo que no se evaluó<BR/><FONT POINT-SIZE="9">Propuesta de diseño · F-04 · F-06</FONT>>];
+
+  // ── Salidas informativas (aqua claro) ─────────────────────────────────
+  O1 [shape=box, style="filled,rounded", fillcolor="#80EAF2", fontcolor="#09284D",
+      label=<<B>O1 · RECOMENDACIÓN INFORMATIVA</B><BR/>explica fundamento y limitaciones;<BR/>no ejecuta ninguna acción<BR/><FONT POINT-SIZE="9">F-04 · F-10</FONT>>];
+  O2 [shape=box, style="filled,rounded", fillcolor="#80EAF2", fontcolor="#09284D",
+      label=<<B>O2 · SOLICITUD DE DATOS</B><BR/><B>O CORRECCIÓN</B><BR/>pide el dato faltante o una nueva medición<BR/><FONT POINT-SIZE="9">F-06</FONT>>];
+
+  // ── Decisión final del usuario ─────────────────────────────────────────
+  FIN [shape=box, style="filled,rounded", fillcolor="#09284D", fontcolor="white", penwidth=2.4,
+       label=<<B>FIN · DECISIÓN DEL USUARIO</B><BR/>una persona revisa el informe y decide;<BR/>AIRI no ejecuta acciones físicas<BR/><FONT POINT-SIZE="9">F-10 · T08</FONT>>];
+
+  // ── Leyenda ────────────────────────────────────────────────────────────
+  leyenda [shape=plain, style="", fontsize=10, label=<
+    <TABLE BORDER="1" COLOR="#09284D" CELLBORDER="0" CELLSPACING="4" CELLPADDING="4">
+      <TR><TD COLSPAN="4" ALIGN="LEFT"><B>Leyenda</B></TD></TR>
+      <TR>
+        <TD BGCOLOR="#09284D" WIDTH="18"> </TD><TD ALIGN="LEFT">Entrada y decisión del usuario</TD>
+        <TD BGCOLOR="#0982C7" WIDTH="18"> </TD><TD ALIGN="LEFT">Validación</TD>
+      </TR>
+      <TR>
+        <TD BGCOLOR="#39DDF8"> </TD><TD ALIGN="LEFT">Evaluación</TD>
+        <TD BGCOLOR="#1CAB55"> </TD><TD ALIGN="LEFT">En rango</TD>
+      </TR>
+      <TR>
+        <TD BGCOLOR="#E97A25"> </TD><TD ALIGN="LEFT">Anomalía / alerta</TD>
+        <TD BGCOLOR="#F1D495"> </TD><TD ALIGN="LEFT">Dato no evaluable / insuficiente</TD>
+      </TR>
+      <TR>
+        <TD BGCOLOR="#7B4DD4"> </TD><TD ALIGN="LEFT">Consolidación y clasificación</TD>
+        <TD BGCOLOR="#80EAF2"> </TD><TD ALIGN="LEFT">Salida informativa</TD>
+      </TR>
+      <TR><TD COLSPAN="4" ALIGN="LEFT">Rombo = decisión · Caja = estado o resultado · V = Verdadero · F = Falso</TD></TR>
+      <TR><TD COLSPAN="4" ALIGN="LEFT">Borde continuo = requisito documentado · Borde discontinuo = propuesta de diseño</TD></TR>
+      <TR><TD COLSPAN="4" ALIGN="LEFT">F-xx: normativa funcional · S-xx: normativa de seguridad · Txx: casos de CRITERIOS_V0.1 (propuesta)</TD></TR>
+      <TR><TD COLSPAN="4" ALIGN="LEFT">Datos simbólicos: el grafo no contiene rangos biológicos.</TD></TR>
+    </TABLE>>];
+
+  // ── Transiciones ───────────────────────────────────────────────────────
+  E0 -> Q1 [label=<<B>para cada parámetro</B>>];
+
+  Q1 -> EP1 [label=<<B>F</B>>];
+  Q1 -> Q2  [label=<<B>V</B>>];
+  Q2 -> EP2 [label=<<B>F</B>>];
+  Q2 -> Q3  [label=<<B>V</B>>];
+  Q3 -> EP2 [label=<<B>F</B>>];
+  Q3 -> Q4  [label=<<B>V</B>>];
+  Q4 -> EP2 [label=<<B>F</B>>];
+  Q4 -> Q5  [label=<<B>V</B>>];
+  Q5 -> EP3 [label=<<B>F</B>>];
+  Q5 -> Q6  [label=<<B>V</B>>];
+  Q6 -> EP4 [label=<<B>V</B>>];
+  Q6 -> EP5 [label=<<B>F</B>>];
+
+  EP1 -> C1 [label="registrar"];
+  EP2 -> C1 [label="registrar"];
+  EP3 -> C1 [label="registrar"];
+  EP4 -> C1 [label="registrar"];
+  EP5 -> C1 [label="registrar"];
+
+  C1 -> Q7 [label=<<B>A, I</B>>];
+
+  Q7 -> R1 [label=<<B>A = F, I = F</B>>];
+  Q7 -> R2 [label=<<B>A = V, I = F</B>>];
+  Q7 -> R3 [label=<<B>A = F, I = V</B>>];
+  Q7 -> R4 [label=<<B>A = V, I = V</B>>];
+
+  R2 -> O1 [label="explicar"];
+  R4 -> O1 [label="explicar"];
+  R4 -> O2 [label="pedir datos"];
+  R3 -> O2 [label="pedir datos"];
+
+  R1 -> FIN [label="entregar"];
+  O1 -> FIN [label="entregar"];
+  O2 -> FIN [label="entregar"];
+
+  // Orden visual (aristas invisibles, sin significado lógico)
+  { rank=same; R1; R2; R3; R4; }
+  { rank=same; O1; O2; }
+  FIN -> leyenda [style=invis];
+}
