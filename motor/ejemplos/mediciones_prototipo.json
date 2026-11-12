@@ -1,0 +1,26 @@
+{
+  "temperatura": {
+    "valor": "26",
+    "unidad": "°C"
+  },
+  "ph": {
+    "valor": "8,4",
+    "unidad": "pH"
+  },
+  "salinidad": {
+    "valor": "35",
+    "unidad": "ppt"
+  },
+  "amoniaco": {
+    "valor": "0.6",
+    "unidad": "mg/L (NH₃/NH₄⁺ total)"
+  },
+  "nitritos": {
+    "valor": "0",
+    "unidad": "mg/L (NO₂⁻)"
+  },
+  "nitratos": {
+    "valor": "10",
+    "unidad": "mg/L (NO₃⁻)"
+  }
+}
