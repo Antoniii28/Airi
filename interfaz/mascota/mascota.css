@@ -147,3 +147,36 @@ body.airi-m-con-flotante { padding-bottom: 150px; }
 .airi-m-reducido, .airi-m-reducido * { animation: none !important; transition: none !important; }
 .airi-m-reducido .airi-m-burbuja, .airi-m-reducido .airi-m-superficie { display: none; }
 .airi-m-izquierda .airi-m-senal { transform: scaleX(-1); }   /* el signo no se ve al revés */
+
+/* ═══ v0.2 · Menú de acciones, controles de voz y animación al hablar ═══════ */
+.airi-m-menu { margin-top: 8px; border-top: 1px solid #d6eaf1; padding-top: 8px; }
+.airi-m-menu[hidden] { display: none; }
+.airi-m-menu-titulo { margin: 0 0 6px !important; font-weight: 700; font-size: 13px; }
+.airi-m-menu-lista { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.airi-m-con-menu > .airi-m-texto, .airi-m-con-menu > .airi-m-etiqueta { display: none; }
+.airi-m-con-menu .airi-m-menu { margin-top: 0; border-top: 0; padding-top: 0; }
+.airi-m-opcion { cursor: pointer; text-align: left; min-height: 40px; border: 1px solid #ccebf1; border-radius: 8px; background: #f1fbfd;
+  color: var(--airi-azul-profundo); font: 600 13px/1.3 Inter, system-ui, sans-serif; padding: 7px 10px; }
+.airi-m-opcion:hover { background: #e0f6fa; }
+.airi-m-opcion:focus-visible { outline: 3px solid var(--airi-naranja); outline-offset: 1px; }
+.airi-m-recomendada { border-color: var(--airi-azul-oceano); }
+.airi-m-marca { font-weight: 400; font-size: 11px; color: #47667b; }
+.airi-m-btn-voz[aria-pressed="true"] { background: var(--airi-azul-oceano); color: white; }
+.airi-m-btn-detener { border-color: var(--airi-naranja); }
+.airi-m-btn-detener[hidden] { display: none; }
+.airi-m-boton:disabled { cursor: not-allowed; opacity: .65; }
+.airi-m-pecera .airi-m-pez.airi-m-pulsable { pointer-events: auto; cursor: pointer; border-radius: 40%; }
+.airi-m-pez.airi-m-pulsable:focus-visible { outline: 3px solid var(--airi-naranja); outline-offset: 4px; }
+.airi-m-pecera .airi-m-globo { max-height: calc(100% - 24px); overflow: auto; }
+
+@keyframes airi-m-habla { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-2.5%) rotate(-1.5deg); } }
+.airi-m-hablando .airi-m-capas { animation: airi-m-habla .55s ease-in-out infinite; }
+.airi-m-hablando .airi-m-luz { opacity: 1; animation-duration: .5s; }
+.airi-m-hablando .airi-m-cola { animation-duration: .8s; }
+/* Con movimiento reducido no hay movimiento: solo la antena encendida de forma fija */
+.airi-m-reducido .airi-m-hablando .airi-m-luz { opacity: 1; }
+
+@media (max-width: 600px) {
+  .airi-m-opcion { padding: 6px 8px; font-size: 12.5px; }
+  .airi-m-flotante .airi-m-globo { max-height: calc(100vh - 140px); overflow: auto; }
+}

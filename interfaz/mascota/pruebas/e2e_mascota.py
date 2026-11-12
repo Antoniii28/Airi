@@ -20,6 +20,9 @@ PROTOTIPO = RAIZ / "interfaz" / "prototipo" / "index.html"
 LINEAS_MASCOTA = [
     '<link rel="stylesheet" href="../mascota/mascota.css">\n',
     '<script src="../mascota/mascota.js"></script>\n',
+    '<script src="../mascota/voz.js"></script>\n',          # v0.2
+    '<script src="../mascota/ayuda.js"></script>\n',        # v0.2
+    '<script src="../mascota/interaccion.js"></script>\n',  # v0.2
     '<script src="../mascota/integracion-prototipo.js"></script>\n',
 ]
 resultados = []
@@ -207,7 +210,8 @@ def main():
                     if globo_abierto:
                         pagina.evaluate("window.airiMascota.decir(AIRIMascota.MENSAJES_PESTANA.agua)")
                     else:
-                        pagina.evaluate("document.querySelector('.airi-m-avatar').getAttribute('aria-expanded') === 'true' && document.querySelector('.airi-m-avatar').click()")
+                        # v0.2: pulsar el avatar abre el menú; el globo se cierra con la API
+                        pagina.evaluate("window.airiInteraccion && window.airiInteraccion.cerrarMenus(false); window.airiMascota.elementos.abrirGlobo(false)")
                     tapados = pagina.evaluate("""sel => [...document.querySelectorAll(sel)].filter(e => {
                         e.scrollIntoView({block: 'center'});
                         const r = e.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;

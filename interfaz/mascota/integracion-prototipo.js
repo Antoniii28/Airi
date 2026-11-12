@@ -29,10 +29,29 @@
     });
     window.airiMascota = mascota;   // acceso para depuración y futuras versiones
 
+    // v0.2: voz y menú de acciones (módulos independientes; si faltan, la mascota sigue igual)
+    var interaccion = null;
+    if (window.AIRIInteraccion && window.AIRIVoz && window.AIRIAyuda) {
+      try {
+        interaccion = window.AIRIInteraccion.iniciar(mascota, { pestana: actual });
+        window.airiInteraccion = interaccion;
+      } catch (errorVoz) {
+        if (window.console) console.warn("AIRI: la voz y el menú no pudieron iniciarse; la mascota sigue disponible.", errorVoz);
+      }
+    }
+    // Mensajes que solo se muestran por escrito (no se leen en voz alta)
+    var soloTexto = function (m) {
+      var copia = {};
+      for (var k in m) copia[k] = m[k];
+      copia.hablar = false;
+      return copia;
+    };
+
     // Pestañas: pecera en Inicio, asistente flotante en las demás
     document.querySelectorAll("[data-tab]").forEach(function (boton) {
       boton.addEventListener("click", function () {
         var pestana = boton.getAttribute("data-tab");
+        if (interaccion) interaccion.cambiarPestana(pestana);
         mascota.cambiarModo(pestana === "inicio" ? "pecera" : "flotante");
         mascota.decir(M.MENSAJES_PESTANA[pestana] || M.MENSAJES_PESTANA.inicio);
       });
@@ -61,7 +80,7 @@
         }
         // La pausa de «análisis» es solo una animación demostrativa: el resultado
         // ya está calculado por el prototipo. Con animaciones reducidas no hay pausa.
-        mascota.decir(M.MENSAJE_ANALISIS);
+        mascota.decir(soloTexto(M.MENSAJE_ANALISIS));
         espera = setTimeout(function () { mascota.decir(M.interpretarValidacion(r)); },
                             mascota.reducida ? 0 : 900);
       }).observe(resultado, { childList: true, subtree: true });
@@ -76,7 +95,7 @@
         clearTimeout(esperaBusqueda);
         esperaBusqueda = setTimeout(function () {
           var cantidad = catalogo.querySelectorAll("article.card").length;
-          mascota.decir(M.mensajeBusqueda(buscar.value, cantidad));
+          mascota.decir(soloTexto(M.mensajeBusqueda(buscar.value, cantidad)));
         }, 700);
       });
     }

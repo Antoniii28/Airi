@@ -18,7 +18,7 @@
 })(typeof window !== "undefined" ? window : globalThis, function (raiz) {
   "use strict";
 
-  var VERSION = "0.1.0";
+  var VERSION = "0.2.0";
   var ESTADOS = ["bienvenida", "espera", "analisis", "insuficiente", "error", "alerta"];
   var ETIQUETAS = {
     informativo: "Información",
@@ -266,11 +266,17 @@
       globoFlotante.hidden = !abrir;
       avatar.setAttribute("aria-expanded", String(abrir));
       clearTimeout(temporizadorGlobo);
-      if (abrir) temporizadorGlobo = setTimeout(function () {
-        if (!flotante.contains(document.activeElement)) abrirGlobo(false);
+      if (abrir) temporizadorGlobo = setTimeout(function cerrarSiProcede() {
+        // data-fijo: el menú está abierto o AIRI está hablando (v0.2)
+        if (globoFlotante.getAttribute("data-fijo") === "1" || flotante.contains(document.activeElement)) {
+          temporizadorGlobo = setTimeout(cerrarSiProcede, 2000);
+        } else { abrirGlobo(false); }
       }, opciones.duracionGlobo || (raiz.innerWidth && raiz.innerWidth <= 600 ? 6000 : 8000));
     }
-    avatar.addEventListener("click", function () { abrirGlobo(globoFlotante.hidden); });
+    avatar.addEventListener("click", function () {
+      abrirGlobo(globoFlotante.hidden);
+      emitir("airi:mascota-pulsada", { modo: "flotante", abierto: !globoFlotante.hidden });
+    });
     // Para no tapar la interfaz: el globo se contrae en cuanto la persona usa un
     // campo o un botón de la página, o desplaza la vista. El avatar lo vuelve a abrir.
     document.addEventListener("focusin", function (e) {
@@ -355,7 +361,21 @@
       if (rafId != null) { raiz.cancelAnimationFrame(rafId); rafId = null; }
     }
 
+    function emitir(nombre, detalle) {
+      if (typeof CustomEvent === "function") document.dispatchEvent(new CustomEvent(nombre, { detail: detalle }));
+    }
+
     // ── API pública ─────────────────────────────────────────────────────────
+    /** Elementos visuales, para módulos que se acoplan a la mascota (v0.2: voz y menú). */
+    ctl.elementos = { pecera: pecera, pezPecera: pezPecera, globoPecera: globoPecera,
+      flotante: flotante, pezFlotante: pezFlotante, globoFlotante: globoFlotante, avatar: avatar,
+      controles: [pecera && pecera.querySelector(".airi-m-controles"), ctrlFlotante].filter(Boolean),
+      abrirGlobo: abrirGlobo };
+    /** Animación de «hablando» (movimiento suave y antena encendida). */
+    ctl.indicarHabla = function (hablando) {
+      [pezPecera, pezFlotante].forEach(function (p) { if (p) p.classList.toggle("airi-m-hablando", !!hablando); });
+      return ctl;
+    };
     var temporizadorEstado = null;
     ctl.cambiarEstado = function (estado, mensaje, opcionesEstado) {
       if (ESTADOS.indexOf(estado) < 0) throw new Error("Estado desconocido: " + estado);
@@ -381,6 +401,7 @@
       return ctl;
     };
     ctl.ocultar = function () { ctl.oculta = true; prefs.fijarOculta(true); aplicarVisibilidad();
+      emitir("airi:mascota-visibilidad", { oculta: true });
       if (ctl.modo === "flotante") mostrarBtn.focus(); return ctl; };
     ctl.mostrar = function () { ctl.oculta = false; prefs.fijarOculta(false); aplicarVisibilidad(); aplicarMensaje();
       if (ctl.modo === "flotante") { abrirGlobo(true); avatar.focus(); } return ctl; };
