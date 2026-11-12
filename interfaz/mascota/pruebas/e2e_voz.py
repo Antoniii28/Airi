@@ -86,8 +86,8 @@ def main():
         # ── 3. Menú en la pecera (ratón y teclado) ───────────────────────────
         pg.click(f"{PEC} .airi-m-pez", force=True); pg.wait_for_timeout(150)
         opciones = pg.eval_on_selector_all(f"{PEC} .airi-m-opcion", "bs => bs.map(b => b.getAttribute('data-accion'))")
-        comprobar(pg.is_visible("#airi-m-menu-pecera") and opciones == ["proyecto", "agua", "especies", "futuro", "repetir", "silenciar"],
-                  f"pulsar el pez abre el menú con las 6 acciones, la de Inicio primero {opciones}")
+        comprobar(pg.is_visible("#airi-m-menu-pecera") and opciones == ["proyecto", "agua", "especies", "futuro", "repetir", "silenciar", "ajustes"],
+                  f"pulsar el pez abre el menú con las 6 acciones (+ «Ajustes de voz» de v0.3), la de Inicio primero {opciones}")
         comprobar(pg.get_attribute(f"{PEC} .airi-m-pez", "aria-expanded") == "true" and
                   pg.evaluate("document.activeElement.getAttribute('data-accion')") == "proyecto",
                   "el foco pasa a la primera opción (teclado) y aria-expanded=true")
