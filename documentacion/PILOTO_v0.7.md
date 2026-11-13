@@ -101,7 +101,7 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
 
 | Suite | Resultado |
 |---|---|
-| Worker, cuotas, códigos, archivos estáticos y despliegue verificable (`cd publico && node --test`) | **48/48** |
+| Worker, cuotas, códigos, archivos estáticos y despliegue verificable (`cd publico && node --test`) | **49/49** |
 | Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular; incluye navegación con LF y CRLF y variantes del código | **37/37** |
 | E1, cuotas del servidor local (`python -m unittest discover -s tests`) | 8/8 |
 | Servidor local (`chat/pruebas`) | 29/29 |
@@ -223,15 +223,54 @@ había forma de saber qué versión estaba desplegada.
 - los secretos cargados;
 - si la línea de `AIRI_CODIGOS` corresponde a los códigos entregados (usar `comprobar-codigo.mjs`).
 
+### Estado REAL de producción observado (13-11-2026, 11:20 h, solo lecturas públicas)
+
+Worker `airi` en `https://airi.florescuamatzijoseantonio.workers.dev`:
+- `/api/estado` → `{"modo":"publico","activo":false,…,"mensaje":"El chat del piloto está desactivado por ahora."}`.
+  No incluye `version`, así que el Worker es anterior a 0.7.3.
+- La interfaz publicada (`acceso-publico.js`) **ya incluye** la normalización de códigos del PR #11, el botón
+  «Mostrar» y el aviso de mayoría de edad.
+- **Diagnóstico:**
+  - El responsable había visto antes `activo: true`; ahora el chat está cerrado.
+  - La plantilla `wrangler.jsonc` lleva `AIRI_CHAT_APAGADO="1"`, `AIRI_ORIGEN=""` y la sitekey vacía.
+  - Según la documentación de Wrangler, las variables del archivo **sustituyen** en cada despliegue a las del panel;
+    los secretos se conservan.
+  - Un despliegue hecho con esa plantilla sobre el Worker `airi` deja el chat desactivado, que es lo observado.
+  - No se puede confirmar desde fuera qué variable concreta falta, porque `/api/estado` no lo revela a propósito.
+  - Esa plantilla, usada tal cual, habría creado además un Worker nuevo `airi-piloto`.
+
+### Configuración de producción (0.7.3)
+
+- **`publico/wrangler.produccion.jsonc`:**
+  - `name: "airi"`, el Worker existente;
+  - las variables **públicas** de producción: origen real, `MX`, límites y `AIRI_CHAT_APAGADO="0"`;
+  - la misma migración de Durable Object;
+  - **ningún secreto**;
+  - la sitekey de Turnstile, que es pública, debe pegarse en el archivo.
+- **Protección en el paso `build`** (Wrangler lo ejecuta antes de publicar, también con `--dry-run`):
+  - con `wrangler.jsonc`, **cualquier `wrangler deploy` se cancela**, porque es solo plantilla; `wrangler dev` sigue
+    funcionando;
+  - con `wrangler.produccion.jsonc`, el despliegue se cancela si:
+    - el nombre no es `airi`;
+    - el chat queda apagado;
+    - falta el origen;
+    - la sitekey es el texto de ejemplo o una de **prueba** de Cloudflare;
+    - aparece un secreto en `vars`;
+    - falta el Durable Object;
+    - se usa `keep_vars`.
+
 **Procedimiento de despliegue, solo con autorización, desde `publico/`:**
 ```powershell
-git checkout main; git pull                      # tras fusionar el PR de la versión 0.7.3
+git checkout main; git pull
 cd publico
-node --test                                      # deben pasar todas
-npx wrangler deploy --dry-run                    # valida la configuración sin publicar
-npx wrangler deploy                              # ejecuta preparar-estaticos.mjs y publica
-node herramientas/verificar-despliegue.mjs https://<tu-worker>.workers.dev
-npx wrangler tail                                # en otra ventana, durante la prueba manual
+node --test                                                  # deben pasar todas
+# pegar la sitekey pública en wrangler.produccion.jsonc (si no está ya en el repositorio)
+npx wrangler whoami                                          # cuenta correcta
+npx wrangler secret list -c wrangler.produccion.jsonc        # solo NOMBRES: deben estar los 4 secretos
+npx wrangler deploy -c wrangler.produccion.jsonc --dry-run   # valida sin publicar
+npx wrangler deploy -c wrangler.produccion.jsonc             # publica en el Worker «airi»
+node herramientas/verificar-despliegue.mjs https://airi.florescuamatzijoseantonio.workers.dev
+npx wrangler tail -c wrangler.produccion.jsonc               # en otra ventana, durante la prueba manual
 ```
 
 **Prueba manual posterior:**

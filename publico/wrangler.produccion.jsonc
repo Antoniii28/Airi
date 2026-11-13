@@ -1,0 +1,41 @@
+// AIRI v0.7.3 — Configuración de PRODUCCIÓN del Worker EXISTENTE «airi»
+//   https://airi.florescuamatzijoseantonio.workers.dev
+// Desplegar SIEMPRE desde la carpeta publico/ y SOLO con autorización del responsable:
+//   npx wrangler deploy -c wrangler.produccion.jsonc --dry-run     (validación, no publica)
+//   npx wrangler deploy -c wrangler.produccion.jsonc
+//
+// Fuente de verdad de las VARIABLES: este archivo (Wrangler sobrescribe en cada despliegue las variables puestas en
+// el panel de Cloudflare). Los SECRETOS no se tocan: GEMINI_API_KEY, TURNSTILE_SECRET, AIRI_CODIGOS y AIRI_SAL se
+// conservan entre despliegues y NUNCA se escriben aquí.
+// AIRI_TURNSTILE_SITEKEY es pública (el navegador la recibe), no es un secreto: pégala desde el panel de Turnstile.
+// El paso «build» revisa este archivo y CANCELA el despliegue si algo esencial falta o es incorrecto.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "airi",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "build": { "command": "node preparar-estaticos.mjs --produccion wrangler.produccion.jsonc" },
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    "run_worker_first": ["/api/*"]
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "CUOTAS", "class_name": "ControlCuotasAIRI" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ControlCuotasAIRI"] }],
+  "observability": { "enabled": true },
+  "vars": {
+    "AIRI_CHAT_APAGADO": "0",
+    "AIRI_ORIGEN": "https://airi.florescuamatzijoseantonio.workers.dev",
+    "AIRI_TURNSTILE_SITEKEY": "PEGAR-AQUI-LA-SITEKEY-PUBLICA",
+    "AIRI_PAISES_PERMITIDOS": "MX",
+    "AIRI_MODELO": "gemini-3.1-flash-lite",
+    "AIRI_LIMITE_MINUTO": "5",
+    "AIRI_LIMITE_DIA": "30",
+    "AIRI_LIMITE_GLOBAL_DIA": "100",
+    "AIRI_FALLOS_MAX_HORA": "10",
+    "AIRI_PAUSA_429_MIN": "15"
+  }
+}

@@ -86,13 +86,39 @@ test("verificar-despliegue.mjs: despliegue al día → todo OK; interfaz anterio
   }
 });
 
-test("wrangler.jsonc: regenera dist en cada despliegue y sigue cerrado por defecto", () => {
-  const texto = readFileSync(join(AQUI, "wrangler.jsonc"), "utf-8").replace(/^\s*\/\/.*$/gm, "");
-  const cfg = JSON.parse(texto);
-  assert.equal(cfg.build.command, "node preparar-estaticos.mjs");
+const leerJsonc = (f) => JSON.parse(readFileSync(join(AQUI, f), "utf-8").replace(/^\s*\/\/.*$/gm, ""));
+const build = (args, wranglerCommand) => spawnSync("node", [join(AQUI, "preparar-estaticos.mjs"), ...args],
+  { cwd: AQUI, encoding: "utf-8", env: { ...process.env, WRANGLER_COMMAND: wranglerCommand || "" } });
+
+test("wrangler.jsonc es solo plantilla: «wrangler dev» funciona y «wrangler deploy» se cancela", () => {
+  const cfg = leerJsonc("wrangler.jsonc");
+  assert.equal(cfg.build.command, "node preparar-estaticos.mjs --plantilla");
   assert.equal(cfg.vars.AIRI_CHAT_APAGADO, "1");
+  assert.equal(build(["--plantilla"], "dev").status, 0);
+  for (const cmd of ["deploy", "versions upload"]) {
+    const r = build(["--plantilla"], cmd);
+    assert.equal(r.status, 1, cmd); assert.match(r.stderr, /PLANTILLA/);
+  }
+});
+
+test("wrangler.produccion.jsonc: Worker existente «airi», sin secretos, y el despliegue se cancela si falta algo", async () => {
+  const { revisarProduccion } = await import("./preparar-estaticos.mjs");
+  const texto = readFileSync(join(AQUI, "wrangler.produccion.jsonc"), "utf-8");
+  const cfg = leerJsonc("wrangler.produccion.jsonc");
+  assert.equal(cfg.name, "airi");
+  assert.equal(cfg.vars.AIRI_ORIGEN, "https://airi.florescuamatzijoseantonio.workers.dev");
+  assert.equal(cfg.vars.AIRI_PAISES_PERMITIDOS, "MX");
   assert.deepEqual(cfg.assets.run_worker_first, ["/api/*"]);
-  assert.deepEqual(cfg.migrations[0].new_sqlite_classes, ["ControlCuotasAIRI"]);
-  for (const s of ["GEMINI_API_KEY", "TURNSTILE_SECRET", "AIRI_CODIGOS", "AIRI_SAL"]) assert.equal(cfg.vars[s], undefined, s);
-  assert.ok(existsSync(join(AQUI, "preparar-estaticos.mjs")));
+  assert.deepEqual(cfg.migrations, leerJsonc("wrangler.jsonc").migrations);   // misma migración que el Worker creado con la plantilla
+  for (const s of ["GEMINI_API_KEY", "TURNSTILE_SECRET", "AIRI_CODIGOS", "AIRI_SAL"]) assert.ok(!(s in cfg.vars), s);
+  // Con el texto de ejemplo en la sitekey, el build (y por tanto el despliegue) se cancela
+  const r = build(["--produccion", "wrangler.produccion.jsonc"], "deploy");
+  assert.equal(r.status, 1); assert.match(r.stderr, /AIRI_TURNSTILE_SITEKEY/);
+  // Una configuración completa (sitekey ficticia) pasa; errores típicos se detectan
+  const completa = texto.replace("PEGAR-AQUI-LA-SITEKEY-PUBLICA", "0x4AAAAAAAficticiaXYZ");
+  assert.deepEqual(revisarProduccion(completa), []);
+  const casos = [[/"name": "airi"/, '"name": "airi-piloto"', /name/], [/"AIRI_CHAT_APAGADO": "0"/, '"AIRI_CHAT_APAGADO": "1"', /APAGADO/],
+    [/"AIRI_ORIGEN": "[^"]+"/, '"AIRI_ORIGEN": ""', /ORIGEN/], [/"AIRI_PAISES_PERMITIDOS": "MX",/, '"AIRI_PAISES_PERMITIDOS": "MX", "GEMINI_API_KEY": "x",', /SECRETO/],
+    [/0x4AAAAAAAficticiaXYZ/, "1x00000000000000000000AA", /PRUEBA/]];
+  for (const [busca, cambia, error] of casos) assert.match(revisarProduccion(completa.replace(busca, cambia)).join(" "), error, String(cambia));
 });
