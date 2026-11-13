@@ -1,7 +1,20 @@
 # AIRI v0.6 · E5–E6: dictado por micrófono, ajustes, privacidad y accesibilidad
 
-**Rama:** `feature/voz-conversacion-airi-v0.6`. **Fecha:** 13-11-2026. **Estado:** implementado y probado con un
-reconocimiento de voz **simulado**. Falta la comprobación con el micrófono real en el equipo de la persona responsable.
+**Rama:** `feature/voz-conversacion-airi-v0.6`. **Fecha:** 13-11-2026. **Estado:** implementado, probado
+automáticamente con un reconocimiento de voz **simulado** y **comprobado manualmente por la persona responsable con
+micrófono real en Google Chrome sobre Windows** (13-11-2026).
+
+## Prueba real (persona responsable, Chrome en Windows, 13-11-2026)
+
+- El micrófono reconoció su voz en español y la pregunta se transcribió correctamente.
+- Pudo revisar la transcripción antes de enviarla, y Gemini (real) recibió la pregunta y respondió.
+- AIRI leyó la respuesta con Microsoft Sabina (es-MX), y la mascota pensó, habló y volvió a reposo.
+- «Escuchar», «Detener voz» y «Nueva conversación» funcionaron.
+- **Error detectado:** el aviso «Transcripción lista…» seguía visible después de enviar la pregunta. Se reprodujo con
+  una prueba automática (2 comprobaciones fallaban con la versión anterior) y se corrigió: al enviar, por cualquier
+  vía, o al empezar una conversación nueva, vuelve el aviso de reposo del modo actual.
+
+Es una prueba en un solo equipo. No garantiza el comportamiento en otros navegadores, sistemas o micrófonos.
 
 ## Qué hace
 
@@ -85,7 +98,7 @@ el chat escrito funciona igual.
 | `interfaz/chat/chat.css` | Bloque «v0.6 E5–E6» al final |
 | `interfaz/prototipo/index.html` | Carga `microfono.js` después de `voz-chat.js`; título «v0.6 experimental» |
 | `interfaz/chat/pruebas/simulador_reconocimiento.js` | **Nuevo.** `SpeechRecognition` simulado (sin micrófono real) |
-| `interfaz/chat/pruebas/e2e_microfono.py` | **Nuevo.** 38 comprobaciones en Chrome |
+| `interfaz/chat/pruebas/e2e_microfono.py` | **Nuevo.** 41 comprobaciones en Chrome |
 | `interfaz/chat/pruebas/e2e_chat.py` | La comprobación de altura táctil ignora los botones ocultos del dictado |
 
 Sin cambios: el servidor, `chat.js`, `voz.js`, `voz-chat.js`, la mascota, el motor v0.4, sus umbrales, el grafo y las
@@ -94,7 +107,7 @@ fichas de especies.
 ## Pruebas
 
 ```bash
-python interfaz/chat/pruebas/e2e_microfono.py   # 38 comprobaciones (Gemini, voz y reconocimiento simulados)
+python interfaz/chat/pruebas/e2e_microfono.py   # 41 comprobaciones (Gemini, voz y reconocimiento simulados)
 ```
 
 Cubre:
