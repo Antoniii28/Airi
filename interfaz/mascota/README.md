@@ -50,6 +50,7 @@ El personaje oficial se separó en capas **sin redibujarlo** (ver [`assets/READM
 | `bienvenida` | Saludo y antena rápida | Al abrir Inicio | Interfaz |
 | `espera` | Nado tranquilo | En reposo. Sin el motor v0.4: también cuando todos los datos tienen formato válido (sin declarar normalidad) | Interfaz y formulario |
 | `analisis` | Antena intermitente, anillo de escaneo, halo cian | 0.9 s tras «Validar entradas» | **Animación demostrativa** |
+| `pensando` | Nado muy lento, aleteo suave, luz que respira y burbuja con tres puntos (todas las animaciones ≥ 1,4 s, sin anillos de escaneo). Con movimiento reducido: tres puntos fijos | **Desde v0.6 E4:** mientras Gemini prepara la respuesta del chat. Sin mensaje ni voz; al llegar la respuesta pasa a hablar (si la lectura está activada) o a `espera` | Chat (`interfaz/chat/chat.js`) |
 | `insuficiente` | Halo arena y señal «?» | Campos sin dato o, desde v0.4, parámetros sin referencia verificada (R3) | Resultado real del formulario y del motor. **Advertencia informativa, no una alerta del acuario** |
 | `error` | Halo naranja, sacudida y señal «!» | Valores inválidos sin anomalías | Resultado real del formulario y del motor |
 | `alerta` | Halo naranja intenso y señal «!» | **Desde v0.4:** el motor encontró valores fuera de una referencia con fuente (R2 o R4). Voz con el matiz serio de «alerta», sin alarmismo; en R4 el mensaje menciona también los datos faltantes, inválidos y sin referencia | Informe real del motor (`interfaz/motor`) |
@@ -197,6 +198,7 @@ Ninguna de estas alternativas está integrada; requieren decisión del equipo.
 | `pruebas/mascota.test.js` | Pruebas unitarias con el ejecutor integrado de Node |
 | `pruebas/e2e_mascota.py` | Pruebas de extremo a extremo en Chrome con Playwright |
 | `pruebas/voz.test.js` | Pruebas unitarias de voz y ayuda con síntesis simulada (v0.2) |
+| `pruebas/pensando.test.js` | Pruebas unitarias del estado «pensando»: existe, nado lento, animaciones ≥ 1,4 s y regla de movimiento reducido (v0.6 E4) |
 | `pruebas/voz_personalidad.test.js` | Pruebas unitarias de perfiles, matices, voces y preferencias (v0.3) |
 | `pruebas/e2e_ajustes_voz.py` | Pruebas del diálogo de ajustes en Chrome (v0.3) |
 | `pruebas/e2e_voz.py`, `pruebas/simulador_voz.js` | Pruebas de voz y menú en Chrome, con síntesis simulada y real (v0.2) |

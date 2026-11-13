@@ -89,10 +89,10 @@ def main():
         comprobar(pg.is_disabled("#airi-chat-send") and "Pensando" in lineas(pg)[-1] and
                   pg.get_attribute("#airi-chat-log", "aria-busy") == "true", "mientras espera: «Pensando…», botón desactivado")
         globo_antes = pg.inner_text(flot)
-        comprobar(pg.evaluate("window.airiMascota.estado") == "analisis" and
-                  pg.evaluate("document.querySelector('.airi-m-flotante .airi-m-pez').classList.contains('airi-m-estado-analisis')") and
+        comprobar(pg.evaluate("window.airiMascota.estado") == "pensando" and
+                  pg.evaluate("document.querySelector('.airi-m-flotante .airi-m-pez').classList.contains('airi-m-estado-pensando')") and
                   "preguntas sobre acuarios marinos" in globo_antes,
-                  "mascota: indicador sencillo de espera (estado «analisis») sin mensaje ni voz nuevos")
+                  "mascota: indicador de espera (estado «pensando», v0.6 E4) sin mensaje ni voz nuevos")
         pg.wait_for_timeout(1300)
         comprobar(pg.evaluate("window.airiMascota.estado") == "espera", "mascota: vuelve a «espera» al llegar la respuesta")
         comprobar(lineas(pg)[-1] == "AIRI: Come pequeños crustáceos y alimento preparado." and not pg.is_disabled("#airi-chat-send"),
@@ -185,7 +185,7 @@ def main():
         comprobar(all(a <= 95 for a in anchos), f"celular: las burbujas caben en la conversación (% de ancho {anchos})")
         ancho = pg.evaluate("[document.documentElement.scrollWidth, innerWidth]")
         comprobar(ancho[0] <= ancho[1], f"celular: sin desplazamiento horizontal {ancho}")
-        botones = pg.eval_on_selector_all("#airi-chat-form button", "l => l.map(b => b.getBoundingClientRect().height)")
+        botones = pg.eval_on_selector_all("#airi-chat-form button", "l => l.filter(b => b.offsetParent !== null).map(b => b.getBoundingClientRect().height)")   # v0.6: hay botones de dictado ocultos
         comprobar(all(h >= 40 for h in botones), f"celular: botones con altura táctil suficiente {botones}")
         pg.screenshot(path=str(cap / "02_celular_chat.png"))
         gemini.respuesta = respuesta("**Alimentos para juveniles:**\n\n| Alimento | Frecuencia orientativa | Observaciones |\n"
@@ -213,7 +213,7 @@ def main():
         gemini.retraso = 1.0; gemini.respuesta = respuesta("Listo")
         pg.fill("#airi-chat-input", "Hola"); pg.click("#airi-chat-send"); pg.wait_for_timeout(300)
         anim = pg.eval_on_selector(".airi-chat-puntos span", "e => getComputedStyle(e).animationName")
-        comprobar(anim == "none" and pg.evaluate("window.airiMascota.estado") == "analisis",
+        comprobar(anim == "none" and pg.evaluate("window.airiMascota.estado") == "pensando",
                   f"movimiento reducido: «Pensando…» sin animación y la mascota indica la espera ({anim})")
         pg.wait_for_timeout(1200); gemini.retraso = 0
         ctx.close()

@@ -20,7 +20,7 @@ decisiones y cualquier acción sobre el acuario permanecen bajo **supervisión h
 | **Mascota AIRI** | Pecera animada en Inicio y asistente flotante en las demás pestañas. Refleja el resultado real (alerta, información insuficiente, error); el mensaje se cierra con «×» y se reabre tocando a AIRI. Admite movimiento reducido y ocultar la mascota | [`interfaz/mascota/`](interfaz/mascota/README.md) |
 | **Voz y ayuda** | Lee mensajes breves con la síntesis de voz del navegador (desactivada por defecto, sin micrófono ni servicios externos). Menú de ayuda por pantalla; perfiles y ajustes de voz guardados en el navegador; tono serio sin alarmismo ante alertas | `interfaz/mascota/` |
 | **Fichas de especies** | Seis fichas **preliminares** con buscador por nombre común o científico. No indican compatibilidad | `interfaz/prototipo/`, [`especies/`](especies/fichas/README.md) |
-| **Chat con AIRI (v0.5, experimental)** | Conversación orientativa con Gemini a través de un servidor local que guarda la clave (`python chat/servidor.py` y abrir http://127.0.0.1:8765/). Pide consentimiento, no analiza mediciones ni busca en internet. No funciona en GitHub Pages ni con doble clic | [`chat/`](chat/README.md), [`interfaz/chat/`](interfaz/chat/chat.js) |
+| **Chat con AIRI (v0.5–v0.6, experimental)** | Conversación orientativa con Gemini a través de un servidor local que guarda la clave (`python chat/servidor.py` y abrir http://127.0.0.1:8765/). Pide consentimiento, no analiza mediciones ni busca en internet. No funciona en GitHub Pages ni con doble clic. **v0.6:** lectura de respuestas en voz alta (voz preferida Microsoft Sabina), mascota que «piensa» y habla, y dictado por micrófono opcional con revisión antes de enviar ([`documentacion/MICROFONO_v0.6.md`](documentacion/MICROFONO_v0.6.md)) | [`chat/`](chat/README.md), [`interfaz/chat/`](interfaz/chat/chat.js) |
 | **Grafo de decisiones** | Grafo estático (PNG/SVG/PDF) y simulación interactiva en Google Colab | [`grafo/`](grafo/README.md) |
 | **Documentación** | Descripción y alcance, normativa funcional y de seguridad, fundamentación, referencias e identidad visual | [`documentacion/`](documentacion/), [`entregables/`](entregables/), [`identidad-visual/`](identidad-visual/README.md) |
 
@@ -106,15 +106,21 @@ python interfaz/motor/pruebas/e2e_analisis.py               # escritorio y celul
 python -m unittest discover -s chat/pruebas                 # servidor del chat (Gemini simulado)
 node --test interfaz/chat/pruebas/markdown.test.js           # Markdown seguro del chat
 python interfaz/chat/pruebas/e2e_chat.py                    # chat en escritorio y celular
+node --test interfaz/chat/pruebas/habla.test.js interfaz/mascota/pruebas/pensando.test.js   # v0.6
+python interfaz/chat/pruebas/e2e_voz_chat.py                # v0.6: lectura en voz alta
+python interfaz/chat/pruebas/e2e_pensando.py                # v0.6: mascota «pensando»
+python interfaz/chat/pruebas/e2e_microfono.py               # v0.6: dictado (reconocimiento simulado)
+python interfaz/diagnostico-voz/pruebas/e2e_diagnostico.py  # v0.6: página de diagnóstico de voz
 ```
 
-| Suite | Resultado (12-11-2026) |
+| Suite | Resultado (13-11-2026) |
 |---|---|
 | Motor Python, con 117 649 combinaciones exhaustivas y paridad total con JavaScript | 52/52 |
 | Motor JavaScript (incluye los 34 casos de conformidad) | 5/5 |
 | Mascota · voz · personalidad de voz (Node) | 12/12 · 16/16 · 11/11 |
 | Navegador: mascota · voz · ajustes de voz · análisis (escritorio y celular) | 76/76 · 50/50 · 43/43 · 57/57 |
-| Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 28/28 · 8/8 · 35/35 |
+| Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 29/29 · 8/8 · 35/35 |
+| Voz v0.6: texto para hablar · «pensando» (Node) · lectura en voz alta · pensando · dictado · diagnóstico (navegador) | 8/8 · 3/3 · 24/24 · 17/17 · 38/38 · 17/17 |
 
 Historial de pruebas, errores encontrados y su corrección: [`motor/PRUEBAS_v0.4.md`](motor/PRUEBAS_v0.4.md).
 

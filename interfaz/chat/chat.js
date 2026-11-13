@@ -45,13 +45,14 @@
     return msg;
   }
 
-  /** Indicador sencillo de espera (v0.5): puntos en la conversación y la mascota en su estado
-      «analisis», sin mensaje (no abre el globo ni habla). Las animaciones de habla/pensamiento son de v0.6. */
+  /** Indicador de espera: puntos en la conversación y la mascota en su estado «pensando» (v0.6 E4; en v0.5
+      era «analisis»), sin mensaje: no abre el globo ni habla. Al llegar la respuesta vuelve a «espera»; si
+      la lectura está activada, voz-chat.js empieza a hablar y la mascota muestra la animación de habla. */
   function esperaMascota(activa) {
     var m = window.airiMascota;
     if (!m || typeof m.cambiarEstado !== "function") return;
-    if (activa) m.cambiarEstado("analisis");
-    else if (m.estado === "analisis") m.cambiarEstado("espera");
+    if (activa) m.cambiarEstado("pensando");
+    else if (m.estado === "pensando") m.cambiarEstado("espera");
   }
 
   /** Últimos mensajes que caben en los límites del servidor, empezando por una pregunta. */
@@ -113,6 +114,7 @@
       return;
     }
     var mia = conversacion;
+    document.dispatchEvent(new CustomEvent("airi:chat-pregunta"));   // v0.6: detiene una lectura en curso
     historial.push({ role: "user", text: pregunta });
     linea("user", pregunta);
     input.value = "";
@@ -140,6 +142,8 @@
       }
       historial.push({ role: "model", text: datos.answer });
       var respuesta = linea("model", datos.answer, "", true);
+      // v0.6: aviso para la lectura en voz alta (voz-chat.js); el texto es el Markdown original
+      document.dispatchEvent(new CustomEvent("airi:chat-respuesta", { detail: { texto: datos.answer, elemento: respuesta } }));
       if (datos.truncada) {
         var aviso = document.createElement("p");
         aviso.className = "airi-chat-recortada";
@@ -164,6 +168,7 @@
     conversacion++;
     if (pendiente) { pendiente.abort(); pendiente = null; }
     historial.length = 0;
+    document.dispatchEvent(new CustomEvent("airi:chat-reiniciar"));
     log.replaceChildren();
     bloquear(false);
     esperaMascota(false);

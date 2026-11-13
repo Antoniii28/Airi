@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIRI · Diagnóstico de voz (v0.6 E1)</title>
+<!-- Página autocontenida: sin scripts, estilos ni fuentes externas. No envía datos a ningún sitio.
+     Solo LEE capacidades del navegador. El micrófono solo se usa si la persona marca la casilla y pulsa el botón. -->
+<style>
+  :root { --azul: #09284D; --oceano: #0982C7; --aqua: #80EAF2; --fondo: #eaf8fb; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif; color: var(--azul); background: var(--fondo); }
+  header { background: var(--azul); color: #fff; padding: 16px 20px; }
+  header h1 { margin: 0; font-size: 22px; }
+  header p { margin: 4px 0 0; color: var(--aqua); }
+  main { max-width: 980px; margin: 0 auto; padding: 16px; }
+  section { background: #fff; border-radius: 14px; padding: 16px; margin: 14px 0; border: 1px solid #ccebf1; }
+  h2 { margin: 0 0 8px; font-size: 18px; }
+  .nota { font-size: 14px; color: #47667b; }
+  .estado { display: inline-block; padding: 2px 10px; border-radius: 999px; font-weight: 700; font-size: 13px; border: 1px solid; }
+  .si { background: #e1f6e8; border-color: #3f8f5c; color: #1d5434; }
+  .no { background: #fdecec; border-color: #b84a4a; color: #7a1f1f; }
+  .parcial { background: #fff8d6; border-color: #a88a10; color: #574500; }
+  .info { background: #eaf0f3; border-color: #7d97a6; color: #2f4b5c; }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
+  dt { font-weight: 700; } dd { margin: 0; overflow-wrap: anywhere; }
+  .tabla { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { border: 1px solid #d6eaf1; padding: 4px 8px; text-align: left; }
+  th { background: #eaf6fb; }
+  button { font: inherit; font-weight: 700; padding: 10px 14px; border-radius: 9px; border: 1px solid var(--oceano);
+    background: #e0f6fa; color: var(--azul); cursor: pointer; min-height: 44px; }
+  button.primario { background: var(--oceano); color: #fff; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid var(--oceano); outline-offset: 2px; }
+  select { font: inherit; padding: 8px; max-width: 100%; }
+  .fila { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+  .aviso { background: #fff3e8; border-left: 4px solid #C25A10; padding: 8px 10px; border-radius: 6px; font-size: 14px; }
+  textarea { width: 100%; min-height: 160px; font: 12px/1.4 ui-monospace, Consolas, monospace; }
+  label.consentimiento { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AIRI · Diagnóstico de voz</h1>
+  <p>v0.6 · Etapa E1 · solo lectura de capacidades del navegador</p>
+</header>
+<main>
+  <section>
+    <p><strong>Qué hace esta página:</strong> comprueba qué voces tiene este navegador y si puede reconocer voz en español.
+    <strong>No envía datos</strong> a AIRI ni a ningún servidor, <strong>no activa el micrófono</strong> y <strong>no descarga</strong>
+    paquetes de idioma. Las pruebas de sonido y de micrófono son opcionales y solo se ejecutan si pulsas sus botones.</p>
+    <p class="nota">Al final hay un informe para copiar y compartir: incluye el navegador y los nombres de las voces (información técnica,
+    sin datos personales).</p>
+  </section>
+
+  <section id="s-entorno" aria-labelledby="t-entorno"><h2 id="t-entorno">1 · Entorno</h2><dl id="entorno"></dl></section>
+
+  <section id="s-sintesis" aria-labelledby="t-sintesis">
+    <h2 id="t-sintesis">2 · Lectura en voz alta (speechSynthesis)</h2>
+    <p id="sintesis-resumen" aria-live="polite">Comprobando…</p>
+    <div class="tabla"><table id="voces"><thead><tr><th scope="col">Voz</th><th scope="col">Idioma</th>
+      <th scope="col">Dónde se genera</th><th scope="col">Predeterminada</th></tr></thead><tbody></tbody></table></div>
+    <p class="nota">«En este equipo» = <code>localService: true</code> (el texto no sale del equipo). «Servicio remoto» = el texto se envía
+    al proveedor de la voz (por ejemplo, las voces «Online (Natural)» de Edge).</p>
+    <div class="fila">
+      <label for="voz-prueba">Escuchar una voz:</label>
+      <select id="voz-prueba"></select>
+      <button type="button" id="escuchar" class="primario">Escuchar ejemplo</button>
+      <button type="button" id="detener">Detener</button>
+    </div>
+    <p id="escucha-estado" class="nota" aria-live="polite"></p>
+  </section>
+
+  <section id="s-reconocimiento" aria-labelledby="t-reconocimiento">
+    <h2 id="t-reconocimiento">3 · Dictado (SpeechRecognition)</h2>
+    <p id="reconocimiento-resumen" aria-live="polite">Comprobando…</p>
+    <div class="tabla"><table id="disponibilidad"><thead><tr><th scope="col">Idioma</th>
+      <th scope="col">En el dispositivo (privado)</th><th scope="col">Cualquier modo (puede usar un servidor)</th></tr></thead><tbody></tbody></table></div>
+    <p class="nota"><strong>available</strong>: listo · <strong>downloadable</strong>: se puede descargar un paquete de idioma (unos 60 MB en Chrome de
+    escritorio; esta página NO lo descarga) · <strong>unavailable</strong>: no disponible · <strong>sin dato</strong>: el navegador no permite consultarlo.</p>
+  </section>
+
+  <section id="s-microfono" aria-labelledby="t-microfono">
+    <h2 id="t-microfono">4 · Prueba opcional del micrófono</h2>
+    <p class="aviso" id="mic-aviso">Esta prueba <strong>activa el micrófono</strong> durante una sola frase. El navegador te pedirá permiso.
+    Si el reconocimiento no es local, <strong>el audio se envía al servicio de voz del navegador</strong> (en Chrome, a Google; en Safari, a Apple).
+    El texto reconocido solo se muestra aquí y no se envía a AIRI.</p>
+    <label class="consentimiento"><input type="checkbox" id="mic-consentimiento"> Entiendo y quiero probar el micrófono ahora.</label>
+    <div class="fila">
+      <label for="mic-idioma">Idioma:</label>
+      <select id="mic-idioma"><option value="es-MX">es-MX</option><option value="es-ES">es-ES</option><option value="es-US">es-US</option></select>
+      <label class="consentimiento" style="align-items:center"><input type="checkbox" id="mic-local"> Exigir procesamiento en el dispositivo</label>
+    </div>
+    <div class="fila"><button type="button" id="mic-probar" class="primario">Probar dictado</button>
+      <button type="button" id="mic-parar">Parar</button></div>
+    <p id="mic-resultado" aria-live="polite" class="nota">No se ha usado el micrófono.</p>
+  </section>
+
+  <section id="s-informe" aria-labelledby="t-informe">
+    <h2 id="t-informe">5 · Informe</h2>
+    <textarea id="informe" readonly aria-label="Informe del diagnóstico"></textarea>
+    <div class="fila"><button type="button" id="copiar">Copiar informe</button><span id="copiado" class="nota" aria-live="polite"></span></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var IDIOMAS = ["es-MX", "es-ES", "es-US"];
+  var $ = function (id) { return document.getElementById(id); };
+  var informe = { version: "E1-1", fecha: new Date().toISOString(), entorno: {}, sintesis: {}, reconocimiento: {}, microfono: { usado: false } };
+  var Reconocimiento = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+  var reconocedor = null;
+
+  function chip(texto, clase) { var s = document.createElement("span"); s.className = "estado " + clase; s.textContent = texto; return s; }
+  function fila(dl, k, v) {
+    var dt = document.createElement("dt"), dd = document.createElement("dd");
+    dt.textContent = k; if (v instanceof Node) dd.appendChild(v); else dd.textContent = String(v); dl.append(dt, dd);
+  }
+  function celda(tr, contenido) { var td = document.createElement("td"); if (contenido instanceof Node) td.appendChild(contenido); else td.textContent = contenido; tr.appendChild(td); }
+  function pintarInforme() { $("informe").value = JSON.stringify(informe, null, 2); }
+
+  // ── 1 · Entorno ─────────────────────────────────────────────────────────
+  function entorno() {
+    var e = informe.entorno, uad = navigator.userAgentData;
+    e.navegador = uad && uad.brands ? uad.brands.filter(function (b) { return !/Not.?A.?Brand/i.test(b.brand); })
+      .map(function (b) { return b.brand + " " + b.version; }).join(", ") : null;
+    e.userAgent = navigator.userAgent;
+    e.movil = uad ? !!uad.mobile : /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    e.plataforma = uad ? uad.platform : (navigator.platform || null);
+    e.idiomas = navigator.languages ? Array.prototype.slice.call(navigator.languages) : [navigator.language];
+    e.protocolo = location.protocol;
+    e.contextoSeguro = window.isSecureContext;
+    e.movimientoReducido = window.matchMedia ? matchMedia("(prefers-reduced-motion: reduce)").matches : null;
+    var dl = $("entorno");
+    fila(dl, "Navegador", e.navegador || "(no lo informa; ver agente de usuario)");
+    fila(dl, "Agente de usuario", e.userAgent);
+    fila(dl, "Dispositivo", e.movil ? "móvil" : "escritorio");
+    fila(dl, "Idiomas preferidos", e.idiomas.join(", "));
+    fila(dl, "Página abierta desde", e.protocolo + (e.contextoSeguro ? " (contexto seguro)" : " (contexto NO seguro)"));
+    fila(dl, "Movimiento reducido", e.movimientoReducido ? "sí" : "no");
+  }
+
+  // ── 2 · Síntesis ────────────────────────────────────────────────────────
+  function cargarVoces(espera) {
+    return new Promise(function (resolver) {
+      if (!("speechSynthesis" in window)) return resolver(null);
+      var voces = speechSynthesis.getVoices();
+      if (voces.length) return resolver(voces);
+      var listo = false;
+      function fin() { if (listo) return; listo = true; resolver(speechSynthesis.getVoices()); }
+      try { speechSynthesis.addEventListener("voiceschanged", fin, { once: true }); } catch (e) { /* navegadores antiguos */ }
+      setTimeout(fin, espera);
+    });
+  }
+  function sintesis(voces) {
+    var s = informe.sintesis, cuerpo = $("voces").querySelector("tbody"), select = $("voz-prueba");
+    s.disponible = voces !== null;
+    if (!s.disponible) {
+      $("sintesis-resumen").replaceChildren(chip("No disponible", "no"), document.createTextNode(" Este navegador no puede leer en voz alta."));
+      $("escuchar").disabled = $("detener").disabled = true;
+      return;
+    }
+    var es = voces.filter(function (v) { return /^es\b/i.test(v.lang.replace("_", "-")); });
+    s.total = voces.length;
+    s.espanol = es.map(function (v) { return { nombre: v.name, idioma: v.lang, local: v.localService, predeterminada: v.default }; });
+    s.espanolLocales = es.filter(function (v) { return v.localService; }).length;
+    s.espanolRemotas = es.length - s.espanolLocales;
+    s.otrosIdiomas = voces.length - es.length;
+    (es.length ? es : voces).forEach(function (v) {
+      var tr = document.createElement("tr");
+      celda(tr, v.name); celda(tr, v.lang);
+      celda(tr, v.localService ? chip("En este equipo", "si") : chip("Servicio remoto", "parcial"));
+      celda(tr, v.default ? "sí" : "");
+      cuerpo.appendChild(tr);
+      var o = document.createElement("option"); o.value = v.name; o.textContent = v.name + " (" + v.lang + (v.localService ? "" : ", remota") + ")";
+      select.appendChild(o);
+    });
+    var resumen = $("sintesis-resumen");
+    if (!voces.length) {
+      resumen.replaceChildren(chip("Sin voces", "parcial"), document.createTextNode(" La API existe, pero el navegador no informó ninguna voz."));
+    } else if (!es.length) {
+      resumen.replaceChildren(chip("Sin voces en español", "parcial"),
+        document.createTextNode(" Hay " + voces.length + " voces, ninguna en español (se muestran todas)."));
+    } else {
+      resumen.replaceChildren(chip("Disponible", "si"), document.createTextNode(" " + es.length + " voces en español: " +
+        s.espanolLocales + " en este equipo y " + s.espanolRemotas + " de servicio remoto (" + voces.length + " voces en total)."));
+    }
+  }
+
+  $("escuchar").addEventListener("click", function () {
+    if (!("speechSynthesis" in window)) return;
+    var nombre = $("voz-prueba").value, voz = speechSynthesis.getVoices().filter(function (v) { return v.name === nombre; })[0];
+    var u = new SpeechSynthesisUtterance("Hola, soy AIRI. Así sonaría la respuesta a tu pregunta sobre el acuario marino.");
+    if (voz) { u.voice = voz; u.lang = voz.lang; } else u.lang = "es-MX";
+    u.onstart = function () { $("escucha-estado").textContent = "Reproduciendo: " + (voz ? voz.name : "voz predeterminada"); };
+    u.onend = function () { $("escucha-estado").textContent = "Reproducción terminada. ¿Te resultó agradable? Anótalo en tu respuesta."; };
+    u.onerror = function (e) { $("escucha-estado").textContent = "Error al reproducir: " + e.error; };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+    (informe.sintesis.probadas = informe.sintesis.probadas || []).push(voz ? voz.name : "(predeterminada)");
+    pintarInforme();
+  });
+  $("detener").addEventListener("click", function () { if ("speechSynthesis" in window) speechSynthesis.cancel(); });
+
+  // ── 3 · Reconocimiento (sin micrófono) ──────────────────────────────────
+  async function reconocimiento() {
+    var r = informe.reconocimiento, cuerpo = $("disponibilidad").querySelector("tbody"), resumen = $("reconocimiento-resumen");
+    r.api = Reconocimiento ? (window.SpeechRecognition ? "SpeechRecognition" : "webkitSpeechRecognition (con prefijo)") : null;
+    r.consultaDisponibilidad = !!(Reconocimiento && typeof Reconocimiento.available === "function");
+    r.idiomas = {};
+    if (!Reconocimiento) {
+      resumen.replaceChildren(chip("No disponible", "no"), document.createTextNode(" Este navegador no ofrece dictado. El chat por texto seguiría funcionando."));
+      $("mic-probar").disabled = $("mic-parar").disabled = true;
+      $("mic-resultado").textContent = "No se puede probar: el navegador no ofrece reconocimiento de voz.";
+      return;
+    }
+    for (var i = 0; i < IDIOMAS.length; i++) {
+      var lang = IDIOMAS[i], local = "sin dato", cualquiera = "sin dato";
+      if (r.consultaDisponibilidad) {
+        try { local = await Reconocimiento.available({ langs: [lang], processLocally: true }); } catch (e) { local = "error: " + e.name; }
+        try { cualquiera = await Reconocimiento.available({ langs: [lang], processLocally: false }); } catch (e) { cualquiera = "error: " + e.name; }
+      }
+      r.idiomas[lang] = { dispositivo: local, cualquierModo: cualquiera };
+      var tr = document.createElement("tr");
+      var clase = function (v) { return v === "available" ? "si" : v === "downloadable" || v === "downloading" ? "parcial" : v === "unavailable" ? "no" : "info"; };
+      celda(tr, lang); celda(tr, chip(local, clase(local))); celda(tr, chip(cualquiera, clase(cualquiera)));
+      cuerpo.appendChild(tr);
+    }
+    var algunoLocal = IDIOMAS.some(function (l) { return r.idiomas[l].dispositivo === "available"; });
+    var descargable = IDIOMAS.some(function (l) { return /download/.test(r.idiomas[l].dispositivo); });
+    r.conclusion = algunoLocal ? "dictado en el dispositivo disponible" : descargable ? "dictado en el dispositivo posible tras descargar el paquete"
+      : r.consultaDisponibilidad ? "solo dictado mediante servicio remoto (o ninguno)" : "API presente; no se puede consultar la disponibilidad";
+    resumen.replaceChildren(chip(algunoLocal ? "En el dispositivo" : descargable ? "Descargable" : "API presente", algunoLocal ? "si" : "parcial"),
+      document.createTextNode(" " + r.api + ". Conclusión: " + r.conclusion + "."));
+  }
+
+  // ── 4 · Micrófono: SOLO con consentimiento y clic ───────────────────────
+  $("mic-probar").addEventListener("click", function () {
+    var salida = $("mic-resultado");
+    if (!Reconocimiento) return;
+    if (!$("mic-consentimiento").checked) { salida.textContent = "Marca la casilla de consentimiento para probar el micrófono."; return; }
+    try {
+      reconocedor = new Reconocimiento();
+      reconocedor.lang = $("mic-idioma").value;
+      reconocedor.interimResults = true;
+      reconocedor.continuous = false;
+      reconocedor.maxAlternatives = 1;
+      if ($("mic-local").checked) reconocedor.processLocally = true;
+      informe.microfono = { usado: true, idioma: reconocedor.lang, exigirLocal: $("mic-local").checked, resultado: null, error: null };
+      reconocedor.onstart = function () { salida.textContent = "Escuchando… di una frase corta (por ejemplo: «¿qué come un pez payaso?»)."; };
+      reconocedor.onresult = function (e) {
+        var t = Array.prototype.map.call(e.results, function (r) { return r[0].transcript; }).join(" ");
+        salida.textContent = "Reconocido: «" + t + "»";
+        informe.microfono.resultado = e.results[e.results.length - 1].isFinal ? "frase reconocida" : "parcial";
+        pintarInforme();
+      };
+      reconocedor.onerror = function (e) { salida.textContent = "Error del reconocimiento: " + e.error; informe.microfono.error = e.error; pintarInforme(); };
+      reconocedor.onend = function () { if (!/Reconocido|Error/.test(salida.textContent)) salida.textContent = "Terminó sin reconocer texto."; reconocedor = null; };
+      reconocedor.start();
+    } catch (e) {
+      salida.textContent = "No se pudo iniciar: " + e.name; informe.microfono = { usado: true, error: e.name };
+    }
+    pintarInforme();
+  });
+  $("mic-parar").addEventListener("click", function () { if (reconocedor) reconocedor.abort(); });
+  document.addEventListener("visibilitychange", function () { if (document.hidden && reconocedor) reconocedor.abort(); });
+
+  $("copiar").addEventListener("click", function () {
+    var t = $("informe");
+    var hecho = function () { $("copiado").textContent = "Copiado. Pégalo en el chat con Claude."; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t.value).then(hecho, function () { t.select(); });
+    else { t.select(); try { document.execCommand("copy"); hecho(); } catch (e) { $("copiado").textContent = "Selecciona el texto y cópialo."; } }
+  });
+
+  // ── Ejecución ───────────────────────────────────────────────────────────
+  window.AIRIDiagnosticoVoz = {
+    informe: informe,
+    listo: (async function () {
+      entorno();
+      sintesis(await cargarVoces(3000));
+      await reconocimiento();
+      pintarInforme();
+      return informe;
+    })()
+  };
+})();
+</script>
+</body>
+</html>
