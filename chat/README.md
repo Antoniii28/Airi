@@ -41,9 +41,9 @@ API de Gemini · generateContent (modelo predeterminado: gemini-3.1-flash-lite)
 - **Mientras Gemini responde:**
   - en la conversación aparece «Pensando…» con tres puntos animados (estáticos si se pide reducir el movimiento) y
     el botón «Enviar» se desactiva;
-  - la mascota pasa a su estado `analisis`, sin mensaje nuevo, sin abrir el globo y sin voz, y vuelve a `espera` al
-    terminar.
-  - Las animaciones de habla y de pensamiento quedan para v0.6.
+  - la mascota pasa a su estado `pensando` (desde v0.6 E4; en v0.5 usaba `analisis`), sin mensaje nuevo, sin abrir
+    el globo y sin voz. Al terminar habla si la lectura en voz alta está activada (v0.6 E3) o vuelve a `espera`.
+    Ver [`documentacion/PENSANDO_v0.6.md`](../documentacion/PENSANDO_v0.6.md).
 
 ## Instrucciones del modelo
 

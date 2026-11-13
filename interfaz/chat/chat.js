@@ -45,13 +45,14 @@
     return msg;
   }
 
-  /** Indicador sencillo de espera (v0.5): puntos en la conversación y la mascota en su estado
-      «analisis», sin mensaje (no abre el globo ni habla). Las animaciones de habla/pensamiento son de v0.6. */
+  /** Indicador de espera: puntos en la conversación y la mascota en su estado «pensando» (v0.6 E4; en v0.5
+      era «analisis»), sin mensaje: no abre el globo ni habla. Al llegar la respuesta vuelve a «espera»; si
+      la lectura está activada, voz-chat.js empieza a hablar y la mascota muestra la animación de habla. */
   function esperaMascota(activa) {
     var m = window.airiMascota;
     if (!m || typeof m.cambiarEstado !== "function") return;
-    if (activa) m.cambiarEstado("analisis");
-    else if (m.estado === "analisis") m.cambiarEstado("espera");
+    if (activa) m.cambiarEstado("pensando");
+    else if (m.estado === "pensando") m.cambiarEstado("espera");
   }
 
   /** Últimos mensajes que caben en los límites del servidor, empezando por una pregunta. */

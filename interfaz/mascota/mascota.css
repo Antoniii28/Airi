@@ -237,3 +237,21 @@ body.airi-m-dialogo-abierto { overflow: hidden; }
   .airi-m-flotante .airi-m-globo { max-height: 38vh; overflow: auto; padding-right: 46px; }
   .airi-m-cerrar-globo { width: 36px; height: 36px; top: 4px; right: 4px; }
 }
+
+/* ═══ v0.6 E4 · Estado «pensando» (AIRI espera la respuesta de Gemini) ═══════════
+   Discreto y lento a propósito (todas las animaciones ≥ 1,4 s): reutiliza la luz de la antena
+   (airi-m-brillo), la cola, la antena y la señal de la esquina, que se convierte en una burbuja
+   con tres puntos. Con movimiento reducido (.airi-m-reducido) todo queda quieto: se ven los
+   tres puntos fijos y el brillo, una señal estática de «pensando». */
+.airi-m-estado-pensando .airi-m-capas { filter: drop-shadow(0 0 8px rgba(128,234,242,.75)); }
+.airi-m-estado-pensando .airi-m-cola { animation-duration: 2.4s; }
+.airi-m-estado-pensando .airi-m-antena { animation-duration: 3.2s; }
+.airi-m-estado-pensando .airi-m-luz { opacity: .9; animation: airi-m-brillo 1.6s ease-in-out infinite; }
+.airi-m-estado-pensando .airi-m-senal { display: flex; gap: 8%; background: white; border-color: var(--airi-aqua, #80EAF2);
+  box-shadow: 0 0 0 2px rgba(9,40,77,.15); }
+.airi-m-punto { width: 18%; aspect-ratio: 1; border-radius: 50%; background: var(--airi-azul-oceano, #0982C7); opacity: .35;
+  animation: airi-m-pensar 1.5s ease-in-out infinite; }
+.airi-m-punto:nth-child(2) { animation-delay: .25s; }
+.airi-m-punto:nth-child(3) { animation-delay: .5s; }
+@keyframes airi-m-pensar { 0%, 70%, 100% { opacity: .35; transform: translateY(0); } 35% { opacity: 1; transform: translateY(-12%); } }
+.airi-m-reducido .airi-m-punto { opacity: .9; }

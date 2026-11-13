@@ -18,7 +18,9 @@
   "use strict";
 
   var VERSION = "0.2.0";
-  var ESTADOS = ["bienvenida", "espera", "analisis", "insuficiente", "error", "alerta"];
+  // v0.6 E4: «pensando» = AIRI espera la respuesta de Gemini (animación tranquila, distinta de «analisis»,
+  // que sigue siendo la pausa demostrativa del análisis del agua).
+  var ESTADOS = ["bienvenida", "espera", "analisis", "insuficiente", "error", "alerta", "pensando"];
   var ETIQUETAS = {
     informativo: "Información",
     implementado: "Resultado del formulario",
@@ -114,7 +116,7 @@
   }
 
   // ── Movimiento de nado (función pura, probada con Node) ────────────────────
-  var VELOCIDAD = { bienvenida: 70, espera: 45, analisis: 0, insuficiente: 30, error: 20, alerta: 30 };
+  var VELOCIDAD = { bienvenida: 70, espera: 45, analisis: 0, insuficiente: 30, error: 20, alerta: 30, pensando: 12 };
   function pasoNado(s, dt, p) {
     var n = { x: s.x, dir: s.dir, giro: Math.max(0, (s.giro || 0) - dt), t: (s.t || 0) + dt };
     var vel = VELOCIDAD[p.estado] != null ? VELOCIDAD[p.estado] : 45;
@@ -306,8 +308,15 @@
         void p.offsetWidth;                                      // reinicia animaciones de un solo uso
         p.classList.add("airi-m-estado-" + ctl.estado);
         var senal = p.querySelector(".airi-m-senal");
-        senal.textContent = ctl.estado === "error" || ctl.estado === "alerta" ? "!" :
-                            ctl.estado === "insuficiente" ? "?" : "";
+        if (ctl.estado === "pensando") {              // burbuja de pensamiento: tres puntos (solo decorativa)
+          if (!senal.querySelector(".airi-m-punto")) {
+            senal.textContent = "";
+            for (var i = 0; i < 3; i++) senal.appendChild(el("span", "airi-m-punto"));
+          }
+        } else {
+          senal.textContent = ctl.estado === "error" || ctl.estado === "alerta" ? "!" :
+                              ctl.estado === "insuficiente" ? "?" : "";
+        }
       });
     }
     function aplicarVisibilidad() {

@@ -1,12 +1,14 @@
 # AIRI v0.6 — Conversación por voz y mascota interactiva (propuesta técnica)
 
-**Estado:** PROPUESTA. Nada de este documento está implementado. **Fecha:** 12-11-2026.
+**Estado:** EN CURSO (E1–E4 implementadas; E5–E7 pendientes de aprobación). **Fecha:** 12-11-2026.
 
 > **Avance:**
 > - **E1** (diagnóstico): realizada; ver [`DIAGNOSTICO_VOZ_v0.6.md`](DIAGNOSTICO_VOZ_v0.6.md).
 > - **E2–E3** (texto para hablar y lectura de respuestas con animación de habla): implementadas con la voz
 >   Microsoft Sabina (es-MX) como preferida; ver [`VOZ_CHAT_v0.6.md`](VOZ_CHAT_v0.6.md).
-> - **E4–E7:** sin implementar.
+> - **E4** (estado «pensando» de la mascota mientras Gemini responde): implementada; ver
+>   [`PENSANDO_v0.6.md`](PENSANDO_v0.6.md).
+> - **E5–E7:** sin implementar (el micrófono sigue sin usarse).
 **Base:** v0.5 (PR #6, chat con Gemini mediante servidor local). **Rama prevista:** `feature/voz-conversacion-airi-v0.6`.
 
 ## 1. Objetivo
