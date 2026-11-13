@@ -124,6 +124,9 @@ class ArchivosEstaticos(Base):
         self.assertEqual(cab["X-Frame-Options"], "DENY")
         self.assertNotIn("Access-Control-Allow-Origin", cab)
 
+    def test_favicon_sin_error(self):
+        self.assertEqual(self.pedir("GET", "/favicon.ico")[0], 204)
+
     def test_no_sirve_fuera_de_la_interfaz(self):
         for ruta in ["/chat/servidor.py", "/.git/config", "/interfaz/../chat/servidor.py", "/interfaz/%2e%2e/chat/servidor.py",
                      "/motor/airi_motor/motor.py", "/README.md", "/interfaz/.env", "/interfaz/no-existe.js", "/.gitignore"]:

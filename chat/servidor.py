@@ -232,6 +232,8 @@ def crear_manejador(cfg):
             ruta = urllib.parse.unquote(urllib.parse.urlsplit(self.path).path)
             if ruta in ("/", "/index.html"):
                 return self._enviar(302, b"", "text/plain", {"Location": "/interfaz/prototipo/index.html"})
+            if ruta == "/favicon.ico":   # el navegador lo pide solo; sin icono propio, se responde vacío (sin 404 en consola)
+                return self._enviar(204, b"", "image/x-icon")
             if ruta == "/api/estado":
                 return self.json(200, {"clave_configurada": bool(cfg.clave), "modelo": cfg.modelo})
             if not ruta.startswith(RUTAS_PUBLICAS) or any(s.startswith(".") for s in ruta.split("/") if s):

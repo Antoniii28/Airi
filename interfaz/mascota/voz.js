@@ -48,7 +48,8 @@
     analisis:     { tono: 0,     velocidad: 0 },
     insuficiente: { tono: -0.03, velocidad: -0.05 },  // tranquilo
     error:        { tono: -0.08, velocidad: -0.06 },  // serio, sin alarmar
-    alerta:       { tono: -0.08, velocidad: -0.07 }
+    alerta:       { tono: -0.08, velocidad: -0.07 },
+    conversacion: { tono: -0.03, velocidad: -0.04 }   // v0.6: respuestas largas del chat, más pausadas
   };
 
   /** Frases para la demostración, una por rasgo de personalidad. */
@@ -132,15 +133,22 @@
   function esEspanol(v) { return !!v && /^es([-_]|$)/i.test(v.lang || ""); }
   function esEnLinea(v) { return !!v && v.localService === false; }
   function idVoz(v) { return v ? (v.voiceURI || v.name) : null; }
+  /** v0.6: voz elegida por el proyecto (prueba de E1): Microsoft Sabina, español de México, local. */
+  var VOCES_PREFERIDAS = [/\bSabina\b/i];
+  function rangoPreferida(v) {
+    for (var i = 0; i < VOCES_PREFERIDAS.length; i++) if (VOCES_PREFERIDAS[i].test(v.name || "")) return i;
+    return VOCES_PREFERIDAS.length;
+  }
   function rangoIdioma(v) {
     var i = PREFERENCIA_IDIOMA.indexOf((v.lang || "").replace("_", "-"));
     return i < 0 ? PREFERENCIA_IDIOMA.length : i;
   }
 
-  /** Voces en español ordenadas: México primero, las del dispositivo antes que las en línea. */
+  /** Voces en español ordenadas: las del dispositivo antes que las en línea; dentro de ellas, la preferida
+      del proyecto (Sabina) y después México primero. */
   function listarVoces(voces) {
     return (voces || []).filter(esEspanol).slice().sort(function (a, b) {
-      return (esEnLinea(a) - esEnLinea(b)) || (rangoIdioma(a) - rangoIdioma(b)) ||
+      return (esEnLinea(a) - esEnLinea(b)) || (rangoPreferida(a) - rangoPreferida(b)) || (rangoIdioma(a) - rangoIdioma(b)) ||
              ((b.default ? 1 : 0) - (a.default ? 1 : 0)) || String(a.name).localeCompare(String(b.name));
     }).map(function (v) {
       return { id: idVoz(v), nombre: v.name, idioma: (v.lang || "").replace("_", "-"), enLinea: esEnLinea(v),

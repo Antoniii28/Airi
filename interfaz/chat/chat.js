@@ -113,6 +113,7 @@
       return;
     }
     var mia = conversacion;
+    document.dispatchEvent(new CustomEvent("airi:chat-pregunta"));   // v0.6: detiene una lectura en curso
     historial.push({ role: "user", text: pregunta });
     linea("user", pregunta);
     input.value = "";
@@ -140,6 +141,8 @@
       }
       historial.push({ role: "model", text: datos.answer });
       var respuesta = linea("model", datos.answer, "", true);
+      // v0.6: aviso para la lectura en voz alta (voz-chat.js); el texto es el Markdown original
+      document.dispatchEvent(new CustomEvent("airi:chat-respuesta", { detail: { texto: datos.answer, elemento: respuesta } }));
       if (datos.truncada) {
         var aviso = document.createElement("p");
         aviso.className = "airi-chat-recortada";
@@ -164,6 +167,7 @@
     conversacion++;
     if (pendiente) { pendiente.abort(); pendiente = null; }
     historial.length = 0;
+    document.dispatchEvent(new CustomEvent("airi:chat-reiniciar"));
     log.replaceChildren();
     bloquear(false);
     esperaMascota(false);

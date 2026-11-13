@@ -153,7 +153,9 @@ Las pruebas usan un **Gemini simulado** en `127.0.0.1` y una clave ficticia; no 
     - reconoció que no tiene búsqueda web, sin inventar fuentes.
   - Son pruebas puntuales: las respuestas de un modelo pueden variar y no sustituyen a una evaluación sistemática.
 - **Sin búsqueda web ni citas:** el modelo no consulta fuentes en tiempo real.
-- **Sin voz:** la mascota tiene un mensaje para esta pestaña, pero no lee las respuestas del chat.
+- **Voz (v0.6, en desarrollo en `feature/voz-conversacion-airi-v0.6`):** lectura de respuestas con Sabina y animación
+  de habla; ver [`documentacion/VOZ_CHAT_v0.6.md`](../documentacion/VOZ_CHAT_v0.6.md). Dictado y animación de
+  pensamiento: pendientes.
 - **Solo local:** no hay despliegue público. Un servidor en internet necesitaría autenticación, HTTPS y control de
   gasto.
 
