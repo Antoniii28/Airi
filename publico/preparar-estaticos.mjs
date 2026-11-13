@@ -14,6 +14,8 @@ import { cpSync, mkdirSync, rmSync, readFileSync, writeFileSync, readdirSync, st
 import { createHash } from "node:crypto";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { execFileSync } from "node:child_process";
+import { VERSION } from "./version.mjs";
 
 const AQUI = dirname(fileURLToPath(import.meta.url));
 const TS = "https://challenges.cloudflare.com";
@@ -26,6 +28,13 @@ export const normalizarSaltos = (texto) => texto.replace(/\r\n?/g, "\n");
 export function huellasScriptsEnLinea(html) {
   return [...normalizarSaltos(html).matchAll(/<script>([\s\S]*?)<\/script>/g)]
     .map((m) => `'sha256-${createHash("sha256").update(m[1], "utf8").digest("base64")}'`);
+}
+
+/** Huella SHA-256 de un archivo; en los de texto se normalizan los saltos de línea (misma huella en Windows y Linux). */
+export function huellaArchivo(bytes, nombre) {
+  const datos = /\.(html|js|mjs|css|svg|json|txt)$/i.test(nombre) || nombre.endsWith("_headers")
+    ? Buffer.from(normalizarSaltos(bytes.toString("utf-8")), "utf-8") : bytes;
+  return createHash("sha256").update(datos).digest("hex");
 }
 
 export function construirCSP(huellas) {
@@ -74,6 +83,19 @@ export function preparar(raiz = resolve(AQUI, ".."), dist = join(AQUI, "dist")) 
   Strict-Transport-Security: max-age=31536000
   Cross-Origin-Opener-Policy: same-origin
 `);
+  // version.json: identifica qué se publicó (versión, commit y huella de todos los archivos). Sin datos sensibles.
+  // herramientas/verificar-despliegue.mjs la compara con la copia desplegada.
+  const contenido = archivos(dist).map((p) => relative(dist, p).replaceAll("\\", "/")).sort();
+  const h = createHash("sha256");
+  for (const r of contenido) if (r !== "version.json") h.update(r + "\0").update(huellaArchivo(readFileSync(join(dist, r)), r));
+  let commit = "desconocido";
+  try {
+    commit = execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: raiz, encoding: "utf-8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+    const sucio = execFileSync("git", ["status", "--porcelain", "--", "interfaz", "identidad-visual", "publico"], { cwd: raiz, encoding: "utf-8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+    if (sucio) commit += "-con-cambios-locales";
+  } catch { /* sin git: se deja «desconocido» */ }
+  writeFileSync(join(dist, "version.json"), JSON.stringify({ version: VERSION, commit, huella: h.digest("hex"), generado: new Date().toISOString() }, null, 2) + "\n");
+
   const lista = archivos(dist);
   const bytes = lista.reduce((s, p) => s + statSync(p).size, 0);
   return { archivos: lista.length, kb: Math.round(bytes / 1024), huellas: huellas.size };

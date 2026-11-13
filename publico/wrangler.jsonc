@@ -1,6 +1,7 @@
 // AIRI v0.7 — Configuración del Worker del piloto cerrado. NO DESPLEGADO.
-// Antes de un despliegue (solo con autorización del responsable):
-//   1. node publico/preparar-estaticos.mjs
+// Antes de un despliegue (solo con autorización del responsable), SIEMPRE desde la carpeta publico/:
+//   1. dist se regenera solo: «build.command» ejecuta preparar-estaticos.mjs en cada «wrangler deploy» y «wrangler dev»
+//      (evita publicar una interfaz desactualizada; dist no está en Git).
 //   2. Secretos (nunca en este archivo ni en el repositorio):
 //        npx wrangler secret put GEMINI_API_KEY      (clave del proyecto de Google EXCLUSIVO del piloto, sin facturación)
 //        npx wrangler secret put TURNSTILE_SECRET
@@ -14,6 +15,7 @@
   "name": "airi-piloto",
   "main": "worker.js",
   "compatibility_date": "2026-11-01",
+  "build": { "command": "node preparar-estaticos.mjs" },
   "workers_dev": true,
   "preview_urls": false,
   "assets": {
