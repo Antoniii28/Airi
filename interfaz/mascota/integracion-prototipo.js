@@ -1,7 +1,8 @@
 /* ═══ AIRI · Integración de la mascota con interfaz/prototipo/index.html ═══
    Conecta la mascota con los eventos REALES del prototipo sin modificar su
    lógica: pestañas, resultado del botón «Validar entradas», «Limpiar» y el
-   buscador de fichas. La mascota solo repite lo que el prototipo ya calculó.
+   buscador de fichas. La mascota solo repite lo que el prototipo ya calculó
+   y, desde v0.4, el informe del motor de análisis (interfaz/motor).
    Si la mascota falla, el prototipo sigue funcionando igual. */
 (function () {
   "use strict";
@@ -81,7 +82,12 @@
         // La pausa de «análisis» es solo una animación demostrativa: el resultado
         // ya está calculado por el prototipo. Con animaciones reducidas no hay pausa.
         mascota.decir(soloTexto(M.MENSAJE_ANALISIS));
-        espera = setTimeout(function () { mascota.decir(M.interpretarValidacion(r)); },
+        // v0.4: si el motor de análisis está cargado, AIRI comunica su informe real
+        // (anomalías con estado «alerta» y datos insuficientes, a la vez si es R4).
+        espera = setTimeout(function () {
+          var analisis = window.airiAnalisis && window.airiAnalisis.ultimo;
+          mascota.decir(analisis ? analisis.mensaje : M.interpretarValidacion(r));
+        },
                             mascota.reducida ? 0 : 900);
       }).observe(resultado, { childList: true, subtree: true });
     }

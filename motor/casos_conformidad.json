@@ -1,0 +1,13236 @@
+{
+ "descripcion": "Genera motor/casos_conformidad.json: vectores de prueba que cualquier implementación del motor AIRI",
+ "version_motor": "0.4.0",
+ "version_referencias": "0.4.0",
+ "casos": [
+  {
+   "id": "prototipo_tipico",
+   "descripcion": "Valores típicos con las unidades del prototipo",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "todo_vacio",
+   "descripcion": "Ningún dato",
+   "mediciones": {},
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "faltante"
+     ],
+     [
+      "ph",
+      "faltante"
+     ],
+     [
+      "salinidad",
+      "faltante"
+     ],
+     [
+      "amoniaco",
+      "faltante"
+     ],
+     [
+      "nitritos",
+      "faltante"
+     ],
+     [
+      "nitratos",
+      "faltante"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "ph"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "nitritos"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_limite_inferior",
+   "descripcion": "pH 7.8 (inclusivo)",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "7.8",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 7.8,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_limite_superior",
+   "descripcion": "pH 8.3 (inclusivo)",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.3",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.3,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_tolerancia",
+   "descripcion": "pH 8.4: tabla y texto del MSD discrepan",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.4",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "revision_recomendada",
+      "valor_canonico": 8.4,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "ph",
+      "revision_recomendada"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_tolerancia_maxima",
+   "descripcion": "pH 8.5",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.5",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "revision_recomendada",
+      "valor_canonico": 8.5,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "ph",
+      "revision_recomendada"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_alto",
+   "descripcion": "pH 8.6",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.6",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "fuera_de_referencia",
+      "valor_canonico": 8.6,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "ph",
+      "fuera_de_referencia"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_bajo",
+   "descripcion": "pH 7.7",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "7.7",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "fuera_de_referencia",
+      "valor_canonico": 7.7,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "ph",
+      "fuera_de_referencia"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_coma_decimal",
+   "descripcion": "pH con coma decimal",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8,0",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.0,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_fuera_escala",
+   "descripcion": "pH 15: fuera de la escala del instrumento",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "15",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP2",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "ph",
+      "invalido"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "EP2",
+      "F",
+      "ph"
+     ],
+     [
+      "EP2",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ph_texto",
+   "descripcion": "pH no numérico",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "ocho",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP2",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "ph",
+      "invalido"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "EP2",
+      "F",
+      "ph"
+     ],
+     [
+      "EP2",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_tan_detectable",
+   "descripcion": "0.2 mg/L TAN-N",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.2",
+     "unidad": "mg/L TAN-N"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "presencia_detectable",
+      "valor_canonico": 0.2,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "presencia_detectable"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_tan_umbral",
+   "descripcion": "0.5 mg/L TAN-N",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.5",
+     "unidad": "mg/L TAN-N"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "alerta_alta",
+      "valor_canonico": 0.5,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "alerta_alta"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_nh3_bajo_umbral",
+   "descripcion": "0.6 como NH3 = 0.493 TAN-N",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.6",
+     "unidad": "mg/L como NH3"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "presencia_detectable",
+      "valor_canonico": 0.493465,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "presencia_detectable"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_nh3_sobre_umbral",
+   "descripcion": "0.61 como NH3 = 0.502 TAN-N",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.61",
+     "unidad": "mg/L como NH3"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "alerta_alta",
+      "valor_canonico": 0.501689,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "alerta_alta"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_nh4",
+   "descripcion": "0.65 como NH4+ = 0.505 TAN-N",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.65",
+     "unidad": "mg/L como NH4+"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "alerta_alta",
+      "valor_canonico": 0.504715,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "alerta_alta"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_base_desconocida_baja",
+   "descripcion": "0.45 sin base: máx < 0.5",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.45",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "presencia_detectable",
+      "valor_canonico": [
+       0.349418,
+       0.45
+      ],
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "presencia_detectable"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_base_desconocida_ambigua",
+   "descripcion": "0.6 sin base: 0.466–0.6",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.6",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "revision_recomendada",
+      "valor_canonico": [
+       0.465891,
+       0.6
+      ],
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "revision_recomendada"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_base_desconocida_alta",
+   "descripcion": "0.7 sin base: mín ≥ 0.5",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.7",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "alerta_alta",
+      "valor_canonico": [
+       0.543539,
+       0.7
+      ],
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "alerta_alta"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_nessler",
+   "descripcion": "Método Nessler en agua salada",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "1",
+     "unidad": "mg/L TAN-N",
+     "metodo": "Nessler"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "revision_recomendada",
+      "valor_canonico": 1.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "revision_recomendada"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "amoniaco_negativo",
+   "descripcion": "Valor negativo",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "-0.1",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP2",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "amoniaco",
+      "invalido"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "EP2",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP2",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nitritos_detectables",
+   "descripcion": "0.1 mg/L NO2-",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0.1",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP5",
+      "severidad": "presencia_detectable",
+      "valor_canonico": 0.030447,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "nitritos",
+      "presencia_detectable"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "nitritos"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nitritos_como_n",
+   "descripcion": "0.05 mg/L NO2-N",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0.05",
+     "unidad": "mg/L NO2-N"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP5",
+      "severidad": "presencia_detectable",
+      "valor_canonico": 0.05,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "nitritos",
+      "presencia_detectable"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "nitritos"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nitratos_altos",
+   "descripcion": "Nitratos 100: referencia pendiente, sin alerta",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "100",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 22.590478,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nitratos_sin_forma",
+   "descripcion": "Nitratos sin forma química",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "10",
+     "unidad": "mg/L"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP2",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "invalido"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "EP2",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP2",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "temperatura_fahrenheit",
+   "descripcion": "77 °F",
+   "mediciones": {
+    "temperatura": {
+     "valor": "77",
+     "unidad": "°F"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 25.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "temperatura_extrema",
+   "descripcion": "150 °C: fuera de captura",
+   "mediciones": {
+    "temperatura": {
+     "valor": "150",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP2",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "invalido"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "EP2",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP2",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "salinidad_densidad",
+   "descripcion": "Densidad relativa: no se convierte",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "1.025",
+     "unidad": "densidad relativa"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP2",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "invalido"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "EP2",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP2",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "salinidad_g_kg",
+   "descripcion": "Salinidad en g/kg",
+   "mediciones": {
+    "temperatura": {
+     "valor": "26",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "35",
+     "unidad": "g/kg"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 26.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 35.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "temperatura",
+      "sin_referencia"
+     ],
+     [
+      "salinidad",
+      "sin_referencia"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "r4_mixto",
+   "descripcion": "Anomalías y faltantes a la vez",
+   "mediciones": {
+    "ph": {
+     "valor": "7",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0.8",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0.2",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "fuera_de_referencia",
+      "valor_canonico": 7.0,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP5",
+      "severidad": "alerta_alta",
+      "valor_canonico": [
+       0.621187,
+       0.8
+      ],
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP5",
+      "severidad": "presencia_detectable",
+      "valor_canonico": 0.060893,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP3",
+      "severidad": null,
+      "valor_canonico": 1.129524,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "amoniaco",
+      "alerta_alta"
+     ],
+     [
+      "ph",
+      "fuera_de_referencia"
+     ],
+     [
+      "nitritos",
+      "presencia_detectable"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "temperatura",
+      "faltante"
+     ],
+     [
+      "salinidad",
+      "faltante"
+     ],
+     [
+      "nitratos",
+      "sin_referencia"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "temperatura"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "salinidad"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "amoniaco"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "nitritos"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "EP3",
+      "F",
+      "nitratos"
+     ],
+     [
+      "EP3",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "prueba_r1",
+   "descripcion": "Perfil de prueba: todo dentro",
+   "mediciones": {
+    "temperatura": {
+     "valor": "15",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "8.1",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "15",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "0.5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "perfil": {
+    "id": "prueba",
+    "nombre": "Perfil de prueba (valores ficticios, no biológicos)",
+    "aplica_a": "Sistemas de agua salada con peces. No es específica de corales, invertebrados ni de una especie concreta.",
+    "referencias": {
+     "ph": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "minimo": 7.8,
+      "maximo": 8.3,
+      "maximo_tolerancia": 8.5,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_capitulo"
+      ],
+      "explicacion": "La tabla del MSD da 7.8–8.3 para agua salada; el texto del mismo capítulo considera habitualmente normal 7.8–8.5 en tanques marinos. Entre 8.3 y 8.5 las fuentes discrepan: se recomienda revisar, sin alerta de mayor severidad.",
+      "condiciones": [
+       "Medición en el agua del sistema, con instrumento calibrado.",
+       "El pH varía a lo largo del día."
+      ],
+      "contexto": [
+       {
+        "texto": "El pH medio del agua superficial del océano es de 8.1.",
+        "fuente": "nist_ph_oceano"
+       }
+      ]
+     },
+     "amoniaco": {
+      "estado": "verificada",
+      "tipo": "cero_con_umbral",
+      "valor_normal": 0,
+      "umbral_severidad": 0.5,
+      "unidad_umbral": "mg/L TAN-N",
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas",
+       "ufifas_fa031"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: TAN 0 mg/L. Según su nota b, los peces de agua salada suelen tolerar TAN < 0.5 mg/L. El umbral solo se aplica si la medición se puede expresar como nitrógeno amoniacal total (TAN-N) y el método es compatible con agua de mar.",
+      "condiciones": [
+       "El umbral se refiere a TAN (NH3 + NH4+), no a NH3 libre.",
+       "No se calcula el NH3 no ionizado: requeriría pH, temperatura y salinidad medidos al mismo tiempo y un método validado.",
+       "El método de Nessler da reacciones falsas en agua de mar (UF/IFAS)."
+      ]
+     },
+     "nitritos": {
+      "estado": "verificada",
+      "tipo": "cero",
+      "valor_normal": 0,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: nitrito 0 mg/L. El MSD no da un umbral de severidad para agua salada; el valor de 0.10 mg/L de UF/IFAS es general y no se usa aquí.",
+      "condiciones": [
+       "El MSD indica que el nitrito no suele medirse en sistemas marinos."
+      ]
+     },
+     "nitratos": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 0,
+      "maximo": 1,
+      "maximo_tolerancia": 1
+     },
+     "temperatura": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     },
+     "salinidad": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     }
+    }
+   },
+   "esperado": {
+    "clasificacion": "R1",
+    "A": false,
+    "I": false,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 8.1,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.112952,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "ph"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R1",
+      "A = F, I = F"
+     ],
+     [
+      "R1",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "prueba_r2",
+   "descripcion": "Perfil de prueba: anomalía sin faltantes",
+   "mediciones": {
+    "temperatura": {
+     "valor": "15",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "9",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "15",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "0.5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "perfil": {
+    "id": "prueba",
+    "nombre": "Perfil de prueba (valores ficticios, no biológicos)",
+    "aplica_a": "Sistemas de agua salada con peces. No es específica de corales, invertebrados ni de una especie concreta.",
+    "referencias": {
+     "ph": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "minimo": 7.8,
+      "maximo": 8.3,
+      "maximo_tolerancia": 8.5,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_capitulo"
+      ],
+      "explicacion": "La tabla del MSD da 7.8–8.3 para agua salada; el texto del mismo capítulo considera habitualmente normal 7.8–8.5 en tanques marinos. Entre 8.3 y 8.5 las fuentes discrepan: se recomienda revisar, sin alerta de mayor severidad.",
+      "condiciones": [
+       "Medición en el agua del sistema, con instrumento calibrado.",
+       "El pH varía a lo largo del día."
+      ],
+      "contexto": [
+       {
+        "texto": "El pH medio del agua superficial del océano es de 8.1.",
+        "fuente": "nist_ph_oceano"
+       }
+      ]
+     },
+     "amoniaco": {
+      "estado": "verificada",
+      "tipo": "cero_con_umbral",
+      "valor_normal": 0,
+      "umbral_severidad": 0.5,
+      "unidad_umbral": "mg/L TAN-N",
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas",
+       "ufifas_fa031"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: TAN 0 mg/L. Según su nota b, los peces de agua salada suelen tolerar TAN < 0.5 mg/L. El umbral solo se aplica si la medición se puede expresar como nitrógeno amoniacal total (TAN-N) y el método es compatible con agua de mar.",
+      "condiciones": [
+       "El umbral se refiere a TAN (NH3 + NH4+), no a NH3 libre.",
+       "No se calcula el NH3 no ionizado: requeriría pH, temperatura y salinidad medidos al mismo tiempo y un método validado.",
+       "El método de Nessler da reacciones falsas en agua de mar (UF/IFAS)."
+      ]
+     },
+     "nitritos": {
+      "estado": "verificada",
+      "tipo": "cero",
+      "valor_normal": 0,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: nitrito 0 mg/L. El MSD no da un umbral de severidad para agua salada; el valor de 0.10 mg/L de UF/IFAS es general y no se usa aquí.",
+      "condiciones": [
+       "El MSD indica que el nitrito no suele medirse en sistemas marinos."
+      ]
+     },
+     "nitratos": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 0,
+      "maximo": 1,
+      "maximo_tolerancia": 1
+     },
+     "temperatura": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     },
+     "salinidad": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     }
+    }
+   },
+   "esperado": {
+    "clasificacion": "R2",
+    "A": true,
+    "I": false,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "fuera_de_referencia",
+      "valor_canonico": 9.0,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.112952,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "ph",
+      "fuera_de_referencia"
+     ]
+    ],
+    "solicitudes": [],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R2",
+      "A = V, I = F"
+     ],
+     [
+      "R2",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "prueba_r3",
+   "descripcion": "Perfil de prueba: faltante sin anomalía",
+   "mediciones": {
+    "temperatura": {
+     "valor": "15",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "15",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitritos": {
+     "valor": "0",
+     "unidad": "mg/L (NO₂⁻)"
+    },
+    "nitratos": {
+     "valor": "0.5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "perfil": {
+    "id": "prueba",
+    "nombre": "Perfil de prueba (valores ficticios, no biológicos)",
+    "aplica_a": "Sistemas de agua salada con peces. No es específica de corales, invertebrados ni de una especie concreta.",
+    "referencias": {
+     "ph": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "minimo": 7.8,
+      "maximo": 8.3,
+      "maximo_tolerancia": 8.5,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_capitulo"
+      ],
+      "explicacion": "La tabla del MSD da 7.8–8.3 para agua salada; el texto del mismo capítulo considera habitualmente normal 7.8–8.5 en tanques marinos. Entre 8.3 y 8.5 las fuentes discrepan: se recomienda revisar, sin alerta de mayor severidad.",
+      "condiciones": [
+       "Medición en el agua del sistema, con instrumento calibrado.",
+       "El pH varía a lo largo del día."
+      ],
+      "contexto": [
+       {
+        "texto": "El pH medio del agua superficial del océano es de 8.1.",
+        "fuente": "nist_ph_oceano"
+       }
+      ]
+     },
+     "amoniaco": {
+      "estado": "verificada",
+      "tipo": "cero_con_umbral",
+      "valor_normal": 0,
+      "umbral_severidad": 0.5,
+      "unidad_umbral": "mg/L TAN-N",
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas",
+       "ufifas_fa031"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: TAN 0 mg/L. Según su nota b, los peces de agua salada suelen tolerar TAN < 0.5 mg/L. El umbral solo se aplica si la medición se puede expresar como nitrógeno amoniacal total (TAN-N) y el método es compatible con agua de mar.",
+      "condiciones": [
+       "El umbral se refiere a TAN (NH3 + NH4+), no a NH3 libre.",
+       "No se calcula el NH3 no ionizado: requeriría pH, temperatura y salinidad medidos al mismo tiempo y un método validado.",
+       "El método de Nessler da reacciones falsas en agua de mar (UF/IFAS)."
+      ]
+     },
+     "nitritos": {
+      "estado": "verificada",
+      "tipo": "cero",
+      "valor_normal": 0,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: nitrito 0 mg/L. El MSD no da un umbral de severidad para agua salada; el valor de 0.10 mg/L de UF/IFAS es general y no se usa aquí.",
+      "condiciones": [
+       "El MSD indica que el nitrito no suele medirse en sistemas marinos."
+      ]
+     },
+     "nitratos": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 0,
+      "maximo": 1,
+      "maximo_tolerancia": 1
+     },
+     "temperatura": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     },
+     "salinidad": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     }
+    }
+   },
+   "esperado": {
+    "clasificacion": "R3",
+    "A": false,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.112952,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [],
+    "solicitudes": [
+     [
+      "ph",
+      "faltante"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "ph"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitritos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitritos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R3",
+      "A = F, I = V"
+     ],
+     [
+      "R3",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "prueba_r4",
+   "descripcion": "Perfil de prueba: anomalía y faltante",
+   "mediciones": {
+    "temperatura": {
+     "valor": "15",
+     "unidad": "°C"
+    },
+    "ph": {
+     "valor": "9",
+     "unidad": "pH"
+    },
+    "salinidad": {
+     "valor": "15",
+     "unidad": "ppt"
+    },
+    "amoniaco": {
+     "valor": "0",
+     "unidad": "mg/L (NH₃/NH₄⁺ total)"
+    },
+    "nitratos": {
+     "valor": "0.5",
+     "unidad": "mg/L (NO₃⁻)"
+    }
+   },
+   "perfil": {
+    "id": "prueba",
+    "nombre": "Perfil de prueba (valores ficticios, no biológicos)",
+    "aplica_a": "Sistemas de agua salada con peces. No es específica de corales, invertebrados ni de una especie concreta.",
+    "referencias": {
+     "ph": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "minimo": 7.8,
+      "maximo": 8.3,
+      "maximo_tolerancia": 8.5,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_capitulo"
+      ],
+      "explicacion": "La tabla del MSD da 7.8–8.3 para agua salada; el texto del mismo capítulo considera habitualmente normal 7.8–8.5 en tanques marinos. Entre 8.3 y 8.5 las fuentes discrepan: se recomienda revisar, sin alerta de mayor severidad.",
+      "condiciones": [
+       "Medición en el agua del sistema, con instrumento calibrado.",
+       "El pH varía a lo largo del día."
+      ],
+      "contexto": [
+       {
+        "texto": "El pH medio del agua superficial del océano es de 8.1.",
+        "fuente": "nist_ph_oceano"
+       }
+      ]
+     },
+     "amoniaco": {
+      "estado": "verificada",
+      "tipo": "cero_con_umbral",
+      "valor_normal": 0,
+      "umbral_severidad": 0.5,
+      "unidad_umbral": "mg/L TAN-N",
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas",
+       "ufifas_fa031"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: TAN 0 mg/L. Según su nota b, los peces de agua salada suelen tolerar TAN < 0.5 mg/L. El umbral solo se aplica si la medición se puede expresar como nitrógeno amoniacal total (TAN-N) y el método es compatible con agua de mar.",
+      "condiciones": [
+       "El umbral se refiere a TAN (NH3 + NH4+), no a NH3 libre.",
+       "No se calcula el NH3 no ionizado: requeriría pH, temperatura y salinidad medidos al mismo tiempo y un método validado.",
+       "El método de Nessler da reacciones falsas en agua de mar (UF/IFAS)."
+      ]
+     },
+     "nitritos": {
+      "estado": "verificada",
+      "tipo": "cero",
+      "valor_normal": 0,
+      "fuentes": [
+       "msd_tabla_referencia",
+       "msd_resumen_pruebas"
+      ],
+      "explicacion": "Referencia normal del MSD para agua salada: nitrito 0 mg/L. El MSD no da un umbral de severidad para agua salada; el valor de 0.10 mg/L de UF/IFAS es general y no se usa aquí.",
+      "condiciones": [
+       "El MSD indica que el nitrito no suele medirse en sistemas marinos."
+      ]
+     },
+     "nitratos": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 0,
+      "maximo": 1,
+      "maximo_tolerancia": 1
+     },
+     "temperatura": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     },
+     "salinidad": {
+      "estado": "verificada",
+      "tipo": "rango_con_tolerancia_documental",
+      "fuentes": [
+       "msd_tabla_referencia"
+      ],
+      "minimo": 10,
+      "maximo": 20,
+      "maximo_tolerancia": 20
+     }
+    }
+   },
+   "esperado": {
+    "clasificacion": "R4",
+    "A": true,
+    "I": true,
+    "resultados": {
+     "temperatura": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "°C"
+     },
+     "ph": {
+      "estado": "EP5",
+      "severidad": "fuera_de_referencia",
+      "valor_canonico": 9.0,
+      "unidad_canonica": "pH"
+     },
+     "salinidad": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 15.0,
+      "unidad_canonica": "ppt"
+     },
+     "amoniaco": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.0,
+      "unidad_canonica": "mg/L TAN-N"
+     },
+     "nitritos": {
+      "estado": "EP1",
+      "severidad": null,
+      "valor_canonico": null,
+      "unidad_canonica": "mg/L NO2-N"
+     },
+     "nitratos": {
+      "estado": "EP4",
+      "severidad": null,
+      "valor_canonico": 0.112952,
+      "unidad_canonica": "mg/L NO3-N"
+     }
+    },
+    "alertas": [
+     [
+      "ph",
+      "fuera_de_referencia"
+     ]
+    ],
+    "solicitudes": [
+     [
+      "nitritos",
+      "faltante"
+     ]
+    ],
+    "traza": [
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "temperatura"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "temperatura"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "temperatura"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "temperatura"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "ph"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "ph"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "ph"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "ph"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "ph"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "ph"
+     ],
+     [
+      "Q6",
+      "EP5",
+      "F",
+      "ph"
+     ],
+     [
+      "EP5",
+      "C1",
+      "registrar",
+      "ph"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "salinidad"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "salinidad"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "salinidad"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "salinidad"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "amoniaco"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "amoniaco"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "amoniaco"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitritos"
+     ],
+     [
+      "Q1",
+      "EP1",
+      "F",
+      "nitritos"
+     ],
+     [
+      "EP1",
+      "C1",
+      "registrar",
+      "nitritos"
+     ],
+     [
+      "E0",
+      "Q1",
+      "para cada parámetro",
+      "nitratos"
+     ],
+     [
+      "Q1",
+      "Q2",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q2",
+      "Q3",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q3",
+      "Q4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q4",
+      "Q5",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q5",
+      "Q6",
+      "V",
+      "nitratos"
+     ],
+     [
+      "Q6",
+      "EP4",
+      "V",
+      "nitratos"
+     ],
+     [
+      "EP4",
+      "C1",
+      "registrar",
+      "nitratos"
+     ],
+     [
+      "C1",
+      "Q7",
+      "A, I"
+     ],
+     [
+      "Q7",
+      "R4",
+      "A = V, I = V"
+     ],
+     [
+      "R4",
+      "O1",
+      "explicar"
+     ],
+     [
+      "O1",
+      "FIN",
+      "entregar"
+     ],
+     [
+      "R4",
+      "O2",
+      "pedir datos"
+     ],
+     [
+      "O2",
+      "FIN",
+      "entregar"
+     ]
+    ]
+   }
+  }
+ ]
+}

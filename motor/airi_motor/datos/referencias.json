@@ -1,0 +1,163 @@
+{
+  "version": "0.4.0",
+  "perfil_predeterminado": "peces_marinos_msd",
+  "parametros": {
+    "temperatura": {
+      "nombre": "Temperatura",
+      "unidad_canonica": "°C",
+      "limites_captura": {
+        "minimo": -2,
+        "maximo": 100,
+        "justificacion": "Rango del agua líquida a presión atmosférica (el agua de mar se congela cerca de −2 °C). Detecta errores de captura; no es un rango biológico."
+      }
+    },
+    "ph": {
+      "nombre": "pH",
+      "unidad_canonica": "pH",
+      "limites_captura": {
+        "minimo": 0,
+        "maximo": 14,
+        "justificacion": "Escala de los medidores y kits de pH habituales. Detecta errores de captura; no es un límite físico universal ni un rango biológico."
+      }
+    },
+    "salinidad": {
+      "nombre": "Salinidad",
+      "unidad_canonica": "ppt",
+      "limites_captura": {
+        "minimo": 0,
+        "maximo": null,
+        "justificacion": "La salinidad no puede ser negativa."
+      }
+    },
+    "amoniaco": {
+      "nombre": "Amoníaco total",
+      "unidad_canonica": "mg/L TAN-N",
+      "limites_captura": {
+        "minimo": 0,
+        "maximo": null,
+        "justificacion": "Una concentración no puede ser negativa."
+      }
+    },
+    "nitritos": {
+      "nombre": "Nitritos",
+      "unidad_canonica": "mg/L NO2-N",
+      "limites_captura": {
+        "minimo": 0,
+        "maximo": null,
+        "justificacion": "Una concentración no puede ser negativa."
+      }
+    },
+    "nitratos": {
+      "nombre": "Nitratos",
+      "unidad_canonica": "mg/L NO3-N",
+      "limites_captura": {
+        "minimo": 0,
+        "maximo": null,
+        "justificacion": "Una concentración no puede ser negativa."
+      }
+    }
+  },
+  "perfiles": {
+    "peces_marinos_msd": {
+      "nombre": "Peces marinos · referencia veterinaria general (MSD)",
+      "aplica_a": "Sistemas de agua salada con peces. No es específica de corales, invertebrados ni de una especie concreta.",
+      "referencias": {
+        "ph": {
+          "estado": "verificada",
+          "tipo": "rango_con_tolerancia_documental",
+          "minimo": 7.8,
+          "maximo": 8.3,
+          "maximo_tolerancia": 8.5,
+          "fuentes": [
+            "msd_tabla_referencia",
+            "msd_capitulo"
+          ],
+          "explicacion": "La tabla del MSD da 7.8–8.3 para agua salada; el texto del mismo capítulo considera habitualmente normal 7.8–8.5 en tanques marinos. Entre 8.3 y 8.5 las fuentes discrepan: se recomienda revisar, sin alerta de mayor severidad.",
+          "condiciones": [
+            "Medición en el agua del sistema, con instrumento calibrado.",
+            "El pH varía a lo largo del día."
+          ],
+          "contexto": [
+            {
+              "texto": "El pH medio del agua superficial del océano es de 8.1.",
+              "fuente": "nist_ph_oceano"
+            }
+          ]
+        },
+        "amoniaco": {
+          "estado": "verificada",
+          "tipo": "cero_con_umbral",
+          "valor_normal": 0,
+          "umbral_severidad": 0.5,
+          "unidad_umbral": "mg/L TAN-N",
+          "fuentes": [
+            "msd_tabla_referencia",
+            "msd_resumen_pruebas",
+            "ufifas_fa031"
+          ],
+          "explicacion": "Referencia normal del MSD para agua salada: TAN 0 mg/L. Según su nota b, los peces de agua salada suelen tolerar TAN < 0.5 mg/L. El umbral solo se aplica si la medición se puede expresar como nitrógeno amoniacal total (TAN-N) y el método es compatible con agua de mar.",
+          "condiciones": [
+            "El umbral se refiere a TAN (NH3 + NH4+), no a NH3 libre.",
+            "No se calcula el NH3 no ionizado: requeriría pH, temperatura y salinidad medidos al mismo tiempo y un método validado.",
+            "El método de Nessler da reacciones falsas en agua de mar (UF/IFAS)."
+          ]
+        },
+        "nitritos": {
+          "estado": "verificada",
+          "tipo": "cero",
+          "valor_normal": 0,
+          "fuentes": [
+            "msd_tabla_referencia",
+            "msd_resumen_pruebas"
+          ],
+          "explicacion": "Referencia normal del MSD para agua salada: nitrito 0 mg/L. El MSD no da un umbral de severidad para agua salada; el valor de 0.10 mg/L de UF/IFAS es general y no se usa aquí.",
+          "condiciones": [
+            "El MSD indica que el nitrito no suele medirse en sistemas marinos."
+          ]
+        },
+        "nitratos": {
+          "estado": "pendiente",
+          "tipo": "maximo",
+          "valor_documentado": 70,
+          "fuentes": [
+            "msd_tabla_referencia",
+            "msd_capitulo"
+          ],
+          "motivo": "La tabla del MSD da < 70 mg/L sin indicar si es nitrato (NO3−) o nitrógeno de nitrato (NO3-N). En el mismo capítulo, la tabla de riesgos y el texto usan NO3-N ≥ 70 mg/L, pero eso no confirma la forma de la tabla de referencia. Hasta confirmarla, no se usa para evaluar ni para emitir alertas.",
+          "condiciones": []
+        },
+        "temperatura": {
+          "estado": "sin_referencia",
+          "motivo": "No hay una referencia veterinaria o institucional para la temperatura de acuarios marinos en general: depende de las especies.",
+          "contexto": [
+            {
+              "texto": "Corales formadores de arrecife en el medio natural: muchos crecen de forma óptima entre 23 y 29 °C y no toleran menos de 18 °C.",
+              "fuente": "noaa_corales"
+            },
+            {
+              "texto": "Amphiprion ocellaris (pez payaso): temperatura preferida estimada con modelos de 26.2–29.3 °C; registrado en mares de 24.4–31.8 °C.",
+              "fuente": [
+                "fishbase_ocellaris",
+                "rls_ocellaris"
+              ]
+            }
+          ]
+        },
+        "salinidad": {
+          "estado": "sin_referencia",
+          "motivo": "No hay una referencia veterinaria o institucional de salinidad para acuarios marinos en general.",
+          "contexto": [
+            {
+              "texto": "La salinidad media del agua de mar es de 35 ppt.",
+              "fuente": "ufifas_ph_sal_temp"
+            },
+            {
+              "texto": "La mayoría de los corales formadores de arrecife del medio natural requieren de 32 a 42 ppt.",
+              "fuente": "noaa_corales"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

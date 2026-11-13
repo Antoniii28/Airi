@@ -23,3 +23,16 @@ Mostrar una propuesta funcional de navegación para el agente AIRI sin simular c
 
 ## Límites
 No hay backend, sensores, reconocimiento visual, evaluación de compatibilidad ni alertas basadas en rangos científicos. La validación es ilustrativa y no constituye diagnóstico biológico.
+
+## Nota de actualización (v0.4)
+Este documento describe la entrega v0.1 y se conserva como tal. Desde v0.4 el prototipo añade, después de la
+validación de formato, una **evaluación con referencias documentadas** (`interfaz/motor/README.md`). Por eso:
+
+- Paso 5: los valores numéricos se muestran como «dato con formato válido» y, en el paso 2 del resultado, el pH, el
+  amoníaco total y los nitritos se comparan con referencias del Manual Veterinario MSD; temperatura, salinidad y
+  nitratos aparecen «sin referencia para evaluar». Sigue sin declararse normalidad ni seguridad.
+- Paso 7: además del funcionamiento en móvil y escritorio, el mensaje de la mascota puede cerrarse con «×» y
+  reabrirse tocando a AIRI.
+- Límites: ya existen alertas basadas en referencias con fuente para pH, amoníaco total y nitritos. Siguen sin
+  existir backend, sensores, reconocimiento visual, evaluación de compatibilidad y diagnóstico biológico.
+

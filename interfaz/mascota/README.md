@@ -8,9 +8,10 @@ Módulo de la mascota de **AIRI — Agente Inteligente para la Supervisión y Ge
 
 Está hecho con HTML, CSS y JavaScript, sin dependencias, sin servidor y sin compilación.
 
-> **Qué es real y qué es demostrativo.** La mascota **no analiza el agua**: AIRI todavía no tiene motor de
-> análisis. Sus reacciones repiten lo que el prototipo ya calcula: datos faltantes, valores con formato
-> inválido y cuántas fichas encontró el buscador. La breve pausa de "análisis" es una **animación
+> **Qué es real y qué es demostrativo.** La mascota **no analiza el agua por sí misma**: sus reacciones repiten
+> lo que ya calculan el prototipo (datos faltantes, valores con formato inválido, cuántas fichas encontró el
+> buscador) y, desde v0.4, el motor de análisis de `interfaz/motor` (valores fuera de una referencia documentada,
+> parámetros sin referencia). No diagnostica ni garantiza condiciones seguras. La breve pausa de "análisis" es una **animación
 > demostrativa** y se etiqueta así en pantalla. La pecera es decorativa y no representa un acuario real.
 
 ## Cómo verla
@@ -47,11 +48,11 @@ El personaje oficial se separó en capas **sin redibujarlo** (ver [`assets/READM
 | Estado | Señal visual | Cuándo se activa | Origen |
 |---|---|---|---|
 | `bienvenida` | Saludo y antena rápida | Al abrir Inicio | Interfaz |
-| `espera` | Nado tranquilo | En reposo; también cuando todos los datos tienen formato válido (sin declarar normalidad) | Interfaz y formulario |
+| `espera` | Nado tranquilo | En reposo. Sin el motor v0.4: también cuando todos los datos tienen formato válido (sin declarar normalidad) | Interfaz y formulario |
 | `analisis` | Antena intermitente, anillo de escaneo, halo cian | 0.9 s tras «Validar entradas» | **Animación demostrativa** |
-| `insuficiente` | Halo arena y señal «?» | El formulario marcó campos sin dato | Resultado real del formulario. **Advertencia informativa, no una alerta del acuario** |
-| `error` | Halo naranja, sacudida y señal «!» | El formulario marcó valores inválidos | Resultado real del formulario |
-| `alerta` | Halo naranja intenso | **No se activa en v0.1.** Reservado para alertas basadas en referencias con fuente | Futuro |
+| `insuficiente` | Halo arena y señal «?» | Campos sin dato o, desde v0.4, parámetros sin referencia verificada (R3) | Resultado real del formulario y del motor. **Advertencia informativa, no una alerta del acuario** |
+| `error` | Halo naranja, sacudida y señal «!» | Valores inválidos sin anomalías | Resultado real del formulario y del motor |
+| `alerta` | Halo naranja intenso y señal «!» | **Desde v0.4:** el motor encontró valores fuera de una referencia con fuente (R2 o R4). Voz con el matiz serio de «alerta», sin alarmismo; en R4 el mensaje menciona también los datos faltantes, inválidos y sin referencia | Informe real del motor (`interfaz/motor`) |
 
 Los ojos y la sonrisa no se animan, porque hacerlo requeriría redibujar el personaje.
 
@@ -217,11 +218,12 @@ document.addEventListener("airi:mascota", e => console.log(e.detail.estado));
 v0.2 añadió `m.elementos`, `m.indicarHabla(bool)` y los eventos `airi:mascota-pulsada` y
 `airi:mascota-visibilidad`.
 
-**Cómo encajarán las versiones futuras** (ninguna está implementada):
+**Cómo encajarán las versiones futuras.** El motor de reglas ya está implementado desde v0.4 (ver
+`interfaz/motor/README.md`); el resto **no** está implementado:
 
 | Función futura | Punto de conexión |
 |---|---|
-| Motor de reglas para analizar el agua | Devolverá resultados con fuente; la integración llamará a `m.decir({estado: "alerta", …})`. El estado ya existe |
+| ~~Motor de reglas para analizar el agua~~ (**implementado en v0.4**) | `interfaz/motor/analisis-prototipo.js` prepara el mensaje y `integracion-prototipo.js` llama a `m.decir({estado: "alerta", …})` |
 | Chatbot con IA | Otra fuente de respuestas detrás del mismo menú, en lugar de `AIRIAyuda.respuesta()`, marcando sus respuestas como generadas |
 | Reconocimiento de voz | Módulo aparte que pediría permiso del micrófono de forma explícita y llamaría a `interaccion.ejecutar(id)` |
 | Fotografías | Módulo aparte con confirmación humana; mostraría su resultado con `m.decir(...)` |
@@ -238,6 +240,7 @@ node --test interfaz/mascota/pruebas/voz_personalidad.test.js # 11 pruebas unita
 python interfaz/mascota/pruebas/e2e_mascota.py                # 76 comprobaciones en Chrome (v0.1)
 python interfaz/mascota/pruebas/e2e_voz.py                    # 50 comprobaciones en Chrome (v0.2)
 python interfaz/mascota/pruebas/e2e_ajustes_voz.py            # 43 comprobaciones en Chrome (v0.3)
+python interfaz/motor/pruebas/e2e_analisis.py                 # 57 comprobaciones en Chrome (v0.4: motor + mascota + voz)
 ```
 
 La prueba de extremo a extremo genera una copia temporal del prototipo **sin** la mascota y comprueba que las
@@ -276,6 +279,24 @@ Al final repite una parte con la síntesis real de Chrome.
 
 Las voces disponibles dependen del sistema operativo. En Windows y macOS suele haber voces en español. En
 algunas distribuciones de Linux hay que instalarlas aparte.
+
+## Integración con el motor de análisis (v0.4)
+
+- `voz.js`, `ayuda.js`, `ajustes-voz.js` e `interaccion.js` **no cambian**. `mascota.js` y `mascota.css` solo cambian en
+  E5: botón «×» en el globo flotante (cierra el mensaje; tocar a AIRI lo reabre; emite `airi:mascota-globo-cerrado`)
+  y, en celular, globo de altura máxima 38 % de la pantalla con desplazamiento interno.
+- `integracion-prototipo.js`: tras «Validar entradas», si `window.airiAnalisis.ultimo` existe (motor cargado),
+  la mascota muestra y lee el mensaje construido a partir del informe del motor; si no, usa
+  `interpretarValidacion` como en v0.3.
+- `interfaz/motor/analisis-prototipo.js` actualiza, **solo si el motor está cargado**, los textos que v0.4 vuelve
+  inexactos (saludo de Inicio, mensaje de Parámetros del agua, pausa de análisis y respuestas «¿Qué puedes hacer?»,
+  «Ayúdame con los parámetros del agua» y «¿Qué funciones llegarán después?»). Sin motor, quedan los textos de v0.3.
+- Los mensajes de la mascota tras validar son **breves** (E5); el detalle está en el panel de análisis.
+- Comprobaciones de `e2e_mascota.py` y `e2e_voz.py` ajustadas a v0.4 (cada una con un comentario «v0.4»):
+  la regresión con y sin mascota copia también `interfaz/motor`; los datos de ejemplo con nitritos 0.1 o amoníaco
+  0.02 ahora producen estado `alerta` (antes `error`/`espera`); la ayuda ya no dice «Todavía no analizo el agua»;
+  «Repetir» se mide desde el momento de pulsarlo, porque el texto nuevo tiene más fragmentos. En E5, una comprobación
+  de `e2e_mascota.py` se adaptó al mensaje breve.
 
 ## Limitaciones de v0.3
 - Solo se ajustan el tono y la velocidad de las voces instaladas; el timbre no cambia.

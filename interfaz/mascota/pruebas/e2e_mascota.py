@@ -43,6 +43,8 @@ def prototipo_sin_mascota(tmp):
     destino.parent.mkdir(parents=True)
     destino.write_text(html, encoding="utf-8")
     shutil.copytree(RAIZ / "identidad-visual", Path(tmp) / "identidad-visual")
+    # v0.4: el motor de análisis forma parte del prototipo (no de la mascota): también se copia
+    shutil.copytree(RAIZ / "interfaz" / "motor", Path(tmp) / "interfaz" / "motor")
     return destino.as_uri()
 
 
@@ -181,21 +183,27 @@ def main():
         comprobar(pg.is_hidden(".airi-m-flotante .airi-m-globo"), "el globo se contrae al usar el formulario (no tapa los campos)")
         pg.click("#evaluar"); pg.wait_for_timeout(1100)
         texto = pg.inner_text(".airi-m-flotante .airi-m-texto")
-        comprobar(pg.evaluate(f"document.querySelector('{pez}').classList.contains('airi-m-estado-error')") and
-                  pg.inner_text(f"{pez} .airi-m-senal") == "!", "valores inválidos → estado de error con señal «!»")
-        comprobar("Temperatura y Nitratos" in texto and "falta Amoníaco total" in texto, f"mensaje de error coincide con el formulario: {texto!r}")
+        # v0.4: los nitritos (0.1) son detectables → el motor marca anomalía; la alerta prevalece (R4) y el
+        # mensaje conserva también los inválidos y el faltante.
+        comprobar(pg.evaluate(f"document.querySelector('{pez}').classList.contains('airi-m-estado-alerta')") and
+                  pg.inner_text(f"{pez} .airi-m-senal") == "!", "valores inválidos + nitritos detectables → alerta con señal «!» (R4)")
+        comprobar("Temperatura y Nitratos" in texto and "falta el dato de Amoníaco total" in texto and "Nitritos" in texto,
+                  f"el mensaje conserva anomalía, inválidos y faltante: {texto!r}")
         pg.screenshot(path=str(capturas / "04_flotante_error.png"))
         for i, v in enumerate(["25", "8.1", "35", "0.02", "0,05", "10"]):
             pg.fill(f"#p{i}", v)
         pg.click("#evaluar"); pg.wait_for_timeout(1100)
         texto = pg.inner_text(".airi-m-flotante .airi-m-texto")
-        comprobar("formato válido" in texto and "no evalúo" in texto and
-                  pg.evaluate(f"document.querySelector('{pez}').classList.contains('airi-m-estado-espera')"),
-                  "datos válidos → no declara normalidad (sin referencias verificadas)")
+        # v0.4: amoníaco 0.02 y nitritos 0.05 son detectables → alerta; temperatura, salinidad y nitratos sin referencia
+        # v0.4 E5: mensaje breve; el detalle queda en el panel de análisis
+        comprobar("Conviene revisar" in texto and "Temperatura, Salinidad y Nitratos no se evalúan" in texto and
+                  not re.search(r"(?i)\b(normal|seguro|saludable)\b", texto) and
+                  pg.evaluate(f"document.querySelector('{pez}').classList.contains('airi-m-estado-alerta')"),
+                  "datos válidos → compara con referencias, explica lo no evaluado y no declara normalidad")
         pg.click("#limpiar"); pg.wait_for_timeout(200)
         comprobar("Formulario limpio" in pg.inner_text(".airi-m-flotante .airi-m-texto"), "«Limpiar» actualiza el mensaje")
         comprobar(not pg.evaluate("document.querySelector('.airi-m-pez.airi-m-estado-alerta')"),
-                  "el estado de alerta biológica no se activa en v0.1 (no hay motor de análisis)")
+                  "tras «Limpiar» no queda ninguna alerta activa")
         pg.click('[data-tab="especies"]'); pg.fill("#buscar", "payaso"); pg.wait_for_timeout(900)
         comprobar("1 ficha para «payaso»" in pg.inner_text(".airi-m-flotante .airi-m-texto"), "buscador: mensaje con el resultado real (1 ficha)")
         pg.fill("#buscar", "zzz"); pg.wait_for_timeout(900)

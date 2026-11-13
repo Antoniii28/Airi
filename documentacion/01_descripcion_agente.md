@@ -3,6 +3,11 @@
 **Proyecto:** AIRI — Agente Inteligente para la Supervisión y Gestión de un Acuario Marino  
 **Estado:** Propuesta académica; no se declara ninguna función implementada o probada.
 
+> **Nota de actualización (v0.4).** Este documento conserva la propuesta original. Desde entonces se implementaron y
+> probaron la interfaz web, la validación de mediciones, el motor de reglas para el agua (pH, amoníaco total y
+> nitritos con referencias documentadas) y la mascota con voz. Siguen sin implementar la compatibilidad entre
+> especies y el reconocimiento por fotografía. Estado actualizado en el [README principal](../README.md).
+
 ## 1. Descripción
 AIRI es un agente inteligente propuesto para supervisar condiciones de un acuario marino, evaluar riesgos de convivencia entre especies y, como capacidad planificada, reconocer especies de peces a partir de fotografías. El análisis de parámetros y compatibilidad se plantea inicialmente mediante reglas lógicas; el reconocimiento visual requerirá un componente de visión por computadora o un modelo de IA que todavía debe seleccionarse, desarrollarse y evaluarse.
 

@@ -1,7 +1,7 @@
 # Grafo de decisiones del agente AIRI
 
 **Actividad:** Fundamentos de la IA — grafo relacionado con el proyecto AIRI.
-**Estado:** representación académica del **funcionamiento propuesto** de AIRI v0.1. No describe código implementado: el agente todavía no se ha programado.
+**Estado:** representación académica del funcionamiento de AIRI, elaborada en v0.1 como propuesta. **Desde v0.4 está implementado**: el motor de análisis ([`motor/`](../motor/README.md) en Python y [`interfaz/motor/`](../interfaz/motor/README.md) en JavaScript) sigue este grafo nodo por nodo, y sus pruebas comprueban que cada paso del recorrido existe en `grafo_decisiones_airi.dot`. El notebook de Colab sigue usando valores **simulados** para demostrar el recorrido; las referencias reales del motor están en [`motor/REFERENCIAS.md`](../motor/REFERENCIAS.md).
 
 ## Entregable principal: simulación interactiva en Google Colab
 

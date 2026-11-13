@@ -4,12 +4,11 @@
    doble clic (file://). Expone window.AIRIMascota.
 
    Qué es real y qué es demostrativo:
-   - La mascota NO analiza el agua: AIRI todavía no tiene motor de análisis.
-   - Los estados de validación reflejan el resultado que ya calcula el
-     formulario del prototipo (dato faltante o valor inválido).
+   - La mascota NO analiza el agua por sí misma: muestra lo que calculan el
+     formulario del prototipo y, desde v0.4, el motor de análisis
+     (interfaz/motor), que activa el estado «alerta» con referencias con fuente.
    - La pausa del estado «análisis» es una animación demostrativa.
-   - El estado «alerta» queda preparado para futuras alertas basadas en
-     referencias con fuente; en v0.1 la integración no lo activa.
+   (Módulo creado en v0.1; voz en v0.2, ajustes en v0.3, botón «×» en v0.4.)
 */
 (function (raiz, fabrica) {
   var api = fabrica(raiz);
@@ -254,6 +253,16 @@
     var pezFlotante = crearPez();
     pezFlotante.removeAttribute("role"); pezFlotante.removeAttribute("aria-label");
     avatar.appendChild(pezFlotante);
+    // v0.4 (E5): botón visible para cerrar el mensaje; AIRI (el avatar) lo vuelve a abrir.
+    var cerrarGlobo = el("button", "airi-m-cerrar-globo", { type: "button", title: "Cerrar mensaje",
+      "aria-label": "Cerrar el mensaje de AIRI. Toca a AIRI para volver a abrirlo" });
+    cerrarGlobo.textContent = "×";
+    cerrarGlobo.addEventListener("click", function () {
+      abrirGlobo(false);
+      avatar.focus();
+      emitir("airi:mascota-globo-cerrado", { modo: "flotante" });
+    });
+    globoFlotante.insertBefore(cerrarGlobo, globoFlotante.firstChild);
     flotante.appendChild(globoFlotante); flotante.appendChild(avatar);
     document.body.appendChild(flotante);
     var mostrarBtn = el("button", "airi-m-boton airi-m-mostrar", { type: "button" });
