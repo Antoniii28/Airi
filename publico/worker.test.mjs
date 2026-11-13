@@ -22,5 +22,24 @@ test("rechaza ruta desconocida",async()=>assert.equal((await manejar(new Request
 test("rechaza método GET",async()=>assert.equal((await manejar(new Request("https://airi.example/api/chat"),env)).status,405));
 test("rechaza origen sin autorización",async()=>assert.equal((await manejar(req({headers:{"content-type":"application/json"}}),env)).status,403));
 test("rechaza tipo de contenido incorrecto",async()=>assert.equal((await manejar(req({headers:{origin:"https://airi.example","x-airi-access":"ficticio","content-type":"text/plain"}}),env)).status,415));
-test("rechaza cuerpo mayor al máximo declarado",async()=>assert.equal((await manejar(req({headers:{origin:"https://airi.example","x-airi-access":"ficticio","content-type":"application/json","content-length":"999999"}}),env)).status,403));
+test("rechaza cuerpo mayor al máximo declarado",async()=>{
+  const r=req({headers:{origin:"https://airi.example","x-airi-access":"ficticio","content-type":"application/json","content-length":"999999"}});
+  Object.defineProperty(r,"cf",{value:{country:"MX"}});
+  assert.equal((await manejar(r,env)).status,413);
+});
 test("no activa Gemini aunque el interruptor esté habilitado",async()=>assert.notEqual((await manejar(req(),env)).status,200));
+
+test("rechaza código de acceso incorrecto en región permitida",async()=>{
+  const r=req({headers:{origin:"https://airi.example","content-type":"application/json","x-airi-access":"incorrecto"}});
+  Object.defineProperty(r,"cf",{value:{country:"MX"}});
+  assert.equal((await manejar(r,env)).status,403);
+});
+test("rechaza país bloqueado aunque exista código",async()=>{
+  const r=req();Object.defineProperty(r,"cf",{value:{country:"ES"}});
+  assert.equal((await manejar(r,env)).status,403);
+});
+test("en región permitida sigue cerrado y no consulta Gemini",async()=>{
+  const r=req();Object.defineProperty(r,"cf",{value:{country:"MX"}});
+  const response=await manejar(r,env);
+  assert.equal(response.status,503);
+});
