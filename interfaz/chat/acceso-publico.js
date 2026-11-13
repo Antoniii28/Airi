@@ -100,10 +100,13 @@
     preparar: function () {
       var escrito = campo ? campo.value.trim() : "";
       if (!escrito) { if (campo) campo.focus(); return { error: "Escribe tu código de acceso del piloto antes de enviar." }; }
-      var codigo = normalizarCodigo(escrito);
+      // Se envía tal cual si cabe en una cabecera HTTP (el Worker prueba la forma canónica, la anterior y la exacta,
+      // para que también funcionen los códigos escritos a mano); si lleva guiones tipográficos o invisibles, se
+      // envía su forma canónica (si no, fetch fallaría con un falso «No hay conexión»).
+      var codigo = /^[\x20-\x7E\u00A0-\u00FF]+$/.test(escrito) ? escrito : normalizarCodigo(escrito);
       if (!codigo) {
         campo.focus();
-        return { error: "El código de acceso solo lleva letras y números (20 en total, en grupos de 5). Revísalo con «Mostrar»." };
+        return { error: "El código de acceso tiene caracteres que no se pueden enviar. Revísalo con «Mostrar»." };
       }
       var t = token || (window.turnstile && widget !== null ? window.turnstile.getResponse(widget) : null);
       if (!t) return { error: "Completa la verificación de Cloudflare («Verifica que eres una persona») antes de enviar." };

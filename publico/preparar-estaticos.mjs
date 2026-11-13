@@ -108,7 +108,7 @@ export function revisarProduccion(texto) {
   try { cfg = JSON.parse(texto.replace(/^\s*\/\/.*$/gm, "")); } catch { return ["el archivo no es JSON válido"]; }
   const v = cfg.vars || {};
   if (cfg.name !== "airi") problemas.push(`name debe ser «airi» (el Worker existente), no «${cfg.name}»`);
-  if (v.AIRI_CHAT_APAGADO !== "0") problemas.push("AIRI_CHAT_APAGADO debe ser \"0\" para publicar el chat abierto");
+  if (!["0", "1"].includes(v.AIRI_CHAT_APAGADO)) problemas.push("AIRI_CHAT_APAGADO debe ser \"0\" (chat abierto) o \"1\" (cerrado)");
   if (!/^https:\/\/[a-z0-9.-]+$/.test(v.AIRI_ORIGEN || "")) problemas.push("AIRI_ORIGEN debe ser la URL https del Worker, sin ruta");
   if (!v.AIRI_TURNSTILE_SITEKEY || /PEGAR/.test(v.AIRI_TURNSTILE_SITEKEY) || /^[123]x0+[A-Z]{2}$/.test(v.AIRI_TURNSTILE_SITEKEY))
     problemas.push("AIRI_TURNSTILE_SITEKEY falta, es el texto de ejemplo o es una sitekey de PRUEBA de Cloudflare");
@@ -134,7 +134,9 @@ if (import.meta.url === pathToFileURL(process.argv[1] || "").href) {
       console.error("✖ Despliegue cancelado. Revisa " + process.argv[i + 1] + ":\n  - " + problemas.join("\n  - "));
       process.exit(1);
     }
-    console.log("✔ Configuración de producción revisada (Worker «airi»).");
+    const cfgProd = JSON.parse(readFileSync(resolve(process.argv[i + 1]), "utf-8").replace(/^\s*\/\/.*$/gm, ""));
+    console.log("✔ Configuración de producción revisada (Worker «airi»)." +
+      (cfgProd.vars.AIRI_CHAT_APAGADO === "1" ? " AVISO: se publicará con el chat CERRADO (AIRI_CHAT_APAGADO=\"1\")." : ""));
   }
   const r = preparar(process.env.AIRI_ESTATICOS_ORIGEN ? resolve(process.env.AIRI_ESTATICOS_ORIGEN) : undefined,
                      process.env.AIRI_ESTATICOS_DESTINO ? resolve(process.env.AIRI_ESTATICOS_DESTINO) : undefined);

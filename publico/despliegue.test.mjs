@@ -117,8 +117,10 @@ test("wrangler.produccion.jsonc: Worker existente «airi», sin secretos, y el d
   // Una configuración completa (sitekey ficticia) pasa; errores típicos se detectan
   const completa = texto.replace("PEGAR-AQUI-LA-SITEKEY-PUBLICA", "0x4AAAAAAAficticiaXYZ");
   assert.deepEqual(revisarProduccion(completa), []);
-  const casos = [[/"name": "airi"/, '"name": "airi-piloto"', /name/], [/"AIRI_CHAT_APAGADO": "0"/, '"AIRI_CHAT_APAGADO": "1"', /APAGADO/],
+  const casos = [[/"name": "airi"/, '"name": "airi-piloto"', /name/], [/"AIRI_CHAT_APAGADO": "0"/, '"AIRI_CHAT_APAGADO": "no"', /APAGADO/],
     [/"AIRI_ORIGEN": "[^"]+"/, '"AIRI_ORIGEN": ""', /ORIGEN/], [/"AIRI_PAISES_PERMITIDOS": "MX",/, '"AIRI_PAISES_PERMITIDOS": "MX", "GEMINI_API_KEY": "x",', /SECRETO/],
     [/0x4AAAAAAAficticiaXYZ/, "1x00000000000000000000AA", /PRUEBA/]];
   for (const [busca, cambia, error] of casos) assert.match(revisarProduccion(completa.replace(busca, cambia)).join(" "), error, String(cambia));
+  // Cerrar el chat en producción (emergencia) debe poder desplegarse
+  assert.deepEqual(revisarProduccion(completa.replace('"AIRI_CHAT_APAGADO": "0"', '"AIRI_CHAT_APAGADO": "1"')), []);
 });

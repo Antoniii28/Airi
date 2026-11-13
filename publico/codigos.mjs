@@ -23,12 +23,42 @@ export function normalizarCodigo(texto) {
   return limpio.length === LONGITUD_CODIGO ? limpio.match(/.{5}/g).join("-") : limpio;
 }
 
+async function sha256hex(texto) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(texto));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 /** Huella SHA-256 (hex) de la forma canónica. Usa Web Crypto (Workers y Node 18+). */
 export async function huellaCodigo(texto) {
   const canonico = normalizarCodigo(texto);
-  if (!canonico) return null;
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(canonico));
-  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  return canonico ? sha256hex(canonico) : null;
+}
+
+/**
+ * Formas aceptadas de un código, en orden (corrección del 13-11-2026, códigos MANUALES):
+ *   canonica  → la del generador (normalizarCodigo)
+ *   anterior  → trim() + mayúsculas: lo que hacía el Worker antes del PR #11. Sin ella, un código manual como
+ *               «Airi-Piloto-2026» o «Acuario_Marino.26» que funcionaba dejó de funcionar.
+ *   exacta    → trim() tal cual: para huellas calculadas a mano sobre el texto original (mayúsculas y minúsculas).
+ * Cada forma tiene que coincidir con una huella ya cargada en AIRI_CODIGOS: no se acepta ningún código nuevo.
+ */
+export function formasCodigo(texto) {
+  if (typeof texto !== "string" || texto.length > 200) return [];
+  const formas = [];
+  const canonica = normalizarCodigo(texto);
+  if (canonica) formas.push(["canonica", canonica]);
+  const crudo = texto.trim();
+  if (crudo.length >= 8 && crudo.length <= 64) {
+    formas.push(["anterior", crudo.toUpperCase()]);
+    formas.push(["exacta", crudo]);
+  }
+  const vistas = new Set();
+  return formas.filter(([, f]) => !vistas.has(f) && vistas.add(f));
+}
+
+/** Huellas de todas las formas aceptadas: [[nombre, huellaHex], …]. */
+export async function huellasCodigo(texto) {
+  return Promise.all(formasCodigo(texto).map(async ([nombre, f]) => [nombre, await sha256hex(f)]));
 }
 
 /** ¿Tiene el formato de los códigos que genera generar-codigos.mjs? (solo para registros de diagnóstico). */

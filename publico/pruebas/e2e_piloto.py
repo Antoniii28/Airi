@@ -196,11 +196,12 @@ def main():
                                  (CODIGO.replace("-", "\u2011"), "con guiones tipográficos (U+2011)"),
                                  ("\u00a0" + CODIGO.lower() + "\u200b", "en minúsculas con espacio no separable e invisible")):
             preguntar(pg, "Hola", codigo=variante)
-            comprobar("Respuesta simulada" in ultimo(pg) and pg.peticiones[-1].headers.get("x-airi-acceso") == CODIGO,
-                      f"código válido {nombre}: se acepta y se envía en forma canónica")
+            enviado = pg.peticiones[-1].headers.get("x-airi-acceso") or ""
+            comprobar("Respuesta simulada" in ultimo(pg) and all(ord(c) < 256 for c in enviado),
+                      f"código válido {nombre}: se acepta (cabecera transmisible)")
         n = len(pg.peticiones)
-        preguntar(pg, "Hola", codigo="PRUEB-AFÍCT-ICIA0-00001", espera=300)
-        comprobar("solo lleva letras y números" in ultimo(pg) and len(pg.peticiones) == n,
+        preguntar(pg, "Hola", codigo="PRUEB-AFICT-ICIA0-0000€", espera=300)
+        comprobar("no se pueden enviar" in ultimo(pg) and len(pg.peticiones) == n,
                   "código con caracteres imposibles: mensaje claro y no se envía (antes: falso «No hay conexión»)")
         pg.fill("#airi-chat-codigo", CODIGO); pg.click("#airi-chat-codigo-mostrar")
         comprobar(pg.get_attribute("#airi-chat-codigo", "type") == "text" and pg.get_attribute("#airi-chat-codigo-mostrar", "aria-pressed") == "true",
