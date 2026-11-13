@@ -17,6 +17,7 @@
 import { leerLimites, ControlCuotasAIRI } from "./cuotas.js";
 import { consultarGemini, MODELO_VALIDO } from "./gemini.js";
 import { huellaCodigo, normalizarCodigo, formatoGenerado } from "./codigos.mjs";
+import { VERSION } from "./version.mjs";
 
 export { ControlCuotasAIRI };
 
@@ -139,7 +140,7 @@ export async function manejar(request, env = {}, ctx = {}, deps = {}) {
     if (request.method !== "GET") return json({ error: "Método no permitido" }, 405, { allow: "GET" });
     const rev = revisarConfiguracion(env);
     const activo = rev.ok && env.AIRI_CHAT_APAGADO === "0";
-    return json({ modo: "publico", activo, turnstile_sitekey: activo ? env.AIRI_TURNSTILE_SITEKEY : null,
+    return json({ modo: "publico", version: VERSION, activo, turnstile_sitekey: activo ? env.AIRI_TURNSTILE_SITEKEY : null,
       mensaje: activo ? "Piloto cerrado: necesitas un código de acceso." : "El chat del piloto está desactivado por ahora." });
   }
   if (url.pathname !== "/api/chat") return json({ error: "Ruta inexistente" }, 404);
