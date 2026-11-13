@@ -1,6 +1,9 @@
 # AIRI v0.6 — Conversación por voz y mascota interactiva (propuesta técnica)
 
 **Estado:** PROPUESTA. Nada de este documento está implementado. **Fecha:** 12-11-2026.
+
+> **Avance:** E1 (diagnóstico) realizada; resultados en [`DIAGNOSTICO_VOZ_v0.6.md`](DIAGNOSTICO_VOZ_v0.6.md).
+> E2–E7 siguen sin implementar.
 **Base:** v0.5 (PR #6, chat con Gemini mediante servidor local). **Rama prevista:** `feature/voz-conversacion-airi-v0.6`.
 
 ## 1. Objetivo
