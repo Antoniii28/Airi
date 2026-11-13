@@ -106,3 +106,8 @@ body:has(.airi-m-reducido) .airi-chat-turno::before { animation: none !important
 #airi-chat-codigo:focus-visible { outline: 3px solid #0982C7; outline-offset: 2px; }
 .airi-chat-turnstile { min-height: 65px; }
 @media (max-width: 600px) { #airi-chat-codigo { max-width: 100%; min-height: 44px; } }
+
+/* v0.7 · fila del código de acceso con el botón «Mostrar» */
+#chat .airi-chat-piloto-fila { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+#airi-chat-codigo-mostrar { min-height: 40px; }
+@media (max-width: 600px) { #airi-chat-codigo-mostrar { min-height: 44px; } #chat .airi-chat-piloto-fila #airi-chat-codigo { flex: 1 1 12em; } }

@@ -10,6 +10,15 @@
   var widget = null, token = null, campo = null, caja = null, avisoTs = null;
   var SCRIPT_TS = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
+  // Misma forma canónica que publico/codigos.mjs (el Worker vuelve a normalizar; esto evita además que un guion
+  // tipográfico o un carácter invisible haga fallar fetch con un falso «No hay conexión»).
+  var SEPARADORES = /[\s\u00A0\u00AD\u180E\u200B-\u200D\u2060\uFEFF\p{Dash_Punctuation}\u2212\u2043\uFE63\uFF0D]/gu;
+  function normalizarCodigo(texto) {
+    var limpio = String(texto || "").normalize("NFKC").toUpperCase().replace(SEPARADORES, "");
+    if (!/^[A-Z0-9]{8,64}$/.test(limpio)) return null;
+    return limpio.length === 20 ? limpio.match(/.{5}/g).join("-") : limpio;
+  }
+
   function el(tag, props) { var e = document.createElement(tag); for (var k in props) e[k] = props[k]; return e; }
 
   function renderizar(sitekey, contenedor) {
@@ -59,8 +68,20 @@
         campo = el("input", { id: "airi-chat-codigo", type: "password", autocomplete: "off", spellcheck: false, maxLength: 64 });
         campo.setAttribute("autocapitalize", "characters");
         campo.setAttribute("aria-describedby", "airi-chat-piloto-ayuda");
+        var mostrar = el("button", { type: "button", id: "airi-chat-codigo-mostrar", textContent: "Mostrar" });
+        mostrar.setAttribute("aria-pressed", "false");
+        mostrar.setAttribute("aria-controls", "airi-chat-codigo");
+        mostrar.addEventListener("click", function () {
+          var ver = campo.type === "password";
+          campo.type = ver ? "text" : "password";
+          mostrar.textContent = ver ? "Ocultar" : "Mostrar";
+          mostrar.setAttribute("aria-pressed", String(ver));
+        });
+        var fila = el("div", { className: "airi-chat-piloto-fila" });
+        fila.append(campo, mostrar);
         var ayuda = el("p", { id: "airi-chat-piloto-ayuda", className: "airi-chat-note",
-          textContent: "Es el código que te entregó el equipo de AIRI. Es personal: no lo compartas. No se guarda en este navegador." });
+          textContent: "Es el código que te entregó el equipo de AIRI: 20 letras y números en grupos de 5 " +
+            "(puedes escribirlo con o sin guiones). Es personal: no lo compartas. No se guarda en este navegador." });
         var ts = el("div", { id: "airi-chat-turnstile", className: "airi-chat-turnstile" });
         avisoTs = el("p", { className: "airi-chat-note", id: "airi-chat-turnstile-aviso" });
         avisoTs.setAttribute("aria-live", "polite");
@@ -69,7 +90,7 @@
             "(nivel gratuito: Google puede usarlas para mejorar sus productos y personas revisoras pueden leerlas). " +
             "El servidor no guarda el texto de tus preguntas: solo cuenta cuántas haces para aplicar los límites. " +
             "Cloudflare Turnstile comprueba que eres una persona. Uso exclusivo para personas mayores de 18 años." });
-        caja.append(etiqueta, campo, ayuda, ts, avisoTs, privacidad);
+        caja.append(etiqueta, fila, ayuda, ts, avisoTs, privacidad);
         cargarTurnstile(estado.turnstile_sitekey, ts);
       }
       var consentimiento = form.querySelector(".airi-chat-consentimiento");
@@ -77,8 +98,13 @@
     },
     /** Devuelve {codigo, token} o {error} con un mensaje comprensible. */
     preparar: function () {
-      var codigo = campo ? campo.value.trim() : "";
-      if (codigo.length < 8) { if (campo) campo.focus(); return { error: "Escribe tu código de acceso del piloto antes de enviar." }; }
+      var escrito = campo ? campo.value.trim() : "";
+      if (!escrito) { if (campo) campo.focus(); return { error: "Escribe tu código de acceso del piloto antes de enviar." }; }
+      var codigo = normalizarCodigo(escrito);
+      if (!codigo) {
+        campo.focus();
+        return { error: "El código de acceso solo lleva letras y números (20 en total, en grupos de 5). Revísalo con «Mostrar»." };
+      }
       var t = token || (window.turnstile && widget !== null ? window.turnstile.getResponse(widget) : null);
       if (!t) return { error: "Completa la verificación de Cloudflare («Verifica que eres una persona») antes de enviar." };
       return { codigo: codigo, token: t };

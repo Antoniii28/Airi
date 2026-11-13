@@ -3,7 +3,10 @@
 // Muestra cada código UNA vez (entrégalo en privado a esa persona) y la línea para el secreto AIRI_CODIGOS,
 // que solo contiene huellas SHA-256. No guardes los códigos en el repositorio.
 // Revocar: quita «id:huella» de AIRI_CODIGOS y vuelve a cargar el secreto (npx wrangler secret put AIRI_CODIGOS).
-import { createHash, randomBytes } from "node:crypto";
+// ATENCIÓN: cada ejecución crea códigos NUEVOS. Carga en AIRI_CODIGOS la línea de la MISMA ejecución cuyos códigos
+// entregues; para verificar una pareja código/huella usa herramientas/comprobar-codigo.mjs.
+import { randomBytes } from "node:crypto";
+import { normalizarCodigo, huellaCodigo } from "../codigos.mjs";
 
 const ids = process.argv.slice(2);
 if (!ids.length || ids.some((id) => !/^[a-z0-9-]{1,32}$/.test(id)) || new Set(ids).size !== ids.length) {
@@ -20,7 +23,8 @@ const lineas = [];
 console.log("Códigos (entrégalos en privado; no se vuelven a mostrar):");
 for (const id of ids) {
   const codigo = nuevoCodigo();
-  lineas.push(`${id}:${createHash("sha256").update(codigo).digest("hex")}`);
+  if (normalizarCodigo(codigo) !== codigo) throw new Error("código no canónico");   // salvaguarda
+  lineas.push(`${id}:${await huellaCodigo(codigo)}`);
   console.log(`  ${id}  ${codigo}`);
 }
 console.log("\nValor para el secreto AIRI_CODIGOS (añádelo a los ya existentes, separado por comas):");
