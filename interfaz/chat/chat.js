@@ -6,7 +6,9 @@
    - Antes de la primera pregunta se pide consentimiento: las preguntas se
      envían a Google (Gemini).
    - Todo se muestra como texto (textContent): las respuestas no pueden inyectar HTML.
-   - El historial vive solo en la memoria de la pestaña. */
+   - El historial vive solo en la memoria de la pestaña.
+   - v0.7: si /api/estado responde {modo: "publico"} (Worker del piloto cerrado), el chat pide el código de acceso y
+     la verificación de Turnstile mediante acceso-publico.js. El modo local con chat/servidor.py no cambia. */
 (function () {
   "use strict";
   var seccion = document.getElementById("chat");
@@ -24,6 +26,8 @@
   var conversacion = 0;          // cambia con «Nueva conversación»: descarta respuestas atrasadas
   var pendiente = null;          // AbortController de la consulta en curso
   var local = location.protocol === "http:" && /^(127\.0\.0\.1|localhost)$/.test(location.hostname);
+  var publico = null;            // v0.7: estado del piloto cuando el chat lo sirve el Worker (ver comprobarServidor)
+  var PILOTO = function () { return window.airiChatPublico; };
 
   var MD = window.AIRIMarkdown;
 
@@ -83,7 +87,27 @@
     }
   }
 
+  /** v0.7: ¿la página la sirve el Worker del piloto? Solo se consulta en HTTPS o en 127.0.0.1/localhost. */
+  async function detectarPiloto() {
+    if (!local && location.protocol !== "https:") return false;
+    try {
+      var r = await fetch("/api/estado", { cache: "no-store" });
+      var d = r.ok ? await r.json() : null;
+      if (!d || d.modo !== "publico") return false;
+      publico = d;
+    } catch (e) { return false; }
+    if (!local) log.replaceChildren();          // quita el aviso de «servidor local», que aquí no aplica
+    if (!local || !log.children.length) linea("model", "¡Hola! Soy AIRI. Puedo conversar sobre acuarios marinos. Mis " +
+      "respuestas son orientativas: no diagnostico ni analizo tus mediciones aquí (para eso está «Parámetros del agua»).");
+    estadoServidor.textContent = d.activo ? "Piloto cerrado de AIRI · necesitas tu código de acceso personal."
+      : (d.mensaje || "El chat del piloto está desactivado por ahora.");
+    if (PILOTO()) PILOTO().iniciar(d, { form: form });
+    form.querySelectorAll("input, button[type=submit]").forEach(function (e) { e.disabled = !d.activo; });
+    return true;
+  }
+
   async function comprobarServidor() {
+    if (await detectarPiloto()) return;
     if (!local) {
       estadoServidor.textContent = "Chat no disponible en esta página (necesita el servidor local).";
       form.querySelectorAll("input, button[type=submit]").forEach(function (e) { e.disabled = true; });
@@ -103,7 +127,7 @@
   form.addEventListener("submit", async function (evento) {
     evento.preventDefault();
     var pregunta = input.value.trim();
-    if (!local || !pregunta || enviar.disabled) return;
+    if (!(local || (publico && publico.activo)) || !pregunta || enviar.disabled) return;
     if (pregunta.length > MAX_PREGUNTA) {
       linea("model", "La pregunta es demasiado larga (máximo " + MAX_PREGUNTA + " caracteres).", "airi-chat-error");
       return;
@@ -112,6 +136,13 @@
       linea("model", "Antes de enviar, marca la casilla para confirmar que entiendes que la pregunta se envía a Google.", "airi-chat-error");
       consentimiento.focus();
       return;
+    }
+    var cabeceras = { "Content-Type": "application/json" }, extra = {};
+    if (publico) {                                // v0.7: código personal y token de Turnstile (de un solo uso)
+      var acceso = PILOTO() ? PILOTO().preparar() : { error: "No se pudo cargar el acceso del piloto." };
+      if (acceso.error) { linea("model", acceso.error, "airi-chat-error"); return; }
+      cabeceras["X-AIRI-Acceso"] = acceso.codigo;
+      extra.turnstile = acceso.token;
     }
     var mia = conversacion;
     document.dispatchEvent(new CustomEvent("airi:chat-pregunta"));   // v0.6: detiene una lectura en curso
@@ -130,8 +161,8 @@
     var temporizador = setTimeout(function () { pendiente && pendiente.abort(); }, ESPERA_MS);
     try {
       var r = await fetch("/api/chat", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: contexto() }), signal: pendiente.signal
+        method: "POST", headers: cabeceras,
+        body: JSON.stringify(Object.assign({ messages: contexto() }, extra)), signal: pendiente.signal
       });
       var datos = null;
       try { datos = await r.json(); } catch (e) { /* respuesta no JSON */ }
@@ -155,11 +186,12 @@
       pensando.remove();
       historial.pop();   // la pregunta sin respuesta no queda en el contexto
       var texto = error.name === "AbortError" ? "Gemini tardó demasiado en responder. Inténtalo de nuevo."
-        : error instanceof TypeError ? "No hay conexión con el servidor local. ¿Sigue encendido?"
+        : error instanceof TypeError ? (publico ? "No hay conexión con el servicio de AIRI." : "No hay conexión con el servidor local. ¿Sigue encendido?")
         : error.message;
       linea("model", "No pude responder: " + texto, "airi-chat-error");
     } finally {
       clearTimeout(temporizador);
+      if (publico && PILOTO()) PILOTO().despues();   // el token de Turnstile ya se usó: se pide uno nuevo
       if (mia === conversacion) { pendiente = null; bloquear(false); esperaMascota(false); input.focus(); }
     }
   });
@@ -184,5 +216,5 @@
 
   saludo();
   comprobarServidor();
-  window.airiChat = { local: local };
+  window.airiChat = { local: local, get publico() { return publico; } };
 })();

@@ -1,0 +1,41 @@
+// AIRI v0.7 — Configuración del Worker del piloto cerrado. NO DESPLEGADO.
+// Antes de un despliegue (solo con autorización del responsable):
+//   1. node publico/preparar-estaticos.mjs
+//   2. Secretos (nunca en este archivo ni en el repositorio):
+//        npx wrangler secret put GEMINI_API_KEY      (clave del proyecto de Google EXCLUSIVO del piloto, sin facturación)
+//        npx wrangler secret put TURNSTILE_SECRET
+//        npx wrangler secret put AIRI_CODIGOS        (salida de herramientas/generar-codigos.mjs: id:huella,...)
+//        npx wrangler secret put AIRI_SAL            (cadena aleatoria de 32+ caracteres)
+//   3. Completar AIRI_ORIGEN y AIRI_TURNSTILE_SITEKEY abajo.
+//   4. Mantener AIRI_CHAT_APAGADO = "1" hasta terminar la verificación; abrir con "0".
+// Consultar PILOTO_v0.7.md antes de cualquier paso.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "airi-piloto",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    "run_worker_first": ["/api/*"]
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "CUOTAS", "class_name": "ControlCuotasAIRI" }]
+  },
+  // Plan gratuito: solo Durable Objects con almacenamiento SQLite
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ControlCuotasAIRI"] }],
+  "observability": { "enabled": true },
+  "vars": {
+    "AIRI_CHAT_APAGADO": "1",
+    "AIRI_ORIGEN": "",
+    "AIRI_TURNSTILE_SITEKEY": "",
+    "AIRI_PAISES_PERMITIDOS": "MX",
+    "AIRI_MODELO": "gemini-3.1-flash-lite",
+    "AIRI_LIMITE_MINUTO": "5",
+    "AIRI_LIMITE_DIA": "30",
+    "AIRI_LIMITE_GLOBAL_DIA": "100",
+    "AIRI_FALLOS_MAX_HORA": "10",
+    "AIRI_PAUSA_429_MIN": "15"
+  }
+}
