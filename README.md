@@ -120,7 +120,7 @@ python interfaz/diagnostico-voz/pruebas/e2e_diagnostico.py  # v0.6: página de d
 | Mascota · voz · personalidad de voz (Node) | 12/12 · 16/16 · 11/11 |
 | Navegador: mascota · voz · ajustes de voz · análisis (escritorio y celular) | 76/76 · 50/50 · 43/43 · 57/57 |
 | Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 29/29 · 8/8 · 35/35 |
-| Voz v0.6: texto para hablar · «pensando» (Node) · lectura en voz alta · pensando · dictado · diagnóstico (navegador) | 8/8 · 3/3 · 24/24 · 17/17 · 38/38 · 17/17 |
+| Voz v0.6: texto para hablar · «pensando» (Node) · lectura en voz alta · pensando · dictado · diagnóstico (navegador) | 8/8 · 3/3 · 24/24 · 17/17 · 41/41 · 17/17 |
 
 Historial de pruebas, errores encontrados y su corrección: [`motor/PRUEBAS_v0.4.md`](motor/PRUEBAS_v0.4.md).
 

@@ -131,6 +131,8 @@ def main():
         comprobar(usuarios(pg)[-1] == "¿Qué comen los peces payaso juveniles?" and turno(pg) == "pensando"
                   and pg.is_disabled("#airi-chat-micro-hablar") and pg.evaluate("window.airiMascota.estado") == "pensando",
                   "se envía la transcripción corregida; «Pensando» con la mascota pensando y el micrófono bloqueado")
+        comprobar("Transcripción lista" not in aviso(pg) and "no sale de tu computadora" in aviso(pg),
+                  f"al enviar, el aviso «Transcripción lista» desaparece y vuelve el aviso de reposo ({aviso(pg)!r})")
         enviado = gemini.recibidas[-1]["cuerpo"]
         comprobar("peces payaso juveniles" in json.dumps(enviado, ensure_ascii=False) and "audio" not in json.dumps(enviado).lower()
                   and "inlineData" not in json.dumps(enviado),
@@ -140,6 +142,19 @@ def main():
                   "al llegar la respuesta habla con Sabina")
         pg.wait_for_timeout(1500)
         comprobar(turno(pg) == "reposo" and pg.is_enabled("#airi-chat-micro-hablar"), "al terminar vuelve a «En reposo»")
+        # Enviar la transcripción con Enter (sin el botón) también limpia el aviso
+        pg.click("#airi-chat-micro-hablar"); pg.wait_for_timeout(700)
+        gemini.retraso = 0; gemini.respuesta = respuesta("Vale.")
+        pg.focus("#airi-chat-input"); pg.keyboard.press("Enter"); pg.wait_for_timeout(300)
+        comprobar("Transcripción lista" not in aviso(pg) and not visible(pg, "#airi-chat-micro-revision"),
+                  "al enviar con Enter, la revisión y su aviso también desaparecen")
+        pg.click("#airi-chat-voz-detener") if visible(pg, "#airi-chat-voz-detener") else None
+        # Versiones visibles: chat v0.6 y motor de análisis v0.4, sin confundirlas
+        pie = pg.inner_text("footer"); inicio = pg.evaluate("document.querySelector('#inicio p').textContent")
+        comprobar("AIRI v0.6" in pie and "Motor de análisis v0.4" in pie and "Chat con voz v0.6" in pie
+                  and "motor de análisis del agua v0.4" in inicio and pg.title() == "AIRI · Prototipo v0.6"
+                  and "v0.6" in pg.inner_text("#chat h2"),
+                  "textos de versión: prototipo y chat v0.6, motor de análisis v0.4")
         # AIRI empieza a hablar mientras escucha: deja de escuchar (no se oye a sí misma)
         ctx.close(); ctx, pg = nueva({"retraso": 3000})
         gemini.retraso = 0; gemini.respuesta = respuesta("Respuesta para escuchar.")

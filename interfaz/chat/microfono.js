@@ -99,6 +99,12 @@
   }
 
   function decir(texto) { if (aviso.textContent !== texto) aviso.textContent = texto; }
+  // Aviso de reposo según el modo (sustituye a los avisos temporales como «Transcripción lista»)
+  function avisoBase() {
+    decir(modo === "remoto" && remotoCasilla.checked
+      ? "Dictado en línea autorizado para esta página. El micrófono solo se activa al pulsar «Hablar»."
+      : MENSAJES_MODO[modo]);
+  }
 
   var MENSAJES_MODO = {
     ninguno: "El dictado por voz no está disponible en este navegador. Puedes seguir escribiendo tus preguntas. " +
@@ -142,11 +148,7 @@
       pintar();
     });
   });
-  remotoCasilla.addEventListener("change", function () {
-    decir(remotoCasilla.checked ? "Dictado en línea autorizado para esta página. El micrófono solo se activa al pulsar «Hablar»."
-                                : MENSAJES_MODO.remoto);
-    pintar();
-  });
+  remotoCasilla.addEventListener("change", function () { avisoBase(); pintar(); });
 
   // ── Escucha ──
   var ERRORES = {
@@ -230,8 +232,9 @@
 
   // Se detiene al ocultar la pestaña, al empezar a hablar AIRI o al reiniciar la conversación
   document.addEventListener("visibilitychange", function () { if (document.hidden) parar(true); });
-  document.addEventListener("airi:chat-pregunta", function () { revision.hidden = true; pintar(); });
-  document.addEventListener("airi:chat-reiniciar", function () { parar(true); revision.hidden = true; pintar(); });
+  // Al enviar la pregunta (con «Enviar transcripción», «Enviar» o Enter) la transcripción deja de estar pendiente
+  document.addEventListener("airi:chat-pregunta", function () { revision.hidden = true; avisoBase(); pintar(); });
+  document.addEventListener("airi:chat-reiniciar", function () { parar(true); revision.hidden = true; avisoBase(); pintar(); });
   if (voz) voz.alCambiar(function () { if (voz.hablando && escuchando) parar(true); pintar(); });
   new MutationObserver(pintar).observe(log, { attributes: true, attributeFilter: ["aria-busy"] });
 

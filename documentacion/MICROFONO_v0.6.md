@@ -1,7 +1,20 @@
 # AIRI v0.6 · E5–E6: dictado por micrófono, ajustes, privacidad y accesibilidad
 
-**Rama:** `feature/voz-conversacion-airi-v0.6`. **Fecha:** 13-11-2026. **Estado:** implementado y probado con un
-reconocimiento de voz **simulado**. Falta la comprobación con el micrófono real en el equipo de la persona responsable.
+**Rama:** `feature/voz-conversacion-airi-v0.6`. **Fecha:** 13-11-2026. **Estado:** implementado, probado
+automáticamente con un reconocimiento de voz **simulado** y **comprobado manualmente por la persona responsable con
+micrófono real en Google Chrome sobre Windows** (13-11-2026).
+
+## Prueba real (persona responsable, Chrome en Windows, 13-11-2026)
+
+- El micrófono reconoció su voz en español y la pregunta se transcribió correctamente.
+- Pudo revisar la transcripción antes de enviarla, y Gemini (real) recibió la pregunta y respondió.
+- AIRI leyó la respuesta con Microsoft Sabina (es-MX), y la mascota pensó, habló y volvió a reposo.
+- «Escuchar», «Detener voz» y «Nueva conversación» funcionaron.
+- **Error detectado:** el aviso «Transcripción lista…» seguía visible después de enviar la pregunta. Se reprodujo con
+  una prueba automática (2 comprobaciones fallaban con la versión anterior) y se corrigió: al enviar, por cualquier
+  vía, o al empezar una conversación nueva, vuelve el aviso de reposo del modo actual.
+
+Es una prueba en un solo equipo. No garantiza el comportamiento en otros navegadores, sistemas o micrófonos.
 
 ## Qué hace
 
@@ -75,7 +88,13 @@ el chat escrito funciona igual.
 - **Se admiten las dos variantes de la interfaz** de reconocimiento en el dispositivo:
   - la actual, `available()` e `install()`;
   - la anterior, `availableOnDevice()` e `installOnDevice()`.
-- **El título de la pestaña** pasó de «v0.5 experimental» a «v0.6 experimental».
+- **Textos de versión:** distinguen el prototipo y el chat con voz (**v0.6**) del motor de análisis del agua
+  (**v0.4**, sin cambios). Se actualizaron:
+  - el título de la página;
+  - la bienvenida;
+  - el pie de página;
+  - el título de la pestaña del chat;
+  - la página de redirección.
 
 ## Archivos
 
@@ -85,7 +104,7 @@ el chat escrito funciona igual.
 | `interfaz/chat/chat.css` | Bloque «v0.6 E5–E6» al final |
 | `interfaz/prototipo/index.html` | Carga `microfono.js` después de `voz-chat.js`; título «v0.6 experimental» |
 | `interfaz/chat/pruebas/simulador_reconocimiento.js` | **Nuevo.** `SpeechRecognition` simulado (sin micrófono real) |
-| `interfaz/chat/pruebas/e2e_microfono.py` | **Nuevo.** 38 comprobaciones en Chrome |
+| `interfaz/chat/pruebas/e2e_microfono.py` | **Nuevo.** 41 comprobaciones en Chrome |
 | `interfaz/chat/pruebas/e2e_chat.py` | La comprobación de altura táctil ignora los botones ocultos del dictado |
 
 Sin cambios: el servidor, `chat.js`, `voz.js`, `voz-chat.js`, la mascota, el motor v0.4, sus umbrales, el grafo y las
@@ -94,7 +113,7 @@ fichas de especies.
 ## Pruebas
 
 ```bash
-python interfaz/chat/pruebas/e2e_microfono.py   # 38 comprobaciones (Gemini, voz y reconocimiento simulados)
+python interfaz/chat/pruebas/e2e_microfono.py   # 41 comprobaciones (Gemini, voz y reconocimiento simulados)
 ```
 
 Cubre:
@@ -108,7 +127,9 @@ Cubre:
 - los errores `not-allowed`, `no-speech`, `audio-capture` y `network`;
 - el navegador sin soporte;
 - el teclado, el movimiento reducido (del sistema y de la mascota) y el celular;
-- que no hay errores de JavaScript y que la clave no aparece en el registro.
+- que no hay errores de JavaScript y que la clave no aparece en el registro;
+- que el aviso de la transcripción desaparece al enviar, con el botón o con Enter;
+- los textos de versión: prototipo y chat v0.6, motor de análisis v0.4.
 
 ## Prueba manual en Windows (Chrome y Sabina)
 
@@ -120,9 +141,10 @@ Ver la sección «Cómo probarlo» del informe de E7 o el README de `chat/`. Res
 
 ## Limitaciones
 
-- **No se ha comprobado con un micrófono real.** Todo lo anterior se probó con un reconocimiento simulado. La
-  disponibilidad del español en el equipo, la calidad de la transcripción y el comportamiento del permiso dependen de
-  Chrome y de Windows.
+- **Prueba real en un solo equipo** (Chrome en Windows). La disponibilidad del reconocimiento en el equipo, la
+  calidad de la transcripción y el permiso dependen del navegador, del sistema y del micrófono de cada persona.
+- **Nivel de reconocimiento sin confirmar:** falta anotar cuál ofreció Chrome en esa prueba (en el equipo, descarga
+  o en línea).
 - El navegador integrado de la app de Claude (Electron) no tenía reconocimiento de español en el equipo según el
   diagnóstico de E1. Chrome puede usar el reconocimiento en línea de Google, solo con la autorización explícita.
 - **Edge:** según caniuse, su reconocimiento puede no disparar eventos. Si falla, el chat escrito sigue disponible.
