@@ -185,7 +185,7 @@ def main():
         comprobar(all(a <= 95 for a in anchos), f"celular: las burbujas caben en la conversación (% de ancho {anchos})")
         ancho = pg.evaluate("[document.documentElement.scrollWidth, innerWidth]")
         comprobar(ancho[0] <= ancho[1], f"celular: sin desplazamiento horizontal {ancho}")
-        botones = pg.eval_on_selector_all("#airi-chat-form button", "l => l.map(b => b.getBoundingClientRect().height)")
+        botones = pg.eval_on_selector_all("#airi-chat-form button", "l => l.filter(b => b.offsetParent !== null).map(b => b.getBoundingClientRect().height)")   # v0.6: hay botones de dictado ocultos
         comprobar(all(h >= 40 for h in botones), f"celular: botones con altura táctil suficiente {botones}")
         pg.screenshot(path=str(cap / "02_celular_chat.png"))
         gemini.respuesta = respuesta("**Alimentos para juveniles:**\n\n| Alimento | Frecuencia orientativa | Observaciones |\n"

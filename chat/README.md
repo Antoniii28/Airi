@@ -134,9 +134,14 @@ Consulta del 12-11-2026:
 ## Pruebas
 
 ```bash
-python -m unittest discover -s chat/pruebas -v    # 28 pruebas del servidor (Gemini simulado, sin internet)
+python -m unittest discover -s chat/pruebas -v    # 29 pruebas del servidor (Gemini simulado, sin internet)
 node --test interfaz/chat/pruebas/markdown.test.js # 8 pruebas del Markdown seguro (incluye intentos de XSS)
 python interfaz/chat/pruebas/e2e_chat.py          # 35 comprobaciones en Chrome (escritorio, celular y movimiento reducido)
+# v0.6 (voz)
+node --test interfaz/chat/pruebas/habla.test.js    # 8 pruebas del texto para hablar
+python interfaz/chat/pruebas/e2e_voz_chat.py      # 24 comprobaciones de lectura en voz alta
+python interfaz/chat/pruebas/e2e_pensando.py      # 17 comprobaciones de la mascota «pensando»
+python interfaz/chat/pruebas/e2e_microfono.py     # 38 comprobaciones del dictado (reconocimiento simulado)
 ```
 
 Las pruebas usan un **Gemini simulado** en `127.0.0.1` y una clave ficticia; no consumen cuota ni necesitan internet.
@@ -153,9 +158,10 @@ Las pruebas usan un **Gemini simulado** en `127.0.0.1` y una clave ficticia; no 
     - reconoció que no tiene búsqueda web, sin inventar fuentes.
   - Son pruebas puntuales: las respuestas de un modelo pueden variar y no sustituyen a una evaluación sistemática.
 - **Sin búsqueda web ni citas:** el modelo no consulta fuentes en tiempo real.
-- **Voz (v0.6, en desarrollo en `feature/voz-conversacion-airi-v0.6`):** lectura de respuestas con Sabina y animación
-  de habla; ver [`documentacion/VOZ_CHAT_v0.6.md`](../documentacion/VOZ_CHAT_v0.6.md). Dictado y animación de
-  pensamiento: pendientes.
+- **Voz (v0.6):** lectura de respuestas con Sabina ([`VOZ_CHAT_v0.6.md`](../documentacion/VOZ_CHAT_v0.6.md)),
+  mascota «pensando» ([`PENSANDO_v0.6.md`](../documentacion/PENSANDO_v0.6.md)) y dictado por micrófono con revisión
+  antes de enviar ([`MICROFONO_v0.6.md`](../documentacion/MICROFONO_v0.6.md)). El dictado se probó con un
+  reconocimiento simulado; falta comprobarlo con un micrófono real.
 - **Solo local:** no hay despliegue público. Un servidor en internet necesitaría autenticación, HTTPS y control de
   gasto.
 

@@ -72,3 +72,26 @@
   #airi-chat-form button, .airi-chat-voz button { flex: 1 1 auto; min-height: 44px; }
   .airi-chat-escuchar { min-height: 40px; }
 }
+
+/* ═══ v0.6 E5–E6 · Dictado por micrófono (microfono.js) ═══════════════════════ */
+#chat .airi-chat-micro { width: 100%; display: flex; flex-direction: column; gap: 6px; margin: 2px 0; }
+.airi-chat-micro-fila, .airi-chat-micro-revision { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.airi-chat-micro button { min-height: 40px; }
+#airi-chat-micro-hablar[aria-pressed="true"] { background: #0873b0; color: #fff; border-color: #0873b0; }
+.airi-chat-micro button:focus-visible { outline: 3px solid #0982C7; outline-offset: 2px; }
+.airi-chat-turno { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: #47667b; }
+.airi-chat-turno::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #9fb8c6; flex: none; }
+.airi-chat-turno[data-turno="escuchando"] { color: #0873b0; font-weight: 600; }
+.airi-chat-turno[data-turno="escuchando"]::before { background: #0982C7; animation: airi-chat-latido 1.6s ease-in-out infinite; }
+.airi-chat-turno[data-turno="pensando"]::before { background: #80EAF2; }
+.airi-chat-turno[data-turno="hablando"]::before { background: #F28C28; }
+@keyframes airi-chat-latido { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .airi-chat-turno::before { animation: none !important; } }
+body:has(.airi-m-reducido) .airi-chat-turno::before { animation: none !important; }   /* «Reducir animaciones» de la mascota */
+#chat .airi-chat-micro-aviso { margin: 0; font-size: .9rem; color: #47667b; }
+#chat .airi-chat-micro-aviso:empty { display: none; }
+#chat .airi-chat-micro-remoto { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; font-size: .9rem; line-height: 1.4; }
+#chat .airi-chat-micro-remoto input { width: auto; margin-top: 3px; flex: none; }
+.airi-chat-micro-revision { padding: 8px 10px; border-radius: 10px; background: #f1fbfd; border: 1px solid #b9d9e6; font-size: .9rem; }
+.airi-chat-micro [hidden] { display: none !important; }
+@media (max-width: 600px) { .airi-chat-micro button { flex: 1 1 auto; min-height: 44px; } }
