@@ -42,8 +42,12 @@ export async function huellaCodigo(texto) {
  *   exacta    → trim() tal cual: para huellas calculadas a mano sobre el texto original (mayúsculas y minúsculas).
  * Cada forma tiene que coincidir con una huella ya cargada en AIRI_CODIGOS: no se acepta ningún código nuevo.
  */
+// Caracteres de control C0 (incluidos tabulador y saltos de línea), DEL y C1: un código nunca los lleva.
+const CONTROL = /[\u0000-\u001F\u007F-\u009F]/;
+
 export function formasCodigo(texto) {
   if (typeof texto !== "string" || texto.length > 200) return [];
+  if (CONTROL.test(texto.trim())) return [];   // revisión 13-11-2026: sin caracteres de control en ninguna forma
   const formas = [];
   const canonica = normalizarCodigo(texto);
   if (canonica) formas.push(["canonica", canonica]);

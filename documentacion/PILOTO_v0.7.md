@@ -101,7 +101,7 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
 
 | Suite | Resultado |
 |---|---|
-| Worker, cuotas, códigos (generados y manuales), archivos estáticos y despliegue verificable (`cd publico && node --test`) | **51/51** |
+| Worker, cuotas, códigos (generados y manuales), archivos estáticos y despliegue verificable (`cd publico && node --test`) | **57/57** |
 | Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular; incluye navegación con LF y CRLF y variantes del código | **37/37** |
 | E1, cuotas del servidor local (`python -m unittest discover -s tests`) | 8/8 |
 | Servidor local (`chat/pruebas`) | 29/29 |
@@ -309,6 +309,19 @@ npx wrangler tail -c wrangler.produccion.jsonc               # en otra ventana, 
   el chat en una emergencia con la configuración de producción. Ahora acepta `"0"` o `"1"` (este último con aviso).
 - **Pruebas:** 2 nuevas en `codigos.test.mjs`. La de códigos manuales **falla con el `worker.js` de `main`** y pasa
   con la corrección.
+- **Revisión final de seguridad del PR #13:**
+  - **Defecto demostrado:** las formas «anterior» y «exacta» aceptaban caracteres de control (NUL, ESC, tabulador o
+    salto de línea internos, DEL, C1). Ahora `formasCodigo()` descarta toda entrada que los contenga, igual que la
+    interfaz. La prueba falla con la versión anterior.
+  - **Límites:** de 8 a 64 caracteres por forma y entradas de más de 200 descartadas (probado).
+  - **Variantes tipográficas:** ß→SS y ligaduras solo producen formas del mismo código, como hacía el Worker antes;
+    un código distinto se rechaza (probado).
+  - **Coherencia interfaz/Worker:** lo que envía la interfaz siempre es evaluable por el Worker (probado).
+  - **`--mostrar-linea-corregida`:** advierte que la salida es el valor completo del secreto y que la herramienta no
+    lo cambia. Sin esa opción no se imprime ninguna huella (probado).
+  - **Cierre de emergencia:** con `AIRI_CHAT_APAGADO="1"`, la configuración de producción pasa la revisión, el
+    Worker responde `activo:false` sin sitekey y `/api/chat` da 503 sin llamar a Turnstile ni a Gemini, con los
+    mismos límites y región. Cualquier otro valor distinto de `"0"` y `"1"` cancela el despliegue (probado).
 
 ### Bloqueos pendientes para publicar 0.7.3 (13-11-2026)
 
@@ -318,6 +331,16 @@ npx wrangler tail -c wrangler.produccion.jsonc               # en otra ventana, 
 | `dry-run` de producción | El entorno de Claude es un contenedor Linux sin Wrangler, sin sesión de Cloudflare y sin acceso a `workers.dev` | Responsable, en Windows |
 | Coincidencia del código real | Solo verificable con la línea de `AIRI_CODIGOS` que se cargó (`comprobar-codigo.mjs`) | Responsable |
 | Despliegue y verificación real (Turnstile, Gemini, registros) | Requiere autorización y acceso a Cloudflare | Responsable, con autorización |
+
+### Procedimiento de recuperación (producción)
+
+| Situación | Acción (desde `publico/`, con autorización) |
+|---|---|
+| El despliegue falla en el build | No se publica nada. Leer el motivo que imprime la revisión, corregir el archivo y repetir el `--dry-run` |
+| Tras publicar, el chat da errores o hay abuso | Cierre inmediato: `AIRI_CHAT_APAGADO="1"` en `wrangler.produccion.jsonc` y `npx wrangler deploy -c wrangler.produccion.jsonc`. La interfaz y el motor v0.4 siguen disponibles |
+| La versión nueva falla y hay que volver atrás | `npx wrangler deployments list -c wrangler.produccion.jsonc` para ver las versiones y `npx wrangler rollback -c wrangler.produccion.jsonc` para restaurar la anterior (confirmar la sintaxis con `--help` de la versión instalada) |
+| Sospecha de fuga de la clave de Gemini | Revocar la clave en AI Studio, crear otra y `npx wrangler secret put GEMINI_API_KEY -c wrangler.produccion.jsonc` |
+| Código de un participante comprometido | Quitar su `id:huella` de `AIRI_CODIGOS` y volver a cargar el secreto |
 
 **Versiones:** el motor de análisis del agua sigue en **v0.4**, sin cambios. El chat con voz es **v0.6**. El piloto
 público (Worker e interfaz servida por Cloudflare) es **0.7.3**, que aún **no está desplegado**: producción ejecuta

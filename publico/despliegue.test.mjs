@@ -124,3 +124,22 @@ test("wrangler.produccion.jsonc: Worker existente «airi», sin secretos, y el d
   // Cerrar el chat en producción (emergencia) debe poder desplegarse
   assert.deepEqual(revisarProduccion(completa.replace('"AIRI_CHAT_APAGADO": "0"', '"AIRI_CHAT_APAGADO": "1"')), []);
 });
+
+test("cierre de emergencia: con AIRI_CHAT_APAGADO=\"1\" el chat queda cerrado, la interfaz sigue y los controles no cambian", async () => {
+  const { revisarProduccion } = await import("./preparar-estaticos.mjs");
+  const cfg = leerJsonc("wrangler.produccion.jsonc");
+  const cerrado = { ...cfg.vars, AIRI_CHAT_APAGADO: "1", AIRI_TURNSTILE_SITEKEY: "0x4AAAAAAAficticiaXYZ" };
+  const texto = readFileSync(join(AQUI, "wrangler.produccion.jsonc"), "utf-8")
+    .replace("PEGAR-AQUI-LA-SITEKEY-PUBLICA", "0x4AAAAAAAficticiaXYZ").replace('"AIRI_CHAT_APAGADO": "0"', '"AIRI_CHAT_APAGADO": "1"');
+  assert.deepEqual(revisarProduccion(texto), []);
+  for (const v of ["", "true", "2", "abierto"])
+    assert.match(revisarProduccion(texto.replace('"AIRI_CHAT_APAGADO": "1"', `"AIRI_CHAT_APAGADO": "${v}"`)).join(" "), /APAGADO/, v);
+  // Worker con esas variables: estado inactivo sin sitekey, chat 503 sin llamar a nada, límites y región iguales
+  const env = await entorno(cerrado);
+  const red = redSimulada();
+  const est = await (await manejar(peticion({ metodo: "GET", ruta: "/api/estado" }), env)).json();
+  assert.deepEqual([est.activo, est.turnstile_sitekey], [false, null]);
+  const r = await manejar(peticion(), env, {}, { fetch: red.fetch });
+  assert.equal(r.status, 503); assert.equal(red.turnstile.length + red.gemini.length, 0);
+  assert.deepEqual([cerrado.AIRI_PAISES_PERMITIDOS, cerrado.AIRI_LIMITE_MINUTO, cerrado.AIRI_LIMITE_DIA, cerrado.AIRI_FALLOS_MAX_HORA], ["MX", "5", "30", "10"]);
+});

@@ -48,6 +48,9 @@ rl.question("Código de acceso a comprobar: ", async (codigo) => {
       console.log("Solución sin cambiar el código: sustituir esa huella en AIRI_CODIGOS por la correcta y volver a cargar el secreto.");
       if (process.argv.includes("--mostrar-linea-corregida")) {
         const corregida = [...mapa].map(([h, n]) => `${n}:${n === id ? (canonico ? sha(canonico) : sha(t.toUpperCase())) : h}`).join(",");
+        console.log("⚠ SALIDA SENSIBLE: la línea siguiente es el valor COMPLETO del secreto AIRI_CODIGOS (todas las huellas).\n" +
+          "  No la compartas, no la pegues en chats ni en archivos del repositorio. Esta herramienta NO cambia el secreto:\n" +
+          "  cárgala tú, solo si estás autorizado, con «npx wrangler secret put AIRI_CODIGOS -c wrangler.produccion.jsonc».");
         console.log("Línea corregida para AIRI_CODIGOS:\n" + corregida);
       } else console.log("Vuelve a ejecutar con --mostrar-linea-corregida para obtener la línea corregida.");
       process.exit(1);
