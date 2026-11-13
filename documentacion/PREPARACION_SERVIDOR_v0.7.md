@@ -6,6 +6,7 @@
 - `chat/control_uso.py`: contador en memoria, protegido por bloqueo, con cuotas por minuto, por día y global por día.
 - `chat/servidor.py`: valida la conversación y la clave antes de reservar cuota; devuelve HTTP 429 al alcanzar límites y HTTP 503 si está apagado.
 - `tests/test_control_uso_v07.py`: pruebas de límites, reinicio diario y apagado, sin llamadas a Gemini.
+- `tests/test_servidor_limites_v07.py`: integración HTTP con Gemini simulado; verifica 429 y 503.
 
 ## Configuración local opcional
 Variables de entorno antes de arrancar `python chat/servidor.py`:
@@ -27,7 +28,7 @@ Los límites diarios usan **fecha UTC** y se reinician también al reiniciar el 
 ## Verificación pendiente
 Ejecutar desde la raíz del repositorio:
 ```powershell
-python -m unittest discover -s tests -p "test_control_uso_v07.py" -v
+python -m unittest discover -s tests -p "test_*v07.py" -v
 python -m unittest discover -s tests -v
 ```
 Después ejecutar las pruebas de JavaScript y navegador que ya usa el proyecto, y comprobar manualmente con Gemini simulado que el chat devuelve 429/503 y conserva los controles de privacidad. **No fusionar sin regresión completa.**
