@@ -51,8 +51,10 @@ def puerto_libre():
         return s.getsockname()[1]
 
 
-def arrancar(**variables):
+def arrancar(dist=None, **variables):
     puerto = puerto_libre()
+    if dist:
+        variables["DEV_DIST"] = str(dist)
     entorno = {**os.environ, "DEV_PUERTO": str(puerto), **variables}
     proc = subprocess.Popen(["node", str(RAIZ / "publico" / "dev" / "servidor-dev.mjs")], env=entorno,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -65,6 +67,39 @@ def arrancar(**variables):
             time.sleep(0.1)
     proc.kill()
     raise RuntimeError("No arrancó la vista previa: " + (proc.stdout.read() if proc.stdout else ""))
+
+
+def copia_crlf(destino):
+    """Copia interfaz/ e identidad-visual/ con saltos CRLF (como una copia de Git en Windows) y la prepara."""
+    import shutil
+    for d in ("interfaz", "identidad-visual"):
+        shutil.copytree(RAIZ / d, destino / d)
+    for f in (destino / "interfaz").rglob("*"):
+        if f.suffix in (".html", ".js", ".css"):
+            f.write_bytes(f.read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n"))
+    dist = destino / "dist"
+    subprocess.run(["node", str(RAIZ / "publico" / "preparar-estaticos.mjs")], check=True, capture_output=True,
+                   env={**os.environ, "AIRI_ESTATICOS_ORIGEN": str(destino), "AIRI_ESTATICOS_DESTINO": str(dist)})
+    return dist
+
+
+SECCIONES = {"inicio": "Bienvenido a AIRI", "agua": None, "especies": None, "futuro": "Funciones previstas", "chat": "Chat con AIRI"}
+
+
+def navegar_todo(pg, etiqueta):
+    """Regresión: cada botón muestra SOLO su sección, la marca como seleccionada y la mascota no duplica el globo."""
+    pg.goto(pg.url.split("/interfaz")[0] + "/interfaz/prototipo/index.html"); pg.wait_for_timeout(900)
+    fallos = []
+    for tab in ["agua", "especies", "futuro", "chat", "inicio"]:
+        pg.click(f'[data-tab="{tab}"]'); pg.wait_for_timeout(350)
+        visibles = pg.evaluate("[...document.querySelectorAll('main section.panel')].filter(s => !s.classList.contains('hidden')).map(s => s.id)")
+        marcado = pg.get_attribute(f'[data-tab="{tab}"]', "aria-selected")
+        globos = pg.evaluate("[...document.querySelectorAll('.airi-m-globo')].filter(e => e.offsetParent).length")
+        if visibles != [tab] or marcado != "true" or globos > 1:
+            fallos.append((tab, visibles, marcado, globos))
+        if tab == "chat" and not pg.is_visible("#airi-chat-codigo"):
+            fallos.append(("chat", "sin formulario del piloto"))
+    comprobar(not fallos, f"navegación ({etiqueta}): los 5 botones muestran su sección, sin globos duplicados {fallos}")
 
 
 def main():
@@ -106,6 +141,18 @@ def main():
             return pg.inner_text("#airi-chat-log")
 
         ultimo = lambda pg: pg.evaluate("[...document.querySelectorAll('#airi-chat-log .airi-chat-msg')].at(-1).innerText")
+
+        # ── 0. Regresión de navegación con LF y con CRLF (fallo del 13-11-2026 en Windows) ──
+        with tempfile.TemporaryDirectory() as tmp:
+            dist_crlf = copia_crlf(Path(tmp))
+            for etiqueta, dist in (("archivos LF", None), ("archivos CRLF, como en Windows", dist_crlf)):
+                proc, url = arrancar(dist=dist); procesos.append(proc)
+                errores_previos = len(errores)
+                ctx, pg = nueva(url, consentir=False)
+                navegar_todo(pg, etiqueta)
+                nuevos = [e for e in errores[errores_previos:] if "Content Security Policy" in e or "Refused" in e or "404" in e]
+                comprobar(not nuevos, f"navegación ({etiqueta}): sin violaciones de CSP ni recursos 404 {nuevos[:1]}")
+                ctx.close(); proc.terminate()
 
         # ── 1. Carga, CSP y versiones anteriores ─────────────────────────────
         proc, url = arrancar(); procesos.append(proc)

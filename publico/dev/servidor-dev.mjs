@@ -5,15 +5,15 @@
 // Simula lo que hace Cloudflare en la entrada: termina TLS (la petición se trata como https://airi-piloto.example),
 // fija CF-Connecting-IP con la IP real del socket (descarta la del cliente), añade request.cf.country y aplica _headers.
 // Códigos ficticios de prueba: PRUEB-AFICT-ICIA0-00001 (p01) y PRUEB-AFICT-ICIA0-00002 (p02).
-// Variables opcionales: DEV_PUERTO, DEV_PAIS (MX), DEV_APAGADO=1, DEV_LIMITE_MINUTO, DEV_GEMINI=429|error|lento
+// Variables opcionales: DEV_DIST (carpeta de estáticos), DEV_PUERTO, DEV_PAIS (MX), DEV_APAGADO=1, DEV_LIMITE_MINUTO, DEV_GEMINI=429|error|lento
 import { createServer } from "node:http";
 import { readFileSync, existsSync, statSync } from "node:fs";
-import { dirname, join, normalize, extname } from "node:path";
+import { dirname, join, normalize, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { manejar } from "../worker.js";
 import { entorno, espacioCuotas, ORIGEN } from "../pruebas/apoyo.mjs";
 
-const DIST = join(dirname(fileURLToPath(import.meta.url)), "..", "dist");
+const DIST = process.env.DEV_DIST ? resolve(process.env.DEV_DIST) : join(dirname(fileURLToPath(import.meta.url)), "..", "dist");
 if (!existsSync(join(DIST, "_headers"))) { console.error("Primero ejecuta: node publico/preparar-estaticos.mjs"); process.exit(1); }
 const PUERTO = Number(process.env.DEV_PUERTO || 8787);
 const LOCAL = `http://127.0.0.1:${PUERTO}`;

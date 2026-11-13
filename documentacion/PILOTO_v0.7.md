@@ -101,8 +101,8 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
 
 | Suite | Resultado |
 |---|---|
-| Worker y cuotas (`cd publico && node --test`) | **32/32** |
-| Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular | **26/26** |
+| Worker, cuotas y archivos estáticos (`cd publico && node --test`) | **35/35** |
+| Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular; incluye navegación con LF y con CRLF | **30/30** |
 | E1, cuotas del servidor local (`python -m unittest discover -s tests`) | 8/8 |
 | Servidor local (`chat/pruebas`) | 29/29 |
 | Motor v0.4 (Python) | 52/52 |
@@ -121,6 +121,35 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
   Gemini simulado.
 - **Corrección:** esas pruebas amplían los límites solo en su propio proceso. El servidor y sus valores
   predeterminados de E1 no se tocaron.
+
+### Incidencia corregida: la navegación no funcionaba en Windows (13-11-2026)
+
+- **Síntoma:** prueba real del responsable en Chrome sobre Windows, con la vista previa
+  `http://127.0.0.1:8787/interfaz/prototipo/index.html`:
+  - ningún botón cambiaba de sección y la página se quedaba en «Bienvenido a AIRI»;
+  - no aparecía el chat ni el acceso con código;
+  - la mascota mostraba dos globos con el mismo mensaje.
+- **Reproducción:** con una copia del proyecto con saltos de línea CRLF, la consola de Chrome muestra «Executing inline
+  script violates the following Content Security Policy directive…».
+- **Causa exacta:**
+  1. En Windows, Git entrega los archivos con CRLF.
+  2. `preparar-estaticos.mjs` calculaba la huella SHA-256 del script en línea de `index.html` sobre ese texto con
+     CRLF.
+  3. El analizador HTML del navegador convierte CRLF en LF antes de calcular la huella para la CSP.
+  4. Las huellas no coincidían, Chrome bloqueaba ese script, y ese script es el que cambia de sección.
+  5. La mascota sí reaccionaba a cada pestaña y mostraba su mensaje en el modo flotante. Como la sección «Inicio»
+     seguía visible, la pecera mostraba el mismo mensaje: de ahí los **dos globos**. No era un fallo de la mascota.
+- **Por qué no lo detectaron las pruebas anteriores:** aquí los archivos tienen LF.
+- **Corrección:** los HTML de `dist` se normalizan a LF y la huella se calcula sobre ese texto, que es el mismo que ve
+  el navegador. También se añadió el icono de la página, porque `/favicon.ico` daba un 404 en la consola. No se
+  cambiaron la interfaz, la mascota, la voz, el micrófono ni el motor.
+- **Regresión añadida:**
+  - `publico/estaticos.test.mjs` (3 pruebas): el mismo proyecto con CRLF y con LF produce la misma CSP.
+  - `e2e_piloto.py` construye la interfaz con LF **y con CRLF** y pulsa los cinco botones. Comprueba que se vea solo
+    su sección, que el botón quede marcado, que no haya globos duplicados, que aparezca el formulario del piloto, y
+    que no haya violaciones de CSP ni 404.
+  - Al anular a propósito la corrección, esas pruebas fallan (0 de 3 en las unitarias; en el navegador fallan las 2
+    comprobaciones con CRLF) con los mismos síntomas.
 
 ## 5. Limitaciones conocidas
 
