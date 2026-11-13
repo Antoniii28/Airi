@@ -1,20 +1,26 @@
-# Paola — Interfaz y documentación de uso
+# Paola — Interfaz y guía de usuario
 
-**Rama:** `equipo/paola-interfaz-documentacion`  
-**Objetivo:** integrar y presentar con claridad fichas, alertas y compatibilidad en la interfaz existente de AIRI.
+**Rama asignada:** `equipo/paola-interfaz-documentacion` (comprobar que existe).  
+**Objetivo exclusivo:** mejorar cómo se muestran en la interfaz los datos de especies, resultados del motor y compatibilidad, conservando las funciones existentes.
 
-## Punto de partida
-Revisar `interfaz/prototipo/`, `interfaz/mascota/`, `interfaz/chat/`, `identidad-visual/` y pruebas visuales existentes. El piloto público ya está desplegado; no crear otra interfaz desde cero.
+## Revisar primero
+`interfaz/prototipo/`, `interfaz/mascota/`, `interfaz/chat/`, `identidad-visual/` y pruebas de navegador. No reconstruir la aplicación: ya existe una interfaz funcional.
 
-## Actividades
-1. Mejorar navegación, legibilidad, diseño adaptable y accesibilidad.
-2. Preparar componentes para mostrar fichas y fotografías usando datos de ejemplo hasta recibir las fichas de Brayan.
-3. Preparar vista de compatibilidad con estados claros: compatible, precaución, incompatible y sin datos.
-4. Conservar mensajes de alertas y faltantes del motor, sin ocultar advertencias.
-5. Preparar capturas y guía de uso para la entrega, con pruebas en escritorio y móvil.
+## Tareas concretas
+1. Identificar pantallas actuales y problemas verificables de legibilidad, navegación, móvil o accesibilidad; proponer cambios pequeños.
+2. Preparar presentación de fichas y fotos con **datos de prueba** conforme al contrato acordado con Brayan. Incluir fuente y texto alternativo para fotos.
+3. Preparar visualización de resultados de compatibilidad del módulo de Yair: estado, motivos, fuentes y datos faltantes. No calcular reglas en la UI.
+4. Mantener visibles los resultados del motor de José: alertas, incertidumbre, referencias faltantes y recomendaciones.
+5. Validar escritorio y móvil, accesibilidad básica, funcionamiento de pestañas, mascota y chat existente. Documentar uso con capturas.
 
-## Entrega
-Cambios de interfaz con capturas antes/después, pruebas y guía de uso. PR visual revisable **22 nov**; documentación y pruebas finales **29 nov**.
+## Archivos permitidos
+`interfaz/prototipo/`, estilos/componentes de presentación y guía de uso. Modificaciones de `interfaz/chat/`, `interfaz/mascota/`, `publico/` o archivos generados requieren acuerdo previo para evitar romper el piloto.
 
-## Restricciones
-No cambiar lógica del motor ni restricciones del piloto sin acuerdo; no publicar nuevas versiones de producción.
+## Entregables verificables
+- PR de interfaz con capturas antes/después.
+- Pruebas de navegación y visualización de datos faltantes y alertas.
+- Guía breve para usar las nuevas pantallas.
+
+**PR revisable:** 22 nov. **Validación y guía:** 29 nov, según cronograma oficial.
+
+**No hacer:** editar fichas biológicas, motor, compatibilidad, restricciones de acceso o despliegue de producción.
