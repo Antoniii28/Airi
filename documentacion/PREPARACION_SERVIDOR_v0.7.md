@@ -1,11 +1,14 @@
 # AIRI v0.7 — E1: controles preventivos del servidor local
 
-**Estado:** implementación en rama, pendiente de ejecutar las pruebas en el entorno del proyecto. **No apto para publicación.**
+**Estado:** fusionado (PR #9). Pruebas E1 8/8 (13-11-2026). **No apto para publicación**: el servidor local sigue escuchando solo en 127.0.0.1.
+
+> **Efecto en las pruebas anteriores (corregido el 13-11-2026):** los límites predeterminados (5 por minuto) hacían fallar pruebas de v0.5–v0.6 que envían muchas preguntas al Gemini simulado. Esas pruebas (`chat/pruebas/test_servidor.py`, `interfaz/chat/pruebas/e2e_chat.py` y las que lo reutilizan) amplían ahora los límites solo en su propio proceso. El servidor y sus valores predeterminados no cambian.
 
 ## Qué se añadió
 - `chat/control_uso.py`: contador en memoria, protegido por bloqueo, con cuotas por minuto, por día y global por día.
 - `chat/servidor.py`: valida la conversación y la clave antes de reservar cuota; devuelve HTTP 429 al alcanzar límites y HTTP 503 si está apagado.
 - `tests/test_control_uso_v07.py`: pruebas de límites, reinicio diario y apagado, sin llamadas a Gemini.
+- `tests/test_servidor_limites_v07.py`: integración HTTP con Gemini simulado; verifica 429 y 503.
 
 ## Configuración local opcional
 Variables de entorno antes de arrancar `python chat/servidor.py`:
@@ -27,7 +30,7 @@ Los límites diarios usan **fecha UTC** y se reinician también al reiniciar el 
 ## Verificación pendiente
 Ejecutar desde la raíz del repositorio:
 ```powershell
-python -m unittest discover -s tests -p "test_control_uso_v07.py" -v
+python -m unittest discover -s tests -p "test_*v07.py" -v
 python -m unittest discover -s tests -v
 ```
 Después ejecutar las pruebas de JavaScript y navegador que ya usa el proyecto, y comprobar manualmente con Gemini simulado que el chat devuelve 429/503 y conserva los controles de privacidad. **No fusionar sin regresión completa.**

@@ -7,6 +7,12 @@ Arranca el servidor REAL (chat/servidor.py) en un puerto libre, conectado a un G
     python interfaz/chat/pruebas/e2e_chat.py [--chrome RUTA] [--capturas CARPETA]
 """
 import argparse
+import os
+# v0.7 E1 añadió cuotas locales (5/min, 30/día, 100/día global) al servidor. Estas pruebas de v0.5–v0.6 envían
+# muchas preguntas seguidas a un Gemini SIMULADO a propósito: se amplían los límites SOLO en el proceso de prueba.
+# Las cuotas se prueban por separado en tests/test_*v07.py.
+for _var, _valor in (("AIRI_LIMITE_MINUTO", "100000"), ("AIRI_LIMITE_DIA", "100000"), ("AIRI_LIMITE_GLOBAL_DIA", "100000")):
+    os.environ.setdefault(_var, _valor)
 import io
 import sys
 import tempfile

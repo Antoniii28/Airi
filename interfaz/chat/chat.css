@@ -95,3 +95,14 @@ body:has(.airi-m-reducido) .airi-chat-turno::before { animation: none !important
 .airi-chat-micro-revision { padding: 8px 10px; border-radius: 10px; background: #f1fbfd; border: 1px solid #b9d9e6; font-size: .9rem; }
 .airi-chat-micro [hidden] { display: none !important; }
 @media (max-width: 600px) { .airi-chat-micro button { flex: 1 1 auto; min-height: 44px; } }
+
+/* ═══ v0.7 · Acceso al piloto cerrado (acceso-publico.js; solo con el Worker) ═══════════════════ */
+#chat .airi-chat-piloto { width: 100%; display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; margin: 4px 0;
+  border: 1px solid #b9d9e6; border-radius: 10px; background: #f1fbfd; }
+#chat .airi-chat-piloto-titulo { margin: 0; font-weight: 700; color: #09284D; }
+#chat .airi-chat-piloto p { margin: 0; }
+#chat .airi-chat-piloto label { font-weight: 600; }
+#airi-chat-codigo { max-width: 360px; min-height: 40px; letter-spacing: .08em; }
+#airi-chat-codigo:focus-visible { outline: 3px solid #0982C7; outline-offset: 2px; }
+.airi-chat-turnstile { min-height: 65px; }
+@media (max-width: 600px) { #airi-chat-codigo { max-width: 100%; min-height: 44px; } }

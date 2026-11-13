@@ -29,7 +29,10 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from control_uso import ControlUso
+try:
+    from .control_uso import ControlUso  # cuando se importa como paquete chat.servidor
+except ImportError:
+    from control_uso import ControlUso   # cuando se ejecuta python chat/servidor.py
 
 RAIZ = Path(__file__).resolve().parents[1]
 HOST = "127.0.0.1"
