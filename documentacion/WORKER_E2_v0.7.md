@@ -1,37 +1,34 @@
-# AIRI v0.7 — E2: prototipo de backend público (sin despliegue)
+# AIRI v0.7 — E2: Worker del piloto y seguridad
 
-**Estado: BLOQUEADO PARA PUBLICACIÓN.** Se añadió un Worker de prueba en `publico/worker.js`, separado del servidor Python. El servidor local, la mascota, el motor y la interfaz no se modifican.
+**Estado:** IMPLEMENTADO y PROBADO CON SIMULACIONES (13-11-2026). **No desplegado y cerrado por defecto.**
+El detalle completo de la arquitectura, la seguridad, las pruebas, las limitaciones y los pasos de publicación está en
+[`PILOTO_v0.7.md`](PILOTO_v0.7.md).
 
-## Qué existe
-- Validación de ruta, método, origen, tipo y tamaño de petición y estructura de conversación.
-- Rechazo de regiones no autorizadas o desconocidas; no se confía en una cabecera de país enviada por el cliente.
-- Código de acceso comprobado en servidor **solo como barrera provisional**. Un código embebido en la interfaz pública sería visible y no sustituye autenticación real.
-- **Fail closed:** incluso con origen, región y código correctos, el Worker devuelve 503 y nunca llama a Gemini.
-- Pruebas de Node para los controles iniciales. No se ha ejecutado ninguna prueba ni desplegado el Worker desde esta sesión.
+## Bloqueos del prototipo anterior y cómo quedaron
 
-## Bloqueos antes de activar el chat
-1. Integrar y probar Turnstile verificando el token en el servidor, con expiración y uso único.
-2. Crear contadores compartidos **atómicos** (p. ej., Durable Object) para límite global y por cliente. No usar KV como contador de cuota atómica.
-3. Establecer identidad del cliente desde metadatos confiables del proveedor, sin confiar en X-Forwarded-For suministrado por usuarios.
-4. Proteger el acceso con un mecanismo adecuado para el piloto; el código de acceso no puede publicarse en HTML ni JS.
-5. Portar de forma verificable el mensaje de sistema, la llamada a Gemini y su manejo de errores, con la clave exclusivamente como secreto del Worker.
-6. Añadir pruebas de seguridad, de concurrencia, regresión completa y revisar las condiciones vigentes de Gemini.
-7. Crear cuenta/proyecto de prueba únicamente con autorización expresa del responsable. No habilitar facturación.
+| Bloqueo anotado en el prototipo | Resultado |
+|---|---|
+| 1. Turnstile verificado en el servidor, con expiración y uso único | Hecho: siteverify con secreto, IP, `idempotency_key`, comprobación de dominio y acción; el token es de un solo uso y la interfaz pide uno nuevo tras cada consulta |
+| 2. Contadores compartidos atómicos (Durable Object, no KV) | Hecho: `ControlCuotasAIRI` (SQLite, plan gratuito) con sección crítica síncrona; prueba de concurrencia y prueba de mutación |
+| 3. Identidad del cliente desde metadatos confiables | Hecho: `CF-Connecting-IP` (huella HMAC) para intentos fallidos; el participante sale del código verificado |
+| 4. Acceso del piloto sin código en HTML o JS | Hecho: códigos personales que escribe cada persona; el Worker solo guarda huellas SHA-256 |
+| 5. Portar las instrucciones, la llamada a Gemini y sus errores; clave como secreto | Hecho: `gemini.js` con prueba de paridad frente a `chat/servidor.py` |
+| 6. Pruebas de seguridad, concurrencia y regresión | Hecho: 32 pruebas del Worker, 26 de navegador del piloto y regresión completa en verde |
+| 7. Cuenta o proyecto solo con autorización; sin facturación | **Pendiente de tu autorización**: no se creó nada |
 
 ## Verificación local
-Desde la raíz:
+
 ```powershell
 cd publico
-node --test worker.test.mjs
+node --test                                  # 32 pruebas (Worker y cuotas)
+node preparar-estaticos.mjs
+node dev/servidor-dev.mjs                    # vista previa SIMULADA en http://127.0.0.1:8787/
 ```
 
-**Nota:** el test de región sin metadatos de Cloudflare comprueba el rechazo seguro. Las pruebas positivas del país requieren un simulador controlado. **No cambiar `AIRI_CHAT_APAGADO` para publicar este prototipo.**
+## Historial
 
-## Continuación: validación defensiva (13-11-2026)
-
-- Se exige alternancia `user/model/user` para evitar historiales malformados.
-- Se rechazan códigos de país inválidos y longitudes declaradas no enteras o excesivas.
-- Se devuelve error controlado si falla la lectura del cuerpo.
-- Se amplían los casos de prueba de validación, regiones simuladas, código de acceso y cierre seguro.
-- **Importante:** estas modificaciones se guardaron en GitHub, pero todavía no se ejecutaron las pruebas nuevas en el Windows del responsable. No se afirma que estén verificadas hasta ejecutar `node --test worker.test.mjs`.
-- **Sigue bloqueado para publicación:** Turnstile real, cuotas atómicas compartidas, autorización del piloto, Gemini, pruebas con Wrangler y despliegue.
+- Prototipo inicial: validación, región, código único provisional y cierre permanente (20 pruebas, todas en verde
+  en el equipo del responsable).
+- 13-11-2026: Turnstile, cuotas atómicas, códigos personales, Gemini, apagado automático, interfaz del piloto, CSP y
+  vista previa local. El código único `AIRI_CODIGO_ACCESO` y la cabecera `x-airi-access` se sustituyeron por
+  `AIRI_CODIGOS` (huellas) y `X-AIRI-Acceso`.

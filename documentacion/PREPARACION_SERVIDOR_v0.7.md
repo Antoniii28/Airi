@@ -1,6 +1,8 @@
 # AIRI v0.7 — E1: controles preventivos del servidor local
 
-**Estado:** implementación en rama, pendiente de ejecutar las pruebas en el entorno del proyecto. **No apto para publicación.**
+**Estado:** fusionado (PR #9). Pruebas E1 8/8 (13-11-2026). **No apto para publicación**: el servidor local sigue escuchando solo en 127.0.0.1.
+
+> **Efecto en las pruebas anteriores (corregido el 13-11-2026):** los límites predeterminados (5 por minuto) hacían fallar pruebas de v0.5–v0.6 que envían muchas preguntas al Gemini simulado. Esas pruebas (`chat/pruebas/test_servidor.py`, `interfaz/chat/pruebas/e2e_chat.py` y las que lo reutilizan) amplían ahora los límites solo en su propio proceso. El servidor y sus valores predeterminados no cambian.
 
 ## Qué se añadió
 - `chat/control_uso.py`: contador en memoria, protegido por bloqueo, con cuotas por minuto, por día y global por día.
