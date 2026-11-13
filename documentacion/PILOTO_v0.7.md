@@ -20,7 +20,7 @@ Navegador (HTTPS)
   interfaz estática de v0.6 + acceso-publico.js (código personal + widget de Turnstile)
   │  POST /api/chat   cabecera X-AIRI-Acceso: <código>   cuerpo: {messages, turnstile}
   ▼
-Cloudflare Worker «airi-piloto» (publico/worker.js)
+Cloudflare Worker «airi» (publico/worker.js; configuración publico/wrangler.produccion.jsonc)
   1. ruta/método → 2. configuración completa (si falta algo: 503) → 3. interruptor AIRI_CHAT_APAGADO="0"
   4. origen exacto → 5. JSON ≤ 64 KB → 6. país de request.cf.country (lista permitida; EEE, Suiza y RU siempre fuera)
   7. conversación válida → 8. huella HMAC de la IP de CF-Connecting-IP: ¿bloqueada por intentos fallidos?
@@ -101,7 +101,7 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
 
 | Suite | Resultado |
 |---|---|
-| Worker, cuotas, códigos, archivos estáticos y despliegue verificable (`cd publico && node --test`) | **49/49** |
+| Worker, cuotas, códigos (generados y manuales), archivos estáticos y despliegue verificable (`cd publico && node --test`) | **57/57** |
 | Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular; incluye navegación con LF y CRLF y variantes del código | **37/37** |
 | E1, cuotas del servidor local (`python -m unittest discover -s tests`) | 8/8 |
 | Servidor local (`chat/pruebas`) | 29/29 |
@@ -282,6 +282,70 @@ npx wrangler tail -c wrangler.produccion.jsonc               # en otra ventana, 
    - `codigo_desconocido`: el código no corresponde a la línea de `AIRI_CODIGOS` → comprobar con
      `comprobar-codigo.mjs` y, si no coincide, generar códigos nuevos y cargar **la línea de esa misma ejecución**.
 
+### Incidencia corregida: códigos escritos a mano rechazados (13-11-2026, aún sin desplegar)
+
+- **Defecto demostrado con credenciales ficticias:**
+  - El PR #11 calculaba la huella solo sobre la forma canónica: quitaba guiones y descartaba los códigos con `_` o `.`.
+  - Un código **escrito a mano** cuya huella se calculó como lo hacía antes el Worker (texto en mayúsculas), por
+    ejemplo «Airi-Piloto-2026» o «Acuario_Marino.26», **dejó de aceptarse**.
+  - Una huella calculada sobre el texto exacto, con mayúsculas y minúsculas, no se aceptó **nunca**.
+- **Corrección** (`codigos.mjs` → `formasCodigo`): el Worker prueba hasta 3 formas del texto recibido: la canónica
+  del generador, la anterior en mayúsculas y la exacta.
+  - Cada forma debe coincidir con una huella ya cargada: no se acepta ningún código nuevo.
+  - Un carácter distinto sigue rechazándose (probado).
+  - La interfaz envía el texto tal cual cuando cabe en una cabecera HTTP, y la forma canónica si lleva guiones
+    tipográficos.
+- **`comprobar-codigo.mjs`:**
+  - Acepta códigos manuales y dice qué forma coincide.
+  - Detecta huellas calculadas de forma que el Worker no acepta: con salto de línea final (como al usar `echo`), en
+    minúsculas, con espacios o con BOM.
+  - En ese caso, con `--mostrar-linea-corregida`, da la línea corregida **para el mismo código**, sin regenerarlo.
+- **Limitación:**
+  - Sin la línea de `AIRI_CODIGOS` que se cargó, no se puede saber qué forma se usó; Cloudflare no permite leer un
+    secreto.
+  - Si esa línea no se conserva y el código no entra tras el despliegue, la única salida es cargar de nuevo la
+    huella del código. Requiere autorización.
+- **Defecto adicional corregido:** la revisión del build exigía `AIRI_CHAT_APAGADO="0"` y habría impedido **cerrar**
+  el chat en una emergencia con la configuración de producción. Ahora acepta `"0"` o `"1"` (este último con aviso).
+- **Pruebas:** 2 nuevas en `codigos.test.mjs`. La de códigos manuales **falla con el `worker.js` de `main`** y pasa
+  con la corrección.
+- **Revisión final de seguridad del PR #13:**
+  - **Defecto demostrado:** las formas «anterior» y «exacta» aceptaban caracteres de control (NUL, ESC, tabulador o
+    salto de línea internos, DEL, C1). Ahora `formasCodigo()` descarta toda entrada que los contenga, igual que la
+    interfaz. La prueba falla con la versión anterior.
+  - **Límites:** de 8 a 64 caracteres por forma y entradas de más de 200 descartadas (probado).
+  - **Variantes tipográficas:** ß→SS y ligaduras solo producen formas del mismo código, como hacía el Worker antes;
+    un código distinto se rechaza (probado).
+  - **Coherencia interfaz/Worker:** lo que envía la interfaz siempre es evaluable por el Worker (probado).
+  - **`--mostrar-linea-corregida`:** advierte que la salida es el valor completo del secreto y que la herramienta no
+    lo cambia. Sin esa opción no se imprime ninguna huella (probado).
+  - **Cierre de emergencia:** con `AIRI_CHAT_APAGADO="1"`, la configuración de producción pasa la revisión, el
+    Worker responde `activo:false` sin sitekey y `/api/chat` da 503 sin llamar a Turnstile ni a Gemini, con los
+    mismos límites y región. Cualquier otro valor distinto de `"0"` y `"1"` cancela el despliegue (probado).
+
+### Bloqueos pendientes para publicar 0.7.3 (13-11-2026)
+
+| Bloqueo | Causa | Quién |
+|---|---|---|
+| Sitekey pública de Turnstile | No está en el repositorio ni se puede leer desde fuera (`/api/estado` la oculta mientras el chat está cerrado) | Responsable: copiarla del panel de Turnstile (no es `TURNSTILE_SECRET`) |
+| `dry-run` de producción | El entorno de Claude es un contenedor Linux sin Wrangler, sin sesión de Cloudflare y sin acceso a `workers.dev` | Responsable, en Windows |
+| Coincidencia del código real | Solo verificable con la línea de `AIRI_CODIGOS` que se cargó (`comprobar-codigo.mjs`) | Responsable |
+| Despliegue y verificación real (Turnstile, Gemini, registros) | Requiere autorización y acceso a Cloudflare | Responsable, con autorización |
+
+### Procedimiento de recuperación (producción)
+
+| Situación | Acción (desde `publico/`, con autorización) |
+|---|---|
+| El despliegue falla en el build | No se publica nada. Leer el motivo que imprime la revisión, corregir el archivo y repetir el `--dry-run` |
+| Tras publicar, el chat da errores o hay abuso | Cierre inmediato: `AIRI_CHAT_APAGADO="1"` en `wrangler.produccion.jsonc` y `npx wrangler deploy -c wrangler.produccion.jsonc`. La interfaz y el motor v0.4 siguen disponibles |
+| La versión nueva falla y hay que volver atrás | `npx wrangler deployments list -c wrangler.produccion.jsonc` para ver las versiones y `npx wrangler rollback -c wrangler.produccion.jsonc` para restaurar la anterior (confirmar la sintaxis con `--help` de la versión instalada) |
+| Sospecha de fuga de la clave de Gemini | Revocar la clave en AI Studio, crear otra y `npx wrangler secret put GEMINI_API_KEY -c wrangler.produccion.jsonc` |
+| Código de un participante comprometido | Quitar su `id:huella` de `AIRI_CODIGOS` y volver a cargar el secreto |
+
+**Versiones:** el motor de análisis del agua sigue en **v0.4**, sin cambios. El chat con voz es **v0.6**. El piloto
+público (Worker e interfaz servida por Cloudflare) es **0.7.3**, que aún **no está desplegado**: producción ejecuta
+una versión anterior, sin campo `version` y con el chat desactivado según la última lectura.
+
 ## 5. Limitaciones conocidas
 
 1. **Nada se probó contra Cloudflare, Turnstile ni Gemini reales**, ni con Wrangler o Miniflare. El emulador de
@@ -305,27 +369,17 @@ npx wrangler tail -c wrangler.produccion.jsonc               # en otra ventana, 
 3. Un proyecto de Google AI Studio **exclusivo del piloto**, sin facturación → `GEMINI_API_KEY`.
 4. Generar los códigos y la sal con `node publico/herramientas/generar-codigos.mjs p01 p02 …` y cargar los secretos.
 5. Instalar Wrangler en tu equipo (`npm install -D wrangler` dentro de `publico/`) y validar la configuración con
-   `npx wrangler deploy --dry-run`. **Validar especialmente** `assets.run_worker_first` con lista de rutas y la
-   migración `new_sqlite_classes`, porque no se pudieron ejecutar aquí.
+   `npx wrangler deploy -c wrangler.produccion.jsonc --dry-run`. Se ejecuta en Windows porque el entorno de Claude
+   no tiene Wrangler ni acceso a Cloudflare.
 
 ## 7. Instrucciones para una futura publicación controlada
 
-**Vista previa privada (E3), solo con autorización:**
-```powershell
-cd C:\Users\josea\Proyectos\Airi-oficial\publico
-npm install -D wrangler                     # una sola vez
-node preparar-estaticos.mjs
-npx wrangler login                          # inicia sesión en TU cuenta gratuita
-npx wrangler secret put GEMINI_API_KEY      # se escribe de forma oculta; nunca en archivos
-npx wrangler secret put TURNSTILE_SECRET
-npx wrangler secret put AIRI_CODIGOS
-npx wrangler secret put AIRI_SAL
-# editar wrangler.jsonc: AIRI_ORIGEN="https://airi-piloto.<tu-subdominio>.workers.dev" y AIRI_TURNSTILE_SITEKEY
-npx wrangler deploy                         # sale CERRADO: AIRI_CHAT_APAGADO="1" (desde 0.7.3 regenera dist solo)
-```
-
-Comprobar con el chat cerrado: que la página cargue y que el chat diga «desactivado». Después, abrirlo solo para ti
-(`AIRI_CHAT_APAGADO="0"` en `wrangler.jsonc` y `npx wrangler deploy`), probar con tu código y volver a cerrarlo.
+**Publicación en el Worker existente `airi` (desde 0.7.3).** El procedimiento completo está en
+«Configuración de producción (0.7.3)». Resumen:
+- solo se despliega con `-c wrangler.produccion.jsonc`;
+- `wrangler.jsonc` es una plantilla y su despliegue se cancela;
+- los secretos ya cargados (`GEMINI_API_KEY`, `TURNSTILE_SECRET`, `AIRI_CODIGOS`, `AIRI_SAL`) no se tocan;
+- `wrangler secret put` solo se usa para dar de alta, revocar o rotar.
 
 **Capa adicional recomendada:** Cloudflare Access sobre el Worker (opción «Protect one Worker», con inicio de sesión
 por correo; gratuito hasta 50 usuarios según fuentes de terceros). Antes de usarlo, **confirma que no pide método de
@@ -336,10 +390,10 @@ pago**: una fuente de terceros indica que el alta de Zero Trust lo solicita.
 | Tarea | Cómo |
 |---|---|
 | Dar acceso | `generar-codigos.mjs p03` → entregar el código **en persona o por un canal privado**; añadir su línea a `AIRI_CODIGOS` y volver a cargar el secreto |
-| Revocar | Quitar `pXX:huella` de `AIRI_CODIGOS` y volver a cargar el secreto (efecto inmediato en el nuevo despliegue) |
-| Detener | `AIRI_CHAT_APAGADO="1"` y `npx wrangler deploy` (la interfaz sigue funcionando; el chat muestra «desactivado»). Emergencia: borrar el secreto `GEMINI_API_KEY` deja el Worker cerrado |
-| Supervisar | `npx wrangler tail` o los registros del panel (solo resultado y código HTTP). Uso de Gemini en AI Studio; uso de Workers y Durable Objects en el panel |
-| Límites | Variables `AIRI_LIMITE_*` en `wrangler.jsonc`; empezar bajo (5/min, 30/día, 100 global) |
+| Revocar | Quitar `pXX:huella` de `AIRI_CODIGOS` y volver a cargarlo: `npx wrangler secret put AIRI_CODIGOS -c wrangler.produccion.jsonc` |
+| Detener | `AIRI_CHAT_APAGADO="1"` en `wrangler.produccion.jsonc` y `npx wrangler deploy -c wrangler.produccion.jsonc`. La interfaz sigue funcionando y el chat muestra «desactivado»; la revisión del build lo permite con un aviso |
+| Supervisar | `npx wrangler tail -c wrangler.produccion.jsonc` o los registros del panel (solo resultado y código HTTP). Uso de Gemini en AI Studio; uso de Workers y Durable Objects en el panel |
+| Límites | Variables `AIRI_LIMITE_*` en `wrangler.produccion.jsonc` (5/min, 30/día, 100 global) |
 | Agotamiento | Mensajes ya implementados: «espera un minuto», «límite de hoy», «el piloto alcanzó su límite», «pausa preventiva» |
 
 **Comprobaciones para participantes:**

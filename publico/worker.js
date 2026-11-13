@@ -16,7 +16,7 @@
 
 import { leerLimites, ControlCuotasAIRI } from "./cuotas.js";
 import { consultarGemini, MODELO_VALIDO } from "./gemini.js";
-import { huellaCodigo, normalizarCodigo, formatoGenerado } from "./codigos.mjs";
+import { huellasCodigo, normalizarCodigo, formatoGenerado } from "./codigos.mjs";
 import { VERSION } from "./version.mjs";
 
 export { ControlCuotasAIRI };
@@ -95,11 +95,12 @@ function igualTiempoConstante(a, b) {
   return d === 0;
 }
 async function participante(codigo, codigos) {
-  // Forma canónica compartida con el generador (codigos.mjs): quita espacios, guiones e invisibles.
-  const h = await huellaCodigo(codigo);
-  if (!h) return null;
+  // Formas aceptadas (codigos.mjs): canónica del generador, la anterior al PR #11 (mayúsculas) y la exacta.
+  const candidatas = await huellasCodigo(codigo);
+  if (!candidatas.length) return null;
   let id = null;
-  for (const [hash, nombre] of codigos) if (igualTiempoConstante(hash, h)) id = nombre;   // recorre todos (sin salida temprana)
+  for (const [, h] of candidatas)
+    for (const [hash, nombre] of codigos) if (igualTiempoConstante(hash, h)) id = id || nombre;   // sin salida temprana
   return id;
 }
 
