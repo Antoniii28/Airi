@@ -114,7 +114,7 @@ python interfaz/chat/pruebas/e2e_chat.py                    # chat en escritorio
 | Motor JavaScript (incluye los 34 casos de conformidad) | 5/5 |
 | Mascota · voz · personalidad de voz (Node) | 12/12 · 16/16 · 11/11 |
 | Navegador: mascota · voz · ajustes de voz · análisis (escritorio y celular) | 76/76 · 50/50 · 43/43 · 57/57 |
-| Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 28/28 · 8/8 · 32/32 |
+| Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 28/28 · 8/8 · 35/35 |
 
 Historial de pruebas, errores encontrados y su corrección: [`motor/PRUEBAS_v0.4.md`](motor/PRUEBAS_v0.4.md).
 

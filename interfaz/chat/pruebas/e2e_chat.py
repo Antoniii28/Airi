@@ -188,6 +188,34 @@ def main():
         botones = pg.eval_on_selector_all("#airi-chat-form button", "l => l.map(b => b.getBoundingClientRect().height)")
         comprobar(all(h >= 40 for h in botones), f"celular: botones con altura táctil suficiente {botones}")
         pg.screenshot(path=str(cap / "02_celular_chat.png"))
+        gemini.respuesta = respuesta("**Alimentos para juveniles:**\n\n| Alimento | Frecuencia orientativa | Observaciones |\n"
+                                     "|---|---|---|\n| Pellets pequeños | 2–3 veces al día | Tamaño adecuado a la boca |\n"
+                                     "| Artemia enriquecida | 1 vez al día | Complemento proteico |\n"
+                                     "| Mysis congelado | Varias veces por semana | Descongelar antes |")
+        pg.fill("#airi-chat-input", "Dame una tabla de alimentos"); pg.tap("#airi-chat-send"); pg.wait_for_timeout(900)
+        tabla = pg.evaluate("""(() => { const t = document.querySelector('#airi-chat-log .airi-chat-msg:last-child table');
+            const caja = t.closest('.airi-md-tabla'), burbuja = t.closest('.airi-chat-msg').getBoundingClientRect();
+            return [t.querySelectorAll('tr').length, burbuja.right <= innerWidth, document.documentElement.scrollWidth <= innerWidth,
+                    getComputedStyle(caja).overflowX, !document.querySelector('#airi-chat-log .airi-chat-msg:last-child').innerText.includes('|')]; })()""")
+        cortes = pg.evaluate("""[...document.querySelectorAll('#airi-chat-log .airi-chat-msg:last-child th, #airi-chat-log .airi-chat-msg:last-child td')]
+            .map(c => getComputedStyle(c).overflowWrap + '/' + getComputedStyle(c).wordBreak)""")
+        comprobar(all(c == "normal/normal" for c in cortes), "celular: las celdas no parten palabras a la mitad")
+        comprobar(tabla == [4, True, True, "auto", True],
+                  f"celular: la tabla se ve sin barras «|», dentro de su burbuja y sin desplazar la página {tabla}")
+        pg.locator("#airi-chat-log .airi-chat-msg:last-child").scroll_into_view_if_needed(); pg.wait_for_timeout(200)
+        pg.screenshot(path=str(cap / "05_celular_tabla.png"))
+        ctx.close()
+
+        # ── Movimiento reducido: puntos de «Pensando…» quietos ────────────────
+        ctx, pg = nueva(reduced_motion="reduce")
+        pg.goto(url); pg.wait_for_timeout(600)
+        pg.click('[data-tab="chat"]'); pg.check("#airi-chat-consentimiento")
+        gemini.retraso = 1.0; gemini.respuesta = respuesta("Listo")
+        pg.fill("#airi-chat-input", "Hola"); pg.click("#airi-chat-send"); pg.wait_for_timeout(300)
+        anim = pg.eval_on_selector(".airi-chat-puntos span", "e => getComputedStyle(e).animationName")
+        comprobar(anim == "none" and pg.evaluate("window.airiMascota.estado") == "analisis",
+                  f"movimiento reducido: «Pensando…» sin animación y la mascota indica la espera ({anim})")
+        pg.wait_for_timeout(1200); gemini.retraso = 0
         ctx.close()
 
         # ── Abierto con doble clic (file://): no intenta conectarse ───────────

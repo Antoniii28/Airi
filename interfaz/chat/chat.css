@@ -35,7 +35,8 @@
 .airi-chat-cuerpo .airi-md-url { color: #47667b; font-size: .9em; }
 .airi-md-tabla { overflow-x: auto; margin: 0 0 8px; }
 .airi-md-tabla table { border-collapse: collapse; font-size: 14px; min-width: 60%; }
-.airi-md-tabla th, .airi-md-tabla td { border: 1px solid #d6eaf1; padding: 4px 8px; text-align: left; vertical-align: top; }
+.airi-md-tabla th, .airi-md-tabla td { border: 1px solid #d6eaf1; padding: 4px 8px; text-align: left; vertical-align: top;
+  overflow-wrap: normal; word-break: normal; hyphens: auto; min-width: 5em; }
 .airi-md-tabla th { background: #eaf6fb; }
 
 /* ── Indicador de espera ─────────────────────────────────────────────────────── */
@@ -57,5 +58,7 @@
 @media (max-width: 600px) {
   #airi-chat-log { max-height: 60vh; padding: 10px; gap: 10px; }
   .airi-chat-msg { max-width: 92%; padding: 8px 12px 10px; }
+  .airi-chat-model:has(.airi-md-tabla) { max-width: 100%; }   /* las tablas aprovechan todo el ancho */
+  .airi-md-tabla th, .airi-md-tabla td { padding: 4px 6px; }
   #airi-chat-form button { flex: 1 1 auto; min-height: 44px; }
 }

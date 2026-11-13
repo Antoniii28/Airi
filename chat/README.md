@@ -30,7 +30,8 @@ API de Gemini · generateContent (modelo predeterminado: gemini-3.1-flash-lite)
 ## Presentación de las respuestas
 
 - **Burbujas:** la persona aparece a la derecha, en azul, y AIRI a la izquierda, en blanco con borde. En celular las
-  burbujas ocupan como máximo el 92 % del ancho.
+  burbujas ocupan como máximo el 92 % del ancho. Las que contienen una tabla ocupan el ancho completo, las celdas
+  cortan con guiones en lugar de partir palabras y, si aun así no cabe, la tabla se desplaza dentro de su burbuja.
 - **Markdown seguro** ([`interfaz/chat/markdown.js`](../interfaz/chat/markdown.js)): negritas, cursivas, títulos,
   listas con niveles, tablas, citas y código se muestran sin asteriscos ni símbolos. El texto se analiza primero y
   luego se crean los elementos **solo con `createElement` y `textContent`**: el HTML que escriba Gemini se muestra
@@ -135,19 +136,22 @@ Consulta del 12-11-2026:
 ```bash
 python -m unittest discover -s chat/pruebas -v    # 28 pruebas del servidor (Gemini simulado, sin internet)
 node --test interfaz/chat/pruebas/markdown.test.js # 8 pruebas del Markdown seguro (incluye intentos de XSS)
-python interfaz/chat/pruebas/e2e_chat.py          # 32 comprobaciones en Chrome (escritorio y celular)
+python interfaz/chat/pruebas/e2e_chat.py          # 35 comprobaciones en Chrome (escritorio, celular y movimiento reducido)
 ```
 
 Las pruebas usan un **Gemini simulado** en `127.0.0.1` y una clave ficticia; no consumen cuota ni necesitan internet.
 
 ## Limitaciones pendientes
 
-- **Gemini real:**
-  - La persona responsable lo probó con su clave (12-11-2026): respondió correctamente a tres preguntas (cuidados del
-    pez payaso, seguimiento sobre juveniles y limitaciones de búsqueda web).
-  - Las **instrucciones nuevas del modelo** (proporción, sin saludos repetidos) y el Markdown solo se han probado con
-    el Gemini simulado: falta repetir la prueba real.
-  - Las respuestas reales pueden variar.
+- **Gemini real (prueba manual de la persona responsable, 12-11-2026):**
+  - Con la primera versión, Gemini respondió correctamente sobre cuidados del pez payaso, sobre juveniles (manteniendo
+    el contexto) y sobre sus límites de búsqueda.
+  - Con las instrucciones y el Markdown actuales:
+    - respondió sobre la alimentación de juveniles;
+    - generó una tabla de tres alimentos;
+    - ante un pez con manchas blancas evitó un diagnóstico definitivo y recomendó a un especialista;
+    - reconoció que no tiene búsqueda web, sin inventar fuentes.
+  - Son pruebas puntuales: las respuestas de un modelo pueden variar y no sustituyen a una evaluación sistemática.
 - **Sin búsqueda web ni citas:** el modelo no consulta fuentes en tiempo real.
 - **Sin voz:** la mascota tiene un mensaje para esta pestaña, pero no lee las respuestas del chat.
 - **Solo local:** no hay despliegue público. Un servidor en internet necesitaría autenticación, HTTPS y control de
