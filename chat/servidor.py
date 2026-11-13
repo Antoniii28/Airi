@@ -29,6 +29,8 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+from control_uso import ControlUso
+
 RAIZ = Path(__file__).resolve().parents[1]
 HOST = "127.0.0.1"
 PUERTO = 8765
@@ -83,6 +85,12 @@ class Configuracion:
         self.ocupado = threading.Lock()
         self.marcas = []
         self.marcas_lock = threading.Lock()
+        self.control_uso = ControlUso(
+            por_minuto=int(os.environ.get('AIRI_LIMITE_MINUTO', '5')),
+            por_dia=int(os.environ.get('AIRI_LIMITE_DIA', '30')),
+            global_diario=int(os.environ.get('AIRI_LIMITE_GLOBAL_DIA', '100')),
+            apagado=os.environ.get('AIRI_CHAT_APAGADO', '0') == '1',
+        )
 
     def ocultar(self, texto):
         """Elimina la clave de cualquier texto antes de mostrarlo (defensa en profundidad)."""
@@ -283,6 +291,10 @@ def crear_manejador(cfg):
                 return self.json(400, {"error": error})
             if not cfg.clave:
                 return self.json(503, {"error": "Falta configurar la clave de Gemini en el servidor local."})
+            permitido, motivo = cfg.control_uso.admitir(self.client_address[0])
+            if not permitido:
+                codigo = 503 if cfg.control_uso.apagado else 429
+                return self.json(codigo, {"error": motivo})
             if not cfg.permitir_consulta():
                 return self.json(429, {"error": "Demasiadas preguntas seguidas. Espera un minuto (protección local de AIRI)."})
             if not cfg.ocupado.acquire(blocking=False):
