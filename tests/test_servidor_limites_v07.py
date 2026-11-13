@@ -1,6 +1,7 @@
 """Pruebas de integración HTTP locales: sin red externa ni Gemini real."""
 import http.client
 import json
+import socket
 import threading
 import unittest
 from unittest.mock import patch
@@ -13,10 +14,10 @@ class TestServidorLimites(unittest.TestCase):
     def setUp(self):
         self.cfg = servidor.Configuracion("clave-ficticia", servidor.MODELO_PREDETERMINADO, puerto=0)
         self.cfg.control_uso = servidor.ControlUso(por_minuto=2, por_dia=3, global_diario=4)
-        # El handler valida el Host con el puerto configurado; reservar puerto antes de crearlo.
-        self.http = ThreadingHTTPServer(("127.0.0.1", 0), servidor.crear_manejador(self.cfg))
-        self.cfg.puerto = self.http.server_address[1]
-        self.http.server_close()
+        # El handler necesita conocer el puerto para validar Host y Origin.
+        with socket.socket() as sock:
+            sock.bind(("127.0.0.1", 0))
+            self.cfg.puerto = sock.getsockname()[1]
         self.http = ThreadingHTTPServer(("127.0.0.1", self.cfg.puerto),
                                         servidor.crear_manejador(self.cfg))
         self.hilo = threading.Thread(target=self.http.serve_forever, daemon=True)
