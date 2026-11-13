@@ -1,20 +1,26 @@
-# José — Motor inteligente y coordinación
+# José — Motor del agua y coordinación técnica
 
-**Rama:** `equipo/jose-motor-agente`  
-**Objetivo:** mejorar el análisis de parámetros del agua, reglas, clasificación de riesgos y recomendaciones sin romper el piloto publicado.
+**Rama asignada:** `equipo/jose-motor-agente` (comprobar que existe).  
+**Objetivo exclusivo:** mejorar la calidad, trazabilidad y pruebas del motor de evaluación de parámetros del agua. Coordinar contratos y revisar integración.
 
-## Punto de partida
-Revisar `motor/`, `interfaz/motor/`, `grafo/`, sus README y pruebas. Reutilizar el motor existente y verificar su paridad Python/JavaScript.
+## Revisar primero
+`motor/`, `motor/REFERENCIAS.md`, `interfaz/motor/`, `grafo/`, pruebas Python/JS y casos de conformidad. Confirmar qué ya está implementado; no rehacer el motor.
 
-## Actividades
-1. Identificar qué reglas y referencias están verificadas y cuáles carecen de sustento.
-2. Revisar que faltantes, anomalías múltiples y referencias insuficientes conserven su estado correctamente.
-3. Mejorar trazabilidad: mostrar regla aplicada, fuente y motivo de alerta.
-4. Coordinar contrato de datos con Brayan y Yair y puntos de integración con Paola.
-5. Añadir casos de prueba y revisar PR del equipo.
+## Tareas concretas
+1. Inventariar parámetros, unidades, referencias verificadas, referencias pendientes y comportamiento actual.
+2. Revisar las rutas de decisión: mediciones inválidas, faltantes, sin referencia, anomalías simples y múltiples, alertas más información insuficiente.
+3. Proponer correcciones solo cuando haya evidencia de fallo o referencia verificable. Conservar clasificación y paridad Python/JavaScript.
+4. Añadir o actualizar pruebas de regresión y trazabilidad (regla aplicada, motivo, fuente, incertidumbre).
+5. Acordar con Paola cómo se consume el resultado actual; revisar PR de los demás para evitar conflictos.
 
-## Entrega
-Cambios probados en motor y documentación breve de reglas y limitaciones. Primer PR revisable **22 nov**; integración **23–29 nov**.
+## Archivos permitidos
+`motor/`, `interfaz/motor/`, `grafo/` y documentación técnica directamente relacionada. Cambios fuera de esas rutas requieren acuerdo.
 
-## Restricciones
-No sustituir reglas por respuestas generativas no verificadas. No alterar secretos, acceso o Worker de producción. Evitar prometer seguridad del agua.
+## Entregables verificables
+- Lista breve de reglas revisadas, fuentes y límites.
+- PR con mejoras justificadas y pruebas ejecutadas (incluyendo paridad Python/JS cuando aplique).
+- Contrato de salida documentado para Paola y revisión de integración.
+
+**Primer PR:** 22 nov. **Integración:** 23–29 nov, según cronograma oficial.
+
+**No hacer:** fichas/fotos, compatibilidad entre especies, rediseño de interfaz, cambios en `publico/` o despliegue. No declarar «seguro» el acuario con datos insuficientes.
