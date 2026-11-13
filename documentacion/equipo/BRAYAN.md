@@ -1,20 +1,27 @@
-# Brayan — Fichas de especies marinas
+# Brayan — Fichas biológicas y fotografías de especies
 
-**Rama:** `equipo/brayan-fichas-especies`  
-**Objetivo:** crear fichas útiles y verificables aprovechando tu mayor familiaridad con peces y acuarios marinos, sin asumir que cada dato es correcto sin fuente.
+**Rama asignada:** `equipo/brayan-fichas-especies` (comprobar que existe).  
+**Objetivo exclusivo:** mejorar el catálogo existente de especies marinas con información comprobable y fotografías de uso permitido. Su conocimiento práctico sirve para detectar dudas, pero cada afirmación técnica requiere fuente.
 
-## Punto de partida
-Revisar `especies/`, `especies/fichas/README.md`, `interfaz/prototipo/` y las fichas preliminares existentes. No duplicar especies ya registradas sin necesidad.
+## Revisar primero
+`especies/`, `especies/fichas/README.md`, JSON actuales y su uso en `interfaz/prototipo/`. Hay seis fichas preliminares: revisar antes de duplicar.
 
-## Actividades
-1. Definir y comunicar antes del **15 nov** un esquema de ficha estable (identificador, nombres común/científico, foto, alimentación, tamaño, entorno, parámetros documentados, compatibilidad orientativa, fuentes y datos pendientes).
-2. Revisar las seis fichas preliminares y mejorar su calidad; proponer al menos cinco fichas verificadas como primera entrega, sin inventar información.
-3. Añadir imágenes propias o con licencia reutilizable y atribución correspondiente; registrar fuente/licencia.
-4. Marcar explícitamente los datos sin referencia; no presentar valores universales como válidos para todas las especies.
-5. Coordinar nombres/IDs y campos de compatibilidad con Yair, y presentación con Paola.
+## Tareas concretas
+1. Antes del **15 nov**, enviar a Yair y Paola un ejemplo de ficha con campos existentes y propuesta de ampliación: `id` estable, nombre común/científico, alimentación, tamaño, condiciones documentadas, comportamiento, imagen, licencia/autor, fuentes y campos pendientes.
+2. Verificar y corregir las fichas existentes. Preparar como primera meta **cinco fichas revisadas** (pueden ser fichas ya existentes; no es obligatorio añadir cinco especies nuevas).
+3. Incorporar fotografías propias o con licencia compatible, documentando autor, URL, licencia y atribución. Si no hay foto legalmente reutilizable, usar marcador visual sin copiar imágenes ajenas.
+4. Citar fuente específica por dato relevante; señalar incertidumbre y diferencias entre especies. No inventar valores ni compatibilidad.
+5. Mantener formato JSON compatible; si cambia el esquema, acordarlo con Yair y Paola antes de modificarlo.
 
-## Entrega
-JSON de fichas conforme al formato del proyecto, imágenes autorizadas, referencias consultables, validaciones y breve registro de cambios. Primera versión **15 nov**; PR completo revisable **22 nov**.
+## Archivos permitidos
+`especies/` y recursos de imágenes relacionados con el catálogo, evitando tocar código de compatibilidad, motor e interfaz.
 
-## Restricciones
-No copiar imágenes sin permiso; no dar tratamientos veterinarios ni recomendar especies incompatibles sin evidencia.
+## Entregables verificables
+- Al menos cinco fichas revisadas con fuentes.
+- Fotografías con derechos/atribución documentados o ausencia de imagen señalada.
+- Validación de JSON y listado de IDs y campos para Yair y Paola.
+- PR con cambios y ejemplos antes/después.
+
+**Ejemplo de esquema:** 15 nov. **PR revisable:** 22 nov. Fechas sujetas al cronograma oficial.
+
+**No hacer:** algoritmo de compatibilidad, reglas del agua, HTML/CSS del sitio, Worker o despliegue.
