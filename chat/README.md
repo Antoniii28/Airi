@@ -1,25 +1,126 @@
-# AIRI v0.5 — Chat inteligente (prototipo local)
+# AIRI v0.5 — Chat con AIRI (experimental, local)
 
-Este módulo añade un chat con Gemini a la interfaz de AIRI, sin exponer la clave en el navegador. **No está desplegado en GitHub Pages**: Pages solo sirve archivos estáticos y no puede proteger secretos de un backend. La v0.4 continúa funcionando sin la API.
+Pestaña «Chat con AIRI» del prototipo: conversación orientativa sobre acuarios marinos con **Gemini** (Google), a
+través de un **servidor local** que guarda la clave. El navegador nunca recibe la clave.
 
-## Configuración local
+> El chat **no** analiza mediciones (eso lo hace el motor de reglas v0.4 en «Parámetros del agua»), **no**
+> diagnostica, **no** busca información en internet y puede equivocarse. No modifica el motor, sus fuentes, sus
+> umbrales ni el grafo de decisiones.
 
-1. Verifica los límites y la disponibilidad del nivel gratuito en [Google AI Studio](https://aistudio.google.com/) antes de crear una clave. No habilites facturación si deseas mantenerte sin cargos.
-2. Guarda la clave **solo** como variable de entorno `GEMINI_API_KEY`, nunca en Git, HTML, capturas ni mensajes. En PowerShell, puedes establecerla en tu sesión con `$env:GEMINI_API_KEY = Read-Host "Clave de Gemini"`.
-3. Desde la raíz del repositorio ejecuta `python chat/servidor.py`.
-4. Abre `interfaz/prototipo/index.html` en el navegador y entra en «Chat con AIRI».
+## Cómo funciona
 
-El navegador envía las preguntas a `http://127.0.0.1:8765/api/chat`, y el servidor local las reenvía a Gemini. El servidor solo escucha en `127.0.0.1`, no en toda la red. No está disponible desde otros dispositivos ni desde el sitio público. No guardamos historial en disco; los mensajes permanecen en memoria de la pestaña hasta cerrarla. Se envían a Google los últimos 12 mensajes para dar contexto. No envíes datos personales o sensibles.
+```text
+Navegador: http://127.0.0.1:8765/ (la interfaz la sirve el propio servidor)
+   │ POST /api/chat (mismo origen; sin CORS)
+   ▼
+chat/servidor.py (solo escucha en 127.0.0.1; clave en memoria)
+   │ HTTPS con la cabecera x-goog-api-key
+   ▼
+API de Gemini · generateContent (modelo predeterminado: gemini-3.1-flash-lite)
+```
 
-## Alcance y límites
+- **Solo en este equipo:** el servidor escucha en `127.0.0.1`, así que no es accesible desde otros equipos ni desde
+  GitHub Pages.
+- **Página abierta sin el servidor:** si abres la página con doble clic (`file://`) o desde el sitio público, el chat
+  explica cómo iniciarlo y no intenta conectarse.
+- **Consentimiento:** antes de la primera pregunta hay que marcar una casilla, porque las preguntas se envían a Google.
+- **Historial:** se guarda solo en la memoria de la pestaña. Se envían los últimos 12 mensajes, hasta 30 000
+  caracteres, para dar contexto.
 
-- Conversación de texto en español. No usa micrófono ni imágenes.
-- **Sin búsqueda web habilitada:** el modelo puede equivocarse o no conocer información reciente. No afirmar que investiga en tiempo real hasta implementar búsqueda y citas verificadas.
-- La IA no modifica el motor v0.4, sus fuentes, umbrales, ni clasificaciones.
-- El nivel gratuito está sujeto a disponibilidad, cuotas y condiciones de Google; no se garantizan consultas gratuitas ilimitadas.
-- El backend devuelve errores genéricos para no revelar secretos. No habilitar CORS general ni desplegar este servidor de desarrollo directamente en internet.
-- Próxima fase: tests de integración, despliegue seguro y revisión de privacidad antes de publicar.
+## Configurar Gemini con el nivel gratuito (paso a paso)
 
-## Prueba básica
+Lo hace la persona responsable del proyecto, en su propio equipo. **Nunca** pegues la clave en un chat (tampoco en
+este), en GitHub, en capturas ni en archivos del repositorio.
 
-Sin configurar la clave, enviar una pregunta debe mostrar «Falta configurar GEMINI_API_KEY». Con una clave válida y cupo disponible, debería responder. Con el servidor apagado, la interfaz debe mostrar un error de conexión sin afectar las otras pestañas.
+1. **Crear la clave.**
+   1. Entra en [Google AI Studio → API keys](https://aistudio.google.com/apikey) con tu cuenta de Google y acepta los
+      términos si te los pide.
+   2. Pulsa *Create API key* y elige **un proyecto nuevo** (así el chat de AIRI no comparte cuota ni permisos con
+      otros proyectos).
+   3. Copia la clave.
+2. **No actives la facturación.**
+   - No pulses *Set up billing* ni *Upgrade*.
+   - Según la documentación de Google, para pasar del nivel gratuito a uno de pago primero hay que configurar la
+     facturación en AI Studio; sin ella, el proyecto queda en el nivel gratuito.
+   - Los límites de uso se aplican **por proyecto, no por clave**, y se consultan en AI Studio. Google no publica
+     cifras fijas en la página de límites, así que AIRI no las da.
+3. **Iniciar el servidor.** Desde la raíz del repositorio:
+   ```powershell
+   python chat/servidor.py
+   ```
+   - Si no existe la variable `GEMINI_API_KEY`, el servidor pide la clave **sin mostrarla** y la guarda **solo en
+     memoria**; al cerrarlo, se olvida.
+   - Pulsa Enter sin escribir nada para arrancar sin clave: el chat avisará de que falta.
+   - Evita `setx GEMINI_API_KEY ...`, porque deja la clave guardada de forma permanente en la configuración de Windows.
+   - Evita también `Read-Host` sin enmascarar, porque la muestra en pantalla.
+4. **Comprobar el modelo.**
+   ```powershell
+   python chat/servidor.py --listar-modelos
+   ```
+   - Muestra los modelos que tu clave puede usar. Para usar otro: `--modelo NOMBRE`.
+   - Que un modelo aparezca en la lista no garantiza que tenga nivel gratuito: verifícalo en AI Studio o en la
+     [página de precios](https://ai.google.dev/gemini-api/docs/pricing).
+5. **Abrir AIRI.** Ve a **http://127.0.0.1:8765/**, abre la pestaña «Chat con AIRI», marca la casilla de
+   consentimiento y pregunta.
+6. **Si la clave se expone:** bórrala en AI Studio y crea otra.
+
+### Por qué `gemini-3.1-flash-lite`
+
+Consulta del 12-11-2026:
+
+- **Estable y gratuito:** la [página de modelos](https://ai.google.dev/gemini-api/docs/models) lo marca como
+  «Stable», y la [de precios](https://ai.google.dev/gemini-api/docs/pricing) le asigna «Free of charge» en el nivel
+  gratuito.
+- **Por qué no `gemini-2.5-flash`:** era el modelo de la primera versión, pero Google limita el acceso a los modelos
+  2.5 a quienes ya los usaban y recomienda modelos 3.x para proyectos nuevos.
+- **Otros modelos recomendados:** la página de modelos sugiere 3.5 Flash-Lite y 3.8 Flash. No encontré su fila de
+  nivel gratuito en la página de precios, así que AIRI no los usa por defecto. Puedes probarlos con `--modelo`
+  después de verificarlo.
+
+### Privacidad y términos
+
+- En los servicios gratuitos, Google puede usar las preguntas y respuestas para mejorar sus productos, y **personas
+  revisoras pueden leerlas**. Los [términos](https://ai.google.dev/gemini-api/terms) piden no enviar información
+  sensible, confidencial ni personal. Por eso el chat pide consentimiento y no envía mediciones ni datos de forma
+  automática.
+- Los términos vigentes indican que AI Studio y la API de Gemini son para desarrolladores con fines profesionales o
+  de negocio. Revísalos antes de usar el chat con otras personas.
+
+## Seguridad aplicada
+
+| Riesgo | Medida |
+|---|---|
+| Clave en el navegador, en GitHub o en registros | Solo en la memoria del servidor; se envía a Google únicamente en la cabecera `x-goog-api-key`. Las respuestas y los registros nunca la incluyen (lo comprueban las pruebas). `.gitignore` en la raíz y en `chat/` excluye `.env`. Una prueba busca claves de Google en todos los archivos versionados |
+| Otra web abierta en el equipo usando el servidor y la cuota | Sin CORS. Se rechazan el origen `null` (iframes aislados de cualquier sitio) y los orígenes ajenos |
+| DNS rebinding | Solo se aceptan las cabeceras `Host: 127.0.0.1:PUERTO` y `localhost:PUERTO` |
+| Lectura de archivos del equipo | Solo se sirven `/interfaz/` e `/identidad-visual/`; se bloquean las rutas con `..` y los archivos ocultos |
+| Inyección de HTML en las respuestas | Todo se muestra con `textContent` |
+| Abuso o bucles | Una consulta a la vez y como máximo 10 por minuto. Es una **protección local de AIRI**, no un límite de Google |
+| Peticiones lentas o enormes | Cuerpo de 64 KiB como máximo, *timeout* de socket de 20 s y de Gemini de 45 s |
+| Errores con datos internos | Se traducen a mensajes en español sin detalles ni la clave |
+
+## Pruebas
+
+```bash
+python -m unittest discover -s chat/pruebas -v    # 27 pruebas del servidor (Gemini simulado, sin internet)
+python interfaz/chat/pruebas/e2e_chat.py          # 26 comprobaciones en Chrome (escritorio y celular)
+```
+
+Las pruebas usan un **Gemini simulado** en `127.0.0.1` y una clave ficticia; no consumen cuota ni necesitan internet.
+
+## Limitaciones pendientes
+
+- **Gemini real:** no se ha probado contra el servicio real porque requiere tu clave. Ver «Prueba con tu clave».
+- **Sin búsqueda web ni citas:** el modelo no consulta fuentes en tiempo real.
+- **Sin voz:** la mascota tiene un mensaje para esta pestaña, pero no lee las respuestas del chat.
+- **Solo local:** no hay despliegue público. Un servidor en internet necesitaría autenticación, HTTPS y control de
+  gasto.
+
+### Prueba con tu clave (manual)
+
+1. Inicia el servidor con tu clave y abre http://127.0.0.1:8765/.
+2. En «Chat con AIRI», marca la casilla y pregunta, por ejemplo, «¿Qué necesita un pez payaso en un acuario?».
+3. Haz una pregunta de seguimiento («¿Y si es juvenil?») para comprobar que mantiene el contexto.
+4. Comprueba que la terminal solo muestra líneas `[AIRI] "POST /api/chat …" 200`, sin la clave.
+5. Si aparece un error de modelo, ejecuta `--listar-modelos`. Si aparece uno de límite (429), espera; no actives la
+   facturación.

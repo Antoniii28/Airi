@@ -2,6 +2,11 @@
 
 **Fecha de consulta:** 2026-11-12. **Estado:** investigación y recomendación, sin claves, pagos, despliegue ni conexión API. Rama: `feature/chat-inteligente-airi-v0.5`.
 
+> **Nota de revisión.** La implementación usa finalmente **Gemini con su nivel gratuito** y un servidor local en Python
+> (ver [`chat/README.md`](../chat/README.md)). En la revisión solo se verificaron en las páginas oficiales los datos
+> de Gemini (modelos, nivel gratuito, límites y términos); las filas de otros proveedores no se volvieron a
+> comprobar. Las cifras de esta tabla son de pago y no se aplican al nivel gratuito.
+
 ## 1. Comparación de APIs (USD por millón de tokens, modalidad estándar)
 
 | Modelo | Entrada | Salida | Fuente |

@@ -1,6 +1,11 @@
 # AIRI v0.5 — Diseño del chat inteligente (propuesta inicial)
 
-**Estado:** planificación; ninguna funcionalidad de chat está implementada todavía.
+**Estado:** planificación original (se conserva).
+
+> **Actualización (12-11-2026).** Implementado y probado con un Gemini simulado: pestaña de chat, servidor local
+> seguro con Gemini (E2 y E3 de este plan). Pendiente: prueba con el servicio real, búsqueda con fuentes (E4) y
+> voz de las respuestas (E5). Estado y pruebas en [`chat/README.md`](../chat/README.md). Decisiones tomadas:
+> proveedor **Gemini** (nivel gratuito) y backend **local en Python** (`chat/servidor.py`), no Node.js.
 **Base:** rama `feature/chat-inteligente-airi-v0.5`, creada desde `main` después de fusionar v0.4.
 
 ## Objetivo

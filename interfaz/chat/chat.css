@@ -4,16 +4,16 @@
 #airi-chat-log[aria-busy="true"] { border-color: #0982C7; }
 #airi-chat-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 #airi-chat-input { flex: 1; min-width: 180px; }
-#airi-chat .airi-chat-etiqueta { width: 100%; }
+#chat .airi-chat-etiqueta { width: 100%; }
 .airi-chat-line { margin: 0 0 12px; line-height: 1.5; }
 .airi-chat-user { color: #09284D; }
 .airi-chat-pensando { color: #47667b; font-style: italic; }
 .airi-chat-error, .airi-chat-aviso { background: #fff3e8; border-left: 4px solid #C25A10; padding: 6px 8px; border-radius: 6px; }
-#airi-chat .airi-chat-note { font-size: .9rem; color: #47667b; }
-#airi-chat .airi-chat-consentimiento { display: flex; gap: 8px; align-items: flex-start; width: 100%; font-weight: 400;
+#chat .airi-chat-note { font-size: .9rem; color: #47667b; }
+#chat .airi-chat-consentimiento { display: flex; gap: 8px; align-items: flex-start; width: 100%; font-weight: 400;
   font-size: .9rem; line-height: 1.4; margin: 4px 0 0; }
-#airi-chat .airi-chat-consentimiento input { width: auto; margin-top: 3px; flex: none; }
+#chat .airi-chat-consentimiento input { width: auto; margin-top: 3px; flex: none; }
 @media (max-width: 600px) {
   #airi-chat-log { max-height: 50vh; }
-  #airi-chat-form button { flex: 1 1 auto; }
+  #airi-chat-form button { flex: 1 1 auto; min-height: 44px; }
 }
