@@ -45,6 +45,8 @@ def prototipo_sin_mascota(tmp):
     shutil.copytree(RAIZ / "identidad-visual", Path(tmp) / "identidad-visual")
     # v0.4: el motor de análisis forma parte del prototipo (no de la mascota): también se copia
     shutil.copytree(RAIZ / "interfaz" / "motor", Path(tmp) / "interfaz" / "motor")
+    # v0.5: el chat también forma parte del prototipo
+    shutil.copytree(RAIZ / "interfaz" / "chat", Path(tmp) / "interfaz" / "chat")
     return destino.as_uri()
 
 

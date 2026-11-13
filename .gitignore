@@ -1,0 +1,8 @@
+# Secretos: las claves de API nunca se suben al repositorio
+.env
+.env.*
+!.env.example
+*.key
+# Cachés locales
+__pycache__/
+*.pyc
