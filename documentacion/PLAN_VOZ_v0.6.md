@@ -1,6 +1,6 @@
 # AIRI v0.6 — Conversación por voz y mascota interactiva (propuesta técnica)
 
-**Estado:** E1–E7 IMPLEMENTADAS en la rama (pendiente de revisión y de la prueba con micrófono real; sin fusionar). **Fecha:** 12-11-2026.
+**Estado:** E1–E7 implementadas y comprobadas por la persona responsable en Chrome sobre Windows (13-11-2026). PR #7 fusionado en `main` por la persona responsable; las correcciones finales van en un PR aparte. **Fecha:** 12-11-2026.
 
 > **Avance:**
 > - **E1** (diagnóstico): realizada; ver [`DIAGNOSTICO_VOZ_v0.6.md`](DIAGNOSTICO_VOZ_v0.6.md).
@@ -10,7 +10,8 @@
 >   [`PENSANDO_v0.6.md`](PENSANDO_v0.6.md).
 > - **E5–E6** (dictado por micrófono; ajustes, privacidad y accesibilidad): implementadas y probadas con un
 >   reconocimiento simulado; ver [`MICROFONO_v0.6.md`](MICROFONO_v0.6.md).
-> - **E7** (pruebas finales, documentación y PR): realizada; PR hacia `main` abierto **sin fusionar**.
+> - **E7** (pruebas finales, documentación y PR): realizada. PR #7 fusionado por la persona responsable.
+> - **Cierre:** corrección del aviso «Transcripción lista» y de los textos de versión, en un PR aparte.
 **Base:** v0.5 (PR #6, chat con Gemini mediante servidor local). **Rama prevista:** `feature/voz-conversacion-airi-v0.6`.
 
 ## 1. Objetivo

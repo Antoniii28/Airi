@@ -88,7 +88,13 @@ el chat escrito funciona igual.
 - **Se admiten las dos variantes de la interfaz** de reconocimiento en el dispositivo:
   - la actual, `available()` e `install()`;
   - la anterior, `availableOnDevice()` e `installOnDevice()`.
-- **El título de la pestaña** pasó de «v0.5 experimental» a «v0.6 experimental».
+- **Textos de versión:** distinguen el prototipo y el chat con voz (**v0.6**) del motor de análisis del agua
+  (**v0.4**, sin cambios). Se actualizaron:
+  - el título de la página;
+  - la bienvenida;
+  - el pie de página;
+  - el título de la pestaña del chat;
+  - la página de redirección.
 
 ## Archivos
 
@@ -121,7 +127,9 @@ Cubre:
 - los errores `not-allowed`, `no-speech`, `audio-capture` y `network`;
 - el navegador sin soporte;
 - el teclado, el movimiento reducido (del sistema y de la mascota) y el celular;
-- que no hay errores de JavaScript y que la clave no aparece en el registro.
+- que no hay errores de JavaScript y que la clave no aparece en el registro;
+- que el aviso de la transcripción desaparece al enviar, con el botón o con Enter;
+- los textos de versión: prototipo y chat v0.6, motor de análisis v0.4.
 
 ## Prueba manual en Windows (Chrome y Sabina)
 
@@ -133,9 +141,10 @@ Ver la sección «Cómo probarlo» del informe de E7 o el README de `chat/`. Res
 
 ## Limitaciones
 
-- **No se ha comprobado con un micrófono real.** Todo lo anterior se probó con un reconocimiento simulado. La
-  disponibilidad del español en el equipo, la calidad de la transcripción y el comportamiento del permiso dependen de
-  Chrome y de Windows.
+- **Prueba real en un solo equipo** (Chrome en Windows). La disponibilidad del reconocimiento en el equipo, la
+  calidad de la transcripción y el permiso dependen del navegador, del sistema y del micrófono de cada persona.
+- **Nivel de reconocimiento sin confirmar:** falta anotar cuál ofreció Chrome en esa prueba (en el equipo, descarga
+  o en línea).
 - El navegador integrado de la app de Claude (Electron) no tenía reconocimiento de español en el equipo según el
   diagnóstico de E1. Chrome puede usar el reconocimiento en línea de Google, solo con la autorización explícita.
 - **Edge:** según caniuse, su reconocimiento puede no disparar eventos. Si falla, el chat escrito sigue disponible.
