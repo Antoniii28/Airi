@@ -258,3 +258,21 @@ test("cabeceras de seguridad en las respuestas de la API", async () => {
   assert.match(r.headers.get("content-security-policy"), /default-src 'none'/);
   assert.equal(r.headers.get("access-control-allow-origin"), null);
 });
+
+// ── Regresión (13-11-2026): códigos válidos rechazados por cómo se escribieron o pegaron ──────────────────────────
+// Caso real: Turnstile aprobado, /api/estado activo y respuesta «Código de acceso no válido o revocado».
+test("código válido escrito sin guiones, con espacios o con espacio no separable (U+00A0) se acepta", async () => {
+  const env = await entorno({ AIRI_FALLOS_MAX_HORA: "1000", AIRI_LIMITE_MINUTO: "60" });
+  const variantes = [CODIGO.replaceAll("-", ""), CODIGO.replaceAll("-", " "), CODIGO.toLowerCase().replaceAll("-", ""),
+    CODIGO.replace("-", "- "), " " + CODIGO + " ", CODIGO.replaceAll("-", " - ")];
+  let i = 0;
+  for (const v of variantes)
+    assert.equal((await llamar(peticion({ cabeceras: { "x-airi-acceso": v }, ip: "198.51.100." + (++i) }), env)).r.status, 200, JSON.stringify(v));
+});
+test("la normalización no debilita el control: códigos distintos o incompletos siguen rechazados", async () => {
+  const env = await entorno({ AIRI_FALLOS_MAX_HORA: "1000" });
+  const malos = [CODIGO.slice(0, -1), CODIGO + "2", CODIGO.replace("P", "R"), CODIGO.slice(0, 5), "PRUEB-AFICT-ICIA0-0000I"];
+  let i = 0;
+  for (const v of malos)
+    assert.equal((await llamar(peticion({ cabeceras: { "x-airi-acceso": v }, ip: "198.51.101." + (++i) }), env)).r.status, 403, v);
+});

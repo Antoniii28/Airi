@@ -101,8 +101,8 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
 
 | Suite | Resultado |
 |---|---|
-| Worker, cuotas y archivos estáticos (`cd publico && node --test`) | **35/35** |
-| Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular; incluye navegación con LF y con CRLF | **30/30** |
+| Worker, cuotas, códigos y archivos estáticos (`cd publico && node --test`) | **43/43** |
+| Navegador del piloto (`python publico/pruebas/e2e_piloto.py`), escritorio y celular; incluye navegación con LF y CRLF y variantes del código | **37/37** |
 | E1, cuotas del servidor local (`python -m unittest discover -s tests`) | 8/8 |
 | Servidor local (`chat/pruebas`) | 29/29 |
 | Motor v0.4 (Python) | 52/52 |
@@ -150,6 +150,44 @@ Todas se ejecutaron. Gemini, Turnstile, el Durable Object, la voz y el reconocim
     que no haya violaciones de CSP ni 404.
   - Al anular a propósito la corrección, esas pruebas fallan (0 de 3 en las unitarias; en el navegador fallan las 2
     comprobaciones con CRLF) con los mismos síntomas.
+
+### Incidencia corregida: código válido rechazado en el despliegue (13-11-2026)
+
+- **Síntoma, en el despliegue del responsable:** `/api/estado` respondía `activo: true` y Turnstile verificaba bien,
+  pero el chat respondía «Código de acceso no válido o revocado».
+- **Diagnóstico con credenciales ficticias** (`fix/codigo-acceso-airi-v0.7`):
+  - El generador y el Worker calculan **la misma huella** cuando el código se escribe exactamente como se generó:
+    no hay error en el SHA-256.
+  - **Defecto demostrado:** el Worker solo aplicaba `trim()` y mayúsculas. Rechazaba con ese mismo mensaje un código
+    **válido** escrito sin guiones, con espacios en lugar de guiones, o con un espacio no separable (U+00A0, habitual
+    al copiar de páginas web o WhatsApp Web).
+  - **Segundo defecto:** con guiones tipográficos (‑ – —, típicos de Word, WhatsApp o la autocorrección) o caracteres
+    invisibles, el navegador no podía ni enviar la cabecera (`TypeError` en `fetch`), y el chat mostraba un engañoso
+    «No hay conexión con el servicio de AIRI».
+- **Corrección:**
+  - `publico/codigos.mjs` define la **forma canónica única** que usan el Worker, el generador y la nueva herramienta
+    de comprobación. Aplica NFKC y mayúsculas, quita espacios, guiones de cualquier tipo e invisibles, y agrupa de 5
+    en 5. Es la misma forma que imprime el generador, así que **las huellas ya cargadas siguen siendo válidas**.
+  - La normalización solo quita separadores: no acepta códigos distintos.
+  - La interfaz aplica la misma normalización antes de enviar y explica los códigos con formato imposible.
+  - Hay un botón «Mostrar» para revisar lo escrito.
+  - Los registros distinguen `codigo_formato` de `codigo_desconocido`, sin datos sensibles; el cliente recibe siempre
+    el mismo mensaje.
+- **No se puede verificar desde aquí si tu caso concreto era este.** También explican ese mensaje:
+  - un código y una línea de `AIRI_CODIGOS` de **ejecuciones distintas** de `generar-codigos.mjs` (cada ejecución
+    crea códigos nuevos);
+  - usar en producción el código ficticio `PRUEB-AFICT-ICIA0-00001`, que **solo existe en la vista previa local**;
+  - un participante revocado.
+
+  Para comprobarlo sin exponer secretos: `node publico/herramientas/comprobar-codigo.mjs` con la línea que cargaste
+  (ver la cabecera del archivo) y `npx wrangler tail`, que muestra `codigo_formato` o `codigo_desconocido`.
+- **Recuerda:** tras 10 intentos fallidos en una hora desde la misma conexión, el Worker bloquea esa conexión durante
+  una hora (429, «Demasiados intentos fallidos»). Es intencionado.
+- **Pruebas añadidas:**
+  - `publico/codigos.test.mjs` (6): variantes de escritura, no debilitamiento, compatibilidad con las huellas
+    anteriores, coherencia del generador y de la herramienta;
+  - 2 en `worker.test.mjs`; la de las variantes **fallaba antes de la corrección**;
+  - 7 comprobaciones en `e2e_piloto.py`.
 
 ## 5. Limitaciones conocidas
 

@@ -155,7 +155,9 @@ def main():
                 ctx.close(); proc.terminate()
 
         # ── 1. Carga, CSP y versiones anteriores ─────────────────────────────
-        proc, url = arrancar(); procesos.append(proc)
+        # Límite por minuto amplio SOLO aquí (este bloque hace muchas consultas con el mismo participante ficticio);
+        # el límite real de 5/min se prueba en el bloque 7 con su propio servidor.
+        proc, url = arrancar(DEV_LIMITE_MINUTO="60"); procesos.append(proc)
         cab = urllib.request.urlopen(url + "/interfaz/prototipo/index.html").headers
         comprobar("script-src 'self' 'sha256-" in cab.get("Content-Security-Policy", "") and
                   "microphone=(self)" in cab.get("Permissions-Policy", "") and cab.get("X-Frame-Options") == "DENY",
@@ -188,6 +190,23 @@ def main():
         preguntar(pg, "Hola", codigo="PRUEB-AFICT-ICIA0-99999")
         comprobar("Código de acceso no válido" in ultimo(pg) and pg.evaluate("window.__ts.resets") >= 1,
                   "código incorrecto: rechazado por el Worker y Turnstile se reinicia (token de un solo uso)")
+
+        # ── 2b. Regresión del 13-11-2026: el mismo código escrito o pegado de otras formas ──
+        for variante, nombre in ((CODIGO.replace("-", " "), "con espacios"), (CODIGO.replace("-", ""), "sin guiones"),
+                                 (CODIGO.replace("-", "\u2011"), "con guiones tipográficos (U+2011)"),
+                                 ("\u00a0" + CODIGO.lower() + "\u200b", "en minúsculas con espacio no separable e invisible")):
+            preguntar(pg, "Hola", codigo=variante)
+            comprobar("Respuesta simulada" in ultimo(pg) and pg.peticiones[-1].headers.get("x-airi-acceso") == CODIGO,
+                      f"código válido {nombre}: se acepta y se envía en forma canónica")
+        n = len(pg.peticiones)
+        preguntar(pg, "Hola", codigo="PRUEB-AFÍCT-ICIA0-00001", espera=300)
+        comprobar("solo lleva letras y números" in ultimo(pg) and len(pg.peticiones) == n,
+                  "código con caracteres imposibles: mensaje claro y no se envía (antes: falso «No hay conexión»)")
+        pg.fill("#airi-chat-codigo", CODIGO); pg.click("#airi-chat-codigo-mostrar")
+        comprobar(pg.get_attribute("#airi-chat-codigo", "type") == "text" and pg.get_attribute("#airi-chat-codigo-mostrar", "aria-pressed") == "true",
+                  "«Mostrar» permite revisar el código escrito")
+        pg.click("#airi-chat-codigo-mostrar")
+        comprobar(pg.get_attribute("#airi-chat-codigo", "type") == "password", "«Ocultar» vuelve a ocultarlo")
 
         # ── 3. Consulta correcta con mascota y voz ──────────────────────────
         pg.click("#airi-chat-voz-leer")

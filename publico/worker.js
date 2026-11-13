@@ -16,6 +16,7 @@
 
 import { leerLimites, ControlCuotasAIRI } from "./cuotas.js";
 import { consultarGemini, MODELO_VALIDO } from "./gemini.js";
+import { huellaCodigo, normalizarCodigo, formatoGenerado } from "./codigos.mjs";
 
 export { ControlCuotasAIRI };
 
@@ -93,8 +94,9 @@ function igualTiempoConstante(a, b) {
   return d === 0;
 }
 async function participante(codigo, codigos) {
-  if (typeof codigo !== "string" || codigo.length < 8 || codigo.length > 64) return null;
-  const h = await sha256(codigo.trim().toUpperCase());
+  // Forma canónica compartida con el generador (codigos.mjs): quita espacios, guiones e invisibles.
+  const h = await huellaCodigo(codigo);
+  if (!h) return null;
   let id = null;
   for (const [hash, nombre] of codigos) if (igualTiempoConstante(hash, h)) id = nombre;   // recorre todos (sin salida temprana)
   return id;
@@ -178,10 +180,13 @@ export async function manejar(request, env = {}, ctx = {}, deps = {}) {
       registrar("turnstile", 403);
       return json({ error: "No se pudo verificar que eres una persona. Completa la verificación y vuelve a intentarlo." }, 403);
     }
-    const id = await participante(request.headers.get("x-airi-acceso"), cfg.codigos);
+    const codigoRecibido = request.headers.get("x-airi-acceso");
+    const id = await participante(codigoRecibido, cfg.codigos);
     if (!id) {
       await cuotas(env, { op: "fallo", ip: huella });
-      registrar("codigo", 403);
+      // Diagnóstico sin datos sensibles: distingue un código con formato distinto al del generador de uno bien
+      // formado pero desconocido o revocado. Al cliente se le da siempre el mismo mensaje.
+      registrar(formatoGenerado(normalizarCodigo(codigoRecibido)) ? "codigo_desconocido" : "codigo_formato", 403);
       return json({ error: "Código de acceso no válido o revocado." }, 403);
     }
     const reserva = await cuotas(env, { op: "reservar", usuario: id });
