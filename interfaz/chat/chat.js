@@ -25,15 +25,33 @@
   var pendiente = null;          // AbortController de la consulta en curso
   var local = location.protocol === "http:" && /^(127\.0\.0\.1|localhost)$/.test(location.hostname);
 
-  function linea(rol, texto, clase) {
-    var p = document.createElement("p");
-    p.className = "airi-chat-line airi-chat-" + rol + (clase ? " " + clase : "");
-    var quien = document.createElement("strong");
-    quien.textContent = rol === "user" ? "Tú: " : "AIRI: ";
-    p.append(quien, document.createTextNode(texto));
-    log.append(p);
+  var MD = window.AIRIMarkdown;
+
+  /** Añade un mensaje. Las respuestas del modelo se muestran con Markdown SEGURO (markdown.js:
+      solo createElement + textContent, nunca innerHTML); lo demás, como texto plano. */
+  function linea(rol, texto, clase, conMarkdown) {
+    var msg = document.createElement("div");
+    msg.className = "airi-chat-msg airi-chat-" + rol + (clase ? " " + clase : "");
+    var autor = document.createElement("span");
+    autor.className = "airi-chat-autor";
+    autor.textContent = rol === "user" ? "Tú" : "AIRI";
+    var cuerpo = document.createElement("div");
+    cuerpo.className = "airi-chat-cuerpo";
+    if (conMarkdown && MD) cuerpo.appendChild(MD.renderizar(texto, document));
+    else cuerpo.textContent = texto;
+    msg.append(autor, cuerpo);
+    log.append(msg);
     log.scrollTop = log.scrollHeight;
-    return p;
+    return msg;
+  }
+
+  /** Indicador sencillo de espera (v0.5): puntos en la conversación y la mascota en su estado
+      «analisis», sin mensaje (no abre el globo ni habla). Las animaciones de habla/pensamiento son de v0.6. */
+  function esperaMascota(activa) {
+    var m = window.airiMascota;
+    if (!m || typeof m.cambiarEstado !== "function") return;
+    if (activa) m.cambiarEstado("analisis");
+    else if (m.estado === "analisis") m.cambiarEstado("espera");
   }
 
   /** Últimos mensajes que caben en los límites del servidor, empezando por una pregunta. */
@@ -99,7 +117,13 @@
     linea("user", pregunta);
     input.value = "";
     bloquear(true);
-    var pensando = linea("model", "pensando…", "airi-chat-pensando");
+    var pensando = linea("model", "", "airi-chat-pensando");
+    var cuerpoEspera = pensando.querySelector(".airi-chat-cuerpo"), puntos = document.createElement("span");
+    cuerpoEspera.textContent = "Pensando";
+    puntos.className = "airi-chat-puntos"; puntos.setAttribute("aria-hidden", "true");
+    for (var n = 0; n < 3; n++) { var punto = document.createElement("span"); punto.textContent = "."; puntos.appendChild(punto); }
+    cuerpoEspera.appendChild(puntos);
+    esperaMascota(true);
     pendiente = new AbortController();
     var temporizador = setTimeout(function () { pendiente && pendiente.abort(); }, ESPERA_MS);
     try {
@@ -115,7 +139,13 @@
         throw new Error((datos && datos.error) || "El servidor local respondió con un error (" + r.status + ").");
       }
       historial.push({ role: "model", text: datos.answer });
-      linea("model", datos.answer + (datos.truncada ? "\n[Respuesta recortada por longitud.]" : ""));
+      var respuesta = linea("model", datos.answer, "", true);
+      if (datos.truncada) {
+        var aviso = document.createElement("p");
+        aviso.className = "airi-chat-recortada";
+        aviso.textContent = "[Respuesta recortada por longitud.]";
+        respuesta.querySelector(".airi-chat-cuerpo").appendChild(aviso);
+      }
     } catch (error) {
       if (mia !== conversacion) return;
       pensando.remove();
@@ -126,7 +156,7 @@
       linea("model", "No pude responder: " + texto, "airi-chat-error");
     } finally {
       clearTimeout(temporizador);
-      if (mia === conversacion) { pendiente = null; bloquear(false); input.focus(); }
+      if (mia === conversacion) { pendiente = null; bloquear(false); esperaMascota(false); input.focus(); }
     }
   });
 
@@ -136,6 +166,7 @@
     historial.length = 0;
     log.replaceChildren();
     bloquear(false);
+    esperaMascota(false);
     linea("model", "Conversación nueva. ¿Qué te gustaría saber del acuario?");
   });
 

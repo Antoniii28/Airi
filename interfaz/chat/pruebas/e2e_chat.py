@@ -68,7 +68,8 @@ def main():
             pg.on("request", lambda r: not r.url.startswith(("http://127.0.0.1", "file://", "data:")) and externas.append(r.url))
             return ctx, pg
 
-        lineas = lambda pg: pg.eval_on_selector_all("#airi-chat-log .airi-chat-line", "l => l.map(e => e.innerText)")
+        lineas = lambda pg: pg.eval_on_selector_all("#airi-chat-log .airi-chat-msg",
+            "l => l.map(e => e.querySelector('.airi-chat-autor').innerText + ': ' + e.querySelector('.airi-chat-cuerpo').innerText)")
         flot = ".airi-m-flotante .airi-m-texto"
 
         # ── Escritorio ────────────────────────────────────────────────────────
@@ -85,9 +86,15 @@ def main():
         pg.check("#airi-chat-consentimiento")
         gemini.retraso = 1.0; gemini.respuesta = respuesta("Come pequeños crustáceos y alimento preparado.")
         pg.click("#airi-chat-send"); pg.wait_for_timeout(300)
-        comprobar(pg.is_disabled("#airi-chat-send") and "pensando" in lineas(pg)[-1] and
-                  pg.get_attribute("#airi-chat-log", "aria-busy") == "true", "mientras espera: «pensando…», botón desactivado")
+        comprobar(pg.is_disabled("#airi-chat-send") and "Pensando" in lineas(pg)[-1] and
+                  pg.get_attribute("#airi-chat-log", "aria-busy") == "true", "mientras espera: «Pensando…», botón desactivado")
+        globo_antes = pg.inner_text(flot)
+        comprobar(pg.evaluate("window.airiMascota.estado") == "analisis" and
+                  pg.evaluate("document.querySelector('.airi-m-flotante .airi-m-pez').classList.contains('airi-m-estado-analisis')") and
+                  "preguntas sobre acuarios marinos" in globo_antes,
+                  "mascota: indicador sencillo de espera (estado «analisis») sin mensaje ni voz nuevos")
         pg.wait_for_timeout(1300)
+        comprobar(pg.evaluate("window.airiMascota.estado") == "espera", "mascota: vuelve a «espera» al llegar la respuesta")
         comprobar(lineas(pg)[-1] == "AIRI: Come pequeños crustáceos y alimento preparado." and not pg.is_disabled("#airi-chat-send"),
                   "muestra la respuesta de Gemini")
         enviado = gemini.recibidas[-1]
@@ -102,6 +109,26 @@ def main():
         comprobar([c["role"] for c in gemini.recibidas[-1]["cuerpo"]["contents"]] == ["user", "model", "user"],
                   "las preguntas de seguimiento incluyen el contexto (Enter también envía)")
         comprobar(CLAVE not in pg.content(), "la clave no está en la página")
+        gemini.respuesta = respuesta("**Agua estable** y *dieta variada*:\n\n- pellets\n- artemia\n  - congelada\n\n"
+                                     "| Edad | Tomas |\n|---|---|\n| Juvenil | 3 |\n\nMás en [FishBase](https://www.fishbase.se/x).")
+        pg.fill("#airi-chat-input", "Resúmelo"); pg.click("#airi-chat-send"); pg.wait_for_timeout(800)
+        ultimo = "#airi-chat-log .airi-chat-msg:last-child .airi-chat-cuerpo"
+        md = pg.evaluate(f"""(() => {{ const c = document.querySelector('{ultimo}'); return {{
+            strong: c.querySelectorAll('strong').length, em: c.querySelectorAll('em').length, li: c.querySelectorAll('li').length,
+            tabla: c.querySelectorAll('table th').length, enlaces: c.querySelectorAll('a').length, texto: c.innerText }}; }})()""")
+        comprobar(md["strong"] == 1 and md["em"] == 1 and md["li"] == 3 and md["tabla"] == 2 and "**" not in md["texto"] and
+                  "| ---" not in md["texto"], f"Markdown legible: negrita, cursiva, listas y tabla sin símbolos {md}")
+        pg.locator("#airi-chat-log .airi-chat-msg:last-child").screenshot(path=str(cap / "04_respuesta_markdown.png"))
+        comprobar(md["enlaces"] == 0 and "(https://www.fishbase.se/x)" in md["texto"],
+                  "los enlaces del modelo se muestran como texto, no clicables (no verificados)")
+        disp = pg.evaluate("""(() => { const u = [...document.querySelectorAll('#airi-chat-log .airi-chat-user')].pop().getBoundingClientRect(),
+            m = [...document.querySelectorAll('#airi-chat-log .airi-chat-model')].pop().getBoundingClientRect(),
+            log = document.querySelector('#airi-chat-log').getBoundingClientRect();
+            return [Math.round(log.right - u.right), Math.round(m.left - log.left),
+                    getComputedStyle(document.querySelector('.airi-chat-user')).backgroundColor,
+                    getComputedStyle(document.querySelector('.airi-chat-model')).backgroundColor]; })()""")
+        comprobar(disp[0] < 30 and disp[1] < 30 and disp[2] != disp[3],
+                  f"burbujas diferenciadas: persona a la derecha, AIRI a la izquierda, colores distintos {disp}")
 
         gemini.respuesta = respuesta("Parcial", "MAX_TOKENS")
         pg.fill("#airi-chat-input", "Explícalo todo"); pg.click("#airi-chat-send"); pg.wait_for_timeout(800)
@@ -109,7 +136,7 @@ def main():
         gemini.respuesta = (429, {"error": {"status": "RESOURCE_EXHAUSTED"}})
         n_hist = len(gemini.recibidas)
         pg.fill("#airi-chat-input", "Otra"); pg.click("#airi-chat-send"); pg.wait_for_timeout(800)
-        comprobar("nivel gratuito" in lineas(pg)[-1] and "airi-chat-error" in pg.eval_on_selector("#airi-chat-log p:last-child", "e => e.className"),
+        comprobar("nivel gratuito" in lineas(pg)[-1] and "airi-chat-error" in pg.eval_on_selector("#airi-chat-log .airi-chat-msg:last-child", "e => e.className"),
                   "cuota agotada: mensaje claro y marcado como error")
         gemini.respuesta = respuesta("Respuesta tras el error")
         pg.fill("#airi-chat-input", "Reintento"); pg.click("#airi-chat-send"); pg.wait_for_timeout(800)
@@ -153,6 +180,9 @@ def main():
         comprobar(not solapa, "celular: al escribir, el globo de la mascota no tapa el campo de pregunta")
         pg.tap("#airi-chat-send"); pg.wait_for_timeout(900)
         comprobar("dieta variada" in lineas(pg)[-1], "celular: envía y muestra la respuesta")
+        anchos = pg.evaluate("""[...document.querySelectorAll('#airi-chat-log .airi-chat-msg')].map(e =>
+            Math.round(e.getBoundingClientRect().width / document.querySelector('#airi-chat-log').clientWidth * 100))""")
+        comprobar(all(a <= 95 for a in anchos), f"celular: las burbujas caben en la conversación (% de ancho {anchos})")
         ancho = pg.evaluate("[document.documentElement.scrollWidth, innerWidth]")
         comprobar(ancho[0] <= ancho[1], f"celular: sin desplazamiento horizontal {ancho}")
         botones = pg.eval_on_selector_all("#airi-chat-form button", "l => l.map(b => b.getBoundingClientRect().height)")

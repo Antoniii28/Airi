@@ -104,6 +104,7 @@ python interfaz/mascota/pruebas/e2e_voz.py
 python interfaz/mascota/pruebas/e2e_ajustes_voz.py
 python interfaz/motor/pruebas/e2e_analisis.py               # escritorio y celular
 python -m unittest discover -s chat/pruebas                 # servidor del chat (Gemini simulado)
+node --test interfaz/chat/pruebas/markdown.test.js           # Markdown seguro del chat
 python interfaz/chat/pruebas/e2e_chat.py                    # chat en escritorio y celular
 ```
 
@@ -113,7 +114,7 @@ python interfaz/chat/pruebas/e2e_chat.py                    # chat en escritorio
 | Motor JavaScript (incluye los 34 casos de conformidad) | 5/5 |
 | Mascota · voz · personalidad de voz (Node) | 12/12 · 16/16 · 11/11 |
 | Navegador: mascota · voz · ajustes de voz · análisis (escritorio y celular) | 76/76 · 50/50 · 43/43 · 57/57 |
-| Chat v0.5: servidor · navegador (escritorio y celular), con Gemini simulado | 27/27 · 26/26 |
+| Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 28/28 · 8/8 · 32/32 |
 
 Historial de pruebas, errores encontrados y su corrección: [`motor/PRUEBAS_v0.4.md`](motor/PRUEBAS_v0.4.md).
 

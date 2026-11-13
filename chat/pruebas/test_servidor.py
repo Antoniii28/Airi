@@ -201,6 +201,16 @@ class Validacion(Base):
         self.assertEqual(enviado["generationConfig"]["maxOutputTokens"], servidor.MAX_SALIDA_TOKENS)
 
 
+class Instrucciones(unittest.TestCase):
+    def test_instrucciones_de_estilo_y_prudencia(self):
+        t = servidor.SISTEMA
+        for frase in ["extensión proporcional", "No saludes ni te presentes en cada respuesta",
+                      "No repitas advertencias generales", "No inventes estudios, referencias ni enlaces",
+                      "No tienes acceso a internet", "No diagnostiques", "veterinario",
+                      "motor de reglas de AIRI v0.4", "no uses HTML"]:
+            self.assertIn(frase, t)
+
+
 class RespuestasDeGemini(Base):
     def test_respuesta_correcta(self):
         estado, datos, _ = self.chat(PREGUNTA)

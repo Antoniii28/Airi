@@ -27,6 +27,37 @@ API de Gemini · generateContent (modelo predeterminado: gemini-3.1-flash-lite)
 - **Historial:** se guarda solo en la memoria de la pestaña. Se envían los últimos 12 mensajes, hasta 30 000
   caracteres, para dar contexto.
 
+## Presentación de las respuestas
+
+- **Burbujas:** la persona aparece a la derecha, en azul, y AIRI a la izquierda, en blanco con borde. En celular las
+  burbujas ocupan como máximo el 92 % del ancho.
+- **Markdown seguro** ([`interfaz/chat/markdown.js`](../interfaz/chat/markdown.js)): negritas, cursivas, títulos,
+  listas con niveles, tablas, citas y código se muestran sin asteriscos ni símbolos. El texto se analiza primero y
+  luego se crean los elementos **solo con `createElement` y `textContent`**: el HTML que escriba Gemini se muestra
+  como texto y no puede ejecutarse (sin XSS).
+- **Enlaces sin clic:** se muestran como «texto (dirección)» y no se pueden pulsar, porque sin búsqueda web no están
+  verificados.
+- **Mientras Gemini responde:**
+  - en la conversación aparece «Pensando…» con tres puntos animados (estáticos si se pide reducir el movimiento) y
+    el botón «Enviar» se desactiva;
+  - la mascota pasa a su estado `analisis`, sin mensaje nuevo, sin abrir el globo y sin voz, y vuelve a `espera` al
+    terminar.
+  - Las animaciones de habla y de pensamiento quedan para v0.6.
+
+## Instrucciones del modelo
+
+Están en `SISTEMA`, dentro de `chat/servidor.py`, y piden:
+
+- **Proporción:** respuestas proporcionales a la pregunta, sin saludar en cada mensaje.
+- **Formato:** Markdown sencillo y nunca HTML.
+- **Advertencias:** solo las pertinentes a la pregunta.
+- **Prudencia:**
+  - distinguir lo establecido de lo incierto y presentar los rangos como aproximados;
+  - no inventar estudios, referencias ni enlaces, y reconocer que no hay acceso a internet;
+  - no diagnosticar y recomendar a un veterinario ante síntomas;
+  - no dar órdenes de acciones físicas;
+  - dejar la evaluación de parámetros al motor v0.4.
+
 ## Configurar Gemini con el nivel gratuito (paso a paso)
 
 Lo hace la persona responsable del proyecto, en su propio equipo. **Nunca** pegues la clave en un chat (tampoco en
@@ -102,15 +133,21 @@ Consulta del 12-11-2026:
 ## Pruebas
 
 ```bash
-python -m unittest discover -s chat/pruebas -v    # 27 pruebas del servidor (Gemini simulado, sin internet)
-python interfaz/chat/pruebas/e2e_chat.py          # 26 comprobaciones en Chrome (escritorio y celular)
+python -m unittest discover -s chat/pruebas -v    # 28 pruebas del servidor (Gemini simulado, sin internet)
+node --test interfaz/chat/pruebas/markdown.test.js # 8 pruebas del Markdown seguro (incluye intentos de XSS)
+python interfaz/chat/pruebas/e2e_chat.py          # 32 comprobaciones en Chrome (escritorio y celular)
 ```
 
 Las pruebas usan un **Gemini simulado** en `127.0.0.1` y una clave ficticia; no consumen cuota ni necesitan internet.
 
 ## Limitaciones pendientes
 
-- **Gemini real:** no se ha probado contra el servicio real porque requiere tu clave. Ver «Prueba con tu clave».
+- **Gemini real:**
+  - La persona responsable lo probó con su clave (12-11-2026): respondió correctamente a tres preguntas (cuidados del
+    pez payaso, seguimiento sobre juveniles y limitaciones de búsqueda web).
+  - Las **instrucciones nuevas del modelo** (proporción, sin saludos repetidos) y el Markdown solo se han probado con
+    el Gemini simulado: falta repetir la prueba real.
+  - Las respuestas reales pueden variar.
 - **Sin búsqueda web ni citas:** el modelo no consulta fuentes en tiempo real.
 - **Sin voz:** la mascota tiene un mensaje para esta pestaña, pero no lee las respuestas del chat.
 - **Solo local:** no hay despliegue público. Un servidor en internet necesitaría autenticación, HTTPS y control de
