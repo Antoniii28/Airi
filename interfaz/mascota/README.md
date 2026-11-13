@@ -218,11 +218,12 @@ document.addEventListener("airi:mascota", e => console.log(e.detail.estado));
 v0.2 añadió `m.elementos`, `m.indicarHabla(bool)` y los eventos `airi:mascota-pulsada` y
 `airi:mascota-visibilidad`.
 
-**Cómo encajarán las versiones futuras** (ninguna está implementada):
+**Cómo encajarán las versiones futuras.** El motor de reglas ya está implementado desde v0.4 (ver
+`interfaz/motor/README.md`); el resto **no** está implementado:
 
 | Función futura | Punto de conexión |
 |---|---|
-| Motor de reglas para analizar el agua | Devolverá resultados con fuente; la integración llamará a `m.decir({estado: "alerta", …})`. El estado ya existe |
+| ~~Motor de reglas para analizar el agua~~ (**implementado en v0.4**) | `interfaz/motor/analisis-prototipo.js` prepara el mensaje y `integracion-prototipo.js` llama a `m.decir({estado: "alerta", …})` |
 | Chatbot con IA | Otra fuente de respuestas detrás del mismo menú, en lugar de `AIRIAyuda.respuesta()`, marcando sus respuestas como generadas |
 | Reconocimiento de voz | Módulo aparte que pediría permiso del micrófono de forma explícita y llamaría a `interaccion.ejecutar(id)` |
 | Fotografías | Módulo aparte con confirmación humana; mostraría su resultado con `m.decir(...)` |

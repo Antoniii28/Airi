@@ -107,5 +107,6 @@ conformidad no cambiaron de estado ni de clasificación en E4 ni en E5.
    Está rotulado, pero son dos validaciones distintas.
 6. **Sin historial:** no hay historial ni tendencias; cada evaluación es independiente.
 7. **Sin conversiones de salinidad o NH₃:** no convierte densidad relativa a salinidad ni calcula NH₃ no ionizado.
-8. **Versiones visibles:** el pie del prototipo dice «AIRI v0.4» (revisión final). El título de la pestaña
-   («AIRI · Prototipo v0.1») y el texto de Inicio («Prototipo académico v0.1») no se cambiaron: pendiente de decisión.
+8. **Versiones visibles:** el título, el texto de Inicio, el pie y la página de entrada muestran v0.4. Se conservan
+   las referencias históricas (entrega «interfaz inicial v0.1», «borrador v0.1» de las fichas, nombres de ramas y la
+   versión interna del módulo de mascota).

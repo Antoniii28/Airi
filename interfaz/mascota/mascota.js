@@ -4,12 +4,11 @@
    doble clic (file://). Expone window.AIRIMascota.
 
    Qué es real y qué es demostrativo:
-   - La mascota NO analiza el agua: AIRI todavía no tiene motor de análisis.
-   - Los estados de validación reflejan el resultado que ya calcula el
-     formulario del prototipo (dato faltante o valor inválido).
+   - La mascota NO analiza el agua por sí misma: muestra lo que calculan el
+     formulario del prototipo y, desde v0.4, el motor de análisis
+     (interfaz/motor), que activa el estado «alerta» con referencias con fuente.
    - La pausa del estado «análisis» es una animación demostrativa.
-   - El estado «alerta» queda preparado para futuras alertas basadas en
-     referencias con fuente; en v0.1 la integración no lo activa.
+   (Módulo creado en v0.1; voz en v0.2, ajustes en v0.3, botón «×» en v0.4.)
 */
 (function (raiz, fabrica) {
   var api = fabrica(raiz);
