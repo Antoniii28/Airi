@@ -26,3 +26,12 @@ node --test worker.test.mjs
 ```
 
 **Nota:** el test de región sin metadatos de Cloudflare comprueba el rechazo seguro. Las pruebas positivas del país requieren un simulador controlado. **No cambiar `AIRI_CHAT_APAGADO` para publicar este prototipo.**
+
+## Continuación: validación defensiva (13-11-2026)
+
+- Se exige alternancia `user/model/user` para evitar historiales malformados.
+- Se rechazan códigos de país inválidos y longitudes declaradas no enteras o excesivas.
+- Se devuelve error controlado si falla la lectura del cuerpo.
+- Se amplían los casos de prueba de validación, regiones simuladas, código de acceso y cierre seguro.
+- **Importante:** estas modificaciones se guardaron en GitHub, pero todavía no se ejecutaron las pruebas nuevas en el Windows del responsable. No se afirma que estén verificadas hasta ejecutar `node --test worker.test.mjs`.
+- **Sigue bloqueado para publicación:** Turnstile real, cuotas atómicas compartidas, autorización del piloto, Gemini, pruebas con Wrangler y despliegue.
