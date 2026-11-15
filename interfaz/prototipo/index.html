@@ -33,11 +33,26 @@ nav button:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
  #inicio .grid{grid-template-columns:1fr;gap:10px}
 }
 /* Interacción visual de las fichas de especies · Actividad de Paola */
-#catalogo .card{cursor:pointer;border:1px solid #ccebf1;transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease,border-color .18s ease}
-#catalogo .card:hover{transform:translateY(-3px) scale(1.015);background:#e7f8fc;border-color:#72c9dc;box-shadow:0 8px 18px #09284d18}
+#catalogo .card{cursor:pointer;border:1px solid #ccebf1;transition:transform .25s ease,box-shadow .25s ease,background-color .25s ease,border-color .25s ease}
+#catalogo .card:hover{background:#e7f8fc;border-color:#72c9dc;box-shadow:0 8px 18px #09284d18}
 #catalogo .card:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
-#catalogo .card.seleccionada{background:#dff5fa;border:2px solid #0982C7;box-shadow:0 0 0 3px #0982c722,0 8px 18px #09284d18}
+#catalogo .card.seleccionada{position:fixed;z-index:1002;left:50%;top:50%;transform:translate(-50%,-50%);width:min(680px,calc(100vw - 32px));max-height:88vh;overflow-y:auto;background:#fff;border:2px solid #0982C7;box-shadow:0 18px 55px #00182dcc;cursor:default}
 #catalogo .card.seleccionada h3{color:#076caa}
+#ficha-overlay{position:fixed;inset:0;z-index:1001;background:rgba(3,20,38,.72);backdrop-filter:blur(3px)}
+#catalogo .ficha-galeria{position:relative}
+#catalogo .ficha-galeria img{transition:opacity 1.15s ease}
+#catalogo .ficha-galeria img.cambiando{opacity:.12}
+#catalogo .galeria-controles{position:absolute;inset:50% 0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 9px;transform:translateY(-50%);background:transparent;pointer-events:none}
+#catalogo .galeria-controles button{display:none;pointer-events:auto;width:42px;height:42px;min-width:42px;min-height:42px;padding:0;border:1px solid #ffffff9c;border-radius:50%;background:#09284D55;color:#fff;font-size:25px;line-height:1;opacity:.38;box-shadow:0 2px 9px #00182d33;transition:opacity .2s ease,background-color .2s ease,transform .2s ease}
+#catalogo .card.seleccionada .galeria-controles button{display:inline-flex;align-items:center;justify-content:center}
+#catalogo .galeria-controles button:hover,#catalogo .galeria-controles button:focus-visible,#catalogo .galeria-controles button:active{background:#0982C7;color:#fff;opacity:1;transform:scale(1.08)}
+#catalogo .galeria-controles button:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
+#catalogo .galeria-controles button[hidden]{display:none}
+#catalogo .cerrar-ficha{display:none;position:absolute;z-index:2;top:10px;right:10px;width:36px;height:36px;min-width:36px;min-height:36px;padding:0;border-radius:50%;background:#09284D99;color:white;font-size:23px;line-height:1;opacity:.7}
+#catalogo .card.seleccionada .cerrar-ficha{display:inline-flex;align-items:center;justify-content:center}
+#catalogo .cerrar-ficha:hover,#catalogo .cerrar-ficha:focus-visible{background:#0982C7;opacity:1}
+#catalogo .galeria-indice{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);padding:4px 9px;border-radius:20px;background:#09284D99;color:white;font-size:12px}
+body.ficha-abierta{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
  nav button,#inicio .card,#catalogo .card{transition:none}
  #inicio .card:hover,#catalogo .card:hover{transform:none}
@@ -47,13 +62,19 @@ nav button:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
 /* Galería de fotografías para las fichas · Actividad de Paola */
 header p{font-size:.93rem}
 #catalogo .card{overflow:hidden}
-#catalogo .ficha-galeria{position:relative;margin:-15px -15px 13px}
+#catalogo .ficha-galeria{position:relative;margin:-15px -15px 13px;overflow:hidden}
 #catalogo .ficha-galeria img{display:block;width:100%;height:165px;object-fit:cover;background:#dceef2}
-#catalogo .galeria-controles{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;background:#09284D;color:white}
-#catalogo .galeria-controles button{min-width:36px;min-height:34px;padding:5px 11px;background:#e0f6fa;color:#09284D;font-size:19px;line-height:1}
-#catalogo .galeria-controles button:hover{background:#80EAF2}
-#catalogo .galeria-controles button:focus-visible{outline:3px solid #C25A10;outline-offset:2px}
-#catalogo .galeria-indice{font-size:12px;color:white}
+#catalogo .card.seleccionada .ficha-galeria img{height:clamp(240px,48vh,430px)}
+#catalogo .galeria-controles{position:absolute;inset:50% 0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 9px;transform:translateY(-50%);background:transparent;pointer-events:none}
+#catalogo .galeria-controles button{display:none;pointer-events:auto;width:42px;height:42px;min-width:42px;min-height:42px;padding:0;border:1px solid #ffffff9c;border-radius:50%;background:#09284D55;color:#fff;font-size:25px;line-height:1;opacity:.38;box-shadow:0 2px 9px #00182d33;transition:opacity .2s ease,background-color .2s ease,transform .2s ease}
+#catalogo .card.seleccionada .galeria-controles button{display:inline-flex;align-items:center;justify-content:center}
+#catalogo .galeria-controles button:hover,#catalogo .galeria-controles button:focus-visible,#catalogo .galeria-controles button:active{background:#0982C7;color:#fff;opacity:1;transform:scale(1.08)}
+#catalogo .galeria-controles button:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
+#catalogo .galeria-controles button[hidden]{display:none}
+#catalogo .galeria-indice{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);padding:4px 9px;border-radius:20px;background:#09284D99;color:white;font-size:12px}
+#catalogo .cerrar-ficha{display:none;position:absolute;z-index:2;top:10px;right:10px;width:36px;height:36px;min-width:36px;min-height:36px;padding:0;border-radius:50%;background:#09284D99;color:white;font-size:23px;line-height:1;opacity:.7}
+#catalogo .card.seleccionada .cerrar-ficha{display:inline-flex;align-items:center;justify-content:center}
+#catalogo .cerrar-ficha:hover,#catalogo .cerrar-ficha:focus-visible{background:#0982C7;opacity:1}
 #catalogo .foto-fuente{display:block;padding:5px 10px;background:#f7fcfd;font-size:11px;text-align:right}
 #catalogo .card h3{margin-top:0}
 .airi-chat-voz-estado.airi-voz-ayuda{position:relative;display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;margin-left:7px;border:1px solid #80EAF2;border-radius:50%;background:#e0f6fa;color:#09284D;font-size:0;line-height:1;cursor:help;vertical-align:middle}
@@ -61,7 +82,7 @@ header p{font-size:.93rem}
 .airi-chat-voz-estado.airi-voz-ayuda::after{content:attr(data-tooltip);position:absolute;z-index:20;right:0;bottom:calc(100% + 9px);width:max-content;max-width:min(280px,75vw);padding:9px 11px;border-radius:8px;background:#09284D;color:white;font-size:12px;font-weight:500;line-height:1.4;white-space:normal;box-shadow:0 4px 14px #09284d33;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s ease}
 .airi-chat-voz-estado.airi-voz-ayuda:hover::after,.airi-chat-voz-estado.airi-voz-ayuda:focus-visible::after{opacity:1;visibility:visible}
 .airi-chat-voz-estado.airi-voz-ayuda:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
-@media(max-width:640px){#catalogo .ficha-galeria img{height:190px}}
+@media(max-width:640px){#catalogo .ficha-galeria img{height:190px}#catalogo .card.seleccionada .ficha-galeria img{height:clamp(210px,42vh,330px)}#catalogo .card.seleccionada{width:calc(100vw - 24px);max-height:90vh}}
 @media(prefers-reduced-motion:reduce){.airi-chat-voz-estado.airi-voz-ayuda::after{transition:none}}
 
 </style>
@@ -97,12 +118,17 @@ document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()
 document.getElementById('campos').innerHTML=params.map((p,i)=>'<div><label for="p'+i+'">'+safe(p[0])+' ('+safe(p[1])+')</label><input id="p'+i+'" inputmode="decimal" placeholder="Escribe una medición"></div>').join('');
 function urlFoto(nombre){return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(nombre)+"?width=900"}
 function urlFuente(nombre){return "https://commons.wikimedia.org/wiki/File:"+encodeURIComponent(nombre)}
-function pintar(){const q=document.getElementById('buscar').value.trim().toLowerCase();document.getElementById('catalogo').innerHTML=especies.filter(e=>e.slice(0,3).join(' ').toLowerCase().includes(q)).map(e=>'<article class="card" tabindex="0" role="group" aria-label="Ficha de '+safe(e[0])+'; presiona Enter para seleccionarla"><div class="ficha-galeria" data-images="'+safe(JSON.stringify(e[3]))+'" data-index="0"><img src="'+safe(urlFoto(e[3][0]))+'" alt="'+safe(e[0])+'; fotografía 1 de 3" loading="lazy"><div class="galeria-controles"><button type="button" data-mover="-1" aria-label="Fotografía anterior de '+safe(e[0])+'">‹</button><span class="galeria-indice" aria-live="polite">1 de 3</span><button type="button" data-mover="1" aria-label="Fotografía siguiente de '+safe(e[0])+'">›</button></div><a class="foto-fuente" href="'+safe(urlFuente(e[3][0]))+'" target="_blank" rel="noopener noreferrer">Fuente de la fotografía ↗</a></div><h3>'+safe(e[0])+'</h3><p><em>'+safe(e[1])+'</em></p><p>'+safe(e[2])+'</p><span class="tag">Ficha preliminar</span></article>').join('')||'<p>No hay coincidencias.</p>'}
+function pintar(){const q=document.getElementById('buscar').value.trim().toLowerCase();document.getElementById('catalogo').innerHTML=especies.filter(e=>e.slice(0,3).join(' ').toLowerCase().includes(q)).map(e=>'<article class="card" tabindex="0" role="group" aria-label="Ficha de '+safe(e[0])+'; presiona Enter para seleccionarla"><div class="ficha-galeria" data-images="'+safe(JSON.stringify(e[3]))+'" data-index="0"><img src="'+safe(urlFoto(e[3][0]))+'" alt="'+safe(e[0])+'; fotografía 1 de 3" loading="lazy"><button type="button" class="cerrar-ficha" aria-label="Cerrar ficha ampliada">×</button><div class="galeria-controles"><button type="button" data-mover="-1" aria-label="Fotografía anterior de '+safe(e[0])+'">‹</button><span class="galeria-indice" aria-live="polite">1 de 3</span><button type="button" data-mover="1" aria-label="Fotografía siguiente de '+safe(e[0])+'">›</button></div><a class="foto-fuente" href="'+safe(urlFuente(e[3][0]))+'" target="_blank" rel="noopener noreferrer">Fuente de la fotografía ↗</a></div><h3>'+safe(e[0])+'</h3><p><em>'+safe(e[1])+'</em></p><p>'+safe(e[2])+'</p><span class="tag">Ficha preliminar</span></article>').join('')||'<p>No hay coincidencias.</p>'}
 const catalogo=document.getElementById('catalogo');
-function cambiarFoto(galeria,desplazamiento){const archivos=JSON.parse(galeria.dataset.images);const indice=(Number(galeria.dataset.index)+desplazamiento+archivos.length)%archivos.length;galeria.dataset.index=String(indice);const ficha=galeria.closest('.card');const imagen=galeria.querySelector('img');imagen.src=urlFoto(archivos[indice]);imagen.alt=ficha.querySelector('h3').textContent+'; fotografía '+(indice+1)+' de '+archivos.length;galeria.querySelector('.galeria-indice').textContent=(indice+1)+' de '+archivos.length;galeria.querySelector('.foto-fuente').href=urlFuente(archivos[indice])}
-catalogo.addEventListener('click',e=>{const control=e.target.closest('[data-mover]');if(control){e.preventDefault();e.stopPropagation();cambiarFoto(control.closest('.ficha-galeria'),Number(control.dataset.mover));return}if(e.target.closest('.foto-fuente'))return;const ficha=e.target.closest('.card');if(!ficha||!catalogo.contains(ficha))return;const yaSeleccionada=ficha.classList.contains('seleccionada');catalogo.querySelectorAll('.card').forEach(card=>{card.classList.remove('seleccionada');card.setAttribute('aria-label','Ficha de '+card.querySelector('h3').textContent+'; presiona Enter para seleccionarla')});if(!yaSeleccionada){ficha.classList.add('seleccionada');ficha.setAttribute('aria-label','Ficha de '+ficha.querySelector('h3').textContent+' seleccionada')}});
-catalogo.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;if(e.target.closest('.galeria-controles,.foto-fuente'))return;const ficha=e.target.closest('.card');if(!ficha||!catalogo.contains(ficha))return;e.preventDefault();ficha.click()});
-if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){window.setInterval(()=>{if(document.hidden)return;catalogo.querySelectorAll('.ficha-galeria').forEach(galeria=>{if(galeria.matches(':hover')||galeria.contains(document.activeElement))return;cambiarFoto(galeria,1)})},4000)}
+const overlay=document.createElement('div');overlay.id='ficha-overlay';overlay.hidden=true;overlay.addEventListener('click',cerrarFicha);document.body.appendChild(overlay);
+function cambiarFoto(galeria,desplazamiento){const archivos=JSON.parse(galeria.dataset.images);const indice=(Number(galeria.dataset.index)+desplazamiento+archivos.length)%archivos.length;galeria.dataset.index=String(indice);const ficha=galeria.closest('.card');const imagen=galeria.querySelector('img');const nuevaUrl=urlFoto(archivos[indice]);imagen.classList.add('cambiando');const precarga=new Image();precarga.onload=()=>{imagen.src=nuevaUrl;imagen.alt=ficha.querySelector('h3').textContent+'; fotografía '+(indice+1)+' de '+archivos.length;requestAnimationFrame(()=>imagen.classList.remove('cambiando'))};precarga.onerror=()=>{imagen.src=nuevaUrl;imagen.alt=ficha.querySelector('h3').textContent+'; fotografía '+(indice+1)+' de '+archivos.length;imagen.classList.remove('cambiando')};precarga.src=nuevaUrl;galeria.querySelector('.galeria-indice').textContent=(indice+1)+' de '+archivos.length;galeria.querySelector('.foto-fuente').href=urlFuente(archivos[indice])}
+function cerrarFicha(){const abierta=catalogo.querySelector('.card.seleccionada');if(!abierta)return;abierta.classList.remove('seleccionada');document.body.classList.remove('ficha-abierta');overlay.hidden=true;abierta.setAttribute('aria-label','Ficha de '+abierta.querySelector('h3').textContent+'; presiona Enter para ampliarla');}
+function abrirFicha(ficha){catalogo.querySelectorAll('.card.seleccionada').forEach(c=>c.classList.remove('seleccionada'));ficha.classList.add('seleccionada');document.body.classList.add('ficha-abierta');overlay.hidden=false;ficha.setAttribute('aria-label','Ficha ampliada de '+ficha.querySelector('h3').textContent);const primerControl=ficha.querySelector('[data-mover]');if(primerControl)primerControl.focus({preventScroll:true})}
+catalogo.addEventListener('click',e=>{const control=e.target.closest('[data-mover]');if(control){e.preventDefault();e.stopPropagation();if(control.closest('.card').classList.contains('seleccionada'))cambiarFoto(control.closest('.ficha-galeria'),Number(control.dataset.mover));return}if(e.target.closest('.foto-fuente'))return;if(e.target.closest('.cerrar-ficha')){e.preventDefault();e.stopPropagation();cerrarFicha();return}const ficha=e.target.closest('.card');if(!ficha||!catalogo.contains(ficha))return;if(ficha.classList.contains('seleccionada'))return;abrirFicha(ficha)});
+catalogo.addEventListener('keydown',e=>{if(e.key==='Escape'&&catalogo.querySelector('.card.seleccionada')){e.preventDefault();cerrarFicha();return}if(e.key!=='Enter'&&e.key!==' ')return;if(e.target.closest('.galeria-controles,.foto-fuente,.cerrar-ficha'))return;const ficha=e.target.closest('.card');if(!ficha||!catalogo.contains(ficha))return;e.preventDefault();if(!ficha.classList.contains('seleccionada'))abrirFicha(ficha)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&catalogo.querySelector('.card.seleccionada'))cerrarFicha()});
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){window.setInterval(()=>{if(document.hidden)return;catalogo.querySelectorAll('.ficha-galeria').forEach(galeria=>{const ficha=galeria.closest('.card');if(ficha.matches(':hover')||ficha.classList.contains('seleccionada'))cambiarFoto(galeria,1)})},5000)}
+
 document.getElementById('buscar').addEventListener('input',pintar);pintar();
 document.getElementById('evaluar').addEventListener('click',()=>{const origen=document.getElementById('origen').value;const out=params.map((p,i)=>{const raw=document.getElementById('p'+i).value.trim();if(!raw)return '<div class="status unknown">'+safe(p[0])+': INFORMACIÓN INSUFICIENTE (sin dato)</div>';const n=Number(raw.replace(',','.'));if(!Number.isFinite(n)||n<0||(p[0]==='pH'&&n>14))return '<div class="status warn">'+safe(p[0])+': VALOR INVÁLIDO; revisar entrada</div>';return '<div class="status ok">'+safe(p[0])+': '+safe(raw)+' '+safe(p[1])+' · dato con formato válido</div>'}).join('');document.getElementById('resultado').innerHTML='<h3>Validación de formato · origen '+safe(origen)+'</h3>'+out+'<p><small>Validar formato no significa que el valor sea seguro. El análisis siguiente solo evalúa los parámetros que tienen una referencia con fuente.</small></p>'});
 document.getElementById('limpiar').addEventListener('click',()=>{params.forEach((_,i)=>document.getElementById('p'+i).value='');document.getElementById('resultado').textContent=''});
