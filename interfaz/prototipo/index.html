@@ -51,7 +51,7 @@ nav button:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
 #catalogo .cerrar-ficha{display:none;position:absolute;z-index:2;top:10px;right:10px;width:36px;height:36px;min-width:36px;min-height:36px;padding:0;border-radius:50%;background:#09284D99;color:white;font-size:23px;line-height:1;opacity:.7}
 #catalogo .card.seleccionada .cerrar-ficha{display:inline-flex;align-items:center;justify-content:center}
 #catalogo .cerrar-ficha:hover,#catalogo .cerrar-ficha:focus-visible{background:#0982C7;opacity:1}
-#catalogo .galeria-indice{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);padding:4px 9px;border-radius:20px;background:#09284D99;color:white;font-size:12px}
+#catalogo .galeria-indice{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);padding:3px 7px;border-radius:16px;background:#09284D99;color:white;font-size:10px;line-height:1.2}
 body.ficha-abierta{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
  nav button,#inicio .card,#catalogo .card{transition:none}
@@ -75,7 +75,8 @@ header p{font-size:.93rem}
 #catalogo .cerrar-ficha{display:none;position:absolute;z-index:2;top:10px;right:10px;width:36px;height:36px;min-width:36px;min-height:36px;padding:0;border-radius:50%;background:#09284D99;color:white;font-size:23px;line-height:1;opacity:.7}
 #catalogo .card.seleccionada .cerrar-ficha{display:inline-flex;align-items:center;justify-content:center}
 #catalogo .cerrar-ficha:hover,#catalogo .cerrar-ficha:focus-visible{background:#0982C7;opacity:1}
-#catalogo .foto-fuente{display:block;padding:5px 10px;background:#f7fcfd;font-size:11px;text-align:right}
+#catalogo .foto-fuente{display:none;padding:5px 10px;background:#f7fcfd;font-size:11px;text-align:right}
+#catalogo .card.seleccionada .foto-fuente{display:block}
 #catalogo .card h3{margin-top:0}
 .airi-chat-voz-estado.airi-voz-ayuda{position:relative;display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;margin-left:7px;border:1px solid #80EAF2;border-radius:50%;background:#e0f6fa;color:#09284D;font-size:0;line-height:1;cursor:help;vertical-align:middle}
 .airi-chat-voz-estado.airi-voz-ayuda::before{content:"?";font-size:15px;font-weight:800}
@@ -127,7 +128,7 @@ function abrirFicha(ficha){catalogo.querySelectorAll('.card.seleccionada').forEa
 catalogo.addEventListener('click',e=>{const control=e.target.closest('[data-mover]');if(control){e.preventDefault();e.stopPropagation();if(control.closest('.card').classList.contains('seleccionada'))cambiarFoto(control.closest('.ficha-galeria'),Number(control.dataset.mover));return}if(e.target.closest('.foto-fuente'))return;if(e.target.closest('.cerrar-ficha')){e.preventDefault();e.stopPropagation();cerrarFicha();return}const ficha=e.target.closest('.card');if(!ficha||!catalogo.contains(ficha))return;if(ficha.classList.contains('seleccionada'))return;abrirFicha(ficha)});
 catalogo.addEventListener('keydown',e=>{if(e.key==='Escape'&&catalogo.querySelector('.card.seleccionada')){e.preventDefault();cerrarFicha();return}if(e.key!=='Enter'&&e.key!==' ')return;if(e.target.closest('.galeria-controles,.foto-fuente,.cerrar-ficha'))return;const ficha=e.target.closest('.card');if(!ficha||!catalogo.contains(ficha))return;e.preventDefault();if(!ficha.classList.contains('seleccionada'))abrirFicha(ficha)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&catalogo.querySelector('.card.seleccionada'))cerrarFicha()});
-if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){window.setInterval(()=>{if(document.hidden)return;catalogo.querySelectorAll('.ficha-galeria').forEach(galeria=>{const ficha=galeria.closest('.card');if(ficha.matches(':hover')||ficha.classList.contains('seleccionada'))cambiarFoto(galeria,1)})},5000)}
+/* Las fotografías solo cambian cuando la persona usa las flechas de la ficha ampliada. */
 
 document.getElementById('buscar').addEventListener('input',pintar);pintar();
 document.getElementById('evaluar').addEventListener('click',()=>{const origen=document.getElementById('origen').value;const out=params.map((p,i)=>{const raw=document.getElementById('p'+i).value.trim();if(!raw)return '<div class="status unknown">'+safe(p[0])+': INFORMACIÓN INSUFICIENTE (sin dato)</div>';const n=Number(raw.replace(',','.'));if(!Number.isFinite(n)||n<0||(p[0]==='pH'&&n>14))return '<div class="status warn">'+safe(p[0])+': VALOR INVÁLIDO; revisar entrada</div>';return '<div class="status ok">'+safe(p[0])+': '+safe(raw)+' '+safe(p[1])+' · dato con formato válido</div>'}).join('');document.getElementById('resultado').innerHTML='<h3>Validación de formato · origen '+safe(origen)+'</h3>'+out+'<p><small>Validar formato no significa que el valor sea seguro. El análisis siguiente solo evalúa los parámetros que tienen una referencia con fuente.</small></p>'});
