@@ -3,6 +3,40 @@
 <title>AIRI · Prototipo v0.6</title>
 <style>
 :root{font-family:Inter,system-ui,sans-serif;color:#09284D;background:#eef9fc}*{box-sizing:border-box}body{margin:0}header{background:#09284D;color:white;padding:16px 5%;display:flex;align-items:center;gap:16px}header img{width:62px;height:62px;object-fit:cover;border-radius:50%}header h1{margin:0;font-size:27px}header p{margin:2px 0;color:#80EAF2}nav{display:flex;gap:8px;padding:15px 5%;background:white;flex-wrap:wrap}button{cursor:pointer;border:0;border-radius:9px;padding:11px 15px;font-weight:700;background:#e0f6fa;color:#09284D}button[aria-selected=true],button.primary{background:#0982C7;color:white}main{max-width:1100px;margin:25px auto;padding:0 18px}.panel{background:white;border:1px solid #d6eaf1;border-radius:16px;padding:23px;margin-bottom:18px;box-shadow:0 3px 12px #09284D0a}.hidden{display:none}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:#f1fbfd;border-radius:12px;padding:15px;border:1px solid #ccebf1}.card h3{margin:0 0 5px}.muted{color:#47667b}.tag{display:inline-block;padding:5px 8px;background:#e0f4f9;border-radius:8px;font-size:12px}label{display:block;margin:12px 0 4px;font-weight:600}input,select{padding:10px;width:100%;border:1px solid #a5cbd6;border-radius:8px;font:inherit}.status{padding:10px;border-radius:8px;margin-top:9px}.ok{background:#e1f6e8}.warn{background:#fff1df}.unknown{background:#eaf0f3}footer{text-align:center;color:#47667b;padding:20px}small{line-height:1.5}a{color:#076caa}
+
+/* Mejoras de presentación de Inicio y navegación · Actividad de Paola */
+header{box-shadow:0 3px 14px #09284d18}
+header img{border:2px solid #80EAF2;box-shadow:0 2px 8px #0002}
+header p{line-height:1.4}
+nav{position:relative;z-index:2;border-bottom:1px solid #d6eaf1;box-shadow:0 2px 8px #09284d08}
+nav button{min-height:44px;transition:background-color .18s ease,transform .18s ease}
+nav button:hover{background:#c9edf4}
+nav button[aria-selected=true]{box-shadow:0 2px 7px #0982c733}
+nav button:focus-visible{outline:3px solid #C25A10;outline-offset:3px}
+#inicio{overflow:hidden}
+#inicio h2{font-size:clamp(1.55rem,3vw,2.1rem);line-height:1.2;color:#09284D;margin:0 0 12px}
+#inicio>p{max-width:850px;font-size:1rem;line-height:1.7;color:#36576b}
+#inicio .grid{margin-top:22px}
+#inicio .card{border-top:3px solid #0982C7;transition:transform .18s ease,box-shadow .18s ease}
+#inicio .card:hover{transform:translateY(-2px);box-shadow:0 6px 16px #09284d12}
+#inicio .card p{line-height:1.6}
+@media(max-width:640px){
+ header{padding:14px 18px;gap:12px}
+ header img{width:50px;height:50px}
+ header h1{font-size:23px}
+ header p{font-size:12px}
+ nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 16px}
+ nav button{width:100%;padding:11px 8px;font-size:13px}
+ nav button:last-child{grid-column:1/-1}
+ main{margin:16px auto;padding:0 12px}
+ .panel{padding:18px;margin-bottom:14px}
+ #inicio .grid{grid-template-columns:1fr;gap:10px}
+}
+@media(prefers-reduced-motion:reduce){
+ nav button,#inicio .card{transition:none}
+ #inicio .card:hover{transform:none}
+}
+
 </style>
 <link rel="stylesheet" href="../mascota/mascota.css">
 <link rel="stylesheet" href="../motor/analisis.css">
