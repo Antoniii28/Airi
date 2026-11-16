@@ -1,4 +1,4 @@
-# AIRI · Motor de análisis en la web (v0.4)
+# AIRI · Motor de análisis en la web (v0.4.1)
 
 Versión JavaScript del motor de análisis y su integración en la sección **Parámetros del agua** del prototipo.
 La implementación de **referencia** es la de Python (`motor/airi_motor`); esta es una traducción fiel que usa
@@ -16,7 +16,7 @@ La implementación de **referencia** es la de Python (`motor/airi_motor`); esta 
 | `analisis-prototipo.js` | Integración: guía de dos pasos, rótulo del paso 1 sobre la validación del prototipo, panel del paso 2 y mensaje breve de la mascota |
 | `analisis.css` | Estilos de la guía, los dos pasos y el panel (prefijos `airi-a-` y `airi-paso`) |
 | `herramientas/evaluar_lote.js` | Evalúa un lote en Node; lo usa la prueba de paridad de Python |
-| `pruebas/motor.test.js` | 5 pruebas Node: 34 casos de conformidad, datos compartidos, formato numérico, lectura de números, mensajes |
+| `pruebas/motor.test.js` | 10 pruebas Node: 43 casos de conformidad, datos compartidos, formato numérico, lectura de números, mensajes y (v0.4.1) validación de entradas mal formadas y espacios Unicode |
 | `pruebas/e2e_analisis.py` | 57 comprobaciones en Chrome (escritorio y celular) |
 
 Orden de carga en `interfaz/prototipo/index.html`: después de `mascota.js`, `voz.js`, `ayuda.js` y `ajustes-voz.js`,
@@ -75,9 +75,9 @@ el paso 1, pero el paso 2 lo marca como inválido. Es una comprobación de captu
 ## Pruebas
 
 ```bash
-node --test interfaz/motor/pruebas/motor.test.js     # 5 pruebas (incluye los 34 casos de conformidad)
+node --test interfaz/motor/pruebas/*.test.js         # 10 pruebas (incluye los 43 casos de conformidad)
 python interfaz/motor/pruebas/e2e_analisis.py         # 57 comprobaciones en Chrome
-cd motor && python -m unittest discover -s pruebas    # 52 pruebas; test_paridad_js compara Python y JS
+python -m unittest discover -s motor/pruebas          # 75 pruebas; test_paridad_js compara Python y JS
 ```
 
 Resultados y errores encontrados en cada etapa: [`motor/PRUEBAS_v0.4.md`](../../motor/PRUEBAS_v0.4.md).
@@ -88,4 +88,6 @@ Resultados y errores encontrados en cada etapa: [`motor/PRUEBAS_v0.4.md`](../../
   probó en un teléfono físico ni en Safari o Firefox.
 - La voz se midió con un simulador (tono, velocidad y texto) y se ejecutó con la síntesis real de Chrome solo para
   descartar errores; en ese entorno no hay voces instaladas, así que no se escuchó.
-- `airi-motor-datos.js` debe regenerarse cada vez que cambien los JSON; una prueba lo exige.
+- `airi-motor-datos.js` debe regenerarse cada vez que cambien los JSON; una prueba lo exige. Su huella SHA-256 se
+  calcula con saltos de línea LF, así que no cambia por `core.autocrlf` en Windows (v0.4.1).
+- El formato del informe que consume la interfaz está en [`motor/CONTRATO_SALIDA.md`](../../motor/CONTRATO_SALIDA.md).

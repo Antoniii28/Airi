@@ -91,6 +91,19 @@ python interfaz/motor/pruebas/e2e_analisis.py               # Chrome: motor + ma
 Ningún cambio modificó umbrales científicos, reglas del grafo ni criterios de clasificación: los 34 vectores de
 conformidad no cambiaron de estado ni de clasificación en E4 ni en E5.
 
+## v0.4.1 (15-11-2026, rama `equipo/jose-motor-agente`)
+
+| Suite | Resultado |
+|---|---|
+| Motor Python (`python -m unittest discover -s motor/pruebas`) | **75/75** (+14 validación de entrada, +6 trazabilidad, +3 contrato) |
+| Motor JavaScript (`node --test interfaz/motor/pruebas/*.test.js`) | **10/10** (+5 validación de entrada y espacios) |
+| Casos de conformidad | **43, al día** (34 sin cambios + 9 de entradas mal formadas) |
+| Datos web generados | **al día** (huella independiente de CRLF/LF) |
+| e2e análisis (Chrome) | No ejecutada: Playwright no instalado en el equipo; actualizada para leer versión y número de casos |
+
+Errores corregidos y evidencia: [`REVISION_v0.4.1.md`](REVISION_v0.4.1.md) §3. Ningún umbral, referencia ni
+clasificación cambió.
+
 ## Limitaciones pendientes
 
 1. **Referencias:** temperatura, salinidad y nitratos siguen **sin referencia para evaluación** (decisión del equipo).

@@ -1,4 +1,4 @@
-# AIRI · Motor de análisis de parámetros del agua (v0.4)
+# AIRI · Motor de análisis de parámetros del agua (v0.4.1)
 
 Motor en Python (solo biblioteca estándar, Python ≥ 3.10) que aplica el **grafo de decisiones oficial**
 (`grafo/grafo_decisiones_airi.dot`) a seis mediciones: temperatura, pH, salinidad, amoníaco, nitritos y nitratos.
@@ -8,6 +8,8 @@ Motor en Python (solo biblioteca estándar, Python ≥ 3.10) que aplica el **gra
 
 Las fuentes, los niveles de evidencia, las conversiones y las decisiones pendientes están en
 [`REFERENCIAS.md`](REFERENCIAS.md). Este documento explica el uso, la arquitectura y las pruebas.
+El formato del informe que consume la interfaz está en [`CONTRATO_SALIDA.md`](CONTRATO_SALIDA.md) y la revisión de
+reglas y rutas de decisión de v0.4.1, en [`REVISION_v0.4.1.md`](REVISION_v0.4.1.md).
 
 ## Uso
 
@@ -51,7 +53,7 @@ archivo inexistente, JSON inválido o perfil desconocido.
 | `airi_motor/motor.py` | C1/Q7 → R1–R4, salidas O1/O2, traza, alertas, sugerencias y solicitudes |
 | `airi_motor/cli.py` | Línea de comandos |
 | `herramientas/generar_casos.py` | Genera `casos_conformidad.json` |
-| `casos_conformidad.json` | 34 vectores que toda implementación (Python o la futura JS) debe reproducir |
+| `casos_conformidad.json` | 43 vectores que toda implementación (Python y JS) debe reproducir (34 de v0.4.0 + 9 de entradas mal formadas) |
 
 Los datos de referencia viven **solo** en los JSON. La futura versión web en JavaScript (aprobada) deberá
 generar sus datos a partir de estos mismos archivos y superar `casos_conformidad.json`.
@@ -61,8 +63,8 @@ generar sus datos a partir de estos mismos archivos y superar `casos_conformidad
 | Nodo | Implementación |
 |---|---|
 | Q1 ¿presente? | valor vacío o ausente → **EP1 FALTANTE** |
-| Q2 ¿número? | no numérico, `nan`, `inf` → **EP2 INVÁLIDO** |
-| Q3 ¿unidad? | unidad no reconocida o sin forma química (p. ej. `mg/L` a secas en nitratos) → **EP2** |
+| Q2 ¿número? | no numérico, `nan`, `inf`; valor que no es número ni texto; medición que no es un objeto → **EP2 INVÁLIDO** |
+| Q3 ¿unidad? | unidad no reconocida, no textual o sin forma química (p. ej. `mg/L` a secas en nitratos) → **EP2** |
 | Q4 ¿plausible? | fuera de los límites de captura (p. ej. negativos, pH > 14) → **EP2** |
 | Q5 ¿referencia con fuente? | referencia `pendiente` o `sin_referencia` → **EP3 SIN REFERENCIA** |
 | Q6 ¿dentro? | sí → **EP4 EN RANGO**; no → **EP5 ANOMALÍA** con severidad |
@@ -104,9 +106,12 @@ python herramientas/generar_casos.py --check
 | `test_reglas.py` | 23 | Q1–Q4, límites inclusivos de pH, umbral de amoníaco con cada base, Nessler, nitritos, nitratos pendientes, contexto solo nivel B, coherencia de datos |
 | `test_motor.py` | 11 | aristas de la traza ⊂ grafo (30 aristas), R1–R4, R4 sin pérdida de información, orden de alertas, ausencia de frases de seguridad o diagnóstico, determinismo |
 | `test_cli_y_conformidad.py` | 8 | CLI, archivo de conformidad al día, 34 vectores reproducidos, **barrido exhaustivo 7⁶ = 117 649 combinaciones** con el perfil real y con el de prueba |
-| `test_paridad_js.py` (v0.4 E4) | 4 | Informe **completo** idéntico en Python y JavaScript (textos incluidos) en los 34 casos y en 5 500 entradas aleatorias con semilla fija; `airi-motor-datos.js` generado de los mismos JSON |
+| `test_paridad_js.py` (v0.4 E4) | 4 | Informe **completo** idéntico en Python y JavaScript (textos incluidos) en los 43 casos y en 5 500 entradas aleatorias con semilla fija (desde v0.4.1 incluyen entradas mal formadas y espacios Unicode); `airi-motor-datos.js` generado de los mismos JSON |
+| `test_validacion_entrada.py` (v0.4.1) | 14 | Medición, valor, unidad y método con tipos no válidos → EP2 o ignorado, nunca excepción ni EN RANGO; espacios Unicode; CLI con entrada mal formada |
+| `test_trazabilidad.py` (v0.4.1) | 6 | Por resultado: recorrido del grafo coherente con el estado, motivo, fuentes de nivel A en EP4/EP5, contexto solo nivel B, alertas/recomendaciones/solicitudes 1:1, incertidumbre del amoníaco |
+| `test_contrato.py` (v0.4.1) | 3 | El informe cumple `CONTRATO_SALIDA.md` y la interfaz solo lee campos del contrato |
 
-Resultado de la última ejecución (12-11-2026, E5): **52 pruebas, 0 fallos** (≈ 15 s). En E3 eran 47 y en E4, 51.
+Resultado de la última ejecución (15-11-2026, v0.4.1): **75 pruebas, 0 fallos**. En E5 (12-11-2026) eran 52.
 Historial completo de pruebas, errores y limitaciones: [`PRUEBAS_v0.4.md`](PRUEBAS_v0.4.md).
 Durante el desarrollo fallaron 2 pruebas por expectativas mal escritas (no por el motor): un caso R4 olvidaba que
 también faltaban nitratos, y 212 °F = 100 °C está dentro del límite de captura inclusivo. Se corrigieron las pruebas.
@@ -138,3 +143,4 @@ Todo pasaba, pero al preparar la traducción a JavaScript aparecieron estas inco
 - No hay historial ni tendencias: cada evaluación es independiente.
 - Las sugerencias son informativas («repite la medición…»); el motor no actúa sobre ningún equipo.
 - Desde E4 la interfaz web usa la versión JavaScript (`interfaz/motor`), con paridad comprobada; ver `interfaz/motor/README.md`.
+- `valor_canonico` se redondea a 6 decimales; para valores minúsculos, el `motivo` es la referencia (ver el contrato).
