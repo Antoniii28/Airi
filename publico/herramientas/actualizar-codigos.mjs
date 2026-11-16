@@ -101,18 +101,36 @@ function leerArgumentos(argv) {
 
 const SIN_ENLACES = new Set(["EPERM", "ENOTSUP", "EOPNOTSUPP", "ENOSYS", "EXDEV"]);
 
+export const PREFIJO_TEMPORAL = ".airi-tmp-";
+
 /**
  * Escribe [[ruta, contenido], …] todo o nada. `fsx` permite simular fallos en las pruebas.
- * Fase 1: temporales «.airi-tmp-*» en la misma carpeta (flag wx). Fase 2: publicación sin sobrescribir, en orden
- * (el último archivo es la señal de éxito). Fase 3: borrar temporales. Si algo falla, se deshace todo lo creado.
+ * Fase 1: temporales «.airi-tmp-*» en la misma carpeta (flag wx) y volcados a disco (fsync). Fase 2: publicación sin
+ * sobrescribir, en orden (el último archivo es la señal de éxito). Fase 3: borrar temporales.
+ * Si algo falla en las fases 1–2, se deshace todo lo creado (ErrorUso). Devuelve las rutas de temporales que NO se
+ * pudieron borrar en la fase 3 (el resultado es correcto, pero esos archivos contienen datos sensibles).
+ *
+ * LÍMITES (no los cubre ningún código en espacio de usuario):
+ *  · Cierre abrupto del proceso (kill, cierre de la terminal, fallo de Node) entre fases: no hay deshacer. Pueden
+ *    quedar temporales «.airi-tmp-*» y, si ocurre entre las dos publicaciones, el archivo de códigos SIN la línea.
+ *    Regla: si no existe el archivo de la línea, la ejecución NO terminó; borra el de códigos (esos códigos no están
+ *    en ninguna línea y no sirven). La siguiente ejecución avisa de los temporales que encuentre (avisarRestos).
+ *  · Apagón: fsync vuelca el CONTENIDO de cada temporal antes de publicarlo, así que un archivo publicado no queda
+ *    vacío ni truncado. La entrada del directorio (el enlace) no se puede volcar desde Node en Windows: tras un apagón
+ *    un archivo publicado podría no existir; se aplica la regla anterior.
+ *  · Borrado imposible (antivirus, archivo abierto, permisos): se informa de las rutas exactas, nunca del contenido.
+ *  · Los archivos borrados pueden ser recuperables del disco o de copias de seguridad/sincronización (OneDrive…):
+ *    usa una carpeta local no sincronizada.
  */
 export function escribirTodoONada(archivos, fsx = fs) {
   const temporales = [], publicados = [];
   try {
     for (const [ruta, contenido] of archivos) {
-      const tmp = join(dirname(ruta), `.airi-tmp-${crypto.randomUUID()}-${basename(ruta)}`);
+      const tmp = join(dirname(ruta), `${PREFIJO_TEMPORAL}${crypto.randomUUID()}-${basename(ruta)}`);
       temporales.push(tmp);
       fsx.writeFileSync(tmp, contenido, { encoding: "utf-8", flag: "wx", mode: 0o600 });
+      const fd = fsx.openSync(tmp, "r+");   // r+: en Windows fsync necesita acceso de escritura
+      try { fsx.fsyncSync(fd); } finally { fsx.closeSync(fd); }
     }
     archivos.forEach(([ruta], i) => {
       try { fsx.linkSync(temporales[i], ruta); }   // atómico y sin sobrescribir (EEXIST)
@@ -132,7 +150,18 @@ export function escribirTodoONada(archivos, fsx = fs) {
     throw new ErrorUso((e?.code === "EEXIST" ? "Un archivo de destino ya existe: no se sobrescribe." : "No se pudieron escribir los archivos.") +
       (restos.length ? ` BORRA A MANO estos archivos sensibles: ${restos.join(", ")}` : " No se dejó ningún archivo nuevo."));
   }
-  for (const tmp of temporales) { try { fsx.unlinkSync(tmp); } catch { /* los destinos ya están completos */ } }
+  const sinBorrar = [];
+  for (const tmp of temporales) { try { fsx.unlinkSync(tmp); } catch (e) { if (e?.code !== "ENOENT") sinBorrar.push(tmp); } }
+  return sinBorrar;
+}
+
+/** Temporales «.airi-tmp-*» que dejó una ejecución anterior interrumpida en esas carpetas (solo rutas). */
+export function avisarRestos(carpetas, fsx = fs) {
+  const restos = [];
+  for (const c of new Set(carpetas)) {
+    try { for (const f of fsx.readdirSync(c)) if (f.startsWith(PREFIJO_TEMPORAL)) restos.push(join(c, f)); } catch { /* sin acceso: nada que avisar */ }
+  }
+  return restos;
 }
 
 export async function principal(argv, salida = console.log, fsx = fs) {
@@ -149,13 +178,21 @@ export async function principal(argv, salida = console.log, fsx = fs) {
       r.entregas.map(([id, c]) => `${id}  ${c}`).join("\n") + "\n"]);
   }
   archivos.push([destino, r.linea]);   // la línea, en último lugar: su existencia indica que todo se escribió
-  escribirTodoONada(archivos, fsx);
+  const previos = avisarRestos(archivos.map(([ruta]) => dirname(ruta)), fsx);
+  const sinBorrar = escribirTodoONada(archivos, fsx);
+  if (previos.length)
+    salida(`⚠ Hay temporales de una ejecución anterior interrumpida (contienen datos sensibles; bórralos a mano): ${previos.join(", ")}`);
+  if (sinBorrar.length)
+    salida(`⚠ Resultado correcto, pero no se pudieron borrar estos temporales con datos sensibles; bórralos a mano: ${sinBorrar.join(", ")}`);
   const lista = (xs) => (xs.length ? xs.join(", ") : "ninguno");
   salida(`Conservados (sus códigos siguen funcionando): ${lista(r.resumen.conservados)}`);
   salida(`Dados de alta: ${lista(r.resumen.agregados)}`);
   salida(`Revocados: ${lista(r.resumen.revocados)}`);
   salida(`Total en la nueva línea: ${r.resumen.conservados.length + r.resumen.agregados.length} participantes.`);
   salida(`Línea nueva escrita en: ${destino}` + (destinoEntregas ? `\nCódigos nuevos escritos en: ${destinoEntregas}` : ""));
+  salida("ANTES DE CARGARLA: --actual debe ser exactamente la línea cargada hoy en producción. Cloudflare no permite " +
+    "leerla; si no lo es, cargar la nueva revocaría a quien falte en ella. Comprueba al menos un código vigente con " +
+    "herramientas/comprobar-codigo.mjs contra --actual (ver documentacion/PILOTO_v0.7.md).");
   salida("No se ha cambiado ningún secreto. Para activarla (solo la persona autorizada), desde publico/:\n" +
     "  npx wrangler secret put AIRI_CODIGOS -c wrangler.produccion.jsonc   (pega el contenido de la línea nueva)\n" +
     "Guarda la línea nueva como copia vigente: la necesitarás para la próxima alta o revocación.");

@@ -263,3 +263,59 @@ test("generar-codigos.mjs funciona sin node:crypto y sigue sugiriendo una sal de
   assert.match(salida.at(-1), /^[A-Za-z0-9_-]{32}$/);                  // 24 bytes en base64url
   assert.match(salida.find((l) => l.startsWith("x1:")), /^x1:[0-9a-f]{64}$/);
 });
+
+// ── Límites: apagón, cierre abrupto y borrado imposible (revisión 2 del PR #20) ──
+test("escritura: cada temporal se vuelca a disco (fsync) ANTES de publicarse; si fsync falla, se deshace todo", async () => {
+  let dir = await carpetaConActual();
+  try {
+    const orden = [];
+    const fsx = { ...fsReal, constants: fsReal.constants };
+    for (const op of ["writeFileSync", "fsyncSync", "linkSync"]) fsx[op] = (...a) => { orden.push(op); return fsReal[op](...a); };
+    await principal(argumentos(dir), () => {}, fsx);
+    assert.deepEqual(orden, ["writeFileSync", "fsyncSync", "writeFileSync", "fsyncSync", "linkSync", "linkSync"]);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+  dir = await carpetaConActual();
+  try {
+    await assert.rejects(principal(argumentos(dir), () => {}, fsConFallo("fsyncSync", 2)), /No se dejó ningún archivo nuevo/);
+    assert.deepEqual(readdirSync(dir), ["actual.txt"]);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("éxito con temporales imposibles de borrar: el resultado vale, pero se avisa de sus rutas (sin contenido)", async () => {
+  const dir = await carpetaConActual();
+  try {
+    const fsx = { ...fsReal, constants: fsReal.constants, unlinkSync: () => { throw Object.assign(new Error("bloqueado"), { code: "EBUSY" }); } };
+    const impreso = [];
+    const r = await principal(argumentos(dir), (t) => impreso.push(t), fsx);
+    const tmp = readdirSync(dir).filter((f) => f.startsWith(".airi-tmp-"));
+    assert.equal(tmp.length, 2);
+    const aviso = impreso.find((t) => t.includes("no se pudieron borrar"));
+    assert.ok(aviso, "debe avisar");
+    for (const f of tmp) assert.ok(aviso.includes(join(dir, f)));
+    assert.ok(!impreso.join("\n").includes(r.entregas[0][1]) && !impreso.join("\n").includes(r.linea));
+    assert.equal(readFileSync(join(dir, "nueva.txt"), "utf-8"), r.linea);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("restos de una ejecución interrumpida: se detectan y se avisa, sin borrarlos ni leerlos", async () => {
+  const dir = await carpetaConActual();
+  try {
+    const resto = join(dir, ".airi-tmp-0000-entregas.txt");
+    writeFileSync(resto, "contenido-de-un-cierre-abrupto");
+    const impreso = [];
+    await principal(argumentos(dir), (t) => impreso.push(t));
+    const aviso = impreso.find((t) => t.includes("ejecución anterior interrumpida"));
+    assert.ok(aviso && aviso.includes(resto));
+    assert.ok(!impreso.join("\n").includes("contenido-de-un-cierre-abrupto"));
+    assert.equal(readFileSync(resto, "utf-8"), "contenido-de-un-cierre-abrupto", "no se toca");
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("la herramienta recuerda que --actual debe ser la línea vigente en producción", async () => {
+  const dir = await carpetaConActual();
+  try {
+    const impreso = [];
+    await principal(argumentos(dir), (t) => impreso.push(t));
+    assert.match(impreso.join("\n"), /ANTES DE CARGARLA: --actual debe ser exactamente la línea cargada hoy en producción/);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});

@@ -452,7 +452,26 @@ pago**: una fuente de terceros indica que el alta de Zero Trust lo solicita.
 - **Requisitos de cada participante:** mayor de 18 años (aviso de la interfaz), conexión desde un país de
   `AIRI_PAISES_PERMITIDOS` (hoy `MX`; el EEE, Suiza y Reino Unido se rechazan siempre), completar Turnstile y usar su
   propio código, que no debe compartir.
-- **Escritura todo o nada:** la herramienta escribe los dos archivos como temporales y los publica sin sobrescribir, la
-  línea en último lugar. Si algo falla, borra lo creado; si tampoco puede borrarlo, indica las rutas a borrar a mano.
-- **Pruebas:** `publico/accesos.test.mjs` (16): altas, bajas y registro; regiones, Turnstile, origen e interruptor con
-  la línea ampliada; y fallos de escritura simulados (temporales, publicación, copia parcial, carrera y borrado).
+- **Escritura todo o nada:** la herramienta escribe los dos archivos como temporales, los vuelca a disco (`fsync`) y
+  los publica sin sobrescribir, la línea en último lugar. Si algo falla, borra lo creado; si no puede borrarlo, o si
+  tras un resultado correcto no puede borrar un temporal, indica las rutas exactas (nunca el contenido).
+- **Límites que ningún programa puede cubrir:**
+  - *Cierre abrupto* (terminal cerrada, `kill`): no hay deshacer. Pueden quedar temporales `.airi-tmp-*`; la siguiente
+    ejecución avisa de ellos. **Si existe el archivo de códigos pero no el de la línea, la ejecución no terminó**:
+    borra el de códigos, porque esos códigos no figuran en ninguna línea.
+  - *Apagón:* el contenido está en disco antes de publicarse, así que un archivo publicado no queda truncado. En
+    Windows no se puede volcar la entrada del directorio: un archivo podría no existir tras el apagón; aplica la regla
+    anterior.
+  - *Borrado:* un archivo borrado puede ser recuperable del disco o de una carpeta sincronizada (OneDrive): trabaja en
+    una carpeta local no sincronizada y borra los códigos tras entregarlos.
+- **Vigencia de la línea `--actual` (requisito previo a cualquier alta o baja):** Cloudflare no permite leer
+  `AIRI_CODIGOS`, así que ningún programa puede demostrar que la copia coincide con producción. Si no coincide, cargar
+  la línea nueva **revocaría a quien falte en ella**. Evidencia mínima antes de cargarla:
+  1. la copia se guardó en el momento de la última carga del secreto (en `npx wrangler deployments list -c
+     wrangler.produccion.jsonc` aparece «Updated secret: AIRI_CODIGOS» con su fecha) y no ha habido cargas después;
+  2. con `comprobar-codigo.mjs --archivo <copia>`, **cada** código que funciona hoy coincide con su participante;
+  3. el número de participantes de la copia coincide con el de códigos entregados.
+  Sin esa evidencia, no se prepara ninguna alta ni baja.
+- **Pruebas:** `publico/accesos.test.mjs` (20): altas, bajas y registro; regiones, Turnstile, origen e interruptor con
+  la línea ampliada; fallos de escritura simulados (temporales, `fsync`, publicación, copia parcial, carrera y
+  borrado); avisos de temporales no borrados y de restos de una ejecución interrumpida.
