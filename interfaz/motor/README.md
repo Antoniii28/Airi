@@ -12,11 +12,11 @@ La implementación de **referencia** es la de Python (`motor/airi_motor`); esta 
 | Archivo | Función |
 |---|---|
 | `airi-motor-datos.js` | **Generado** desde `motor/airi_motor/datos/*.json` con `motor/herramientas/generar_datos_js.py` (incluye la huella SHA-256 de cada JSON). No se edita a mano. Se incrusta en un script porque con `file://` el navegador bloquea `fetch()` de archivos locales |
-| `airi-motor.js` | Motor (unidades, reglas Q1–Q6, clasificación R1–R4, traza). Sin dependencias; funciona en el navegador y en Node |
+| `airi-motor.js` | Motor (unidades, reglas Q1–Q6, clasificación R1–R4, traza) y `condicionesMedidas(informe)` para otros módulos (`motor/CONTRATO_SALIDA.md` §8). Sin dependencias; funciona en el navegador y en Node |
 | `analisis-prototipo.js` | Integración: guía de dos pasos, rótulo del paso 1 sobre la validación del prototipo, panel del paso 2 y mensaje breve de la mascota |
 | `analisis.css` | Estilos de la guía, los dos pasos y el panel (prefijos `airi-a-` y `airi-paso`) |
-| `herramientas/evaluar_lote.js` | Evalúa un lote en Node; lo usa la prueba de paridad de Python |
-| `pruebas/motor.test.js` | 10 pruebas Node: 43 casos de conformidad, datos compartidos, formato numérico, lectura de números, mensajes y (v0.4.1) validación de entradas mal formadas y espacios Unicode |
+| `herramientas/evaluar_lote.js` | Evalúa un lote en Node; lo usa la prueba de paridad de Python (`--condiciones` añade la vista del §8) |
+| `pruebas/motor.test.js` | 11 pruebas Node: 43 casos de conformidad, datos compartidos, formato numérico, lectura de números, mensajes y (v0.4.1) validación de entradas mal formadas y espacios Unicode; `condicionesMedidas` (§8) |
 | `pruebas/e2e_analisis.py` | 57 comprobaciones en Chrome (escritorio y celular) |
 
 Orden de carga en `interfaz/prototipo/index.html`: después de `mascota.js`, `voz.js`, `ayuda.js` y `ajustes-voz.js`,
@@ -75,9 +75,9 @@ el paso 1, pero el paso 2 lo marca como inválido. Es una comprobación de captu
 ## Pruebas
 
 ```bash
-node --test interfaz/motor/pruebas/*.test.js         # 10 pruebas (incluye los 43 casos de conformidad)
+node --test interfaz/motor/pruebas/*.test.js         # 11 pruebas (incluye los 43 casos de conformidad)
 python interfaz/motor/pruebas/e2e_analisis.py         # 57 comprobaciones en Chrome
-python -m unittest discover -s motor/pruebas          # 75 pruebas; test_paridad_js compara Python y JS
+python -m unittest discover -s motor/pruebas          # 84 pruebas; test_paridad_js compara Python y JS
 ```
 
 Resultados y errores encontrados en cada etapa: [`motor/PRUEBAS_v0.4.md`](../../motor/PRUEBAS_v0.4.md).

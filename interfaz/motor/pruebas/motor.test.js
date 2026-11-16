@@ -98,3 +98,27 @@ test("BOM y espacios Unicode se recortan igual que en Python", () => {
   }
   assert.equal(ev("ph", { valor: "\u200b8.1", unidad: "pH" }).estado, "EP2");
 });
+
+test("condicionesMedidas: proyección del informe sin valores de mediciones faltantes o inválidas (contrato §8)", () => {
+  for (const c of CASOS.casos) {
+    const inf = Motor.evaluar(c.mediciones, c.perfil || null);
+    const antes = JSON.stringify(inf);
+    const v = Motor.condicionesMedidas(inf);
+    assert.deepEqual(Object.keys(v), ["version", "perfil", "clasificacion", "condiciones", "no_disponibles", "aviso"]);
+    assert.deepEqual(Object.keys(v.condiciones), Motor.ORDEN, c.id);
+    for (const r of inf.resultados) {
+      const x = v.condiciones[r.parametro];
+      const disponible = ["EP3", "EP4", "EP5"].includes(r.estado);
+      assert.equal(x.disponible, disponible, c.id);
+      assert.deepEqual(x.valor, disponible ? r.valor_canonico : null, c.id);
+      assert.equal(x.unidad, r.unidad_canonica);
+      assert.equal(x.estado, r.estado);
+      assert.equal(x.severidad, r.severidad);
+    }
+    v.condiciones.amoniaco.valor = "modificado";
+    assert.equal(JSON.stringify(inf), antes, "no debe modificar el informe");
+  }
+  const a = Motor.condicionesMedidas(Motor.evaluar({ amoniaco: { valor: "0.6", unidad: "mg/L (NH₃/NH₄⁺ total)" } })).condiciones.amoniaco;
+  assert.deepEqual([a.intervalo, a.valor], [true, [0.465891, 0.6]]);
+  for (const x of [null, [], "R4", {}, { resultados: [] }]) assert.throws(() => Motor.condicionesMedidas(x), TypeError);
+});

@@ -336,7 +336,32 @@
       alertas: alertas, recomendaciones: recomendaciones, solicitudes: solicitudes, aviso: AVISO, traza: traza };
   }
 
+  // ── Condiciones medidas (condiciones.py) ────────────────────────────────────
+  // Vista de solo lectura del informe para otros módulos (p. ej. compatibilidad). No vuelve a evaluar:
+  // copia el valor canónico y el estado. «disponible» = medición válida, NO adecuada. Contrato §8.
+  var DISPONIBLE = ["EP3", "EP4", "EP5"];
+  var AVISO_CONDICIONES = "Valores medidos y convertidos por el motor de agua. Que un valor esté disponible no significa " +
+    "que sea adecuado para el acuario ni para una especie; la ausencia de un valor nunca equivale a " +
+    "una condición favorable.";
+  var ERROR_INFORME = "condiciones_medidas espera el informe que devuelve evaluar().";
+
+  function condicionesMedidas(informe) {
+    if (!esObjeto(informe) || !Array.isArray(informe.resultados) || !esObjeto(informe.perfil)) throw new TypeError(ERROR_INFORME);
+    var condiciones = {};
+    informe.resultados.forEach(function (r) {
+      var disponible = DISPONIBLE.indexOf(r.estado) >= 0;
+      var v = r.valor_canonico;
+      condiciones[r.parametro] = { nombre: r.nombre, valor: disponible ? (Array.isArray(v) ? v.slice() : v) : null,
+        unidad: r.unidad_canonica, intervalo: disponible && Array.isArray(v), disponible: disponible,
+        estado: r.estado, severidad: r.severidad };
+    });
+    return { version: informe.version, perfil: informe.perfil.id, clasificacion: informe.clasificacion,
+      condiciones: condiciones,
+      no_disponibles: Object.keys(condiciones).filter(function (p) { return !condiciones[p].disponible; }),
+      aviso: AVISO_CONDICIONES };
+  }
+
   return { VERSION: VERSION, ORDEN: ORDEN, AVISO: AVISO, ESTADOS: ESTADOS, SEVERIDADES: SEVERIDADES,
-    evaluar: evaluar, evaluarParametro: evaluarParametro, perfil: perfil, datos: DATOS,
+    evaluar: evaluar, evaluarParametro: evaluarParametro, condicionesMedidas: condicionesMedidas, perfil: perfil, datos: DATOS,
     leerNumero: leerNumero, reconocerUnidad: reconocerUnidad, aCanonica: aCanonica, fmtG: fmtG };
 });
