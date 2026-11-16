@@ -128,3 +128,5 @@ Detectan errores al escribir los datos; **no son rangos biológicos**:
 2. Decidir si se crean perfiles por especie con referencias de nivel A para temperatura y salinidad.
 3. Agregar al formulario la base química del amoníaco y el método de medición, para evitar «revisión
    recomendada» por falta de información.
+
+**Estado (16-11-2026):** las tres decisiones siguen **pendientes**. Se confirmarán con Yair (compatibilidad: usa las condiciones medidas del contrato §8 y los rangos por especie de la decisión 2) y con el resto del equipo. Mientras tanto el motor no cambia: nitratos, temperatura y salinidad siguen en EP3.

@@ -123,3 +123,72 @@ El resultado del amoníaco en ese informe tiene `"valor_canonico": [0.465891, 0.
 |---|---|---|
 | 0.4.0 | Contrato inicial | — |
 | 0.4.1 | Sin campos nuevos ni renombrados. Entradas mal formadas → EP2 (antes: error en Python o «EN RANGO» en JS); espacios Unicode tratados igual; `version` = `"0.4.1"` | Ninguno: el formulario envía textos y sigue igual |
+| 0.4.1 + §8 | **Adición, sin cambios en el informe:** función `condiciones_medidas` / `condicionesMedidas` (§8) para otros módulos | Ninguno: la interfaz actual no la usa |
+
+## 8. Condiciones medidas (para otros módulos, p. ej. compatibilidad)
+
+**Estado:** propuesta del motor, pendiente de confirmar con Yair (compatibilidad). No cambia el informe ni la
+interfaz actual. **Comprobado por:** `motor/pruebas/test_condiciones.py` (incluye paridad Python ↔ JavaScript) y
+`interfaz/motor/pruebas/motor.test.js`.
+
+Un módulo que necesite **los valores medidos** (por ejemplo, para compararlos con los rangos de una especie) no debe
+leer `valor_original` ni convertir unidades por su cuenta: usa esta vista, que **copia** del informe el valor ya
+convertido y su estado. No vuelve a evaluar nada, no modifica el informe y no decide si un valor es adecuado.
+
+| Entorno | Llamada |
+|---|---|
+| Navegador | `AIRIMotor.condicionesMedidas(informe)` |
+| Node | `require("interfaz/motor/airi-motor.js").condicionesMedidas(informe)` |
+| Python | `from airi_motor import condiciones_medidas` → `condiciones_medidas(informe)` |
+
+`informe` es lo que devuelve `evaluar(...)`; otro tipo de objeto → `TypeError`.
+
+| Campo | Tipo | Significado |
+|---|---|---|
+| `version` | texto | `version` del informe |
+| `perfil` | texto | `perfil.id` del informe |
+| `clasificacion` | texto | `clasificacion` del informe (R1–R4) |
+| `condiciones` | objeto `{parametro: condición}` | Los 6 parámetros, en el orden del §1 |
+| `no_disponibles` | lista de ids | Parámetros FALTANTES o INVÁLIDOS (EP1/EP2), en orden |
+| `aviso` | texto | Límites de la vista. Mostrarlo si se presentan estos valores |
+
+**Condición** (una por parámetro):
+
+| Campo | Tipo | Significado |
+|---|---|---|
+| `nombre` | texto | Nombre visible |
+| `disponible` | booleano | `true` si la medición es válida (EP3, EP4 o EP5). **No significa «adecuado»** |
+| `valor` | número, `[mínimo, máximo]` o `null` | `valor_canonico` si `disponible`; si no, `null` |
+| `intervalo` | booleano | `true` si `valor` es un intervalo de incertidumbre (amoníaco sin base química): comparar **ambos extremos** |
+| `unidad` | texto | `unidad_canonica`: °C, pH, ppt, mg/L TAN-N, mg/L NO2-N, mg/L NO3-N |
+| `estado` | `"EP1"`…`"EP5"` | Estado del motor. EP3 = medido pero **no evaluado** por falta de referencia |
+| `severidad` | texto o `null` | Severidad del motor (solo EP5) |
+
+Reglas para quien la consuma:
+
+1. Un parámetro en `no_disponibles` es **dato faltante**, nunca una condición favorable (equivale a «sin datos»).
+2. EP3 (temperatura, salinidad y nitratos con el perfil real) aporta el valor medido, pero el motor **no** lo
+   comparó con ninguna referencia: el otro módulo debe citar su propia fuente si lo compara.
+3. Las alertas del agua siguen siendo las del informe (`alertas`, `recomendaciones`); otro módulo no las recalcula ni
+   las oculta.
+4. **Salinidad:** el motor la expresa en ppt (‰, g/kg). La gravedad específica no se acepta (EP2), porque su
+   conversión depende de la temperatura de medición. Si unos rangos de especie están en gravedad específica, la
+   comparación queda sin datos hasta acordar una conversión con fuente.
+
+Ejemplo (misma entrada que el §6):
+
+```json
+{
+ "version": "0.4.1", "perfil": "peces_marinos_msd", "clasificacion": "R4",
+ "condiciones": {
+  "temperatura": {"nombre": "Temperatura", "valor": 26.0, "unidad": "°C", "intervalo": false, "disponible": true, "estado": "EP3", "severidad": null},
+  "ph": {"nombre": "pH", "valor": 8.4, "unidad": "pH", "intervalo": false, "disponible": true, "estado": "EP5", "severidad": "revision_recomendada"},
+  "salinidad": {"nombre": "Salinidad", "valor": null, "unidad": "ppt", "intervalo": false, "disponible": false, "estado": "EP1", "severidad": null},
+  "amoniaco": {"nombre": "Amoníaco total", "valor": [0.465891, 0.6], "unidad": "mg/L TAN-N", "intervalo": true, "disponible": true, "estado": "EP5", "severidad": "revision_recomendada"},
+  "nitritos": {"nombre": "Nitritos", "valor": null, "unidad": "mg/L NO2-N", "intervalo": false, "disponible": false, "estado": "EP2", "severidad": null},
+  "nitratos": {"nombre": "Nitratos", "valor": null, "unidad": "mg/L NO3-N", "intervalo": false, "disponible": false, "estado": "EP1", "severidad": null}
+ },
+ "no_disponibles": ["salinidad", "nitritos", "nitratos"],
+ "aviso": "Valores medidos y convertidos por el motor de agua. Que un valor esté disponible no significa que sea adecuado para el acuario ni para una especie; la ausencia de un valor nunca equivale a una condición favorable."
+}
+```

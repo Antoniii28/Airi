@@ -51,6 +51,7 @@ archivo inexistente, JSON inválido o perfil desconocido.
 | `airi_motor/datos.py` | Carga y validación de coherencia de los JSON |
 | `airi_motor/reglas.py` | Q1–Q6 por parámetro → EP1–EP5 y severidad |
 | `airi_motor/motor.py` | C1/Q7 → R1–R4, salidas O1/O2, traza, alertas, sugerencias y solicitudes |
+| `airi_motor/condiciones.py` | `condiciones_medidas(informe)`: valores ya convertidos y su estado, para otros módulos (contrato §8). No vuelve a evaluar |
 | `airi_motor/cli.py` | Línea de comandos |
 | `herramientas/generar_casos.py` | Genera `casos_conformidad.json` |
 | `casos_conformidad.json` | 43 vectores que toda implementación (Python y JS) debe reproducir (34 de v0.4.0 + 9 de entradas mal formadas) |
@@ -111,7 +112,7 @@ python herramientas/generar_casos.py --check
 | `test_trazabilidad.py` (v0.4.1) | 6 | Por resultado: recorrido del grafo coherente con el estado, motivo, fuentes de nivel A en EP4/EP5, contexto solo nivel B, alertas/recomendaciones/solicitudes 1:1, incertidumbre del amoníaco |
 | `test_contrato.py` (v0.4.1) | 3 | El informe cumple `CONTRATO_SALIDA.md` y la interfaz solo lee campos del contrato |
 
-Resultado de la última ejecución (15-11-2026, v0.4.1): **75 pruebas, 0 fallos**. En E5 (12-11-2026) eran 52.
+Resultado de la última ejecución (15-11-2026, v0.4.1): **75 pruebas, 0 fallos**; con `test_condiciones.py` (16-11-2026): **84 pruebas, 0 fallos**. En E5 (12-11-2026) eran 52.
 Historial completo de pruebas, errores y limitaciones: [`PRUEBAS_v0.4.md`](PRUEBAS_v0.4.md).
 Durante el desarrollo fallaron 2 pruebas por expectativas mal escritas (no por el motor): un caso R4 olvidaba que
 también faltaban nitratos, y 212 °F = 100 °C está dentro del límite de captura inclusivo. Se corrigieron las pruebas.
