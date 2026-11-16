@@ -1,8 +1,8 @@
-# AIRI — Entrega de fichas de especies (v0.2)
+# AIRI — Entrega de fichas de especies (v0.7.1)
 
 **Responsable:** Brayan · **Rama:** `equipo/brayan-fichas-especies` · **Fecha de consulta:** 2026-11-16
 
-Se completaron y verificaron las **seis** fichas del catálogo inicial: pez payaso común, cardenal de Banggai, pez fuego, gramma real, cirujano amarillo y damisela de cola amarilla. Cada ficha incluye:
+Se completaron y verificaron las seis fichas del catálogo inicial (pez payaso común, cardenal de Banggai, pez fuego, gramma real, cirujano amarillo y damisela de cola amarilla), y el catálogo se amplió a **52 especies**: 28 peces, 5 estrellas de mar, 4 crustáceos, 6 corales, 3 anémonas, 2 caracoles, 2 erizos de mar, 1 gusano y 1 pepino de mar. La lista completa está en `especies/fichas/README.md`. Cada ficha incluye:
 
 - Taxonomía según WoRMS
 - Hábitat
