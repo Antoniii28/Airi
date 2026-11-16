@@ -6,7 +6,6 @@
 // ATENCIÓN: cada ejecución crea códigos NUEVOS. Carga en AIRI_CODIGOS la línea de la MISMA ejecución cuyos códigos
 // entregues; para verificar una pareja código/huella usa herramientas/comprobar-codigo.mjs.
 // Para AÑADIR o REVOCAR participantes sin tocar los códigos existentes, usa herramientas/actualizar-codigos.mjs.
-import { randomBytes } from "node:crypto";
 import { normalizarCodigo, huellaCodigo, generarCodigo } from "../codigos.mjs";
 
 const ids = process.argv.slice(2);
@@ -26,4 +25,4 @@ for (const id of ids) {
 console.log("\nValor para el secreto AIRI_CODIGOS (añádelo a los ya existentes, separado por comas):");
 console.log(lineas.join(","));
 console.log("\nSal aleatoria sugerida para AIRI_SAL (solo la primera vez):");
-console.log(randomBytes(24).toString("base64url"));
+console.log(Buffer.from(crypto.getRandomValues(new Uint8Array(24))).toString("base64url"));   // 24 bytes (Web Crypto), como antes

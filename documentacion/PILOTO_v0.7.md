@@ -452,4 +452,7 @@ pago**: una fuente de terceros indica que el alta de Zero Trust lo solicita.
 - **Requisitos de cada participante:** mayor de 18 años (aviso de la interfaz), conexión desde un país de
   `AIRI_PAISES_PERMITIDOS` (hoy `MX`; el EEE, Suiza y Reino Unido se rechazan siempre), completar Turnstile y usar su
   propio código, que no debe compartir.
-- **Pruebas:** `publico/accesos.test.mjs` (10), incluidas regiones, Turnstile, origen e interruptor con la línea ampliada.
+- **Escritura todo o nada:** la herramienta escribe los dos archivos como temporales y los publica sin sobrescribir, la
+  línea en último lugar. Si algo falla, borra lo creado; si tampoco puede borrarlo, indica las rutas a borrar a mano.
+- **Pruebas:** `publico/accesos.test.mjs` (16): altas, bajas y registro; regiones, Turnstile, origen e interruptor con
+  la línea ampliada; y fallos de escritura simulados (temporales, publicación, copia parcial, carrera y borrado).

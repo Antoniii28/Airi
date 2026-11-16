@@ -2,7 +2,9 @@
 // identifica cada acceso por el id seudónimo del participante sin exponer secretos. Todo con secretos FICTICIOS.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from "node:fs";
+import * as fsReal from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync, rmSync, readdirSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -155,4 +157,109 @@ test("las restricciones siguen activas con la línea ampliada (región, Turnstil
     assert.equal(await llamar({}, await entorno({ AIRI_CODIGOS: r.linea, AIRI_CHAT_APAGADO: "1" })), 503);
     assert.equal(await llamar({ ip: "198.51.100.30" }), 200);
   } finally { restaurar(); }
+});
+
+// ── Escritura todo o nada (revisión del PR #20) ─────────────────────────────
+
+/** fs real que falla en la llamada número `n` (desde 1) de la operación `op`; `antes` se ejecuta en lugar de fallar. */
+function fsConFallo(op, n, { codigo = "EIO", antes = null } = {}) {
+  let cuenta = 0;
+  const envoltura = { ...fsReal, constants: fsReal.constants };
+  envoltura[op] = (...args) => {
+    if (++cuenta === n) {
+      if (antes) { antes(...args); return fsReal[op](...args); }
+      throw Object.assign(new Error("fallo simulado de " + op), { code: codigo });
+    }
+    return fsReal[op](...args);
+  };
+  return envoltura;
+}
+
+async function carpetaConActual() {
+  const dir = mkdtempSync(join(tmpdir(), "airi-fallos-"));
+  writeFileSync(join(dir, "actual.txt"), await lineaBase());
+  return dir;
+}
+const argumentos = (dir) => ["--actual", join(dir, "actual.txt"), "--salida", join(dir, "nueva.txt"),
+  "--entregas", join(dir, "entregas.txt"), "--agregar", "p03", "p04"];
+
+test("escritura: ante cualquier fallo no queda ningún archivo nuevo (ni temporales, ni códigos, ni línea)", async () => {
+  const fallos = [
+    ["writeFileSync", 1], ["writeFileSync", 2],            // temporal de códigos / temporal de la línea
+    ["linkSync", 1], ["linkSync", 2],                      // publicación de códigos / de la línea (los códigos ya publicados se borran)
+    ["linkSync", 2, { codigo: "ENOSPC" }],
+  ];
+  for (const [op, n, opciones] of fallos) {
+    const dir = await carpetaConActual();
+    const impreso = [];
+    try {
+      await assert.rejects(principal(argumentos(dir), (t) => impreso.push(t), fsConFallo(op, n, opciones)),
+        (e) => e instanceof ErrorUso && /No se dejó ningún archivo nuevo/.test(e.message), `${op} #${n}`);
+      assert.deepEqual(readdirSync(dir), ["actual.txt"], `${op} #${n}: quedaron archivos`);
+      assert.deepEqual(impreso, [], "no informa de éxito");
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+  }
+});
+
+test("escritura: sin enlaces duros usa copia exclusiva, y una copia parcial también se deshace", async () => {
+  let dir = await carpetaConActual();
+  try {   // FAT o similar: linkSync no está permitido → copia; resultado completo y sin temporales
+    const r = await principal(argumentos(dir), () => {}, fsConFallo("linkSync", 1, { codigo: "EPERM" }));
+    assert.deepEqual(readdirSync(dir).sort(), ["actual.txt", "entregas.txt", "nueva.txt"]);
+    assert.equal(readFileSync(join(dir, "nueva.txt"), "utf-8"), r.linea);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+  dir = await carpetaConActual();
+  try {   // sin enlaces y la copia falla a medias
+    const sinEnlaces = fsConFallo("linkSync", 1, { codigo: "EPERM" });
+    let copias = 0;
+    sinEnlaces.copyFileSync = (o, d, f) => {
+      if (++copias === 1) { fsReal.writeFileSync(d, "PARCIAL"); throw Object.assign(new Error("disco lleno"), { code: "ENOSPC" }); }
+      return fsReal.copyFileSync(o, d, f);
+    };
+    await assert.rejects(principal(argumentos(dir), () => {}, sinEnlaces), /No se dejó ningún archivo nuevo/);
+    assert.deepEqual(readdirSync(dir), ["actual.txt"]);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("escritura: si el destino aparece a mitad (carrera), no se sobrescribe ni quedan restos", async () => {
+  const dir = await carpetaConActual();
+  try {
+    const ajeno = join(dir, "nueva.txt");
+    const fsx = fsConFallo("linkSync", 2, { antes: () => writeFileSync(ajeno, "ARCHIVO AJENO") });
+    await assert.rejects(principal(argumentos(dir), () => {}, fsx), /ya existe: no se sobrescribe/);
+    assert.equal(readFileSync(ajeno, "utf-8"), "ARCHIVO AJENO", "el archivo ajeno queda intacto");
+    assert.deepEqual(readdirSync(dir).sort(), ["actual.txt", "nueva.txt"]);   // ni códigos ni temporales
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("escritura: si tampoco se puede borrar, avisa de las rutas a borrar a mano sin mostrar su contenido", async () => {
+  const dir = await carpetaConActual();
+  try {
+    const fsx = fsConFallo("linkSync", 2);
+    fsx.unlinkSync = () => { throw Object.assign(new Error("bloqueado"), { code: "EBUSY" }); };
+    let mensaje = "";
+    await assert.rejects(principal(argumentos(dir), () => {}, fsx), (e) => { mensaje = e.message; return e instanceof ErrorUso; });
+    assert.match(mensaje, /BORRA A MANO/);
+    assert.ok(mensaje.includes(join(dir, "entregas.txt")));
+    const restos = readdirSync(dir).filter((f) => f !== "actual.txt");
+    for (const f of restos) assert.ok(mensaje.includes(join(dir, f)), "se avisa de " + f);
+    for (const f of restos) for (const linea of readFileSync(join(dir, f), "utf-8").split(/[\n,]/))
+      for (const parte of linea.split(/\s+|:/).filter((x) => x.length >= 20)) assert.ok(!mensaje.includes(parte), "el aviso no lleva códigos ni huellas");
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("escritura correcta: no deja temporales «.airi-tmp-*»", async () => {
+  const dir = await carpetaConActual();
+  try {
+    await principal(argumentos(dir), () => {});
+    assert.deepEqual(readdirSync(dir).sort(), ["actual.txt", "entregas.txt", "nueva.txt"]);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("generar-codigos.mjs funciona sin node:crypto y sigue sugiriendo una sal de 24 bytes", () => {
+  const fuente = readFileSync(join(AQUI, "herramientas", "generar-codigos.mjs"), "utf-8");
+  assert.ok(!/randomBytes|node:crypto/.test(fuente));
+  const salida = execFileSync(process.execPath, [join(AQUI, "herramientas", "generar-codigos.mjs"), "x1"], { encoding: "utf-8" }).trim().split(/\r?\n/);
+  assert.match(salida.at(-1), /^[A-Za-z0-9_-]{32}$/);                  // 24 bytes en base64url
+  assert.match(salida.find((l) => l.startsWith("x1:")), /^x1:[0-9a-f]{64}$/);
 });

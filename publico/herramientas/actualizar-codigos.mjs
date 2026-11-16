@@ -8,17 +8,22 @@
 //   --salida    archivo NUEVO donde se escribe la línea completa para AIRI_CODIGOS (existentes + altas − bajas).
 //   --entregas  archivo NUEVO con «id  código» de cada alta, para entregarlos EN PRIVADO. Obligatorio con --agregar.
 //
-// Garantías (comprobadas en actualizar-codigos.test.mjs):
+// Garantías (comprobadas en publico/accesos.test.mjs):
 //   · las huellas que se conservan se copian SIN cambios: los códigos ya entregados siguen funcionando;
 //   · la línea resultante se valida con leerCodigos() del Worker antes de escribirla: un error de formato dejaría el
 //     chat cerrado para TODOS (el Worker falla cerrado), así que la herramienta se niega a producirla;
 //   · no se puede dar de alta un id que ya existe ni revocar uno que no existe, ni dejar la lista vacía;
 //   · no imprime códigos, huellas ni la línea: solo ids y recuentos. Los archivos no pueden estar dentro del
-//     repositorio y nunca se sobrescriben. No usa la red ni cambia ningún secreto.
+//     repositorio y nunca se sobrescriben. No usa la red ni cambia ningún secreto;
+//   · escritura TODO O NADA: ambos archivos se escriben primero como temporales en su carpeta y después se publican
+//     sin sobrescribir (enlace duro; copia exclusiva si el sistema de archivos no lo admite), la línea en ÚLTIMO
+//     lugar. Ante cualquier fallo se borran los temporales y lo ya publicado: no quedan códigos sueltos ni una línea
+//     sin sus códigos.
 //
 // Después (solo la persona autorizada): cargar --salida con «npx wrangler secret put AIRI_CODIGOS -c
 // wrangler.produccion.jsonc» y GUARDAR ese archivo como nueva copia de la línea vigente. Ver documentacion/PILOTO_v0.7.md.
-import { readFileSync, writeFileSync, existsSync, realpathSync } from "node:fs";
+import * as fs from "node:fs";
+import { readFileSync, existsSync, realpathSync } from "node:fs";
 import { resolve, relative, isAbsolute, dirname, join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { generarCodigo, huellaCodigo, normalizarCodigo } from "../codigos.mjs";
@@ -94,7 +99,43 @@ function leerArgumentos(argv) {
   return op;
 }
 
-export async function principal(argv, salida = console.log) {
+const SIN_ENLACES = new Set(["EPERM", "ENOTSUP", "EOPNOTSUPP", "ENOSYS", "EXDEV"]);
+
+/**
+ * Escribe [[ruta, contenido], …] todo o nada. `fsx` permite simular fallos en las pruebas.
+ * Fase 1: temporales «.airi-tmp-*» en la misma carpeta (flag wx). Fase 2: publicación sin sobrescribir, en orden
+ * (el último archivo es la señal de éxito). Fase 3: borrar temporales. Si algo falla, se deshace todo lo creado.
+ */
+export function escribirTodoONada(archivos, fsx = fs) {
+  const temporales = [], publicados = [];
+  try {
+    for (const [ruta, contenido] of archivos) {
+      const tmp = join(dirname(ruta), `.airi-tmp-${crypto.randomUUID()}-${basename(ruta)}`);
+      temporales.push(tmp);
+      fsx.writeFileSync(tmp, contenido, { encoding: "utf-8", flag: "wx", mode: 0o600 });
+    }
+    archivos.forEach(([ruta], i) => {
+      try { fsx.linkSync(temporales[i], ruta); }   // atómico y sin sobrescribir (EEXIST)
+      catch (e) {
+        if (!SIN_ENLACES.has(e?.code)) throw e;
+        // Sistema de archivos sin enlaces duros (p. ej. FAT): copia exclusiva; una copia parcial también se borra.
+        try { fsx.copyFileSync(temporales[i], ruta, fs.constants.COPYFILE_EXCL); }
+        catch (e2) { if (e2?.code !== "EEXIST") publicados.push(ruta); throw e2; }
+      }
+      publicados.push(ruta);
+    });
+  } catch (e) {
+    const restos = [];
+    for (const f of [...publicados, ...temporales]) {
+      try { fsx.unlinkSync(f); } catch (e3) { if (e3?.code !== "ENOENT") restos.push(f); }
+    }
+    throw new ErrorUso((e?.code === "EEXIST" ? "Un archivo de destino ya existe: no se sobrescribe." : "No se pudieron escribir los archivos.") +
+      (restos.length ? ` BORRA A MANO estos archivos sensibles: ${restos.join(", ")}` : " No se dejó ningún archivo nuevo."));
+  }
+  for (const tmp of temporales) { try { fsx.unlinkSync(tmp); } catch { /* los destinos ya están completos */ } }
+}
+
+export async function principal(argv, salida = console.log, fsx = fs) {
   const op = leerArgumentos(argv);
   const destino = rutaSegura(op.salida);
   const destinoEntregas = op.agregar.length ? rutaSegura(op.entregas) : null;
@@ -102,11 +143,13 @@ export async function principal(argv, salida = console.log) {
   let actual;
   try { actual = readFileSync(resolve(op.actual), "utf-8").replace(/^﻿/, ""); } catch { throw new ErrorUso(`No se pudo leer «${op.actual}».`); }
   const r = await actualizar(actual, op);
+  const archivos = [];
   if (destinoEntregas) {
-    writeFileSync(destinoEntregas, "AIRI · códigos personales. Entrega cada uno EN PRIVADO a su participante y borra este archivo después.\n" +
-      r.entregas.map(([id, c]) => `${id}  ${c}`).join("\n") + "\n", { encoding: "utf-8", flag: "wx", mode: 0o600 });
+    archivos.push([destinoEntregas,"AIRI · códigos personales. Entrega cada uno EN PRIVADO a su participante y borra este archivo después.\n" +
+      r.entregas.map(([id, c]) => `${id}  ${c}`).join("\n") + "\n"]);
   }
-  writeFileSync(destino, r.linea, { encoding: "utf-8", flag: "wx", mode: 0o600 });
+  archivos.push([destino, r.linea]);   // la línea, en último lugar: su existencia indica que todo se escribió
+  escribirTodoONada(archivos, fsx);
   const lista = (xs) => (xs.length ? xs.join(", ") : "ninguno");
   salida(`Conservados (sus códigos siguen funcionando): ${lista(r.resumen.conservados)}`);
   salida(`Dados de alta: ${lista(r.resumen.agregados)}`);
@@ -121,7 +164,7 @@ export async function principal(argv, salida = console.log) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   principal(process.argv.slice(2)).catch((e) => {
-    console.error(e instanceof ErrorUso ? e.message : "Error inesperado; no se escribió ningún archivo nuevo de línea.");
+    console.error(e instanceof ErrorUso ? e.message : "Error inesperado antes de escribir; no se creó ningún archivo.");
     process.exit(e instanceof ErrorUso ? 1 : 2);
   });
 }
