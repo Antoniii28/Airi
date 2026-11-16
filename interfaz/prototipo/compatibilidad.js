@@ -50,7 +50,7 @@
     const source = sources?.[id];
     if (!source) return "<span>" + esc(id) + " (fuente no registrada)</span>";
     const url = String(source.url || "");
-    const safeUrl = /^https?:\\/\\//i.test(url) ? url : "";
+    const safeUrl = /^https?:\/\//i.test(url) ? url : "";
     return safeUrl
       ? '<a href="' + esc(safeUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(source.titulo || id) + '</a>'
       : '<span>' + esc(source.titulo || id) + '</span>';
