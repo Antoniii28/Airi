@@ -41,18 +41,18 @@ CAMPOS_OBLIGATORIOS = [
     "fecha_consulta", "nivel_confianza_global",
 ]
 NIVELES = {"alta", "media", "baja"}
-GRUPOS = {"pez", "estrella de mar", "crustáceo"}
+GRUPOS = {"pez", "estrella de mar", "crustáceo", "coral", "anémona", "caracol", "erizo de mar", "gusano", "pepino de mar"}
 VALORES_FICHA = {
     "temperamento": {"pacifico", "semiagresivo", "agresivo"},
     "etiquetas": {"pacifico", "territorial", "solitario", "sociable"},
     "arrecife": {"si", "no", "con_precaucion"},
-    "alimentacion": {"herbivoro", "carnivoro", "omnivoro"},
+    "alimentacion": {"herbivoro", "carnivoro", "omnivoro", "fotosintetico", "filtrador"},
 }
 ETIQUETAS = {
     "pacifico": "Pacífico", "semiagresivo": "Semiagresivo", "agresivo": "Agresivo",
     "territorial": "Territorial", "solitario": "Solitario", "sociable": "Sociable",
     "si": "Sí", "no": "No", "con_precaucion": "Con precaución",
-    "herbivoro": "Herbívoro", "carnivoro": "Carnívoro", "omnivoro": "Omnívoro",
+    "herbivoro": "Herbívoro", "carnivoro": "Carnívoro", "omnivoro": "Omnívoro", "fotosintetico": "Fotosintético", "filtrador": "Filtrador",
 }
 
 
@@ -250,7 +250,7 @@ def ficha_md(e: dict, cat: dict) -> str:
         ("Tipo de alimentación", et(fa["alimentacion"]["tipo"]) + ": " + ", ".join(fa["alimentacion"]["alimentos"]) + "." + nota(fa["alimentacion"])),
         ("Temperatura", f"{_num(tf['min'])}–{_num(tf['max'])} °C" + nota(tf) if tf.get("min") is not None else "null (no verificado)"),
         ("Litraje recomendado", f"{_num(lf['min'])} L ({_num(lf['galones_us'])} gal EE. UU.)." + nota(lf) if lf.get("min") is not None else "null (no verificado)." + nota(lf)),
-        ("Tamaño adulto", f"{_num(zf['max'])} cm ({zf['medida']})." + ((f" Al venderse mide {_num(venta['min'])}–{_num(venta['max'])} cm (juvenil o subadulto)." if venta.get("min") is not None
+        ("Tamaño adulto", (f"{_num(zf['max'])} cm ({zf['medida']})." if zf.get("max") is not None else "null (no verificado).") + ((f" Al venderse mide {_num(venta['min'])}–{_num(venta['max'])} cm (juvenil o subadulto)." if venta.get("min") is not None
               else f" Al venderse mide hasta {_num(venta['max'])} cm (juvenil o subadulto).") if venta else "")
             + (f" Madura desde {_num(zf['talla_madurez_cm'])} cm." if zf.get("talla_madurez_cm") else "") + nota(zf)),
     ]
@@ -276,7 +276,7 @@ def ficha_md(e: dict, cat: dict) -> str:
     fila("Clasificación taxonómica", clasif, tx["confianza"], tx["fuentes"])
     fila("Hábitat natural", f"{hab['texto']} Profundidad: {prof_txt}. Distribución: {hab['distribucion']}",
          hab["confianza"], hab["fuentes"])
-    fila("Tamaño adulto", f"Máx. {_num(tam['max_cm'])} cm ({tam['tipo']}). {tam.get('contraste', '')}",
+    fila("Tamaño adulto", (f"Máx. {_num(tam['max_cm'])} cm ({tam['tipo']}). " if tam.get("max_cm") is not None else "null (no verificado). ") + tam.get("contraste", ""),
          tam["confianza"], tam["fuentes"])
     fila("Alimentación", e["alimentacion"]["texto"], e["alimentacion"]["confianza"], e["alimentacion"]["fuentes"])
 

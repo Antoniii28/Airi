@@ -2,6 +2,10 @@
 
 > Archivo generado desde `especies/datos/catalogo_inicial.json` con `especies/herramientas/generar_fichas.py`. No editar a mano.
 
+![Gobio arenero de 6 puntos (Valenciennea sexguttata)](../imagenes/valenciennea-sexguttata.jpg)
+
+*Imagen ilustrativa generada con IA por Brayan (2026-11-16). No es una fotografía de un ejemplar real; puede contener errores anatómicos.*
+
 **Grupo:** pez  
 **Otros nombres:** Sixspot goby, Sleeper blue dot goby, Ladder goby  
 **Fecha de consulta:** 2026-11-16  

@@ -8,6 +8,7 @@
 | **FishBase**, https://www.fishbase.se/ | Hábitat, distribución, profundidad, tamaño máximo, dieta natural, comportamiento, reproducción, temperatura natural y estado UICN | Científica de referencia |
 | **SeaLifeBase**, https://www.sealifebase.se/ (base hermana de FishBase para invertebrados) | Hábitat, distribución, tamaño, dieta y comportamiento de estrellas de mar y crustáceos | Científica de referencia |
 | **Quality Marine** (mayorista de especies marinas) | Parámetros de acuario, litraje y notas de convivencia del cirujano de Bahía y de la estrella *Fromia*, que LiveAquaria no vende | Comercial: confianza baja o media |
+| **Saltwaterfish** (tienda en línea) | Litraje mínimo («Minimum Tank Size») de invertebrados y corales que LiveAquaria y Quality Marine no publican | Comercial: confianza baja |
 | **NOAA Fisheries**, ficha del cardenal de Banggai | Hábitat, dieta, longevidad, amenazas y estado ESA | Institucional |
 | **LiveAquaria** (páginas de producto de cada especie) | Parámetros de acuario (°F, pH, gravedad específica, dKH), volumen mínimo, temperamento, compatibilidad con arrecife y notas de convivencia | Comercial: confianza baja o media |
 | **MSD Veterinary Manual** (tabla y capítulo) | pH de referencia para agua salada (7.8–8.3 y 7.8–8.5) | Veterinaria; reutilizada del motor, consultada el 2026-11-12 |

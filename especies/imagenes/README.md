@@ -24,12 +24,38 @@ Guarda aquí una foto por especie con **exactamente** estos nombres:
 | Gobio arenero de 6 puntos | `valenciennea-sexguttata.jpg` |
 | Estrella Linckia azul | `linckia-laevigata.jpg` |
 | Estrella Fromia naranja | `fromia-milleporella.jpg` |
+| Estrella mosaico | `fromia-monilis.jpg` |
 | Estrella arenera | `astropecten-polyacanthus.jpg` |
 | Estrella chocochip | `protoreaster-nodosus.jpg` |
 | Camarón sexy | `thor-amboinensis.jpg` |
 | Camarón limpiador | `lysmata-amboinensis.jpg` |
 | Camarón boxeador | `stenopus-hispidus.jpg` |
 | Ermitaño patas rojas | `paguristes-cadenati.jpg` |
+| Pez halcón de nariz larga | `oxycirrhites-typus.jpg` |
+| Ángel llama | `centropyge-loriculus.jpg` |
+| Pez mariposa de nariz larga | `forcipiger-flavissimus.jpg` |
+| Pez ballesta Picasso | `rhinecanthus-aculeatus.jpg` |
+| Morena copo de nieve | `echidna-nebulosa.jpg` |
+| Pez ballesta payaso | `balistoides-conspicillum.jpg` |
+| Cirujano Aquiles | `acanthurus-achilles.jpg` |
+| Pez halcón llama | `neocirrhites-armatus.jpg` |
+| Blenio Midas | `ecsenius-midas.jpg` |
+| Lábrido arlequín | `choerodon-fasciatus.jpg` |
+| Pólipo estrella verde | `briareum-violaceum.jpg` |
+| Anémona burbuja | `entacmaea-quadricolor.jpg` |
+| Anémona sebae | `radianthus-crispa.jpg` |
+| Anémona magnífica | `radianthus-magnifica.jpg` |
+| Árbol de Kenia | `capnella-sp.jpg` |
+| Xenia pulsante | `xenia-elongata.jpg` |
+| Zoántidos | `zoanthus-sp.jpg` |
+| Coral candy cane | `caulastraea-furcata.jpg` |
+| Pólipos de clavo | `clavularia-sp.jpg` |
+| Caracol Nassarius | `nassarius-sp.jpg` |
+| Caracol turbo | `turbo-fluctuosus.jpg` |
+| Erizo tuxedo | `mespilia-globulus.jpg` |
+| Erizo de puntas largas | `diadema-setosum.jpg` |
+| Gusano plumero | `sabellastarte-sp.jpg` |
+| Pepino de mar negro | `holothuria-atra.jpg` |
 
 Si tu foto es `.png` o `.webp`, cambia también la extensión en el campo `imagen.archivo` del JSON.
 
