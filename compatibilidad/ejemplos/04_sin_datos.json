@@ -1,0 +1,144 @@
+{
+ "_nota": "EJEMPLO CON DATOS DE PRUEBA FICTICIOS (compatibilidad/datos_prueba). No es información biológica real.",
+ "entrada": {
+  "especies": [
+   "prueba_pacifico_a",
+   "prueba_sin_datos",
+   "especie_inexistente"
+  ]
+ },
+ "salida": {
+  "version": "0.1.0",
+  "catalogo_version": "prueba-0.1",
+  "estado_global": "sin_datos",
+  "etiqueta_global": "Información insuficiente",
+  "especies": [
+   {
+    "id": "prueba_pacifico_a",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba A",
+    "nombre_cientifico": "Probatus alfa"
+   },
+   {
+    "id": "prueba_sin_datos",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba sin datos",
+    "nombre_cientifico": "Ignotus epsilon"
+   },
+   {
+    "id": "especie_inexistente",
+    "cantidad": 1,
+    "encontrada": false,
+    "nombre_comun": null,
+    "nombre_cientifico": null
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "prueba_pacifico_a",
+     "prueba_sin_datos"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: faltan datos para evaluar.",
+    "motivos": [],
+    "datos_faltantes": [
+     {
+      "especie": "prueba_sin_datos",
+      "campo": "temperatura"
+     },
+     {
+      "especie": "prueba_sin_datos",
+      "campo": "ph"
+     },
+     {
+      "especie": "prueba_sin_datos",
+      "campo": "temperamento"
+     }
+    ]
+   },
+   {
+    "especies": [
+     "prueba_pacifico_a",
+     "especie_inexistente"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: especie no encontrada en el catálogo.",
+    "motivos": [
+     {
+      "criterio": "especie",
+      "nombre": "Especie en el catálogo",
+      "efecto": "sin_datos",
+      "texto": "No se encontró en el catálogo: especie_inexistente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "especie_inexistente",
+      "campo": "ficha"
+     }
+    ]
+   },
+   {
+    "especies": [
+     "prueba_sin_datos",
+     "especie_inexistente"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: especie no encontrada en el catálogo.",
+    "motivos": [
+     {
+      "criterio": "especie",
+      "nombre": "Especie en el catálogo",
+      "efecto": "sin_datos",
+      "texto": "No se encontró en el catálogo: especie_inexistente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "especie_inexistente",
+      "campo": "ficha"
+     }
+    ]
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": null,
+   "ph": null,
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [
+   {
+    "especie": "prueba_sin_datos",
+    "campo": "temperatura"
+   },
+   {
+    "especie": "prueba_sin_datos",
+    "campo": "ph"
+   },
+   {
+    "especie": "prueba_sin_datos",
+    "campo": "temperamento"
+   },
+   {
+    "especie": "especie_inexistente",
+    "campo": "ficha"
+   }
+  ],
+  "fuentes": {},
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}
