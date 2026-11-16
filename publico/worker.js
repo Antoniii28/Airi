@@ -35,7 +35,10 @@ const CABECERAS = {
   "x-frame-options": "DENY", "referrer-policy": "no-referrer", "content-security-policy": "default-src 'none'; frame-ancestors 'none'"
 };
 const json = (body, status = 200, extra = {}) => new Response(JSON.stringify(body), { status, headers: { ...CABECERAS, ...extra } });
-const registrar = (resultado, estado) => console.log(JSON.stringify({ airi: "chat", resultado, estado }));   // sin IP, código ni contenido
+// Registro por petición: sin IP, código ni contenido. v0.7.4: tras validar el código se añade `participante` (el id
+// seudónimo de AIRI_CODIGOS, p. ej. «p01») para identificar cada acceso individualmente; nunca el código ni su huella.
+const registrar = (resultado, estado, participante) =>
+  console.log(JSON.stringify(participante ? { airi: "chat", resultado, estado, participante } : { airi: "chat", resultado, estado }));
 
 export function validarMensajes(datos) {
   if (!datos || !Array.isArray(datos.messages) || datos.messages.length < 1 || datos.messages.length > MAX_MESSAGES) return null;
@@ -194,14 +197,14 @@ export async function manejar(request, env = {}, ctx = {}, deps = {}) {
     const reserva = await cuotas(env, { op: "reservar", usuario: id });
     if (!reserva.ok) {
       const estado = reserva.motivo === "pausa" ? 503 : 429;
-      registrar("cuota_" + reserva.motivo, estado);
+      registrar("cuota_" + reserva.motivo, estado, id);
       return json({ error: MENSAJES_CUOTA[reserva.motivo] || "Límite alcanzado." }, estado,
         reserva.reintentar ? { "retry-after": String(reserva.reintentar) } : {});
     }
 
     const g = await consultarGemini(contents, env, hacerFetch);
     if (g.limiteGoogle) await cuotas(env, { op: "pausar" });
-    registrar(g.estado === 200 ? "ok" : "gemini", g.estado);
+    registrar(g.estado === 200 ? "ok" : "gemini", g.estado, id);
     return json(g.datos, g.estado);
   } catch {
     // Fallo de Durable Object (p. ej., límite diario del plan gratuito) o error inesperado: cerrado, sin detalles.

@@ -389,10 +389,10 @@ pago**: una fuente de terceros indica que el alta de Zero Trust lo solicita.
 
 | Tarea | Cómo |
 |---|---|
-| Dar acceso | `generar-codigos.mjs p03` → entregar el código **en persona o por un canal privado**; añadir su línea a `AIRI_CODIGOS` y volver a cargar el secreto |
-| Revocar | Quitar `pXX:huella` de `AIRI_CODIGOS` y volver a cargarlo: `npx wrangler secret put AIRI_CODIGOS -c wrangler.produccion.jsonc` |
+| Dar acceso (0.7.4) | `node publico/herramientas/actualizar-codigos.mjs --actual <línea vigente> --salida <línea nueva> --entregas <códigos> --agregar p05` (archivos **fuera del repositorio**). Conserva las huellas existentes sin cambios, valida la línea con el lector del Worker y no imprime códigos ni huellas. Entregar el código **en persona o por un canal privado**, cargar la línea nueva con `npx wrangler secret put AIRI_CODIGOS -c wrangler.produccion.jsonc` y guardarla como copia vigente |
+| Revocar (0.7.4) | La misma herramienta con `--revocar pXX` (sin `--entregas`); se niega a dejar la lista vacía. Después, cargar la línea nueva como arriba |
 | Detener | `AIRI_CHAT_APAGADO="1"` en `wrangler.produccion.jsonc` y `npx wrangler deploy -c wrangler.produccion.jsonc`. La interfaz sigue funcionando y el chat muestra «desactivado»; la revisión del build lo permite con un aviso |
-| Supervisar | `npx wrangler tail -c wrangler.produccion.jsonc` o los registros del panel (solo resultado y código HTTP). Uso de Gemini en AI Studio; uso de Workers y Durable Objects en el panel |
+| Supervisar | `npx wrangler tail -c wrangler.produccion.jsonc` o los registros del panel (resultado y código HTTP; desde 0.7.4, además el id seudónimo `participante` cuando el código es válido: `ok`, `gemini`, `cuota_*`. Nunca el código, su huella ni la IP). Uso de Gemini en AI Studio; uso de Workers y Durable Objects en el panel |
 | Límites | Variables `AIRI_LIMITE_*` en `wrangler.produccion.jsonc` (5/min, 30/día, 100 global) |
 | Agotamiento | Mensajes ya implementados: «espera un minuto», «límite de hoy», «el piloto alcanzó su límite», «pausa preventiva» |
 
@@ -438,3 +438,18 @@ pago**: una fuente de terceros indica que el alta de Zero Trust lo solicita.
 | `publico/dev/servidor-dev.mjs` | Vista previa local con todo lo externo simulado |
 | `publico/worker.test.mjs`, `publico/cuotas.test.mjs`, `publico/pruebas/` | Pruebas |
 | `interfaz/chat/acceso-publico.js`, `chat.js`, `chat.css`, `prototipo/index.html` | Modo piloto de la interfaz (el modo local no cambia) |
+
+### Administración de accesos personales (0.7.4, sin desplegar)
+
+- **Altas sin invalidar códigos:** `AIRI_CODIGOS` se sustituye entero al cargarlo y Cloudflare no permite leerlo. Para
+  conservar los códigos ya entregados hace falta la **copia de la línea vigente**; `actualizar-codigos.mjs` la amplía
+  copiando sus huellas sin cambios. Sin esa copia no se pueden conservar: habría que reemitir los códigos de todos.
+- **Por qué una herramienta:** antes había que unir las líneas a mano. Una coma de más, unas comillas o un id repetido
+  hacen que `leerCodigos()` devuelva `null` y el Worker se cierre (503) **para todos los participantes**. La herramienta
+  valida la línea con el mismo lector antes de escribirla.
+- **Identificación de cada acceso:** el registro incluye el id seudónimo (`p01`…) solo después de validar el código.
+  Usar ids seudónimos, no nombres: aparecen en los registros de Cloudflare.
+- **Requisitos de cada participante:** mayor de 18 años (aviso de la interfaz), conexión desde un país de
+  `AIRI_PAISES_PERMITIDOS` (hoy `MX`; el EEE, Suiza y Reino Unido se rechazan siempre), completar Turnstile y usar su
+  propio código, que no debe compartir.
+- **Pruebas:** `publico/accesos.test.mjs` (10), incluidas regiones, Turnstile, origen e interruptor con la línea ampliada.

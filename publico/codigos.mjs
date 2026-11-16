@@ -65,5 +65,14 @@ export async function huellasCodigo(texto) {
   return Promise.all(formasCodigo(texto).map(async ([nombre, f]) => [nombre, await sha256hex(f)]));
 }
 
+/** Alfabeto de los códigos generados: sin 0/O ni 1/I para dictarlos sin errores. 20 símbolos de 32 = 100 bits. */
+export const ALFABETO = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+/** Código nuevo con el formato del generador (XXXXX-XXXXX-XXXXX-XXXXX). Web Crypto: Node 18+ y Workers. */
+export function generarCodigo() {
+  const b = crypto.getRandomValues(new Uint8Array(LONGITUD_CODIGO));
+  return [...b].map((x) => ALFABETO[x % 32]).join("").match(/.{5}/g).join("-");   // 256 % 32 = 0: sin sesgo
+}
+
 /** ¿Tiene el formato de los códigos que genera generar-codigos.mjs? (solo para registros de diagnóstico). */
 export const formatoGenerado = (canonico) => typeof canonico === "string" && /^[A-Z0-9]{5}(-[A-Z0-9]{5}){3}$/.test(canonico);
