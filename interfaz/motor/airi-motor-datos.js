@@ -1,7 +1,7 @@
 /* ═══ AIRI · Datos de referencia del motor de análisis (GENERADO, no editar) ═══
    Origen: motor/airi_motor/datos/*.json · generador: motor/herramientas/generar_datos_js.py
-   referencias.json  sha256 8d1920170c7fc5a8c06d809f36db42a712f3b75d5f4af845743d8aa5bc7216a0
-   fuentes.json  sha256 b12785e174829105d1adc48572063a0f662d77df52298a3f31b1cd1d514b0024 */
+   referencias.json  sha256 7ca5c69e9a41f6b68dda3a03aaa9067f8a1003eac55e58fe2a4ffe513c01b2ac
+   fuentes.json  sha256 356079ff1c09298e9bf509b12ffe69234a4f7a27dedbe31a38e039dc1f23bb41 */
 (function (raiz) {
   "use strict";
   var datos = {

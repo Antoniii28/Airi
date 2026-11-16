@@ -19,7 +19,9 @@ DESTINO = MOTOR.parent / "interfaz" / "motor" / "airi-motor-datos.js"
 def generar() -> str:
     partes, huellas = {}, []
     for nombre in ("referencias", "fuentes"):
-        crudo = (DATOS / f"{nombre}.json").read_bytes()
+        # La huella se calcula con saltos de línea LF: así no depende de cómo Git escriba el archivo
+        # (en Windows, core.autocrlf=true lo deja con CRLF y la huella cambiaría sin cambiar el contenido).
+        crudo = (DATOS / f"{nombre}.json").read_bytes().replace(b"\r\n", b"\n")
         partes[nombre] = json.loads(crudo)
         huellas.append(f"   {nombre}.json  sha256 {hashlib.sha256(crudo).hexdigest()}")
     cuerpo = json.dumps(partes, ensure_ascii=False, indent=1)
