@@ -4,7 +4,7 @@ Pruebas de integración de extremo a extremo del motor de análisis v0.4 en el p
 Uso, desde la raíz del repositorio:
     python interfaz/motor/pruebas/e2e_analisis.py [--chrome RUTA] [--capturas CARPETA]
 
-Cubre: carga del motor en el navegador, conformidad de los 34 casos DENTRO de la página, validación de
+Cubre: carga del motor en el navegador, conformidad de todos los casos (43 desde v0.4.1) DENTRO de la página, validación de
 formato conservada, panel de análisis (R3, R4, inválidos), mensajes y estados de la mascota, voz (simulada
 para medir tono y velocidad, y real para detectar errores), movimiento reducido, accesibilidad básica,
 celular, respaldo sin motor y ausencia de peticiones externas.
@@ -71,7 +71,8 @@ def main():
         # ── 1. Carga y conformidad dentro del navegador ──────────────────────
         ctx, pg = nueva()
         pg.goto(URL); pg.wait_for_timeout(1200)
-        comprobar(pg.evaluate("window.AIRIMotor && window.AIRIMotor.VERSION") == "0.4.0", "el motor JavaScript v0.4.0 se carga en la página")
+        comprobar(pg.evaluate("window.AIRIMotor && window.AIRIMotor.VERSION") == CASOS["version_motor"],
+                  f"el motor JavaScript v{CASOS['version_motor']} se carga en la página")
         fallos = pg.evaluate("""(casos) => {
             const r6 = (v) => typeof v === "number" ? Math.round(v * 1e6) / 1e6 : Array.isArray(v) ? v.map(r6) : v;
             const proy = (inf) => { const res = {}; inf.resultados.forEach((r) => res[r.parametro] = {estado: r.estado,
@@ -81,7 +82,7 @@ def main():
                 traza: inf.traza.map((t) => [t.de, t.a, t.etiqueta].concat(t.parametro ? [t.parametro] : []))}; };
             return casos.filter((c) => JSON.stringify(proy(AIRIMotor.evaluar(c.mediciones, c.perfil || null))) !== JSON.stringify(c.esperado)).map((c) => c.id);
         }""", CASOS["casos"])
-        comprobar(fallos == [], f"los 34 casos de conformidad se reproducen dentro del navegador {fallos}")
+        comprobar(fallos == [], f"los {len(CASOS['casos'])} casos de conformidad se reproducen dentro del navegador {fallos}")
         comprobar("referencias documentadas" in pg.inner_text(".airi-m-pecera .airi-m-texto") and
                   "no observo un acuario real ni hago diagnósticos" in pg.inner_text(".airi-m-pecera .airi-m-texto"),
                   "el saludo de Inicio describe la v0.4 sin prometer diagnósticos")

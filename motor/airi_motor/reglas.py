@@ -22,16 +22,25 @@ SEVERIDADES = {
 }
 
 
+MOTIVO_ESTRUCTURA = "La medición debe ser un objeto con «valor» y «unidad»."
+MOTIVO_TIPO_VALOR = "El valor recibido no es un número finito ni un texto numérico."
+
+
 def _fmt(n: float) -> str:
     return f"{n:.4g}"
 
 
 def evaluar_parametro(parametro: str, medicion: dict | None, perfil: dict) -> dict:
-    """Evalúa una medición. `medicion` = {"valor": ..., "unidad": ..., "metodo": opcional}."""
+    """Evalúa una medición. `medicion` = {"valor": ..., "unidad": ..., "metodo": opcional}.
+
+    Entradas mal formadas (la medición no es un objeto, el valor no es número ni texto, la unidad no es
+    texto) nunca provocan un error ni un «en rango»: se tratan como dato inválido (EP2) en Q2 o Q3."""
     meta = datos.referencias()["parametros"][parametro]
-    medicion = medicion or {}
-    texto, unidad, metodo = medicion.get("valor"), medicion.get("unidad"), (medicion.get("metodo") or "").strip().lower()
-    unidad_texto = "" if unidad is None else str(unidad).strip()
+    estructura_valida = medicion is None or isinstance(medicion, dict)
+    medicion = medicion if isinstance(medicion, dict) else {}
+    texto, unidad, metodo = medicion.get("valor"), medicion.get("unidad"), medicion.get("metodo")
+    metodo = unidades.recortar(metodo).lower() if isinstance(metodo, str) else ""
+    unidad_texto = unidades.recortar(unidad) if isinstance(unidad, str) else ""
     r = {"parametro": parametro, "nombre": meta["nombre"], "valor_original": texto, "unidad_original": unidad,
          "valor_canonico": None, "unidad_canonica": meta["unidad_canonica"], "estado": None, "severidad": None,
          "motivo": "", "fuentes": [], "contexto": [], "notas": [], "decisiones": []}
@@ -45,17 +54,24 @@ def evaluar_parametro(parametro: str, medicion: dict | None, perfil: dict) -> di
         r["estado"], r["motivo"], r["severidad"] = estado, motivo, severidad
         return r
 
-    # Q1
-    if not decidir("Q1", texto is not None and str(texto).strip() != ""):
+    # Q1 (una medición que no es un objeto sí está presente, pero mal formada: la decide Q2)
+    if not estructura_valida:
+        decidir("Q1", True)
+        decidir("Q2", False)
+        return terminar("EP2", MOTIVO_ESTRUCTURA)
+    if not decidir("Q1", texto is not None and not (isinstance(texto, str) and unidades.recortar(texto) == "")):
         return terminar("EP1", "No se recibió el dato.")
     # Q2
     valor = unidades.leer_numero(texto)
     if not decidir("Q2", valor is not None):
-        return terminar("EP2", f"«{texto}» no es un número válido.")
+        return terminar("EP2", f"«{texto}» no es un número válido." if isinstance(texto, str) else MOTIVO_TIPO_VALOR)
     # Q3
     reconocida = unidades.reconocer_unidad(parametro, unidad)
     if not decidir("Q3", reconocida is not None):
-        problema = (f"La unidad «{unidad_texto}» no se admite" if unidad_texto else "No se indicó la unidad")
+        if unidad is not None and not isinstance(unidad, str):
+            problema = "La unidad recibida no es un texto"
+        else:
+            problema = (f"La unidad «{unidad_texto}» no se admite" if unidad_texto else "No se indicó la unidad")
         return terminar("EP2", f"{problema} para {meta['nombre'].lower()}. Unidad canónica: {meta['unidad_canonica']}.")
     if reconocida["uso_ppm"]:
         r["notas"].append("«ppm» se interpreta como mg/L; en agua de mar difieren ligeramente por la densidad del agua.")

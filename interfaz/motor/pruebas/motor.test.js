@@ -20,8 +20,8 @@ function esperado(inf) {   // misma proyección que motor/herramientas/generar_c
     traza: inf.traza.map((t) => [t.de, t.a, t.etiqueta].concat(t.parametro ? [t.parametro] : [])) };
 }
 
-test("los 34 casos de conformidad coinciden con Python", () => {
-  assert.equal(CASOS.casos.length, 34);
+test("todos los casos de conformidad coinciden con Python", () => {
+  assert.equal(CASOS.casos.length, 43);   // 34 de v0.4.0 + 9 de entradas mal formadas (v0.4.1)
   assert.equal(CASOS.version_motor, Motor.VERSION);
   for (const c of CASOS.casos) {
     assert.deepEqual(esperado(Motor.evaluar(c.mediciones, c.perfil || null)), c.esperado, c.id);
@@ -50,4 +50,51 @@ test("el informe nunca afirma seguridad ni diagnóstico", () => {
   const t = JSON.stringify(inf);
   assert.doesNotMatch(t, /\b(es seguro|está sano|condiciones seguras garantizadas|enfermedad detectada|es peligroso)\b/i);
   assert.match(inf.aviso, /No diagnostica/);
+});
+
+// ── v0.4.1: validación de la estructura de entrada (igual que Python) ───────────
+const P = Motor.perfil();
+const ev = (parametro, medicion) => Motor.evaluarParametro(parametro, medicion, P);
+
+test("una medición que no es objeto es INVÁLIDA en Q2 (no faltante ni en rango)", () => {
+  for (const malo of ["8.1", 8.1, 0, "", ["8.1", "pH"], [], true]) {
+    const r = ev("ph", malo);
+    assert.equal(r.estado, "EP2", JSON.stringify(malo));
+    assert.deepEqual(r.decisiones, [["Q1", "V"], ["Q2", "F"]]);
+  }
+  assert.equal(ev("ph", null).estado, "EP1");
+  assert.equal(ev("ph", undefined).estado, "EP1");
+});
+
+test("un valor dentro de una lista nunca queda EN RANGO", () => {
+  for (const malo of [[8.1], [], { v: 8.1 }, true, false]) {
+    const r = ev("ph", { valor: malo, unidad: "pH" });
+    assert.equal(r.estado, "EP2", JSON.stringify(malo));
+    assert.equal(r.motivo, "El valor recibido no es un número finito ni un texto numérico.");
+  }
+});
+
+test("la unidad debe ser texto y el método no textual se ignora", () => {
+  for (const malo of [["mg/L TAN-N"], 7, 0, false]) {
+    const r = ev("amoniaco", { valor: "0", unidad: malo });
+    assert.deepEqual([r.estado, r.decisiones[r.decisiones.length - 1]], ["EP2", ["Q3", "F"]], JSON.stringify(malo));
+  }
+  assert.equal(ev("ph", { valor: "8.1", unidad: null }).estado, "EP4");
+  assert.equal(ev("amoniaco", { valor: "1", unidad: "mg/L TAN-N", metodo: ["nessler"] }).severidad, "alerta_alta");
+  assert.equal(ev("amoniaco", { valor: "1", unidad: "mg/L TAN-N", metodo: 5 }).severidad, "alerta_alta");
+});
+
+test("mediciones que no son objeto lanzan TypeError; null equivale a vacío", () => {
+  for (const malo of [[1, 2], "ph=8", 8]) assert.throws(() => Motor.evaluar(malo), TypeError);
+  assert.equal(Motor.evaluar(null).clasificacion, "R3");
+});
+
+test("BOM y espacios Unicode se recortan igual que en Python", () => {
+  for (const e of ["\ufeff", "\u00a0", "\u3000", "\x1c", "\x85"]) {
+    assert.equal(ev("ph", { valor: e + "8.1" + e, unidad: e + "pH" }).estado, "EP4", JSON.stringify(e));
+    assert.equal(ev("ph", { valor: e, unidad: "pH" }).estado, "EP1", JSON.stringify(e));
+    assert.equal(ev("amoniaco", { valor: "1", unidad: "mg/L TAN-N", metodo: e + "Nessler" + e }).severidad,
+      "revision_recomendada", JSON.stringify(e));
+  }
+  assert.equal(ev("ph", { valor: "\u200b8.1", unidad: "pH" }).estado, "EP2");
 });

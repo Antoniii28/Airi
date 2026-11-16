@@ -54,6 +54,18 @@ UNIDADES = {
     },
 }
 
+# Espacios que se recortan o ignoran: la UNIÓN de los de str.strip() de Python y String.trim() de JavaScript
+# (incluye el BOM U+FEFF, frecuente al copiar desde archivos). Así ambas implementaciones leen igual el dato.
+ESPACIOS = ("\t\n\x0b\x0c\r\x1c\x1d\x1e\x1f \x85\xa0\u1680\u2000\u2001\u2002\u2003\u2004\u2005"
+            "\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff")
+_ESPACIOS_RE = re.compile("[" + re.escape(ESPACIOS) + "]+")
+
+
+def recortar(texto: str) -> str:
+    """Quita los ESPACIOS del principio y del final."""
+    return texto.strip(ESPACIOS)
+
+
 _SUSTITUCIONES = str.maketrans({"₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4",
                                 "⁺": "+", "⁻": "-", "−": "-", "–": "-", "⁰": "0"})
 
@@ -61,20 +73,27 @@ _SUSTITUCIONES = str.maketrans({"₀": "0", "₁": "1", "₂": "2", "₃": "3", 
 def normalizar_unidad(texto) -> tuple[str, bool]:
     """Devuelve (clave normalizada, se_uso_ppm). «ppm» se interpreta como mg/L."""
     t = unicodedata.normalize("NFC", str(texto or "")).translate(_SUSTITUCIONES).lower()
-    t = re.sub(r"\s+", "", t)
+    t = _ESPACIOS_RE.sub("", t)
     uso_ppm = "ppm" in t
     t = t.replace("ppm", "mg/l")
     return t, uso_ppm
 
 
 def leer_numero(valor):
-    """Número finito a partir de int, float o texto (acepta coma decimal). None si no es válido."""
+    """Número finito a partir de int, float o texto (acepta coma decimal). None si no es válido.
+
+    Cualquier otro tipo (booleano, lista, objeto…) no es un número: None, igual que en JavaScript."""
     if isinstance(valor, bool):
         return None
     if isinstance(valor, (int, float)):
-        n = float(valor)
+        try:
+            n = float(valor)
+        except OverflowError:   # entero de JSON demasiado grande: en JavaScript sería Infinity
+            return None
+    elif not isinstance(valor, str):
+        return None
     else:
-        texto = str(valor).strip().replace(",", ".")
+        texto = recortar(valor).replace(",", ".")
         # Solo dígitos ASCII: igual que la versión JavaScript (\d de Python también aceptaría otros sistemas).
         if not re.fullmatch(r"[+-]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+)?", texto):
             return None
@@ -83,7 +102,11 @@ def leer_numero(valor):
 
 
 def reconocer_unidad(parametro: str, unidad):
-    """Devuelve dict con la unidad reconocida, o None si no se admite para ese parámetro."""
+    """Devuelve dict con la unidad reconocida, o None si no se admite para ese parámetro.
+
+    La unidad debe ser un texto o faltar (None); cualquier otro tipo no se reconoce."""
+    if unidad is not None and not isinstance(unidad, str):
+        return None
     clave, uso_ppm = normalizar_unidad(unidad)
     tabla = UNIDADES.get(parametro, {})
     if clave not in tabla:
