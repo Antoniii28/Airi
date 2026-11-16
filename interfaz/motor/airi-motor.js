@@ -16,7 +16,7 @@
   "use strict";
   if (!DATOS || !DATOS.referencias) throw new Error("AIRI: faltan los datos del motor (airi-motor-datos.js)");
 
-  var VERSION = "0.4.0";
+  var VERSION = "0.4.1";
   var ORDEN = ["temperatura", "ph", "salinidad", "amoniaco", "nitritos", "nitratos"];
   var AVISO = "AIRI compara las mediciones con referencias documentadas. No diagnostica enfermedades, no garantiza " +
     "condiciones seguras y no ejecuta acciones: las decisiones sobre el acuario las toma una persona.";
@@ -46,21 +46,30 @@
     nitritos: { "mg/lno2-": ["mg/L NO2−", "NO2"], "mg/l(no2-)": ["mg/L NO2−", "NO2"], "mg/lno2-n": ["mg/L NO2-N", "N"] },
     nitratos: { "mg/lno3-": ["mg/L NO3−", "NO3"], "mg/l(no3-)": ["mg/L NO3−", "NO3"], "mg/lno3-n": ["mg/L NO3-N", "N"] }
   };
+  // Espacios que se recortan o ignoran: la UNIÓN de los de str.strip() de Python y String.trim() de JavaScript
+  // (unidades.py: ESPACIOS). Así ambas implementaciones leen igual el dato.
+  var ESPACIOS = "\\t\\n\\x0b\\x0c\\r\\x1c\\x1d\\x1e\\x1f \\x85\\xa0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff";
+  var ESPACIOS_BORDE = new RegExp("^[" + ESPACIOS + "]+|[" + ESPACIOS + "]+$", "g");
+  var ESPACIOS_TODOS = new RegExp("[" + ESPACIOS + "]+", "g");
+  function recortar(texto) { return texto.replace(ESPACIOS_BORDE, ""); }
   var SUSTITUCIONES = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "⁺": "+", "⁻": "-", "−": "-", "–": "-", "⁰": "0" };
 
   function normalizarUnidad(texto) {
     var t = String(texto == null ? "" : texto).normalize("NFC").replace(/[₀₁₂₃₄⁺⁻−–⁰]/g, function (c) { return SUSTITUCIONES[c]; });
-    t = t.toLowerCase().replace(/\s+/g, "");
+    t = t.toLowerCase().replace(ESPACIOS_TODOS, "");
     var usoPpm = t.indexOf("ppm") >= 0;
     return [t.split("ppm").join("mg/l"), usoPpm];
   }
 
+  /** Objeto JSON ({…}), no lista ni null: equivale a dict de Python. */
+  function esObjeto(x) { return x !== null && typeof x === "object" && !Array.isArray(x); }
+
   function leerNumero(valor) {
-    if (typeof valor === "boolean" || valor == null) return null;
     var n;
     if (typeof valor === "number") n = valor;
+    else if (typeof valor !== "string") return null;   // booleano, lista, objeto…: no es un número (como Python)
     else {
-      var texto = String(valor).trim().replace(/,/g, ".");
+      var texto = recortar(valor).replace(/,/g, ".");
       if (!/^[+-]?([0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+)?$/.test(texto)) return null;
       n = Number(texto);
     }
@@ -68,6 +77,7 @@
   }
 
   function reconocerUnidad(parametro, unidad) {
+    if (unidad != null && typeof unidad !== "string") return null;   // la unidad debe ser texto o faltar
     var nu = normalizarUnidad(unidad), tabla = UNIDADES[parametro] || {};
     if (!Object.prototype.hasOwnProperty.call(tabla, nu[0])) return null;
     return { descripcion: tabla[nu[0]][0], base: tabla[nu[0]][1], uso_ppm: nu[1] };
@@ -136,6 +146,10 @@
     presencia_detectable: { prioridad: 1, nombre: "Presencia detectable" }
   };
 
+  var MOTIVO_ESTRUCTURA = "La medición debe ser un objeto con «valor» y «unidad».";
+  var MOTIVO_TIPO_VALOR = "El valor recibido no es un número finito ni un texto numérico.";
+  var ERROR_MEDICIONES = "Las mediciones deben ser un objeto {parametro: {valor, unidad}}.";
+
   function perfil(nombre) {
     var ref = DATOS.referencias;
     nombre = nombre || ref.perfil_predeterminado;
@@ -147,23 +161,27 @@
 
   function evaluarParametro(parametro, medicion, p) {
     var meta = DATOS.referencias.parametros[parametro];
-    medicion = medicion || {};
+    var estructuraValida = medicion == null || esObjeto(medicion);
+    medicion = esObjeto(medicion) ? medicion : {};
     var texto = medicion.valor === undefined ? null : medicion.valor;
     var unidad = medicion.unidad === undefined ? null : medicion.unidad;
-    var metodo = String(medicion.metodo || "").trim().toLowerCase();
-    var unidadTexto = unidad === null ? "" : String(unidad).trim();
+    var metodo = typeof medicion.metodo === "string" ? recortar(medicion.metodo).toLowerCase() : "";
+    var unidadTexto = typeof unidad === "string" ? recortar(unidad) : "";
     var r = { parametro: parametro, nombre: meta.nombre, valor_original: texto, unidad_original: unidad,
       valor_canonico: null, unidad_canonica: meta.unidad_canonica, estado: null, severidad: null,
       motivo: "", fuentes: [], contexto: [], notas: [], decisiones: [] };
     function decidir(nodo, cond) { r.decisiones.push([nodo, cond ? "V" : "F"]); return cond; }
     function terminar(estado, motivo, severidad) { r.estado = estado; r.motivo = motivo; r.severidad = severidad || null; return r; }
 
-    if (!decidir("Q1", texto !== null && String(texto).trim() !== "")) return terminar("EP1", "No se recibió el dato.");
+    // Q1 (una medición que no es un objeto sí está presente, pero mal formada: la decide Q2)
+    if (!estructuraValida) { decidir("Q1", true); decidir("Q2", false); return terminar("EP2", MOTIVO_ESTRUCTURA); }
+    if (!decidir("Q1", texto !== null && !(typeof texto === "string" && recortar(texto) === ""))) return terminar("EP1", "No se recibió el dato.");
     var valor = leerNumero(texto);
-    if (!decidir("Q2", valor !== null)) return terminar("EP2", "«" + texto + "» no es un número válido.");
+    if (!decidir("Q2", valor !== null)) return terminar("EP2", typeof texto === "string" ? "«" + texto + "» no es un número válido." : MOTIVO_TIPO_VALOR);
     var u = reconocerUnidad(parametro, unidad);
     if (!decidir("Q3", u !== null)) {
-      var problema = unidadTexto ? "La unidad «" + unidadTexto + "» no se admite" : "No se indicó la unidad";
+      var problema = unidad !== null && typeof unidad !== "string" ? "La unidad recibida no es un texto"
+        : unidadTexto ? "La unidad «" + unidadTexto + "» no se admite" : "No se indicó la unidad";
       return terminar("EP2", problema + " para " + meta.nombre.toLowerCase() + ". Unidad canónica: " + meta.unidad_canonica + ".");
     }
     if (u.uso_ppm) r.notas.push("«ppm» se interpreta como mg/L; en agua de mar difieren ligeramente por la densidad del agua.");
@@ -265,11 +283,13 @@
   var RECOMENDACION_GENERAL = "Repite la medición y consulta con una persona con experiencia antes de decidir cualquier intervención.";
 
   function evaluar(mediciones, perfilElegido, origen) {
+    if (mediciones == null) mediciones = {};
+    else if (!esObjeto(mediciones)) throw new TypeError(ERROR_MEDICIONES);
     var p = perfilElegido && typeof perfilElegido === "object" ? perfilElegido : perfil(perfilElegido);
     var traza = [];
     function paso(a, b, etiqueta, parametro) { traza.push({ de: a, a: b, etiqueta: etiqueta, parametro: parametro || null }); }
     var resultados = ORDEN.map(function (parametro) {
-      var r = evaluarParametro(parametro, (mediciones || {})[parametro], p);
+      var r = evaluarParametro(parametro, Object.prototype.hasOwnProperty.call(mediciones, parametro) ? mediciones[parametro] : null, p);
       paso("E0", "Q1", "para cada parámetro", parametro);
       r.decisiones.forEach(function (d, i) {
         var siguiente = i + 1 < r.decisiones.length ? r.decisiones[i + 1][0] : r.estado;

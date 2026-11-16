@@ -84,6 +84,19 @@ def casos():
         ("prueba_r2", "Perfil de prueba: anomalía sin faltantes", m(**ok, ph="9"), P),
         ("prueba_r3", "Perfil de prueba: faltante sin anomalía", m(**ok, ph=""), P),
         ("prueba_r4", "Perfil de prueba: anomalía y faltante", m(**ok, ph="9", nitritos=None), P),
+        # v0.4.1: entradas mal formadas → siempre INVÁLIDO (EP2), nunca un error ni «en rango»
+        ("mal_formado_valor_lista", "Valor dentro de una lista: no es un número", m(ph=([8.1], "pH")), None),
+        ("mal_formado_valor_lista_vacia", "Lista vacía: está presente, pero no es un número", m(ph=([], "pH")), None),
+        ("mal_formado_valor_booleano", "Valor booleano", m(ph=(True, "pH")), None),
+        ("mal_formado_unidad_lista", "Unidad dentro de una lista", m(amoniaco=("0", ["mg/L TAN-N"])), None),
+        ("mal_formado_unidad_numero", "Unidad numérica", m(ph=("8.1", 7)), None),
+        ("mal_formado_medicion_texto", "Medición escrita como texto en lugar de objeto",
+         {**m(), "ph": "8.1"}, None),
+        ("mal_formado_metodo_numero", "Método no textual: se ignora, no provoca un error",
+         m(amoniaco=("0.2", "mg/L TAN-N", 5)), None),
+        ("mal_formado_entero_enorme", "Entero de 400 cifras: no es un número finito", m(ph=(10 ** 400, "pH")), None),
+        ("espacios_bom", "BOM y espacio no separable alrededor del valor y de la unidad",
+         m(ph=("\ufeff8.1\u00a0", "\ufeffpH"), amoniaco=("1", "mg/L TAN-N", "\ufeffNessler")), None),
     ]
     return c
 

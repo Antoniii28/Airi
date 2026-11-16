@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from . import datos, reglas
 
-VERSION = "0.4.0"
+VERSION = "0.4.1"
 AVISO = ("AIRI compara las mediciones con referencias documentadas. No diagnostica enfermedades, no garantiza "
          "condiciones seguras y no ejecuta acciones: las decisiones sobre el acuario las toma una persona.")
 TEXTO_RESULTADO = {
@@ -25,6 +25,7 @@ TEXTO_RESULTADO = {
     "R4": "Hay mediciones fuera de las referencias documentadas y, además, parámetros que no se pudieron evaluar. "
           "Se muestran ambas cosas.",
 }
+ERROR_MEDICIONES = "Las mediciones deben ser un objeto {parametro: {valor, unidad}}."
 SALIDAS = {"R1": ["FIN"], "R2": ["O1"], "R3": ["O2"], "R4": ["O1", "O2"]}
 ETIQUETA_SALIDA = {("R2", "O1"): "explicar", ("R4", "O1"): "explicar", ("R4", "O2"): "pedir datos",
                    ("R3", "O2"): "pedir datos", ("R1", "FIN"): "entregar", ("O1", "FIN"): "entregar",
@@ -52,6 +53,10 @@ def evaluar(mediciones: dict, perfil: str | dict | None = None, origen: str | No
 
     `perfil` es el id de un perfil de referencias.json; también admite un diccionario con la misma
     estructura (se usa en las pruebas para ejercitar todas las ramas del grafo)."""
+    if mediciones is None:
+        mediciones = {}
+    elif not isinstance(mediciones, dict):
+        raise TypeError(ERROR_MEDICIONES)
     p = perfil if isinstance(perfil, dict) else datos.perfil(perfil)
     traza = []
 
@@ -60,7 +65,7 @@ def evaluar(mediciones: dict, perfil: str | dict | None = None, origen: str | No
 
     resultados = []
     for parametro in datos.ORDEN:
-        r = reglas.evaluar_parametro(parametro, (mediciones or {}).get(parametro), p)
+        r = reglas.evaluar_parametro(parametro, mediciones.get(parametro), p)
         paso("E0", "Q1", "para cada parámetro", parametro)
         nodo = "Q1"
         for i, (q, etiqueta) in enumerate(r["decisiones"]):
