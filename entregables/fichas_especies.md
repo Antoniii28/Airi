@@ -1,9 +1,26 @@
-# AIRI — Entrega preliminar de fichas de especies
+# AIRI — Entrega de fichas de especies (v0.2)
 
-Se preparó un catálogo estructurado de seis especies candidatas en `especies/datos/catalogo_inicial.json`, con nombres propuestos y campos explícitos pendientes de verificación.
+**Responsable:** Brayan · **Rama:** `equipo/brayan-fichas-especies` · **Fecha de consulta:** 2026-11-16
 
-**No está terminada la investigación biológica:** no se han incorporado aún rangos, volúmenes mínimos ni dictámenes de compatibilidad porque requieren evidencia específica. Los campos están en `null` en lugar de datos inventados.
+Se completaron y verificaron las **seis** fichas del catálogo inicial: pez payaso común, cardenal de Banggai, pez fuego, gramma real, cirujano amarillo y damisela de cola amarilla. Cada ficha incluye:
 
-Véanse `especies/fichas/README.md` y `especies/fuentes.md` para la plantilla de datos y el procedimiento de verificación.
+- Taxonomía según WoRMS
+- Hábitat
+- Tamaño
+- Alimentación
+- Temperatura, pH y salinidad con sus unidades
+- Volumen mínimo con justificación
+- Comportamiento, territorialidad y refugio
+- Compatibilidad con arrecife
+- Condiciones y riesgos de convivencia
+- Fuentes, fecha de consulta y nivel de confianza por campo
 
-**Próximo paso:** investigar cada especie en fuentes confiables, registrar las referencias exactas y actualizar el catálogo tras la revisión del equipo.
+- Datos: `especies/datos/catalogo_inicial.json` (fuente única).
+- Fichas: `especies/fichas/` (índice y hallazgos en `especies/fichas/README.md`).
+- Fuentes: `especies/fuentes.md`.
+- Interfaz: apartado «Fichas de especies» del prototipo (`interfaz/prototipo/fichas/`). Muestra en cada tarjeta la imagen, los datos clave con su nivel de confianza y la ficha completa con sus fuentes, y alerta cuando una especie está amenazada.
+- Generación y validación: `python especies/herramientas/generar_fichas.py --comprobar`.
+
+**Límites:** los parámetros de acuario provienen de una fuente comercial y se contrastan con referencias veterinarias e institucionales generales. Las fichas **no** establecen compatibilidad entre especies. En la interfaz solo se modificó el apartado de fichas; el motor no se tocó.
+
+**Próximo paso:** que el equipo revise los hallazgos señalados en `especies/fichas/README.md` antes de cerrar la versión; el motor todavía no usa estos datos.

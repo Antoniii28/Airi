@@ -106,7 +106,7 @@ def main():
         pg.goto(url); despues = recorrido_funcional(pg)
         for clave in antes:
             comprobar(antes[clave] == despues[clave], f"regresión · {clave}: igual con y sin mascota")
-        comprobar(antes["buscar_payaso"].count("Ficha preliminar") == 1 and "No hay coincidencias" in antes["buscar_zzz"],
+        comprobar(antes["buscar_payaso"].count("Notas y fuentes") == 1 and "No hay coincidencias" in antes["buscar_zzz"],
                   "regresión · el buscador filtra (1 resultado para «payaso», ninguno para «zzz»)")
         comprobar(antes["validar_vacio"].count("INFORMACIÓN INSUFICIENTE") == 6 and "VALOR INVÁLIDO" in antes["validar_invalido"],
                   "regresión · el formulario valida como antes")

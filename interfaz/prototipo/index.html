@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../mascota/mascota.css">
 <link rel="stylesheet" href="../motor/analisis.css">
 <link rel="stylesheet" href="../chat/chat.css">
+<link rel="stylesheet" href="fichas/fichas.css">
 </head><body>
 <header><img src="../../identidad-visual/logo%20Airi.jpeg" alt="Logotipo principal de AIRI"><div><h1>AIRI</h1><p>Agente Inteligente para la Supervisión y Gestión de un Acuario Marino</p></div></header>
 <nav aria-label="Secciones"><button aria-selected="true" data-tab="inicio">Inicio</button><button aria-selected="false" data-tab="agua">Parámetros del agua</button><button aria-selected="false" data-tab="especies">Fichas de especies</button><button aria-selected="false" data-tab="futuro">Próximas versiones</button><button aria-selected="false" data-tab="chat">Chat con AIRI</button></nav>
@@ -19,15 +20,14 @@
 </main><footer>AIRI v0.6 · Motor de análisis v0.4 · Chat con voz v0.6 (experimental) · Prototipo de interfaz · Los resultados no sustituyen la revisión humana.</footer>
 <script>
 const params=[["Temperatura","°C"],["pH","pH"],["Salinidad","ppt"],["Amoníaco total","mg/L (NH₃/NH₄⁺ total)"],["Nitritos","mg/L (NO₂⁻)"],["Nitratos","mg/L (NO₃⁻)"]];
-const especies=[["Pez payaso común","Amphiprion ocellaris","Consultar requisitos específicos de alojamiento, alimentación y convivencia."],["Cardenal de Banggai","Pterapogon kauderni","Verificar comportamiento y necesidades de mantenimiento."],["Pez fuego","Nemateleotris magnifica","Investigar refugios, comportamiento y condiciones del acuario."],["Gramma real","Gramma loreto","Documentar territorialidad y refugios."],["Cirujano amarillo","Zebrasoma flavescens","Verificar necesidades de espacio y alimentación."],["Damisela de cola amarilla","Chrysiptera parasema","Documentar territorialidad y convivencia."]];
 const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));document.querySelectorAll('main section').forEach(x=>x.classList.toggle('hidden',x.id!==b.dataset.tab));}));
 document.getElementById('campos').innerHTML=params.map((p,i)=>'<div><label for="p'+i+'">'+safe(p[0])+' ('+safe(p[1])+')</label><input id="p'+i+'" inputmode="decimal" placeholder="Escribe una medición"></div>').join('');
-function pintar(){const q=document.getElementById('buscar').value.trim().toLowerCase();document.getElementById('catalogo').innerHTML=especies.filter(e=>e.join(' ').toLowerCase().includes(q)).map(e=>'<article class="card"><h3>'+safe(e[0])+'</h3><p><em>'+safe(e[1])+'</em></p><p>'+safe(e[2])+'</p><span class="tag">Ficha preliminar</span></article>').join('')||'<p>No hay coincidencias.</p>'}
-document.getElementById('buscar').addEventListener('input',pintar);pintar();
 document.getElementById('evaluar').addEventListener('click',()=>{const origen=document.getElementById('origen').value;const out=params.map((p,i)=>{const raw=document.getElementById('p'+i).value.trim();if(!raw)return '<div class="status unknown">'+safe(p[0])+': INFORMACIÓN INSUFICIENTE (sin dato)</div>';const n=Number(raw.replace(',','.'));if(!Number.isFinite(n)||n<0||(p[0]==='pH'&&n>14))return '<div class="status warn">'+safe(p[0])+': VALOR INVÁLIDO; revisar entrada</div>';return '<div class="status ok">'+safe(p[0])+': '+safe(raw)+' '+safe(p[1])+' · dato con formato válido</div>'}).join('');document.getElementById('resultado').innerHTML='<h3>Validación de formato · origen '+safe(origen)+'</h3>'+out+'<p><small>Validar formato no significa que el valor sea seguro. El análisis siguiente solo evalúa los parámetros que tienen una referencia con fuente.</small></p>'});
 document.getElementById('limpiar').addEventListener('click',()=>{params.forEach((_,i)=>document.getElementById('p'+i).value='');document.getElementById('resultado').textContent=''});
 </script>
+<script src="fichas/airi-fichas-datos.js"></script>
+<script src="fichas/fichas.js"></script>
 <script src="../mascota/mascota.js"></script>
 <script src="../mascota/voz.js"></script>
 <script src="../mascota/ayuda.js"></script>

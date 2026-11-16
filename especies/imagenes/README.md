@@ -1,0 +1,57 @@
+# Imágenes de especies
+
+Guarda aquí una foto por especie con **exactamente** estos nombres:
+
+| Especie | Archivo |
+|---|---|
+| Pez payaso común | `amphiprion-ocellaris.jpg` |
+| Cardenal de Banggai | `pterapogon-kauderni.jpg` |
+| Pez fuego | `nemateleotris-magnifica.jpg` |
+| Gramma real | `gramma-loreto.jpg` |
+| Cirujano amarillo | `zebrasoma-flavescens.jpg` |
+| Damisela de cola amarilla | `chrysiptera-parasema.jpg` |
+| Cirujano naso | `naso-lituratus.jpg` |
+| Cirujano azul | `paracanthurus-hepatus.jpg` |
+| Pez zorro (foxface) | `siganus-vulpinus.jpg` |
+| Cirujano púrpura | `zebrasoma-xanthurum.jpg` |
+| Ídolo moro | `zanclus-cornutus.jpg` |
+| Pez mariposa bandas de cobre | `chelmon-rostratus.jpg` |
+| Lábrido de seis líneas | `pseudocheilinus-hexataenia.jpg` |
+| Cirujano orange shoulder | `acanthurus-olivaceus.jpg` |
+| Pez cofre amarillo | `ostracion-cubicum.jpg` |
+| Cirujano de Bahía | `acanthurus-bahianus.jpg` |
+| Mandarín | `synchiropus-splendidus.jpg` |
+| Gobio arenero de 6 puntos | `valenciennea-sexguttata.jpg` |
+| Estrella Linckia azul | `linckia-laevigata.jpg` |
+| Estrella Fromia naranja | `fromia-milleporella.jpg` |
+| Estrella arenera | `astropecten-polyacanthus.jpg` |
+| Estrella chocochip | `protoreaster-nodosus.jpg` |
+| Camarón sexy | `thor-amboinensis.jpg` |
+| Camarón limpiador | `lysmata-amboinensis.jpg` |
+| Camarón boxeador | `stenopus-hispidus.jpg` |
+| Ermitaño patas rojas | `paguristes-cadenati.jpg` |
+
+Si tu foto es `.png` o `.webp`, cambia también la extensión en el campo `imagen.archivo` del JSON.
+
+## Pasos
+
+1. Busca la especie por su nombre científico en **Wikimedia Commons** (https://commons.wikimedia.org). Usa solo fotos con licencia libre (CC BY, CC BY-SA, CC0 o dominio público), fotos de NOAA o fotos propias. **No** uses fotos de Google ni de tiendas como LiveAquaria.
+2. Descarga una versión mediana, de unos 800 px de ancho y menos de 300 KB, y guárdala aquí con el nombre de la tabla.
+3. En `especies/datos/catalogo_inicial.json`, llena el bloque `imagen` de esa especie:
+   - `autor`: el nombre del autor que aparece en Commons.
+   - `licencia`: por ejemplo, `CC BY-SA 4.0`.
+   - `url_origen`: la página `https://commons.wikimedia.org/wiki/File:...`.
+   - `fecha_consulta`: la fecha en que la descargaste.
+4. Ejecuta:
+
+   ```
+   python especies/herramientas/generar_fichas.py
+   ```
+
+   La foto aparecerá en la ficha `.md` con su crédito. Si falta algún dato del crédito, el script se detiene y te dice cuál.
+
+## Imágenes generadas con IA
+
+Si la imagen la generaste con IA, en el bloque `imagen` pon `"origen": "ia"`, tu nombre en `autor` y la fecha en `fecha_consulta`. Deja `licencia` y `url_origen` en `null`. La ficha la mostrará como **imagen ilustrativa**, con un aviso de que no es una fotografía real. Revisa que la especie se vea correcta: número y color de las franjas, forma de las aletas, etc.
+
+Mientras una especie no tenga foto, el script solo muestra un aviso y la ficha se genera sin imagen.
