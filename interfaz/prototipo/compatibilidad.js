@@ -73,10 +73,13 @@
       '</div>').join("");
   }
 
-  function renderResultado(data, sources) {
+  function renderResultado(data, sources, names) {
+    const evaluatedNames = Array.isArray(data.especies)
+      ? data.especies.map(id => names.get(id) || id).join(" + ")
+      : (names.get(data.especie) || data.especie || "Evaluación");
     const contradiction = data.contradiccion
       ? '<p class="compat-error"><strong>Atención:</strong> hay evidencia contradictoria. El módulo aplicó el resultado más restrictivo; requiere revisión humana.</p>' : "";
-    return '<article class="compat-bloque"><h3>' + esc((data.especies || []).join(" + ") || data.especie || "Evaluación") + '</h3>' +
+    return '<article class="compat-bloque"><h3>' + esc(evaluatedNames) + '</h3>' +
       '<span class="compat-estado compat-' + estadoClass(data.estado) + '">' + esc(data.etiqueta || estadoLabel(data.estado)) + '</span>' +
       '<p>' + esc(data.resumen || "Sin resumen disponible.") + '</p>' + contradiction +
       '<h4>Motivos</h4>' + renderMotivos(data.motivos, sources) +
@@ -88,6 +91,7 @@
     const data = json.salida || {};
     const sources = data.fuentes || {};
     const species = data.especies || [];
+    const names = new Map(species.map(s => [s.id, s.nombre_comun || s.id]));
     let html = '<div class="compat-bloque"><small>Versión del módulo: ' + esc(data.version || "No indicada") +
       ' · Catálogo: ' + esc(data.catalogo_version || "No indicado") + '</small><br>' +
       '<span class="compat-estado compat-' + estadoClass(data.estado_global) + '">' +
@@ -101,8 +105,8 @@
       (s.encontrada === false ? ' · No encontrada en el catálogo' : '') + '</li>'
     ).join("") + '</ul></div>';
 
-    if (data.pares?.length) html += '<h3>Evaluación entre especies</h3>' + data.pares.map(x => renderResultado(x, sources)).join("");
-    if (data.acuario?.length) html += '<h3>Evaluación frente al acuario</h3>' + data.acuario.map(x => renderResultado(x, sources)).join("");
+    if (data.pares?.length) html += '<h3>Evaluación entre especies</h3>' + data.pares.map(x => renderResultado(x, sources, names)).join("");
+    if (data.acuario?.length) html += '<h3>Evaluación frente al acuario</h3>' + data.acuario.map(x => renderResultado(x, sources, names)).join("");
 
     const conditions = json.entrada?.acuario?.condiciones;
     if (conditions?.condiciones) {
