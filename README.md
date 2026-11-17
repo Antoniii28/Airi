@@ -1,6 +1,6 @@
 # AIRI — Agente Inteligente para Acuarios Marinos
 
-**Versión actual: v0.4** · proyecto académico · prototipo web funcional con motor de reglas para el agua.
+**Motor de análisis del agua: v0.4** · **Interfaz y chat: v0.6** · proyecto académico · prototipo web.
 
 AIRI (Agente Inteligente para la Supervisión y Gestión de un Acuario Marino) ayuda a registrar mediciones del agua,
 las valida y las compara con **referencias científicas documentadas**, y explica el resultado con sus fuentes. Las
@@ -14,12 +14,13 @@ decisiones y cualquier acción sobre el acuario permanecen bajo **supervisión h
 
 | Función | Qué hace | Dónde |
 |---|---|---|
-| **Interfaz web** | Cuatro pestañas: Inicio, Parámetros del agua, Fichas de especies, Próximas versiones. Funciona sin servidor ni instalación (abriendo el HTML) | [`interfaz/prototipo/`](interfaz/prototipo/index.html) |
+| **Interfaz web** | Seis secciones: Inicio, Parámetros del agua, Fichas de especies, Compatibilidad, Próximas versiones y Chat con AIRI. El resto del prototipo puede abrirse directamente desde el HTML; el chat requiere servidor local | [`interfaz/prototipo/`](interfaz/prototipo/index.html) |
 | **Registro y validación de mediciones** | Seis parámetros (temperatura °C, pH, salinidad ppt, amoníaco total, nitritos y nitratos en mg/L), origen MANUAL o SIMULADO. **Paso 1 · Validación de formato:** dato presente, numérico, no negativo y pH ≤ 14. No juzga si el valor es adecuado | `interfaz/prototipo/` |
 | **Motor de reglas para el agua** | **Paso 2 · Evaluación con referencias científicas.** Aplica el grafo de decisiones: valida unidad y límites de captura, compara con referencias del Manual Veterinario MSD y UF/IFAS y clasifica en **R1–R4**. Muestra alertas por severidad, sugerencias, fuentes y datos que faltan | [`motor/`](motor/README.md) (Python, referencia) · [`interfaz/motor/`](interfaz/motor/README.md) (JavaScript, misma salida) |
 | **Mascota AIRI** | Pecera animada en Inicio y asistente flotante en las demás pestañas. Refleja el resultado real (alerta, información insuficiente, error); el mensaje se cierra con «×» y se reabre tocando a AIRI. Admite movimiento reducido y ocultar la mascota | [`interfaz/mascota/`](interfaz/mascota/README.md) |
 | **Voz y ayuda** | Lee mensajes breves con la síntesis de voz del navegador (desactivada por defecto, sin micrófono ni servicios externos). Menú de ayuda por pantalla; perfiles y ajustes de voz guardados en el navegador; tono serio sin alarmismo ante alertas | `interfaz/mascota/` |
 | **Fichas de especies** | Seis fichas **preliminares** con buscador por nombre común o científico. No indican compatibilidad | `interfaz/prototipo/`, [`especies/`](especies/fichas/README.md) |
+| **Compatibilidad (interfaz en esta rama)** | Pestaña independiente que presenta seis escenarios ficticios de prueba: compatible, incompatible, contradicción entre fuentes, información insuficiente, precaución y evaluación con datos del acuario. La interfaz muestra los resultados recibidos; no calcula compatibilidad. La integración definitiva del módulo sigue sujeta a revisión y fusión del trabajo del equipo | [`interfaz/prototipo/`](interfaz/prototipo/index.html), `interfaz/prototipo/compatibilidad.js` |
 | **Chat con AIRI (v0.5–v0.6, experimental)** | Conversación orientativa con Gemini a través de un servidor local que guarda la clave (`python chat/servidor.py` y abrir http://127.0.0.1:8765/). Pide consentimiento, no analiza mediciones ni busca en internet. No funciona en GitHub Pages ni con doble clic. **v0.6:** lectura de respuestas en voz alta (voz preferida Microsoft Sabina), mascota que «piensa» y habla, y dictado por micrófono opcional con revisión antes de enviar ([`documentacion/MICROFONO_v0.6.md`](documentacion/MICROFONO_v0.6.md)) | [`chat/`](chat/README.md), [`interfaz/chat/`](interfaz/chat/chat.js) |
 | **Grafo de decisiones** | Grafo estático (PNG/SVG/PDF) y simulación interactiva en Google Colab | [`grafo/`](grafo/README.md) |
 | **Documentación** | Descripción y alcance, normativa funcional y de seguridad, fundamentación, referencias e identidad visual | [`documentacion/`](documentacion/), [`entregables/`](entregables/), [`identidad-visual/`](identidad-visual/README.md) |
@@ -39,9 +40,12 @@ no pudo evaluar en lugar de declarar que todo está bien. Detalle y fuentes en [
 
 ## Funciones previstas (no implementadas)
 
+**Nota sobre la compatibilidad:** en las versiones y etapas anteriores del proyecto, la evaluación de compatibilidad entre especies todavía no estaba implementada. En la rama `equipo/paola-interfaz-documentacion` se incorporó una pestaña independiente que permite visualizar seis escenarios ficticios de demostración recibidos del módulo de compatibilidad. Esto representa un avance en la interfaz, no una validación biológica ni la integración definitiva en `main`. Los ejemplos no deben utilizarse para decidir qué especies introducir en un acuario.
+
+Siguen pendientes:
+
 - Referencias verificadas para temperatura, salinidad y nitratos (requieren decisión del equipo y fuentes adecuadas).
 - Fichas de especies con datos biológicos verificados y fuentes por afirmación.
-- Evaluación de compatibilidad entre especies.
 - Identificación probable de peces por fotografía, con permiso del usuario y confirmación humana.
 - Almacenamiento e historial de mediciones con tendencias.
 - Posible aplicación móvil.
@@ -74,7 +78,7 @@ ejecuta todas las celdas (usa valores simulados).
 README.md                  este documento
 index.html                 redirección a la interfaz web
 chat/                      servidor local del chat con Gemini (v0.5) y sus pruebas
-documentacion/             descripción, normativa básica y de seguridad, fundamentación, referencias
+documentacion/             descripción, normativa, fundamentación, referencias y [guía de uso de la interfaz](documentacion/GUIA_USO_INTERFAZ.md)
 entregables/               entregas académicas (normativa integrada, interfaz inicial v0.1, fichas)
 especies/                  catálogo preliminar (JSON), plantilla de fichas y fuentes
 grafo/                     grafo de decisiones (DOT, PNG, SVG, PDF) y notebook de Colab
@@ -138,6 +142,8 @@ Historial de pruebas, errores encontrados y su corrección: [`motor/PRUEBAS_v0.4
   proyecto es el que describe este README.
 
 ## Documentación del proyecto
+
+[Guía de uso de la interfaz](documentacion/GUIA_USO_INTERFAZ.md): recorrido por las secciones disponibles, pasos básicos y limitaciones del prototipo.
 
 1. [Descripción y alcance](documentacion/01_descripcion_agente.md): objetivo, entradas, funciones y etapas.
 2. [Normativa básica o funcional](documentacion/02_normativa_basica.md): reglas, permisos, prohibiciones y responsabilidades.
