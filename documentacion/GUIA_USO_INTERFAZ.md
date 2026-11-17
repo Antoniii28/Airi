@@ -19,7 +19,9 @@ En la parte superior encontrarás seis secciones:
 - **Próximas versiones**
 - **Chat con AIRI**
 
-Selecciona el nombre de una sección para cambiar de pantalla. El logotipo de AIRI también permite volver a Inicio.
+Pulsa el botón **Menú** (icono de tres líneas) para desplegar la navegación y selecciona una sección para cambiar de pantalla. El menú se cierra al elegir una opción o pulsar Escape. El logotipo de AIRI también permite volver a Inicio.
+
+En el encabezado encontrarás el control **Modo oscuro / Modo claro**. Puedes alternar la apariencia de toda la interfaz; la selección se conserva en el navegador para próximas visitas.
 
 ## 2. Inicio
 
