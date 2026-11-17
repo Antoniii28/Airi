@@ -32,7 +32,7 @@ rl.question("Código de acceso a comprobar: ", async (codigo) => {
     : "Tipo: código escrito a mano (no tiene el formato del generador).");
   for (const [nombre, h] of await huellasCodigo(crudo)) {
     if (mapa.has(h)) {
-      console.log(`COINCIDE con el participante «${mapa.get(h)}» usando la ${NOMBRES[nombre]}. El Worker 0.7.3 lo acepta.`);
+      console.log(`COINCIDE con el participante «${mapa.get(h)}» usando la ${NOMBRES[nombre]}. El Worker (0.7.3 o posterior) lo acepta.`);
       process.exit(0);
     }
   }
