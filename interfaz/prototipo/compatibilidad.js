@@ -44,7 +44,7 @@
   const estadoLabel=estado=>({compatible:"Compatible (orientativo)",precaucion:"Precaución",incompatible:"Incompatible",sin_datos:"Información insuficiente"})[estado]||"Estado no especificado";
   const sourceLinks=(ids,sources)=>(ids||[]).map(id=>{
     const source=sources?.[id];if(!source)return "<span>"+esc(id)+" (fuente no registrada)</span>";
-    const url=String(source.url||""),safeUrl=/^https?:\\/\\//i.test(url)?url:"";
+    const url=String(source.url||""),safeUrl=/^https?:\/\//i.test(url)?url:"";
     return safeUrl?'<a href="'+esc(safeUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(source.titulo||id)+'</a>':'<span>'+esc(source.titulo||id)+'</span>';
   }).join(" · ")||"Sin fuentes asociadas.";
 
