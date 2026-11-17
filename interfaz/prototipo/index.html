@@ -205,6 +205,17 @@ html[data-theme="dark"] nav#menu-principal .menu-cerrar:hover,html[data-theme="d
 </style>
 <link rel="stylesheet" href="../motor/analisis.css">
 <link rel="stylesheet" href="../chat/chat.css">
+<style>
+/* Acceso rápido para volver al inicio, situado encima de la mascota */
+#volver-arriba{position:fixed;z-index:60;right:max(18px,env(safe-area-inset-right));bottom:calc(max(12px,env(safe-area-inset-bottom)) + 88px);width:46px;height:46px;padding:0;border:2px solid #168bc7;border-radius:50%;background:#fff;color:#09284d;font-size:27px;font-weight:800;line-height:1;box-shadow:0 4px 14px #09284d33;transition:background .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease}
+#volver-arriba:hover,#volver-arriba:focus-visible{background:#168bc7;color:#fff;box-shadow:0 0 0 4px #168bc733,0 5px 16px #09284d44;transform:translateY(-2px)}
+#volver-arriba:focus-visible{outline:3px solid #e97a25;outline-offset:3px}
+#volver-arriba[hidden]{display:none!important}
+html[data-theme="dark"] #volver-arriba{background:#172638;color:#8bd3ff;border-color:#65c8ff}
+html[data-theme="dark"] #volver-arriba:hover,html[data-theme="dark"] #volver-arriba:focus-visible{background:#168bc7;color:#fff}
+@media(max-width:600px){#volver-arriba{right:max(14px,env(safe-area-inset-right));bottom:calc(max(12px,env(safe-area-inset-bottom)) + 66px);width:42px;height:42px;font-size:25px}}
+@media(prefers-reduced-motion:reduce){#volver-arriba{transition:none}}
+</style>
 </head><body>
 <header><button type="button" class="logo-home" data-tab="inicio" aria-label="Volver a Inicio"><img src="../../identidad-visual/logo%20Airi.jpeg" alt="Logotipo principal de AIRI"></button><div class="encabezado-titulo"><h1>AIRI</h1><p>Agente Inteligente para la Supervisión y Gestión de un Acuario Marino</p></div><div class="encabezado-acciones"><button type="button" id="tema-toggle" class="control-encabezado" aria-pressed="false" aria-label="Activar modo oscuro"><span aria-hidden="true">☾</span><span class="texto-control">Modo oscuro</span></button><button type="button" id="menu-toggle" class="control-encabezado menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú de navegación"><span class="icono-menu" aria-hidden="true"><i></i><i></i><i></i></span><span class="texto-control">Menú</span></button></div></header>
 <button type="button" class="menu-fondo" id="menu-fondo" aria-label="Cerrar menú" tabindex="-1"></button>
@@ -213,20 +224,21 @@ html[data-theme="dark"] nav#menu-principal .menu-cerrar:hover,html[data-theme="d
 <section id="inicio" class="panel"><h2>Bienvenido a AIRI</h2><p>Prototipo académico v0.6 (motor de análisis del agua v0.4; chat con voz v0.6, experimental). Permite explorar la interfaz, capturar mediciones de ejemplo, validar su formato, compararlas con referencias documentadas y consultar un catálogo inicial. No está conectado a sensores ni diagnostica la salud de organismos.</p><div class="grid"><div class="card"><h3>Agua</h3><p>Seis parámetros para registrar, validar y comparar con referencias documentadas.</p></div><div class="card"><h3>Especies</h3><p>Seis fichas iniciales; datos biológicos sujetos a verificación.</p></div><div class="card"><h3>Control humano</h3><p>Sin acciones físicas ni cambios automáticos.</p></div></div></section>
 <section id="agua" class="panel hidden"><h2>Registro de parámetros</h2><p class="muted">Ejemplo de captura manual o simulada. No se aplican rangos biológicos sin fuente.</p><label for="origen">Origen de datos</label><select id="origen"><option value="SIMULADO">SIMULADO</option><option value="MANUAL">MANUAL</option></select><div id="campos" class="grid"></div><p><button class="primary" id="evaluar">Validar entradas</button> <button id="limpiar">Limpiar</button></p><div id="resultado" aria-live="polite"></div></section>
 <section id="especies" class="panel hidden"><h2>Fichas iniciales de especies</h2><p class="muted">Catálogo de consulta. No determina compatibilidad ni recomienda introducir peces.</p><label for="buscar">Buscar por nombre común o científico</label><input id="buscar" placeholder="Ejemplo: payaso"><div id="catalogo" class="grid" style="margin-top:15px"></div></section>
-<section id="compatibilidad" class="panel hidden"><h2>Compatibilidad entre especies</h2><p class="muted compat-intro">Explora seis escenarios de prueba del módulo de compatibilidad. Los resultados se muestran tal como los entrega el ejemplo; esta pantalla no calcula ni modifica la compatibilidad.</p><div class="card"><label for="compat-ejemplo">Selecciona un escenario</label><select id="compat-ejemplo"><option value="">Selecciona un ejemplo</option></select><p><small>Los escenarios usan especies y fuentes ficticias, únicamente para demostrar cómo se presentan los resultados.</small></p></div><div id="compat-resultado" aria-live="polite" aria-busy="true" style="margin-top:16px"></div></section>
+<section id="compatibilidad" class="panel hidden"><h2>Compatibilidad entre especies</h2><p class="muted compat-intro">Selecciona especies del catálogo para solicitar una evaluación al módulo de compatibilidad. También puedes consultar los seis escenarios de demostración.</p><div class="card compat-selector"><h3>Comparar especies de las fichas</h3><p class="muted">Marca dos o más especies para comparar sus fichas. El resultado lo genera el módulo de compatibilidad; la interfaz no realiza cálculos propios.</p><fieldset class="compat-seleccion"><legend>Especies disponibles</legend><div id="compat-especies-opciones"></div></fieldset><button type="button" class="primary" id="compat-comparar">Comparar selección</button><p id="compat-seleccion-estado" class="muted" role="status" aria-live="polite"></p></div><div class="card"><label for="compat-ejemplo">Consultar un escenario de demostración</label><select id="compat-ejemplo"><option value="">Selecciona un ejemplo</option></select><p><small>Los escenarios usan especies y fuentes ficticias, únicamente para demostrar cómo se presentan los resultados.</small></p></div><div id="compat-resultado" aria-live="polite" aria-busy="true" style="margin-top:16px"></div></section>
 <section id="futuro" class="panel hidden"><h2>Funciones previstas</h2><div class="grid"><div class="card"><h3>Fotografías</h3><p>Identificación probable con permiso del usuario y confirmación humana.</p><span class="tag">No implementado</span></div><div class="card"><h3>Aplicación móvil</h3><p>Posible etapa posterior a la interfaz web.</p><span class="tag">No implementado</span></div></div></section>
 <section id="chat" class="panel hidden"><h2>Chat con AIRI · v0.6 experimental</h2><p class="muted">Conversación orientativa sobre acuarios marinos con ayuda de Gemini (Google). Necesita el servidor local de AIRI y conexión a internet. No analiza tus mediciones (eso lo hace «Parámetros del agua»), no diagnostica y no busca información en internet.</p><p id="airi-chat-estado" class="airi-chat-note" role="status"></p><div id="airi-chat-log" role="log" aria-live="polite" aria-label="Conversación con AIRI"></div><form id="airi-chat-form"><label for="airi-chat-input" class="airi-chat-etiqueta">Tu pregunta</label><input id="airi-chat-input" maxlength="2500" autocomplete="off" placeholder="¿Qué necesita un pez payaso?" required><button id="airi-chat-send" class="primary" type="submit">Enviar</button><button id="airi-chat-clear" type="button">Nueva conversación</button><label class="airi-chat-consentimiento"><input type="checkbox" id="airi-chat-consentimiento"> Entiendo que mis preguntas se envían a Google (Gemini). En el nivel gratuito Google puede usarlas para mejorar sus productos y personas revisoras pueden leerlas, así que no escribiré datos personales ni confidenciales.</label></form><p class="airi-chat-note">La conversación solo se guarda en esta pestaña y se borra al cerrarla o con «Nueva conversación». La clave de Gemini permanece en el servidor local; el navegador nunca la recibe.</p></section>
-</main><footer>AIRI v0.6 · Motor de análisis v0.4 · Chat con voz v0.6 (experimental) · Prototipo de interfaz · Los resultados no sustituyen la revisión humana.</footer>
+</main><button type="button" id="volver-arriba" aria-label="Volver arriba" title="Volver arriba" hidden>↑</button><footer>AIRI v0.6 · Motor de análisis v0.4 · Chat con voz v0.6 (experimental) · Prototipo de interfaz · Los resultados no sustituyen la revisión humana.</footer>
 <script>
 const params=[["Temperatura","°C"],["pH","pH"],["Salinidad","ppt"],["Amoníaco total","mg/L (NH₃/NH₄⁺ total)"],["Nitritos","mg/L (NO₂⁻)"],["Nitratos","mg/L (NO₃⁻)"]];
 const especies=[
-["Pez payaso común","Amphiprion ocellaris","Consultar requisitos específicos de alojamiento, alimentación y convivencia.",["Common clownfish.jpg","Amphiprion ocellaris 1.jpg","Amphiprion ocellaris 01.jpg"]],
-["Cardenal de Banggai","Pterapogon kauderni","Verificar comportamiento y necesidades de mantenimiento.",["Pterapogon kauderni (30230328211).jpg","Hal - Pterapogon kauderni - 3.jpg","Pterapogon kauderni (15677740085).jpg"]],
-["Pez fuego","Nemateleotris magnifica","Investigar refugios, comportamiento y condiciones del acuario.",["0711GBR 25 do not come near please M (3745385063).jpg","Fire dartfish (Nemateleotris magnifica) (43372442502).jpg","Nemateleotris magnifica en acuario.JPG"]],
-["Gramma real","Gramma loreto","Documentar territorialidad y refugios.",["Percoidei - Gramma loreto - 1.jpg","Gramma loreto - Reef1575.jpg","Fairy Basslet - Gramma loreto.jpg"]],
-["Cirujano amarillo","Zebrasoma flavescens","Verificar necesidades de espacio y alimentación.",["Zebrasoma flavescens.jpg","Yellow tang 01.jpg","Zebrasoma flavescens 001.jpg"]],
-["Damisela de cola amarilla","Chrysiptera parasema","Documentar territorialidad y convivencia.",["Chrysiptera parasema 01.jpg","Chrysiptera parasema 02.jpg","Hal - Chrysiptera parasema - 1.jpg"]]
+["Pez payaso común","Amphiprion ocellaris","Consultar requisitos específicos de alojamiento, alimentación y convivencia.",["Common clownfish.jpg","Amphiprion ocellaris 1.jpg","Amphiprion ocellaris 01.jpg"],"amphiprion_ocellaris"],
+["Cardenal de Banggai","Pterapogon kauderni","Verificar comportamiento y necesidades de mantenimiento.",["Pterapogon kauderni (30230328211).jpg","Hal - Pterapogon kauderni - 3.jpg","Pterapogon kauderni (15677740085).jpg"],"pterapogon_kauderni"],
+["Pez fuego","Nemateleotris magnifica","Investigar refugios, comportamiento y condiciones del acuario.",["0711GBR 25 do not come near please M (3745385063).jpg","Fire dartfish (Nemateleotris magnifica) (43372442502).jpg","Nemateleotris magnifica en acuario.JPG"],"nemateleotris_magnifica"],
+["Gramma real","Gramma loreto","Documentar territorialidad y refugios.",["Percoidei - Gramma loreto - 1.jpg","Gramma loreto - Reef1575.jpg","Fairy Basslet - Gramma loreto.jpg"],"gramma_loreto"],
+["Cirujano amarillo","Zebrasoma flavescens","Verificar necesidades de espacio y alimentación.",["Zebrasoma flavescens.jpg","Yellow tang 01.jpg","Zebrasoma flavescens 001.jpg"],"zebrasoma_flavescens"],
+["Damisela de cola amarilla","Chrysiptera parasema","Documentar territorialidad y convivencia.",["Chrysiptera parasema 01.jpg","Chrysiptera parasema 02.jpg","Hal - Chrysiptera parasema - 1.jpg"],"chrysiptera_parasema"]
 ];
+window.AIRIListaEspecies = especies.map(e=>({id:e[4],nombre:e[0],cientifico:e[1]}));
 const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function cerrarMenu(){
  document.body.classList.remove('menu-abierto');
@@ -331,6 +343,22 @@ document.getElementById('limpiar').addEventListener('click',()=>{params.forEach(
       menu?.focus();
     }
   });
+})();
+</script>
+<script>
+/* Botón de regreso al inicio: disponible en todas las secciones excepto Próximas versiones. */
+(function(){
+ const boton=document.getElementById("volver-arriba");
+ if(!boton)return;
+ function actualizar(){
+  const activa=document.querySelector("#menu-principal [aria-selected=\"true\"]");
+  boton.hidden=window.scrollY<280||Boolean(activa&&activa.dataset.tab==="futuro");
+ }
+ boton.addEventListener("click",()=>window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
+ window.addEventListener("scroll",actualizar,{passive:true});
+ document.querySelectorAll("#menu-principal [data-tab]").forEach(b=>b.addEventListener("click",actualizar));
+ document.querySelector(".logo-home")?.addEventListener("click",actualizar);
+ actualizar();
 })();
 </script>
 </body></html>
