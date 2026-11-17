@@ -73,18 +73,24 @@ Las fotografías pueden cambiar automáticamente mientras la ficha está ampliad
 
 ## 5. Compatibilidad
 
-Esta pestaña presenta seis escenarios de demostración del módulo de compatibilidad. Para consultar uno:
+Esta pestaña permite comparar especies del catálogo y consultar seis escenarios de demostración.
 
-1. Abre **Selecciona un escenario**.
-2. Elige el caso que quieras revisar.
-3. Lee el resultado general y, cuando estén disponibles, los resultados por pares de especies o frente a las condiciones del acuario.
-4. Revisa los motivos, las fuentes registradas y los datos faltantes.
+### Comparar especies del catálogo
 
-Los escenarios muestran distintos tipos de salida: compatible, precaución, incompatible e información insuficiente. También permiten observar ejemplos con evidencia contradictoria y con datos del acuario.
+1. En **Especies disponibles**, marca al menos dos especies de las fichas.
+2. Pulsa **Comparar selección**.
+3. Revisa el resultado general, la evaluación de cada par, los motivos, la confianza, las fuentes y los datos faltantes.
+4. Para probar otra combinación, cambia las casillas y vuelve a pulsar el botón.
 
-**Estos escenarios son ficticios y utilizan especies y fuentes de prueba.** Se muestran para demostrar cómo se presenta la información; no son resultados biológicos reales ni recomendaciones para combinar organismos.
+La evaluación se solicita al módulo de compatibilidad con los identificadores de las fichas y el catálogo disponible. La interfaz presenta la respuesta; no contiene reglas biológicas ni realiza cálculos propios. El resultado es orientativo y no garantiza la convivencia ni el bienestar de los organismos. La ausencia de información nunca significa que dos especies sean compatibles.
 
-La interfaz solo presenta los datos que recibe del ejemplo. No calcula compatibilidad, no modifica las reglas del módulo y no convierte los escenarios de prueba en recomendaciones para un acuario real. Si un ejemplo no carga, comprueba la conexión a internet y que la rama que contiene los archivos de demostración siga disponible.
+### Consultar escenarios de demostración
+
+En **Consultar un escenario de demostración**, selecciona uno de los seis casos para observar distintos tipos de salida: compatible, precaución, incompatible, información insuficiente, evidencia contradictoria y datos del acuario.
+
+**Estos escenarios son ficticios y utilizan especies y fuentes de prueba.** No son resultados biológicos reales ni recomendaciones para combinar organismos.
+
+Si una comparación o un ejemplo no carga, comprueba la conexión a internet y que las ramas que contienen el módulo, el catálogo y los ejemplos sigan disponibles.
 
 ## 6. Próximas versiones
 
@@ -116,7 +122,7 @@ Para conocer los permisos, las alternativas de reconocimiento y sus límites, co
 
 ## 8. Asistente flotante AIRI
 
-En las secciones donde aparece el pez flotante, puedes pulsarlo para abrir su menú de ayuda y acciones. Según la pantalla, ofrece explicaciones y accesos a opciones de la mascota.
+En las secciones donde aparece el pez flotante, puedes pulsarlo para abrir su menú de ayuda y acciones. Al desplazarte hacia abajo también aparece una flecha situada encima del pez; púlsala para regresar al inicio de la página. Esta flecha no aparece en **Próximas versiones**. Según la pantalla, ofrece explicaciones y accesos a opciones de la mascota.
 
 El mensaje del asistente puede contraerse para dejar espacio a los controles. Pulsa de nuevo el pez para volver a mostrarlo. También puedes ajustar la voz, reducir las animaciones u ocultar la mascota desde sus controles.
 
