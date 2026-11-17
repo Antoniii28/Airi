@@ -170,7 +170,12 @@ html[data-theme="dark"] .airi-m-pecera-aviso{color:#c3d2df}
  .control-encabezado{gap:5px;padding:8px;font-size:12px}
  .texto-control{font-size:11px}
 }
-@media(min-width:761px){nav{display:flex!important}}
+.menu-toggle{display:inline-flex}
+nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:7px;padding:12px 5%;background:#fff;box-shadow:0 8px 18px #09284d20}
+body.menu-abierto nav{display:flex}
+nav button{width:100%;text-align:left}
+html[data-theme="dark"] nav{background:#172638;box-shadow:0 8px 18px #0005}
+@media(min-width:761px){nav{display:none!important}body.menu-abierto nav{display:flex!important}}
 
 </style>
 <link rel="stylesheet" href="../mascota/mascota.css">
