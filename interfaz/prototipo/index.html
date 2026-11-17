@@ -149,15 +149,22 @@ html[data-theme="dark"] .airi-m-opcion,html[data-theme="dark"] .airi-m-cerrar-gl
 html[data-theme="dark"] .airi-m-menu{border-color:#405970}
 html[data-theme="dark"] .airi-m-etiqueta{background:#304b62;color:#e5edf5}
 html[data-theme="dark"] .airi-m-pecera-aviso{color:#c3d2df}
+
+/* Menú lateral con fondo desenfocado */
+header{position:relative;z-index:1002}
+.menu-toggle{display:inline-flex}
+.menu-fondo{position:fixed;inset:0;z-index:1000;width:100%;height:100%;padding:0;border:0;border-radius:0;background:rgba(5,17,31,.38);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s ease,visibility .28s ease}
+body.menu-abierto .menu-fondo{opacity:1;visibility:visible;pointer-events:auto}
+nav#menu-principal{position:fixed;z-index:1003;top:0;bottom:0;left:0;width:min(330px,86vw);height:100dvh;margin:0;padding:92px 18px 24px;display:flex;flex-direction:column;align-items:stretch;gap:9px;overflow-y:auto;background:#fff;border:0;border-right:1px solid #d6eaf1;border-radius:0 18px 18px 0;box-shadow:8px 0 28px rgba(9,40,77,.2);transform:translateX(-105%);visibility:hidden;transition:transform .3s ease,visibility .3s ease}
+body.menu-abierto nav#menu-principal{transform:translateX(0);visibility:visible}
+nav#menu-principal button{width:100%;min-height:46px;text-align:left;padding:12px 14px}
+html[data-theme="dark"] nav#menu-principal{background:#172638;border-color:#304459;box-shadow:8px 0 28px #0008}
+html[data-theme="dark"] .menu-fondo{background:rgba(0,0,0,.52)}
 @media(max-width:760px){
  header{gap:10px}
  .encabezado-titulo p{max-width:48vw}
  .encabezado-acciones{gap:6px}
  .control-encabezado{min-height:42px;padding:8px 10px}
- .menu-toggle{display:inline-flex}
- nav{display:none;flex-direction:column;gap:7px;padding:10px 16px}
- body.menu-abierto nav{display:flex}
- nav button{width:100%;text-align:left;padding:12px 14px}
  main{margin:16px auto;padding:0 12px}
  .panel{padding:18px;margin-bottom:14px}
  #inicio .grid{grid-template-columns:1fr;gap:10px}
@@ -170,13 +177,7 @@ html[data-theme="dark"] .airi-m-pecera-aviso{color:#c3d2df}
  .control-encabezado{gap:5px;padding:8px;font-size:12px}
  .texto-control{font-size:11px}
 }
-.menu-toggle{display:inline-flex}
-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:7px;padding:12px 5%;background:#fff;box-shadow:0 8px 18px #09284d20}
-body.menu-abierto nav{display:flex}
-nav button{width:100%;text-align:left}
-html[data-theme="dark"] nav{background:#172638;box-shadow:0 8px 18px #0005}
-@media(min-width:761px){nav{display:none!important}body.menu-abierto nav{display:flex!important}}
-
+@media(prefers-reduced-motion:reduce){nav#menu-principal,.menu-fondo{transition:none}}
 </style>
 <link rel="stylesheet" href="../mascota/mascota.css">
 <style>
@@ -187,6 +188,7 @@ html[data-theme="dark"] nav{background:#172638;box-shadow:0 8px 18px #0005}
 <link rel="stylesheet" href="../chat/chat.css">
 </head><body>
 <header><button type="button" class="logo-home" data-tab="inicio" aria-label="Volver a Inicio"><img src="../../identidad-visual/logo%20Airi.jpeg" alt="Logotipo principal de AIRI"></button><div class="encabezado-titulo"><h1>AIRI</h1><p>Agente Inteligente para la Supervisión y Gestión de un Acuario Marino</p></div><div class="encabezado-acciones"><button type="button" id="tema-toggle" class="control-encabezado" aria-pressed="false" aria-label="Activar modo oscuro"><span aria-hidden="true">☾</span><span class="texto-control">Modo oscuro</span></button><button type="button" id="menu-toggle" class="control-encabezado menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú de navegación"><span class="icono-menu" aria-hidden="true"><i></i><i></i><i></i></span><span class="texto-control">Menú</span></button></div></header>
+<button type="button" class="menu-fondo" id="menu-fondo" aria-label="Cerrar menú" tabindex="-1"></button>
 <nav id="menu-principal" aria-label="Secciones"><button aria-selected="true" data-tab="inicio">Inicio</button><button aria-selected="false" data-tab="agua">Parámetros del agua</button><button aria-selected="false" data-tab="especies">Fichas de especies</button><button aria-selected="false" data-tab="compatibilidad">Compatibilidad</button><button aria-selected="false" data-tab="futuro">Próximas versiones</button><button aria-selected="false" data-tab="chat">Chat con AIRI</button></nav>
 <main>
 <section id="inicio" class="panel"><h2>Bienvenido a AIRI</h2><p>Prototipo académico v0.6 (motor de análisis del agua v0.4; chat con voz v0.6, experimental). Permite explorar la interfaz, capturar mediciones de ejemplo, validar su formato, compararlas con referencias documentadas y consultar un catálogo inicial. No está conectado a sensores ni diagnostica la salud de organismos.</p><div class="grid"><div class="card"><h3>Agua</h3><p>Seis parámetros para registrar, validar y comparar con referencias documentadas.</p></div><div class="card"><h3>Especies</h3><p>Seis fichas iniciales; datos biológicos sujetos a verificación.</p></div><div class="card"><h3>Control humano</h3><p>Sin acciones físicas ni cambios automáticos.</p></div></div></section>
@@ -207,7 +209,16 @@ const especies=[
 ["Damisela de cola amarilla","Chrysiptera parasema","Documentar territorialidad y convivencia.",["Chrysiptera parasema 01.jpg","Chrysiptera parasema 02.jpg","Hal - Chrysiptera parasema - 1.jpg"]]
 ];
 const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav [data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.tab===b.dataset.tab)));document.querySelectorAll('main section').forEach(x=>x.classList.toggle('hidden',x.id!==b.dataset.tab));document.body.classList.remove('menu-abierto');const menu=document.getElementById('menu-toggle');if(menu){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú de navegación');}}));
+function cerrarMenu(){
+ document.body.classList.remove('menu-abierto');
+ menu?.setAttribute('aria-expanded','false');
+ menu?.setAttribute('aria-label','Abrir menú de navegación');
+}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('nav [data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.tab===b.dataset.tab)));
+ document.querySelectorAll('main section').forEach(x=>x.classList.toggle('hidden',x.id!==b.dataset.tab));
+ cerrarMenu();
+}));
 document.getElementById('campos').innerHTML=params.map((p,i)=>'<div><label for="p'+i+'">'+safe(p[0])+' ('+safe(p[1])+')</label><input id="p'+i+'" inputmode="decimal" placeholder="Escribe una medición"></div>').join('');
 function urlFoto(nombre){return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(nombre)+"?width=900"}
 function urlFuente(nombre){return "https://commons.wikimedia.org/wiki/File:"+encodeURIComponent(nombre)}
@@ -293,11 +304,10 @@ document.getElementById('limpiar').addEventListener('click',()=>{params.forEach(
     menu.setAttribute('aria-expanded',String(abierto));
     menu.setAttribute('aria-label',abierto?'Cerrar menú de navegación':'Abrir menú de navegación');
   });
+  document.getElementById('menu-fondo')?.addEventListener('click',cerrarMenu);
   document.addEventListener('keydown',event=>{
     if(event.key==='Escape'&&document.body.classList.contains('menu-abierto')){
-      document.body.classList.remove('menu-abierto');
-      menu?.setAttribute('aria-expanded','false');
-      menu?.setAttribute('aria-label','Abrir menú de navegación');
+      cerrarMenu();
       menu?.focus();
     }
   });
