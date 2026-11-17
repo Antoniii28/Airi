@@ -166,6 +166,19 @@ html[data-theme="dark"] nav#menu-principal button:hover,html[data-theme="dark"] 
 .menu-cerrar:hover{background:rgba(22,139,199,.12)!important}
 html[data-theme="dark"] .menu-cerrar{color:#e5edf5}
 html[data-theme="dark"] .menu-fondo{background:rgba(0,0,0,.52)}
+
+/* Controles del encabezado sin recuadros */
+header .control-encabezado{border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important;color:inherit;padding-left:8px;padding-right:8px}
+header .control-encabezado:hover,header .control-encabezado:active{background:transparent!important;color:#168bc7}
+html[data-theme="dark"] header .control-encabezado{color:#e5edf5}
+html[data-theme="dark"] header .control-encabezado:hover,html[data-theme="dark"] header .control-encabezado:active{color:#78caff}
+/* Botón circular de cierre en la esquina superior derecha */
+nav#menu-principal .menu-cerrar{top:16px;right:16px;left:auto;width:42px;height:42px;min-height:42px;padding:0;border:2px solid #168bc7!important;border-radius:50%;background:transparent!important;color:#168bc7;font-size:29px;font-weight:400;line-height:1;display:grid;place-items:center;z-index:2;transition:background .18s ease,color .18s ease,box-shadow .18s ease,border-color .18s ease}
+nav#menu-principal .menu-cerrar:hover,nav#menu-principal .menu-cerrar:focus-visible{border-color:#168bc7!important;background:#168bc7!important;color:#fff!important;box-shadow:0 0 0 4px rgba(22,139,199,.2),0 0 16px rgba(22,139,199,.55)}
+nav#menu-principal .menu-cerrar:active{background:#08689e!important;border-color:#08689e!important;box-shadow:0 0 0 5px rgba(22,139,199,.28),0 0 20px rgba(22,139,199,.7);transform:scale(.96)}
+html[data-theme="dark"] nav#menu-principal .menu-cerrar{border-color:#65c8ff!important;color:#8bd3ff}
+html[data-theme="dark"] nav#menu-principal .menu-cerrar:hover,html[data-theme="dark"] nav#menu-principal .menu-cerrar:focus-visible{background:#168bc7!important;color:#fff!important;border-color:#8bd3ff!important}
+
 @media(max-width:760px){
  header{gap:10px}
  .encabezado-titulo p{max-width:48vw}
