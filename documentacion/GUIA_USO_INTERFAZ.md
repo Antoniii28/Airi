@@ -25,7 +25,7 @@ En el encabezado encontrarás el control **Modo oscuro / Modo claro**. Puedes al
 
 ## 2. Inicio
 
-Es la pantalla de bienvenida. Presenta el propósito general del prototipo y resume tres aspectos: consulta de parámetros del agua, fichas iniciales de especies y supervisión humana.
+Es la pantalla de bienvenida. Presenta una pecera ilustrativa en la parte superior, con el título «Bienvenido a AIRI» centrado, y resume tres aspectos: consulta de parámetros del agua, fichas iniciales de especies y supervisión humana.
 
 La pecera animada de AIRI es un elemento visual. No representa un acuario real ni recibe información de sensores.
 
@@ -77,10 +77,11 @@ Esta pestaña permite comparar especies del catálogo y consultar seis escenario
 
 ### Comparar especies del catálogo
 
-1. En **Especies disponibles**, marca al menos dos especies de las fichas.
-2. Pulsa **Comparar selección**.
-3. Revisa el resultado general, la evaluación de cada par, los motivos, la confianza, las fuentes y los datos faltantes.
-4. Para probar otra combinación, cambia las casillas y vuelve a pulsar el botón.
+1. En **Buscar especie**, escribe el nombre común o científico y selecciona una sugerencia.
+2. Repite la búsqueda hasta reunir al menos dos especies. Cada selección aparecerá como una etiqueta debajo del buscador; puedes quitarla con la ×.
+3. Pulsa **Comparar selección**.
+4. Revisa el resultado general, la evaluación de cada par, los motivos, la confianza, las fuentes y los datos faltantes.
+5. Para probar otra combinación, agrega o quita etiquetas y vuelve a comparar.
 
 La evaluación se solicita al módulo de compatibilidad con los identificadores de las fichas y el catálogo disponible. La interfaz presenta la respuesta; no contiene reglas biológicas ni realiza cálculos propios. El resultado es orientativo y no garantiza la convivencia ni el bienestar de los organismos. La ausencia de información nunca significa que dos especies sean compatibles.
 
