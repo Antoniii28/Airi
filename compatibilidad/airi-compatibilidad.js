@@ -19,17 +19,28 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
-  var VERSION = "0.1.0";
+  var VERSION = "0.2.0";
 
   // Nombres de estado PROPUESTOS (pendientes de aprobación del equipo). Si el equipo los cambia,
   // solo se edita esta tabla: el resto del módulo usa las claves internas.
   var ESTADOS = { COMPATIBLE: "compatible", PRECAUCION: "precaucion", INCOMPATIBLE: "incompatible", SIN_DATOS: "sin_datos" };
   var ETIQUETAS = {
-    compatible: "Compatible (orientativo)",
-    precaucion: "Precaución",
-    incompatible: "Incompatible",
-    sin_datos: "Información insuficiente"
+    compatible: "Compatible",
+    precaucion: "Precaución: revisar convivencia",
+    incompatible: "No compatibles",
+    sin_datos: "Faltan datos"
   };
+
+  // Textos sencillos para el selector de escenarios de demostración de la interfaz.
+  var DESCRIPCION_MODULO = "En este módulo puedes seleccionar cualquiera de estos escenarios para conocer si las especies pueden convivir, si no son compatibles o si todavía falta información sobre ellas.";
+  var ESCENARIOS_DEMO = [
+    { id: "compatible", nombre: "Compatible", descripcion: "Los peces pueden vivir juntos si el acuario mantiene las condiciones adecuadas." },
+    { id: "incompatible", nombre: "No compatibles", descripcion: "Los peces necesitan condiciones diferentes o existe algún riesgo conocido al mantenerlos juntos." },
+    { id: "contradiccion", nombre: "Compatibilidad dudosa", descripcion: "La información disponible no coincide; es necesario revisar antes de juntarlos." },
+    { id: "sin_datos", nombre: "Faltan datos", descripcion: "No hay suficiente información para saber si pueden vivir juntos." },
+    { id: "misma_especie", nombre: "Precaución: misma especie", descripcion: "Aunque sean del mismo tipo de pez, podrían pelear o competir por espacio." },
+    { id: "acuario_motor", nombre: "Datos del acuario", descripcion: "Permite revisar las condiciones del agua y los peces registrados en el acuario." }
+  ];
   // Mayor número = más restrictivo. Sirve para combinar resultados.
   var GRAVEDAD = { compatible: 0, sin_datos: 1, precaucion: 2, incompatible: 3 };
 
@@ -58,6 +69,10 @@
   function lista(x) { return Array.isArray(x) ? x.slice() : []; }
   function fmt(n) { return esNumero(n) ? String(Math.round(n * 100) / 100) : "?"; }
   function peor(a, b) { return GRAVEDAD[a] >= GRAVEDAD[b] ? a : b; }
+  // Los ids de especies y de fuentes vienen de datos: nunca se usan como claves de objetos normales
+  // («__proto__», «constructor», «toString»…). Se usan Map y propiedades propias.
+  var tiene = function (obj, k) { return Object.prototype.hasOwnProperty.call(obj, k); };
+  function poner(obj, k, v) { Object.defineProperty(obj, k, { value: v, enumerable: true, writable: true, configurable: true }); }
   function obtener(obj, ruta) {
     var x = obj;
     for (var i = 0; i < ruta.length; i++) { if (!esObjeto(x)) return undefined; x = x[ruta[i]]; }
@@ -65,7 +80,7 @@
   }
 
   // ── Adaptador de ficha ───────────────────────────────────────────────────────
-  // Único punto que conoce el esquema de Brayan (catálogo v0.5, bloque «ficha_airi» y campos
+  // Único punto que conoce el esquema de Brayan (catálogo v0.7.1, especies/CONTRATO_FICHAS.md: «ficha_airi» y campos
   // completos). Si el esquema cambia, solo se ajusta esta función. Campo ausente o vacío → null.
   function rango(r, claveMin, claveMax, fuentes, confianza) {
     if (!esObjeto(r) || !esNumero(r[claveMin]) || !esNumero(r[claveMax]) || r[claveMin] > r[claveMax]) return null;
@@ -111,11 +126,16 @@
   }
   function nombre(f) { return f.nombre_comun || f.nombre_cientifico || f.id; }
   function unir() {
-    var vistos = {}, out = [];
+    var vistos = new Map(), out = [];
     for (var i = 0; i < arguments.length; i++) {
-      lista(arguments[i]).forEach(function (x) { if (!vistos[x]) { vistos[x] = true; out.push(x); } });
+      lista(arguments[i]).forEach(function (x) { if (!vistos.has(x)) { vistos.set(x, true); out.push(x); } });
     }
     return out;
+  }
+  // Una fuente cuenta como registrada si es una propiedad PROPIA de catalogo.fuentes con URL http(s).
+  function fuenteRegistrada(registro, id) {
+    if (typeof id !== "string" || !tiene(registro, id) || !esObjeto(registro[id])) return false;
+    return typeof registro[id].url === "string" && /^https?:\/\/\S+$/.test(registro[id].url.trim());
   }
   function confianzaMin(a, b) {
     var orden = { baja: 0, media: 1, alta: 2 };
@@ -159,11 +179,20 @@
     return alguna;
   }
   var EFECTOS_RELACION = ["compatible", "precaucion", "incompatible"];
-  function relaciones(origen, otra, mismaEspecie) {
+  // Una relación solo cuenta como evidencia si TODAS sus fuentes existen en el registro del catálogo.
+  // Si cita fuentes inexistentes se informa (efecto «sin_datos») y no influye en el estado.
+  function relaciones(origen, otra, mismaEspecie, registro, falt) {
     var out = [];
     origen.relaciones.forEach(function (r) {
       if (EFECTOS_RELACION.indexOf(r.efecto) < 0 || !seleccionar(r.con, otra, mismaEspecie)) return;
       if (!Array.isArray(r.fuentes) || !r.fuentes.length) return; // sin fuente no cuenta como evidencia
+      var invalidas = r.fuentes.filter(function (f) { return !fuenteRegistrada(registro, f); });
+      if (invalidas.length) {
+        out.push(hallazgo("relacion", ESTADOS.SIN_DATOS, "No se considera una relación declarada en la ficha de " + nombre(origen) +
+          ": cita fuentes que no están registradas en el catálogo (" + invalidas.map(String).join(", ") + ").", [], null));
+        falt.push({ especie: origen.id, campo: "convivencia.relaciones.fuentes" });
+        return;
+      }
       var efecto = ESTADOS[{ compatible: "COMPATIBLE", precaucion: "PRECAUCION", incompatible: "INCOMPATIBLE" }[r.efecto]];
       out.push(hallazgo("relacion", efecto, "Ficha de " + nombre(origen) + ": " + (r.motivo || "relación declarada sin motivo.") +
         (mismaEspecie ? "" : " (aplica a " + nombre(otra) + ")"), r.fuentes, r.confianza));
@@ -200,7 +229,7 @@
   }
 
   // ── Par de especies (o varios ejemplares de una misma especie) ──────────────
-  function evaluarPar(a, b, cantidadA) {
+  function evaluarPar(a, b, cantidadA, registro) {
     var misma = a.id === b.id, h = [], falt = [];
     if (!misma) {
       var t = compararRangos("temperatura", a, b, a.temperatura, b.temperatura, "°C", falt); if (t) h.push(t);
@@ -226,7 +255,7 @@
             confianzaMin(a.etiquetas.confianza, b.etiquetas.confianza)));
         }
       }
-      h = h.concat(relaciones(a, b, false), relaciones(b, a, false));
+      h = h.concat(relaciones(a, b, false, registro, falt), relaciones(b, a, false, registro, falt));
     } else {
       // Varios ejemplares de la misma especie: solo cuenta lo que dice su ficha.
       if (!a.etiquetas) falt.push({ especie: a.id, campo: "comportamiento" });
@@ -235,10 +264,12 @@
         h.push(hallazgo("misma_especie", ESTADOS.PRECAUCION, "Se piden " + cantidadA + " ejemplares de " + nombre(a) +
           ", que figura como " + ets.join(" y ") + ".", a.etiquetas.fuentes, a.etiquetas.confianza));
       }
-      h = h.concat(relaciones(a, a, true));
+      h = h.concat(relaciones(a, a, true, registro, falt));
     }
+    // Datos esenciales para «compatible»: temperatura, pH y temperamento documentados de ambas especies
+    // (F-05: la compatibilidad considera las condiciones del agua). Sin alguno, a lo sumo «sin_datos».
     var esenciales = misma ? !!a.etiquetas
-      : !!(a.temperatura && b.temperatura && a.temperamento && b.temperamento);
+      : !!(a.temperatura && b.temperatura && a.ph && b.ph && a.temperamento && b.temperamento);
     var d = decidir(h, esenciales);
     return { especies: [a.id, b.id], estado: d.estado, etiqueta: ETIQUETAS[d.estado], contradiccion: d.contradiccion,
       resumen: resumen(d.estado, d.contradiccion, h, falt), motivos: h, datos_faltantes: falt };
@@ -249,10 +280,16 @@
     return " (tamaño adulto máx.: " + fmt(x.tamano_max_cm.valor) + " cm y " + fmt(y.tamano_max_cm.valor) + " cm)";
   }
 
-  function noEncontrada(ids) {
-    var h = [hallazgo("especie", ESTADOS.SIN_DATOS, "No se encontró en el catálogo: " + ids.join(", ") + ".", [], null)];
+  function noEncontrada(ids, duplicados) {
+    var dup = ids.filter(function (id) { return duplicados.has(id); });
+    var nf = ids.filter(function (id) { return !duplicados.has(id); });
+    var h = [];
+    if (nf.length) h.push(hallazgo("especie", ESTADOS.SIN_DATOS, "No se encontró en el catálogo: " + nf.join(", ") + ".", [], null));
+    if (dup.length) h.push(hallazgo("especie", ESTADOS.SIN_DATOS, "El id aparece repetido en el catálogo y no se puede saber qué ficha usar: " +
+      dup.join(", ") + ".", [], null));
     return { especies: ids.length === 1 ? [ids[0], ids[0]] : ids, estado: ESTADOS.SIN_DATOS, etiqueta: ETIQUETAS.sin_datos,
-      contradiccion: false, resumen: "Información insuficiente: especie no encontrada en el catálogo.", motivos: h,
+      contradiccion: false, resumen: "Información insuficiente: " + (dup.length ? "ficha no utilizable" : "especie no encontrada") +
+        " en el catálogo.", motivos: h,
       datos_faltantes: ids.map(function (id) { return { especie: id, campo: "ficha" }; }) };
   }
 
@@ -312,15 +349,15 @@
   function leerEntrada(entrada) {
     if (!esObjeto(entrada)) throw new TypeError("evaluar espera un objeto { especies: [...], acuario?: {...} }.");
     if (!Array.isArray(entrada.especies) || entrada.especies.length === 0) throw new TypeError("«especies» debe ser una lista no vacía.");
-    var orden = [], cantidades = {};
+    var orden = [], cantidades = new Map();
     entrada.especies.forEach(function (x) {
       var id = typeof x === "string" ? x : (esObjeto(x) ? x.id : null);
       var n = esObjeto(x) && x.cantidad !== undefined ? x.cantidad : 1;
-      if (typeof id !== "string" || !id.trim()) throw new TypeError("Cada especie debe ser un id de ficha o { id, cantidad }.");
+      if (typeof id !== "string" || !id.trim()) throw new TypeError("Cada especie debe ser un id de ficha (texto no vacío) o { id, cantidad }.");
       if (!(Number.isInteger(n) && n >= 1)) throw new TypeError("«cantidad» debe ser un entero mayor o igual que 1 (" + id + ").");
       id = id.trim();
-      if (!(id in cantidades)) { orden.push(id); cantidades[id] = 0; }
-      cantidades[id] += n;
+      if (!cantidades.has(id)) { orden.push(id); cantidades.set(id, 0); }
+      cantidades.set(id, cantidades.get(id) + n);
     });
     var acuario = entrada.acuario;
     if (acuario !== undefined && acuario !== null && !esObjeto(acuario)) throw new TypeError("«acuario» debe ser un objeto o null.");
@@ -332,9 +369,13 @@
 
   function indexar(catalogo) {
     if (!esObjeto(catalogo) || !Array.isArray(catalogo.especies)) throw new TypeError("El catálogo debe tener la forma { especies: [...] }.");
-    var porId = {};
-    catalogo.especies.forEach(function (e) { if (esObjeto(e) && typeof e.id === "string" && e.id) porId[e.id] = e; });
-    return porId;
+    var porId = new Map(), duplicados = new Set();
+    catalogo.especies.forEach(function (e) {
+      if (!esObjeto(e) || typeof e.id !== "string" || !e.id) return;
+      if (porId.has(e.id)) duplicados.add(e.id); else porId.set(e.id, e);
+    });
+    duplicados.forEach(function (id) { porId.delete(id); });
+    return { porId: porId, duplicados: duplicados };
   }
 
   function interseccion(fichas, clave) {
@@ -350,20 +391,22 @@
 
   // ── API principal ────────────────────────────────────────────────────────────
   function evaluar(entrada, catalogo) {
-    var e = leerEntrada(entrada), porId = indexar(catalogo);
-    var fichas = {}, faltan = [];
-    e.orden.forEach(function (id) { if (porId[id]) fichas[id] = normalizarFicha(porId[id]); else faltan.push(id); });
+    var e = leerEntrada(entrada), idx = indexar(catalogo);
+    var registro = esObjeto(catalogo.fuentes) ? catalogo.fuentes : {};
+    var fichas = new Map(), faltan = [];
+    e.orden.forEach(function (id) { if (idx.porId.has(id)) fichas.set(id, normalizarFicha(idx.porId.get(id))); else faltan.push(id); });
 
     var pares = [];
     e.orden.forEach(function (id) {
-      if (e.cantidades[id] > 1) pares.push(fichas[id] ? evaluarPar(fichas[id], fichas[id], e.cantidades[id]) : noEncontrada([id]));
+      var n = e.cantidades.get(id);
+      if (n > 1) pares.push(fichas.has(id) ? evaluarPar(fichas.get(id), fichas.get(id), n, registro) : noEncontrada([id], idx.duplicados));
     });
     for (var i = 0; i < e.orden.length; i++) {
       for (var j = i + 1; j < e.orden.length; j++) {
         var a = e.orden[i], b = e.orden[j];
-        if (fichas[a] && fichas[b]) pares.push(evaluarPar(fichas[a], fichas[b], 1));
+        if (fichas.has(a) && fichas.has(b)) pares.push(evaluarPar(fichas.get(a), fichas.get(b), 1, registro));
         else {
-          var r = noEncontrada([a, b].filter(function (x) { return !fichas[x]; }));
+          var r = noEncontrada([a, b].filter(function (x) { return !fichas.has(x); }), idx.duplicados);
           r.especies = [a, b];
           pares.push(r);
         }
@@ -371,7 +414,7 @@
     }
 
     var enAcuario = [];
-    if (e.acuario) e.orden.forEach(function (id) { if (fichas[id]) enAcuario.push(evaluarEnAcuario(fichas[id], e.acuario)); });
+    if (e.acuario) e.orden.forEach(function (id) { if (fichas.has(id)) enAcuario.push(evaluarEnAcuario(fichas.get(id), e.acuario)); });
 
     var todos = pares.concat(enAcuario);
     var global;
@@ -383,39 +426,35 @@
       else global = ESTADOS.SIN_DATOS;
     }
 
-    // Fuentes citadas, resueltas con el registro del catálogo.
-    var registro = esObjeto(catalogo.fuentes) ? catalogo.fuentes : {};
-    var fuentes = {};
+    // Fuentes citadas, resueltas con el registro del catálogo (solo propiedades propias).
+    var fuentes = {}, citadas = new Set();
     todos.forEach(function (r) {
       r.motivos.forEach(function (m) {
         m.fuentes.forEach(function (id) {
-          if (fuentes[id]) return;
-          var f = registro[id];
-          fuentes[id] = esObjeto(f)
-            ? { titulo: f.titulo || null, url: f.url || null, tipo: f.tipo || null }
-            : { titulo: null, url: null, tipo: null, no_registrada: true };
+          if (citadas.has(id)) return;
+          citadas.add(id);
+          var f = tiene(registro, id) ? registro[id] : null;
+          poner(fuentes, id, fuenteRegistrada(registro, id)
+            ? { titulo: f.titulo || null, url: f.url.trim(), tipo: f.tipo || null }
+            : { titulo: esObjeto(f) ? f.titulo || null : null, url: null, tipo: esObjeto(f) ? f.tipo || null : null, no_registrada: true });
         });
       });
     });
 
-    var faltantes = [], vistos = {};
-    todos.forEach(function (r) {
-      r.datos_faltantes.forEach(function (x) {
-        var k = x.especie + "|" + x.campo;
-        if (!vistos[k]) { vistos[k] = true; faltantes.push(x); }
-      });
-    });
-    faltan.forEach(function (id) { var k = id + "|ficha"; if (!vistos[k]) { vistos[k] = true; faltantes.push({ especie: id, campo: "ficha" }); } });
+    var faltantes = [], vistos = new Set();
+    function anotar(x) { var k = x.especie + "\u0000" + x.campo; if (!vistos.has(k)) { vistos.add(k); faltantes.push(x); } }
+    todos.forEach(function (r) { r.datos_faltantes.forEach(anotar); });
+    faltan.forEach(function (id) { anotar({ especie: id, campo: "ficha" }); });
 
-    var listaFichas = e.orden.map(function (id) { return fichas[id]; }).filter(Boolean);
+    var listaFichas = e.orden.filter(function (id) { return fichas.has(id); }).map(function (id) { return fichas.get(id); });
     return {
       version: VERSION,
       catalogo_version: catalogo.version || null,
       estado_global: global,
       etiqueta_global: ETIQUETAS[global],
       especies: e.orden.map(function (id) {
-        var f = fichas[id];
-        return { id: id, cantidad: e.cantidades[id], encontrada: !!f,
+        var f = fichas.get(id);
+        return { id: id, cantidad: e.cantidades.get(id), encontrada: !!f,
           nombre_comun: f ? f.nombre_comun : null, nombre_cientifico: f ? f.nombre_cientifico : null };
       }),
       pares: pares,
@@ -432,5 +471,6 @@
   }
 
   return { VERSION: VERSION, ESTADOS: ESTADOS, ETIQUETAS: ETIQUETAS, CRITERIOS: CRITERIOS, AVISO: AVISO,
+    DESCRIPCION_MODULO: DESCRIPCION_MODULO, ESCENARIOS_DEMO: ESCENARIOS_DEMO,
     evaluar: evaluar, normalizarFicha: normalizarFicha };
 });

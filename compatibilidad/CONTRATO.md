@@ -1,9 +1,12 @@
-# AIRI · Contrato del evaluador de compatibilidad (v0.1.0, propuesta)
+# AIRI · Contrato del evaluador de compatibilidad (v0.2.0, propuesta)
 
 **Responsable:** Yair (rama `equipo/yair-compatibilidad`).  
 **Estado:** propuesta para revisión del equipo. Los nombres de estados y campos **no están aprobados**; si el equipo los
 cambia, se actualizan este documento, `ESTADOS`/`ETIQUETAS` en `airi-compatibilidad.js`, las pruebas y los ejemplos.  
-**Comprobado por:** `compatibilidad/pruebas/compatibilidad.test.js` (19 pruebas).
+**Comprobado por:** `compatibilidad/pruebas/compatibilidad.test.js` (25 pruebas).  
+**Datos:** las fichas reales de Brayan (`especies/datos/catalogo_inicial.json`, contrato `especies/CONTRATO_FICHAS.md`,
+v0.7.1 con 52 especies, PR #17). Los datos ficticios de `datos_prueba/` solo cubren casos que las fichas reales aún no
+tienen (relaciones declaradas, contradicciones).
 
 ## 1. Llamada
 
@@ -38,6 +41,12 @@ carga por sí mismo: quien lo integra decide de dónde viene (en el prototipo, `
 
 Entrada mal formada → `TypeError`. Un id que no existe en el catálogo **no** es error: da `sin_datos`.
 
+**Identificadores.** Se comparan como texto exacto (sin distinguir otra cosa que espacios al inicio o al final, que se
+quitan). El módulo nunca usa ids de especies ni de fuentes como claves de objetos normales: usa `Map`/`Set` y
+propiedades propias, de modo que ids como `__proto__`, `constructor` o `toString` se tratan como cualquier otro y no
+alteran objetos de JavaScript. Si un id aparece **repetido** en el catálogo, esa ficha no se usa (`sin_datos`, con el
+motivo) porque no se sabe cuál es la correcta.
+
 ## 3. Salida
 
 | Campo | Tipo | Significado |
@@ -51,7 +60,7 @@ Entrada mal formada → `TypeError`. Un id que no existe en el catálogo **no** 
 | `acuario` | lista | Un resultado por especie frente al acuario (vacía si no se envió `acuario`) |
 | `intervalo_comun` | objeto | `temperatura_c` y `ph`: intersección de rangos documentados (`{min,max}` o `null`) y `nota` |
 | `datos_faltantes` | lista | `{ especie, campo }` sin duplicados. `especie: null` = dato del acuario |
-| `fuentes` | objeto | `{ id: { titulo, url, tipo } }` de **todas** las fuentes citadas; `no_registrada: true` si el id no está en `catalogo.fuentes` |
+| `fuentes` | objeto | `{ id: { titulo, url, tipo } }` de **todas** las fuentes citadas; `no_registrada: true` (y `url: null`) si el id no es una propiedad propia de `catalogo.fuentes` con URL `http(s)` |
 | `aviso` | texto | Límites de la evaluación. **Mostrarlo siempre** junto al resultado |
 
 **Resultado** (cada elemento de `pares` y de `acuario`):
@@ -67,12 +76,14 @@ Entrada mal formada → `TypeError`. Un id que no existe en el catálogo **no** 
 
 ## 4. Estados (propuestos) y cómo se decide
 
+Para la interfaz se utilizan etiquetas sencillas: **Compatible**, **No compatibles**, **Precaución: revisar convivencia** y **Faltan datos**. Los escenarios de demostración y la descripción breve del módulo se exponen en `ESCENARIOS_DEMO` y `DESCRIPCION_MODULO` dentro del archivo JavaScript.
+
 | Estado | Etiqueta | Cuándo |
 |---|---|---|
-| `incompatible` | Incompatible | Algún motivo con efecto `incompatible` |
-| `precaucion` | Precaución | Algún motivo `precaucion` y ninguno `incompatible` |
-| `compatible` | Compatible (orientativo) | **Solo** si hay convivencia declarada con fuente (§5), están los datos esenciales (temperatura y temperamento de ambas) y ningún motivo en contra |
-| `sin_datos` | Información insuficiente (F-06) | Cualquier otro caso: faltan datos, especie no encontrada, o no hay conflictos pero ninguna fuente confirma la convivencia |
+| `incompatible` | No compatibles | Algún motivo con efecto `incompatible` |
+| `precaucion` | Precaución: revisar convivencia | Algún motivo `precaucion` y ninguno `incompatible` |
+| `compatible` | Compatible | **Solo** si hay convivencia declarada con fuentes registradas (§5), están los datos esenciales (**temperatura, pH** y temperamento de ambas) y ningún motivo en contra |
+| `sin_datos` | Faltan datos (F-06) | Cualquier otro caso: faltan datos, especie no encontrada, o no hay conflictos pero ninguna fuente confirma la convivencia |
 
 Gravedad para combinar: `incompatible` > `precaucion` > `sin_datos` > `compatible`. El estado global es
 `compatible` solo si **todos** los resultados lo son. Frente al acuario el resultado nunca es `compatible`: estar
@@ -87,7 +98,7 @@ dentro de rangos no confirma bienestar y la salinidad aún no se puede comparar.
 | `temperamento` | `ficha_airi.temperamento.valor` | Una especie no pacífica con una pacífica → `precaucion` |
 | `territorialidad` | `ficha_airi.comportamiento.etiquetas` | Ambas «territorial» y al menos una no pacífica → `precaucion` |
 | `misma_especie` | `comportamiento.etiquetas` | `cantidad` > 1 y «solitario» o «territorial» → `precaucion` |
-| `relacion` | `convivencia.relaciones` (§5) | El efecto declarado, solo si tiene fuentes |
+| `relacion` | `convivencia.relaciones` (§5) | El efecto declarado, solo si **todas** sus fuentes existen en `catalogo.fuentes` con URL. Si no, se informa con efecto `sin_datos` y el dato faltante `convivencia.relaciones.fuentes` |
 | `volumen` | `ficha_airi.litraje_recomendado_l.min` | `acuario.volumen_l` menor → `precaucion` (cifra orientativa, confianza baja) |
 | `arrecife` | `ficha_airi.adecuado_arrecife.valor` | Con `tipo: "arrecife"`: `no` → `incompatible`; `con_precaucion` → `precaucion` |
 | `agua_temperatura`, `agua_ph` | rangos anteriores + condición §8 | Valor medido fuera del rango de la ficha → `precaucion`. Intervalos: se comparan ambos extremos. EP3 se compara citando la fuente de la ficha |
@@ -95,7 +106,7 @@ dentro de rangos no confirma bienestar y la salinidad aún no se puede comparar.
 
 ## 5. Propuesta para Brayan: `convivencia.relaciones`
 
-El catálogo v0.5 describe la convivencia en texto libre (`convivencia.condiciones`/`riesgos`). Interpretar texto
+El catálogo (v0.7.1) describe la convivencia en texto libre (`convivencia.condiciones`/`riesgos`). Interpretar texto
 libre no es fiable, así que el módulo **no lo lee** para decidir. Se propone añadir una lista estructurada, sin
 cambiar los campos existentes:
 
@@ -118,17 +129,22 @@ cambiar los campos existentes:
 
 - `con` selecciona a la otra especie por `id`, `genero`, `familia` (`taxonomia.familia`), `grupo` o `temperamento`
   (valor o lista; si hay varias claves, deben cumplirse todas), o `{ "misma_especie": true }`.
-- `efecto`: `compatible`, `precaucion` o `incompatible`. Una relación **sin fuentes se ignora**.
+- `efecto`: `compatible`, `precaucion` o `incompatible`.
+- `fuentes`: ids que **deben existir** en `catalogo.fuentes` (propiedad propia, con URL `http(s)`). Una relación sin
+  fuentes, o con alguna fuente que no esté registrada, **no cuenta como evidencia** (ni a favor ni en contra).
 - Los ejemplos de arriba resumen textos que ya existen en la rama de Brayan; él decide si se codifican así.
 
 Hasta que existan relaciones en el catálogo real, ningún par real puede salir `compatible` (lo comprueba una prueba).
 
 ## 6. Ejemplos para Paola
 
-`compatibilidad/ejemplos/*.json` (entrada + salida), generados con **datos de prueba ficticios**
-(`compatibilidad/datos_prueba/catalogo_prueba.json`): compatible sustentado, incompatible por rangos,
-contradicción, sin datos (incluye especie inexistente), precaución por varios ejemplares y acuario con la salida del
-motor. La interfaz debe mostrar estado, `resumen`, `motivos` con sus fuentes enlazadas, `contradiccion`,
+- `compatibilidad/ejemplos/catalogo_real/*.json`: **fichas reales** del catálogo v0.7.1 de Brayan — sin conflictos
+  pero sin evidencia (`sin_datos`), precaución por temperamento, varios cirujanos amarillos, especie sin pH documentado
+  y acuario de arrecife con la salida del motor.
+- `compatibilidad/ejemplos/*.json`: **datos de prueba ficticios** para los casos que las fichas reales aún no tienen:
+  compatible sustentado, incompatible por rangos, contradicción y especie inexistente.
+
+Se regeneran con `node compatibilidad/herramientas/generar_ejemplos.js [--catalogo RUTA]`. La interfaz debe mostrar estado, `resumen`, `motivos` con sus fuentes enlazadas, `contradiccion`,
 `datos_faltantes` y `aviso`, sin recalcular nada.
 
 ## 7. Historial
@@ -136,3 +152,4 @@ motor. La interfaz debe mostrar estado, `resumen`, `motivos` con sus fuentes enl
 | Versión | Cambio | Afecta a |
 |---|---|---|
 | 0.1.0 | Propuesta inicial | — |
+| 0.2.0 | Revisión del PR #19: (1) las fuentes de una relación deben existir en `catalogo.fuentes`; (2) el pH pasa a ser dato esencial para `compatible`; (3) ids de especies y fuentes con `Map`/propiedades propias, ids repetidos en el catálogo → `sin_datos`; ejemplos con las fichas reales | Estructura de salida sin cambios. Algunos pares que antes salían `compatible` sin pH ahora salen `sin_datos` |

@@ -1,4 +1,5 @@
 // Pruebas del evaluador de compatibilidad (node --test compatibilidad/pruebas/). Sin dependencias.
+// Con otro catálogo real: AIRI_CATALOGO=ruta/catalogo.json node --test compatibilidad/pruebas/
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
@@ -98,6 +99,73 @@ test("una relación positiva no basta si faltan datos esenciales", () => {
   assert.ok(p.datos_faltantes.some((x) => x.especie === "prueba_pacifico_b" && x.campo === "temperatura"));
 });
 
+test("pH obligatorio para «compatible»: sin rango de pH de una especie → sin_datos", () => {
+  const cat = JSON.parse(JSON.stringify(PRUEBA));
+  cat.especies.find((e) => e.id === "prueba_pacifico_b").ph = null;
+  const p = C.evaluar({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"] }, cat).pares[0];
+  assert.equal(p.estado, "sin_datos");
+  assert.deepEqual(criterios(p, "compatible"), ["relacion"]);
+  assert.deepEqual(p.datos_faltantes, [{ especie: "prueba_pacifico_b", campo: "ph" }]);
+});
+
+test("fuentes de relaciones: deben existir en catalogo.fuentes (propias y con URL); si no, la relación no cuenta", () => {
+  const casos = [
+    ["fuente_que_no_existe"], ["toString"], ["__proto__"], ["constructor"], ["prueba_fuente_1", "fuente_que_no_existe"], ["sin_url"]
+  ];
+  for (const fuentes of casos) {
+    const cat = JSON.parse(JSON.stringify(PRUEBA));
+    cat.fuentes.sin_url = { tipo: "prueba", titulo: "Registro incompleto", url: "" };
+    cat.especies.find((e) => e.id === "prueba_pacifico_a").convivencia.relaciones[0].fuentes = fuentes;
+    const r = C.evaluar({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"] }, cat);
+    const p = r.pares[0];
+    assert.equal(p.estado, "sin_datos", JSON.stringify(fuentes));
+    assert.deepEqual(criterios(p, "compatible"), [], JSON.stringify(fuentes));
+    const aviso = p.motivos.find((m) => m.criterio === "relacion");
+    assert.equal(aviso.efecto, "sin_datos");
+    assert.match(aviso.texto, /no están registradas/);
+    assert.ok(p.datos_faltantes.some((x) => x.especie === "prueba_pacifico_a" && x.campo === "convivencia.relaciones.fuentes"));
+  }
+  // Una relación negativa con fuente inexistente tampoco cuenta.
+  const cat = JSON.parse(JSON.stringify(PRUEBA));
+  cat.especies.find((e) => e.id === "prueba_agresivo").convivencia.relaciones[0].fuentes = ["inventada"];
+  const p = C.evaluar({ especies: ["prueba_agresivo", "prueba_agresivo_2"] }, cat).pares[0];
+  assert.deepEqual(criterios(p, "incompatible"), []);
+  assert.equal(p.estado, "precaucion"); // queda la territorialidad
+});
+
+test("las fuentes citadas que no están registradas se marcan en la salida", () => {
+  const cat = JSON.parse(JSON.stringify(PRUEBA));
+  cat.especies.find((e) => e.id === "prueba_pacifico_b").ficha_airi.temperatura_c.fuentes = ["__proto__", "toString"];
+  const r = C.evaluar({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"] }, cat);
+  assert.ok(Object.prototype.hasOwnProperty.call(r.fuentes, "__proto__"));
+  assert.equal(r.fuentes["toString"].no_registrada, true);
+  assert.equal(Object.getPrototypeOf(r.fuentes), Object.prototype);
+  assert.ok(JSON.stringify(r.fuentes).includes('"__proto__":{'));
+});
+
+test("identificadores especiales: «__proto__», «constructor», «toString» se tratan como ids normales", () => {
+  const cat = JSON.parse(JSON.stringify(PRUEBA));
+  const base = cat.especies.find((e) => e.id === "prueba_pacifico_b");
+  for (const id of ["__proto__", "constructor", "hasOwnProperty"]) cat.especies.push(Object.assign(JSON.parse(JSON.stringify(base)), { id: id }));
+  const r = C.evaluar({ especies: ["__proto__", "constructor", "__proto__", "toString", " prueba_pacifico_a "] }, cat);
+  assert.deepEqual(r.especies.map((e) => [e.id, e.cantidad, e.encontrada]),
+    [["__proto__", 2, true], ["constructor", 1, true], ["toString", 1, false], ["prueba_pacifico_a", 1, true]]);
+  assert.ok(r.pares.some((p) => p.especies[0] === "__proto__" && p.especies[1] === "__proto__"));
+  assert.equal(par(r, "__proto__", "prueba_pacifico_a").estado, "compatible"); // A declara «compatible con pacíficos»
+  assert.equal(par(r, "constructor", "toString").estado, "sin_datos");
+  assert.ok(r.datos_faltantes.some((x) => x.especie === "toString" && x.campo === "ficha"));
+  assert.equal(({}).polucion, undefined);
+  assert.equal(Object.prototype.cantidad, undefined);
+});
+
+test("ids repetidos en el catálogo: la ficha no se usa (sin_datos) y se explica", () => {
+  const cat = JSON.parse(JSON.stringify(PRUEBA));
+  cat.especies.push(JSON.parse(JSON.stringify(cat.especies.find((e) => e.id === "prueba_pacifico_b"))));
+  const p = C.evaluar({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"] }, cat).pares[0];
+  assert.equal(p.estado, "sin_datos");
+  assert.match(p.motivos[0].texto, /repetido en el catálogo/);
+});
+
 test("una relación sin fuentes no cuenta como evidencia", () => {
   const cat = JSON.parse(JSON.stringify(PRUEBA));
   cat.especies.find((e) => e.id === "prueba_pacifico_a").convivencia.relaciones[0].fuentes = [];
@@ -159,7 +227,11 @@ test("contrato de salida: claves, estados y etiquetas", () => {
   assert.deepEqual(Object.keys(r.acuario[0]), ["especie", "estado", "etiqueta", "contradiccion", "resumen", "motivos", "datos_faltantes"]);
   assert.deepEqual(Object.keys(r.pares[0].motivos[0]), ["criterio", "nombre", "efecto", "texto", "fuentes", "confianza"]);
   assert.deepEqual(Object.values(C.ESTADOS), ["compatible", "precaucion", "incompatible", "sin_datos"]);
-  assert.equal(C.ETIQUETAS.sin_datos, "Información insuficiente");  // F-06
+  assert.equal(C.ETIQUETAS.sin_datos, "Faltan datos");  // F-06
+  assert.equal(C.ETIQUETAS.compatible, "Compatible");
+  assert.equal(C.ETIQUETAS.incompatible, "No compatibles");
+  assert.equal(C.ESCENARIOS_DEMO.length, 6);
+  assert.ok(C.DESCRIPCION_MODULO.includes("seleccionar cualquiera"));
   assert.deepEqual(r.intervalo_comun.temperatura_c, { min: 24, max: 26 });
   for (const t of JSON.stringify(r).match(/peligro|urgente|emergencia|garantiza que/gi) || []) assert.fail("término no permitido: " + t);
 });
@@ -173,8 +245,13 @@ test("validación de entrada", () => {
   assert.throws(() => C.evaluar({ especies: ["a"] }, { especies: "no" }), TypeError);
 });
 
-test("catálogo real (especies/datos/catalogo_inicial.json, cualquier versión): no falla ni afirma compatibilidad sin evidencia", () => {
-  const real = JSON.parse(fs.readFileSync(path.join(RAIZ, "especies", "datos", "catalogo_inicial.json"), "utf8"));
+// Catálogo real de Brayan. Por defecto el del repositorio; con AIRI_CATALOGO=ruta se puede probar otra versión.
+const RUTA_REAL = process.env.AIRI_CATALOGO || path.join(RAIZ, "especies", "datos", "catalogo_inicial.json");
+const REAL = JSON.parse(fs.readFileSync(RUTA_REAL, "utf8"));
+const CON_FICHAS = REAL.especies.some((e) => e && e.ficha_airi);
+
+test("catálogo real (cualquier versión): no falla ni afirma compatibilidad sin evidencia", () => {
+  const real = REAL;
   const ids = real.especies.map((e) => e.id).filter(Boolean);
   const tieneRelaciones = real.especies.some((e) => e.convivencia && Array.isArray(e.convivencia.relaciones) && e.convivencia.relaciones.length);
   for (let i = 0; i < ids.length; i++) {
@@ -186,6 +263,25 @@ test("catálogo real (especies/datos/catalogo_inicial.json, cualquier versión):
   }
   // Catálogo de main sin ids (v0.1): todo queda sin datos.
   if (!ids.length) assert.equal(C.evaluar({ especies: ["amphiprion_ocellaris"] }, real).estado_global, "sin_datos");
+});
+
+test("fichas reales de Brayan: resultados esperados", { skip: CON_FICHAS ? false : "el catálogo " + REAL.version + " aún no tiene fichas (PR #17)" }, () => {
+  const real = congelar(JSON.parse(JSON.stringify(REAL)));
+  const ids = new Set(real.especies.map((e) => e.id));
+  for (const id of ["amphiprion_ocellaris", "zebrasoma_flavescens", "lysmata_amboinensis", "zanclus_cornutus"]) assert.ok(ids.has(id), id);
+  // Sin conflictos documentados pero sin evidencia positiva: sin_datos.
+  assert.equal(C.evaluar({ especies: ["amphiprion_ocellaris", "lysmata_amboinensis"] }, real).estado_global, "sin_datos");
+  // Pacífico con semiagresivo y ambos territoriales.
+  const p = C.evaluar({ especies: ["amphiprion_ocellaris", "zebrasoma_flavescens"] }, real).pares[0];
+  assert.equal(p.estado, "precaucion");
+  assert.deepEqual(criterios(p, "precaucion"), ["temperamento", "territorialidad"]);
+  // El ídolo moro no tiene pH documentado ni es apto para arrecife según su ficha.
+  const z = C.evaluar({ especies: ["zanclus_cornutus", "amphiprion_ocellaris"], acuario: { tipo: "arrecife" } }, real);
+  assert.ok(z.datos_faltantes.some((x) => x.especie === "zanclus_cornutus" && x.campo === "ph"));
+  assert.equal(z.acuario.find((a) => a.especie === "zanclus_cornutus").estado, "incompatible");
+  // Toda fuente citada existe en el registro del catálogo.
+  const todas = C.evaluar({ especies: [...ids].slice(0, 12) }, real);
+  for (const [id, f] of Object.entries(todas.fuentes)) assert.ok(!f.no_registrada && f.url, id);
 });
 
 test("no modifica el catálogo (objeto congelado) y es determinista", () => {

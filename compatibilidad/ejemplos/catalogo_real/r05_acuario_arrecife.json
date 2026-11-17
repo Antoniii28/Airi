@@ -1,0 +1,483 @@
+{
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "entrada": {
+  "especies": [
+   "amphiprion_ocellaris",
+   "zanclus_cornutus",
+   "lysmata_amboinensis"
+  ],
+  "acuario": {
+   "volumen_l": 300,
+   "tipo": "arrecife",
+   "condiciones": {
+    "version": "0.4.1",
+    "perfil": "peces_marinos_msd",
+    "clasificacion": "R3",
+    "condiciones": {
+     "temperatura": {
+      "nombre": "Temperatura",
+      "valor": 25,
+      "unidad": "°C",
+      "intervalo": false,
+      "disponible": true,
+      "estado": "EP3",
+      "severidad": null
+     },
+     "ph": {
+      "nombre": "pH",
+      "valor": 8.2,
+      "unidad": "pH",
+      "intervalo": false,
+      "disponible": true,
+      "estado": "EP4",
+      "severidad": null
+     },
+     "salinidad": {
+      "nombre": "Salinidad",
+      "valor": 35,
+      "unidad": "ppt",
+      "intervalo": false,
+      "disponible": true,
+      "estado": "EP3",
+      "severidad": null
+     },
+     "amoniaco": {
+      "nombre": "Amoníaco total",
+      "valor": null,
+      "unidad": "mg/L TAN-N",
+      "intervalo": false,
+      "disponible": false,
+      "estado": "EP1",
+      "severidad": null
+     },
+     "nitritos": {
+      "nombre": "Nitritos",
+      "valor": null,
+      "unidad": "mg/L NO2-N",
+      "intervalo": false,
+      "disponible": false,
+      "estado": "EP1",
+      "severidad": null
+     },
+     "nitratos": {
+      "nombre": "Nitratos",
+      "valor": null,
+      "unidad": "mg/L NO3-N",
+      "intervalo": false,
+      "disponible": false,
+      "estado": "EP1",
+      "severidad": null
+     }
+    },
+    "no_disponibles": [
+     "amoniaco",
+     "nitritos",
+     "nitratos"
+    ],
+    "aviso": "Valores medidos y convertidos por el motor de agua. Que un valor esté disponible no significa que sea adecuado para el acuario ni para una especie; la ausencia de un valor nunca equivale a una condición favorable."
+   }
+  }
+ },
+ "salida": {
+  "version": "0.2.0",
+  "catalogo_version": "0.7.1",
+  "estado_global": "incompatible",
+  "etiqueta_global": "Incompatible",
+  "especies": [
+   {
+    "id": "amphiprion_ocellaris",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Pez payaso común",
+    "nombre_cientifico": "Amphiprion ocellaris"
+   },
+   {
+    "id": "zanclus_cornutus",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Ídolo moro",
+    "nombre_cientifico": "Zanclus cornutus"
+   },
+   {
+    "id": "lysmata_amboinensis",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Camarón limpiador",
+    "nombre_cientifico": "Lysmata amboinensis"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "amphiprion_ocellaris",
+     "zanclus_cornutus"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: faltan datos para evaluar.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 25.6 °C. Pez payaso común: 22.2–25.6 °C; Ídolo moro: 24–28 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Pez payaso común «pacifico», Ídolo moro «pacifico».",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "zanclus_cornutus",
+      "campo": "ph"
+     }
+    ]
+   },
+   {
+    "especies": [
+     "amphiprion_ocellaris",
+     "lysmata_amboinensis"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: no se detectaron conflictos, pero ninguna fuente confirma que puedan convivir.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 22.2 y 25.6 °C. Pez payaso común: 22.2–25.6 °C; Camarón limpiador: 22.2–25.6 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8.1 y 8.4 pH. Pez payaso común: 8.1–8.4 pH; Camarón limpiador: 8.1–8.4 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Pez payaso común «pacifico», Camarón limpiador «pacifico».",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     }
+    ],
+    "datos_faltantes": []
+   },
+   {
+    "especies": [
+     "zanclus_cornutus",
+     "lysmata_amboinensis"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: faltan datos para evaluar.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 25.6 °C. Ídolo moro: 24–28 °C; Camarón limpiador: 22.2–25.6 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "fishbase_zanclus_cornutus",
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Ídolo moro «pacifico», Camarón limpiador «pacifico».",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "zanclus_cornutus",
+      "campo": "ph"
+     }
+    ]
+   }
+  ],
+  "acuario": [
+   {
+    "especie": "amphiprion_ocellaris",
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: faltan datos para evaluar.",
+    "motivos": [
+     {
+      "criterio": "volumen",
+      "nombre": "Volumen del acuario",
+      "efecto": "sin_conflicto",
+      "texto": "Acuario: 300 L; mínimo orientativo de Pez payaso común: 75.7 L.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "fishbase_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "arrecife",
+      "nombre": "Acuario de arrecife",
+      "efecto": "sin_conflicto",
+      "texto": "La ficha indica adecuado para arrecife: «si».",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "agua_temperatura",
+      "nombre": "Temperatura medida",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 25 °C; rango de la ficha de Pez payaso común: 22.2–25.6 °C. El motor de agua no evalúa este parámetro; la comparación usa la fuente de la ficha.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "agua_ph",
+      "nombre": "pH medido",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 8.2 pH; rango de la ficha de Pez payaso común: 8.1–8.4 pH.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_salinidad",
+      "nombre": "Salinidad medida",
+      "efecto": "sin_datos",
+      "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "amphiprion_ocellaris",
+      "campo": "salinidad_ppt"
+     }
+    ]
+   },
+   {
+    "especie": "zanclus_cornutus",
+    "estado": "incompatible",
+    "etiqueta": "Incompatible",
+    "contradiccion": false,
+    "resumen": "Incompatible según: acuario de arrecife.",
+    "motivos": [
+     {
+      "criterio": "volumen",
+      "nombre": "Volumen del acuario",
+      "efecto": "precaucion",
+      "texto": "Acuario: 300 L; mínimo orientativo de Ídolo moro: 473.1 L. Está por debajo del mínimo documentado.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "arrecife",
+      "nombre": "Acuario de arrecife",
+      "efecto": "incompatible",
+      "texto": "La ficha indica adecuado para arrecife: «no».",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "agua_temperatura",
+      "nombre": "Temperatura medida",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 25 °C; rango de la ficha de Ídolo moro: 24–28 °C. El motor de agua no evalúa este parámetro; la comparación usa la fuente de la ficha.",
+      "fuentes": [
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_salinidad",
+      "nombre": "Salinidad medida",
+      "efecto": "sin_datos",
+      "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "zanclus_cornutus",
+      "campo": "ph"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "campo": "salinidad_ppt"
+     }
+    ]
+   },
+   {
+    "especie": "lysmata_amboinensis",
+    "estado": "sin_datos",
+    "etiqueta": "Información insuficiente",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: faltan datos para evaluar.",
+    "motivos": [
+     {
+      "criterio": "volumen",
+      "nombre": "Volumen del acuario",
+      "efecto": "sin_conflicto",
+      "texto": "Acuario: 300 L; mínimo orientativo de Camarón limpiador: 75.7 L.",
+      "fuentes": [
+       "saltwaterfish_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "arrecife",
+      "nombre": "Acuario de arrecife",
+      "efecto": "sin_conflicto",
+      "texto": "La ficha indica adecuado para arrecife: «si».",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "agua_temperatura",
+      "nombre": "Temperatura medida",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 25 °C; rango de la ficha de Camarón limpiador: 22.2–25.6 °C. El motor de agua no evalúa este parámetro; la comparación usa la fuente de la ficha.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "agua_ph",
+      "nombre": "pH medido",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 8.2 pH; rango de la ficha de Camarón limpiador: 8.1–8.4 pH.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_salinidad",
+      "nombre": "Salinidad medida",
+      "efecto": "sin_datos",
+      "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "lysmata_amboinensis",
+      "campo": "salinidad_ppt"
+     }
+    ]
+   }
+  ],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 24,
+    "max": 25.6
+   },
+   "ph": null,
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [
+   {
+    "especie": "zanclus_cornutus",
+    "campo": "ph"
+   },
+   {
+    "especie": "amphiprion_ocellaris",
+    "campo": "salinidad_ppt"
+   },
+   {
+    "especie": "zanclus_cornutus",
+    "campo": "salinidad_ppt"
+   },
+   {
+    "especie": "lysmata_amboinensis",
+    "campo": "salinidad_ppt"
+   }
+  ],
+  "fuentes": {
+   "liveaquaria_amphiprion_ocellaris": {
+    "titulo": "LiveAquaria — Ocellaris Clownfish",
+    "url": "https://www.liveaquaria.com/products/ocellaris-clownfish",
+    "tipo": "comercial"
+   },
+   "fishbase_zanclus_cornutus": {
+    "titulo": "FishBase — Zanclus cornutus (Linnaeus, 1758)",
+    "url": "https://www.fishbase.se/summary/Zanclus-cornutus.html",
+    "tipo": "biología"
+   },
+   "liveaquaria_zanclus_cornutus": {
+    "titulo": "LiveAquaria — Moorish Idol (EXPERT ONLY)",
+    "url": "https://www.liveaquaria.com/products/moorish-idol-expert-only",
+    "tipo": "comercial"
+   },
+   "liveaquaria_lysmata_amboinensis": {
+    "titulo": "LiveAquaria — Scarlet Skunk Cleaner Shrimp",
+    "url": "https://www.liveaquaria.com/products/scarlet-skunk-cleaner-shrimp",
+    "tipo": "comercial"
+   },
+   "fishbase_amphiprion_ocellaris": {
+    "titulo": "FishBase — Amphiprion ocellaris, Clown anemonefish",
+    "url": "https://www.fishbase.se/summary/Amphiprion-ocellaris.html",
+    "tipo": "biología"
+   },
+   "saltwaterfish_lysmata_amboinensis": {
+    "titulo": "Saltwaterfish — Cleaner Shrimp",
+    "url": "https://www.saltwaterfish.com/product-cleaner-shrimp",
+    "tipo": "comercial"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}
