@@ -13,9 +13,10 @@
     ["06_acuario_con_motor.json","Acuario y datos del motor"]
   ];
   const select=document.getElementById("compat-ejemplo"), salida=document.getElementById("compat-resultado");
-  const opciones=document.getElementById("compat-especies-opciones"), comparar=document.getElementById("compat-comparar");
+  const buscar=document.getElementById("compat-buscar"), sugerencias=document.getElementById("compat-sugerencias");
+  const etiquetas=document.getElementById("compat-especies-seleccionadas"), comparar=document.getElementById("compat-comparar");
   const estadoSeleccion=document.getElementById("compat-seleccion-estado");
-  if(!select||!salida||!opciones||!comparar)return;
+  if(!select||!salida||!buscar||!sugerencias||!etiquetas||!comparar)return;
 
   const estilos=document.createElement("style");
   estilos.textContent=
@@ -30,13 +31,11 @@
   '#compatibilidad .compat-aviso{background:#e1eff7;border:1px solid #a9cbdc;border-radius:10px;padding:13px;line-height:1.55;color:#123b56}'+
   '#compatibilidad .compat-tabla{width:100%;border-collapse:collapse;margin-top:8px}#compatibilidad .compat-tabla th,#compatibilidad .compat-tabla td{text-align:left;padding:8px;border-bottom:1px solid #c4dce8;font-size:14px;color:#173b56}#compatibilidad .compat-tabla th{color:#09284d}'+
   '#compatibilidad .compat-error{padding:12px;border-radius:9px;background:#fbdedc;color:#86251f}#compatibilidad .compat-cargando{color:#47667b;padding:12px}'+
-  '#compatibilidad .compat-seleccion{border:1px solid #c4dce8;border-radius:10px;padding:12px;margin:12px 0}#compatibilidad .compat-seleccion legend{font-weight:700;padding:0 6px;color:#09284d}'+
-  '#compatibilidad .compat-opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}#compatibilidad .compat-opcion{display:flex;align-items:center;gap:9px;padding:9px;border-radius:8px;background:#fff;color:#09284d;font-weight:500}#compatibilidad .compat-opcion input{width:auto;margin:0;accent-color:#087dbb}#compatibilidad .compat-selector .muted{color:#36576b}#compatibilidad a{overflow-wrap:anywhere}'+
+  '#compatibilidad .compat-aviso{background:#e1eff7;border:1px solid #a9cbdc;border-radius:10px;padding:13px;line-height:1.55;color:#123b56}'+
   'html[data-theme="dark"] #compatibilidad .compat-selector,html[data-theme="dark"] #compatibilidad .compat-bloque{background:#22364a;border-color:#405970;color:#e5edf5}'+
   'html[data-theme="dark"] #compatibilidad .compat-selector h3,html[data-theme="dark"] #compatibilidad .compat-bloque h3,html[data-theme="dark"] #compatibilidad .compat-bloque p,html[data-theme="dark"] #compatibilidad .compat-bloque li,html[data-theme="dark"] #compatibilidad .compat-bloque small,html[data-theme="dark"] #compatibilidad .compat-bloque h4{color:#e5edf5}'+
   'html[data-theme="dark"] #compatibilidad .compat-motivo{background:#172a3d;color:#e5edf5;border-left-color:#65b8df}html[data-theme="dark"] #compatibilidad .compat-motivo p,html[data-theme="dark"] #compatibilidad .compat-motivo small{color:#d3e1ec}'+
   'html[data-theme="dark"] #compatibilidad .compat-aviso{background:#263f55;border-color:#496b87;color:#e5edf5}html[data-theme="dark"] #compatibilidad .compat-tabla th,html[data-theme="dark"] #compatibilidad .compat-tabla td{color:#e5edf5;border-color:#405970}'+
-  'html[data-theme="dark"] #compatibilidad .compat-seleccion{border-color:#49647b}html[data-theme="dark"] #compatibilidad .compat-seleccion legend{color:#e5edf5}html[data-theme="dark"] #compatibilidad .compat-opcion{background:#172a3d;color:#e5edf5}html[data-theme="dark"] #compatibilidad .compat-selector .muted{color:#b5c6d6}'+
   '@media(max-width:640px){#compatibilidad .compat-tabla th,#compatibilidad .compat-tabla td{padding:6px;font-size:12px}}';
   document.head.appendChild(estilos);
 
@@ -45,7 +44,7 @@
   const estadoLabel=estado=>({compatible:"Compatible (orientativo)",precaucion:"Precaución",incompatible:"Incompatible",sin_datos:"Información insuficiente"})[estado]||"Estado no especificado";
   const sourceLinks=(ids,sources)=>(ids||[]).map(id=>{
     const source=sources?.[id];if(!source)return "<span>"+esc(id)+" (fuente no registrada)</span>";
-    const url=String(source.url||""),safeUrl=/^https?:\/\//i.test(url)?url:"";
+    const url=String(source.url||""),safeUrl=/^https?:\\/\\//i.test(url)?url:"";
     return safeUrl?'<a href="'+esc(safeUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(source.titulo||id)+'</a>':'<span>'+esc(source.titulo||id)+'</span>';
   }).join(" · ")||"Sin fuentes asociadas.";
 
@@ -82,8 +81,30 @@
   function obtenerCatalogo(){if(!catalogoPromise)catalogoPromise=fetch(catalogoUrl,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("No se pudo consultar el catálogo de especies ("+r.status+").");return r.json();});return catalogoPromise;}
 
   const listaEspecies=Array.isArray(window.AIRIListaEspecies)?window.AIRIListaEspecies:[];
-  opciones.className="compat-opciones";
-  opciones.innerHTML=listaEspecies.map(e=>'<label class="compat-opcion"><input type="checkbox" name="compat-especie" value="'+esc(e.id)+'"> <span>'+esc(e.nombre)+' <em>('+esc(e.cientifico)+')</em></span></label>').join("")||'<p class="muted">No se encontró la lista de especies.</p>';
+  const seleccionadas=new Map();
+  function pintarEtiquetas(){
+    etiquetas.innerHTML=seleccionadas.size?Array.from(seleccionadas.values()).map(e=>'<span class="compat-etiqueta">'+esc(e.nombre)+' <button type="button" class="compat-quitar" data-quitar="'+esc(e.id)+'" aria-label="Quitar '+esc(e.nombre)+'">×</button></span>').join(""):'<span class="muted">Aún no has seleccionado especies.</span>';
+  }
+  function pintarSugerencias(){
+    const q=buscar.value.trim().toLocaleLowerCase("es");
+    const coincidencias=listaEspecies.filter(e=>!seleccionadas.has(e.id)&&(!q||(e.nombre+" "+e.cientifico).toLocaleLowerCase("es").includes(q)));
+    sugerencias.innerHTML=coincidencias.map(e=>'<button type="button" role="option" aria-selected="false" class="compat-sugerencia" data-especie="'+esc(e.id)+'">'+esc(e.nombre)+' <em>('+esc(e.cientifico)+')</em></button>').join("")||'<p class="muted">No hay más coincidencias.</p>';
+    sugerencias.hidden=!q||!coincidencias.length;buscar.setAttribute("aria-expanded",String(!sugerencias.hidden));
+  }
+  buscar.addEventListener("input",pintarSugerencias);
+  buscar.addEventListener("focus",pintarSugerencias);
+  sugerencias.addEventListener("click",ev=>{
+    const boton=ev.target.closest("[data-especie]");if(!boton)return;
+    const e=listaEspecies.find(x=>x.id===boton.dataset.especie);if(!e)return;
+    seleccionadas.set(e.id,e);pintarEtiquetas();buscar.value="";sugerencias.hidden=true;buscar.setAttribute("aria-expanded","false");buscar.focus();
+    estadoSeleccion.textContent=seleccionadas.size+" especie(s) seleccionada(s).";
+  });
+  etiquetas.addEventListener("click",ev=>{
+    const boton=ev.target.closest("[data-quitar]");if(!boton)return;
+    seleccionadas.delete(boton.dataset.quitar);pintarEtiquetas();estadoSeleccion.textContent="Selección actualizada.";
+  });
+  document.addEventListener("click",ev=>{if(!ev.target.closest("#compatibilidad .compat-selector")){sugerencias.hidden=true;buscar.setAttribute("aria-expanded","false");}});
+  pintarEtiquetas();
   ejemplos.forEach(([file,label])=>{const option=document.createElement("option");option.value=file;option.textContent=label;select.appendChild(option);});
 
   async function cargarEjemplo(){
@@ -95,7 +116,7 @@
   select.addEventListener("change",cargarEjemplo);
 
   comparar.addEventListener("click",async()=>{
-    const ids=Array.from(opciones.querySelectorAll('input[name="compat-especie"]:checked')).map(x=>x.value);
+    const ids=Array.from(seleccionadas.keys());
     if(ids.length<2){estadoSeleccion.textContent="Selecciona al menos dos especies para realizar la comparación.";return;}
     if(ids.length>6){estadoSeleccion.textContent="Puedes seleccionar hasta seis especies.";return;}
     estadoSeleccion.textContent="Preparando la comparación…";select.value="";mostrarCarga("Consultando el módulo y el catálogo de especies…");comparar.disabled=true;
