@@ -1,0 +1,106 @@
+{
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "entrada": {
+  "especies": [
+   "zanclus_cornutus",
+   "forcipiger_flavissimus"
+  ]
+ },
+ "salida": {
+  "version": "0.2.0",
+  "catalogo_version": "0.7.1",
+  "estado_global": "sin_datos",
+  "etiqueta_global": "Faltan datos",
+  "especies": [
+   {
+    "id": "zanclus_cornutus",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Ídolo moro",
+    "nombre_cientifico": "Zanclus cornutus"
+   },
+   {
+    "id": "forcipiger_flavissimus",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Pez mariposa de nariz larga",
+    "nombre_cientifico": "Forcipiger flavissimus"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "zanclus_cornutus",
+     "forcipiger_flavissimus"
+    ],
+    "estado": "sin_datos",
+    "etiqueta": "Faltan datos",
+    "contradiccion": false,
+    "resumen": "Información insuficiente: faltan datos para evaluar.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 25.6 °C. Ídolo moro: 24–28 °C; Pez mariposa de nariz larga: 22.2–25.6 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "fishbase_zanclus_cornutus",
+       "liveaquaria_forcipiger_flavissimus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Ídolo moro «pacifico», Pez mariposa de nariz larga «pacifico».",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "liveaquaria_forcipiger_flavissimus"
+      ],
+      "confianza": "baja"
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "zanclus_cornutus",
+      "campo": "ph"
+     }
+    ]
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 24,
+    "max": 25.6
+   },
+   "ph": null,
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [
+   {
+    "especie": "zanclus_cornutus",
+    "campo": "ph"
+   }
+  ],
+  "fuentes": {
+   "fishbase_zanclus_cornutus": {
+    "titulo": "FishBase — Zanclus cornutus (Linnaeus, 1758)",
+    "url": "https://www.fishbase.se/summary/Zanclus-cornutus.html",
+    "tipo": "biología"
+   },
+   "liveaquaria_forcipiger_flavissimus": {
+    "titulo": "LiveAquaria — Yellow Longnose Butterflyfish",
+    "url": "https://www.liveaquaria.com/products/yellow-longnose-butterflyfish",
+    "tipo": "comercial"
+   },
+   "liveaquaria_zanclus_cornutus": {
+    "titulo": "LiveAquaria — Moorish Idol (EXPERT ONLY)",
+    "url": "https://www.liveaquaria.com/products/moorish-idol-expert-only",
+    "tipo": "comercial"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}

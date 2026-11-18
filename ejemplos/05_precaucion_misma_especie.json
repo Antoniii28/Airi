@@ -1,0 +1,72 @@
+{
+ "_nota": "EJEMPLO CON DATOS DE PRUEBA FICTICIOS (compatibilidad/datos_prueba). No es información biológica real.",
+ "entrada": {
+  "especies": [
+   {
+    "id": "prueba_agresivo",
+    "cantidad": 2
+   }
+  ]
+ },
+ "salida": {
+  "version": "0.2.0",
+  "catalogo_version": "prueba-0.1",
+  "estado_global": "precaucion",
+  "etiqueta_global": "Precaución: revisar convivencia",
+  "especies": [
+   {
+    "id": "prueba_agresivo",
+    "cantidad": 2,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba agresiva",
+    "nombre_cientifico": "Ferox delta"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "prueba_agresivo",
+     "prueba_agresivo"
+    ],
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: varios ejemplares de la misma especie.",
+    "motivos": [
+     {
+      "criterio": "misma_especie",
+      "nombre": "Varios ejemplares de la misma especie",
+      "efecto": "precaucion",
+      "texto": "Se piden 2 ejemplares de Especie de prueba agresiva, que figura como solitario y territorial.",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "datos_faltantes": []
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 24,
+    "max": 28
+   },
+   "ph": {
+    "min": 8,
+    "max": 8.4
+   },
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [],
+  "fuentes": {
+   "prueba_fuente_2": {
+    "titulo": "Fuente ficticia 2 (solo pruebas)",
+    "url": "https://example.org/airi-prueba/fuente-2",
+    "tipo": "prueba"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}

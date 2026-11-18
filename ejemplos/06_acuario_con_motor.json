@@ -1,0 +1,486 @@
+{
+ "_nota": "EJEMPLO CON DATOS DE PRUEBA FICTICIOS (compatibilidad/datos_prueba). No es información biológica real.",
+ "entrada": {
+  "especies": [
+   "prueba_pacifico_a",
+   "prueba_pacifico_b",
+   "prueba_agresivo_2"
+  ],
+  "acuario": {
+   "volumen_l": 200,
+   "tipo": "arrecife",
+   "condiciones": {
+    "version": "0.4.1",
+    "perfil": "peces_marinos_msd",
+    "clasificacion": "R3",
+    "condiciones": {
+     "temperatura": {
+      "nombre": "Temperatura",
+      "valor": 29,
+      "unidad": "°C",
+      "intervalo": false,
+      "disponible": true,
+      "estado": "EP3",
+      "severidad": null
+     },
+     "ph": {
+      "nombre": "pH",
+      "valor": 8.2,
+      "unidad": "pH",
+      "intervalo": false,
+      "disponible": true,
+      "estado": "EP4",
+      "severidad": null
+     },
+     "salinidad": {
+      "nombre": "Salinidad",
+      "valor": 35,
+      "unidad": "ppt",
+      "intervalo": false,
+      "disponible": true,
+      "estado": "EP3",
+      "severidad": null
+     },
+     "amoniaco": {
+      "nombre": "Amoníaco total",
+      "valor": null,
+      "unidad": "mg/L TAN-N",
+      "intervalo": false,
+      "disponible": false,
+      "estado": "EP1",
+      "severidad": null
+     },
+     "nitritos": {
+      "nombre": "Nitritos",
+      "valor": null,
+      "unidad": "mg/L NO2-N",
+      "intervalo": false,
+      "disponible": false,
+      "estado": "EP1",
+      "severidad": null
+     },
+     "nitratos": {
+      "nombre": "Nitratos",
+      "valor": null,
+      "unidad": "mg/L NO3-N",
+      "intervalo": false,
+      "disponible": false,
+      "estado": "EP1",
+      "severidad": null
+     }
+    },
+    "no_disponibles": [
+     "amoniaco",
+     "nitritos",
+     "nitratos"
+    ],
+    "aviso": "Valores medidos y convertidos por el motor de agua. Que un valor esté disponible no significa que sea adecuado para el acuario ni para una especie; la ausencia de un valor nunca equivale a una condición favorable."
+   }
+  }
+ },
+ "salida": {
+  "version": "0.2.0",
+  "catalogo_version": "prueba-0.1",
+  "estado_global": "precaucion",
+  "etiqueta_global": "Precaución: revisar convivencia",
+  "especies": [
+   {
+    "id": "prueba_pacifico_a",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba A",
+    "nombre_cientifico": "Probatus alfa"
+   },
+   {
+    "id": "prueba_pacifico_b",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba B",
+    "nombre_cientifico": "Probatus beta"
+   },
+   {
+    "id": "prueba_agresivo_2",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba agresiva 2",
+    "nombre_cientifico": "Ferox zeta"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "prueba_pacifico_a",
+     "prueba_pacifico_b"
+    ],
+    "estado": "compatible",
+    "etiqueta": "Compatible",
+    "contradiccion": false,
+    "resumen": "Compatible de forma orientativa: hay convivencia declarada con fuente y no se detectaron conflictos.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 26 °C. Especie de prueba A: 24–27 °C; Especie de prueba B: 23–26 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8.1 y 8.3 pH. Especie de prueba A: 8–8.3 pH; Especie de prueba B: 8.1–8.4 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Especie de prueba A «pacifico», Especie de prueba B «pacifico».",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "relacion",
+      "nombre": "Convivencia declarada en la ficha",
+      "efecto": "compatible",
+      "texto": "Ficha de Especie de prueba A: Convive con compañeros pacíficos (dato ficticio). (aplica a Especie de prueba B)",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "datos_faltantes": []
+   },
+   {
+    "especies": [
+     "prueba_pacifico_a",
+     "prueba_agresivo_2"
+    ],
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: temperamento.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 27 °C. Especie de prueba A: 24–27 °C; Especie de prueba agresiva 2: 24–27 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8 y 8.3 pH. Especie de prueba A: 8–8.3 pH; Especie de prueba agresiva 2: 8–8.3 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "precaucion",
+      "texto": "Especie de prueba agresiva 2 figura como «semiagresivo» y Especie de prueba A como «pacifico» (tamaño adulto máx.: 20 cm y 8 cm). Puede haber hostigamiento.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "datos_faltantes": []
+   },
+   {
+    "especies": [
+     "prueba_pacifico_b",
+     "prueba_agresivo_2"
+    ],
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: temperamento.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 26 °C. Especie de prueba B: 23–26 °C; Especie de prueba agresiva 2: 24–27 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8.1 y 8.3 pH. Especie de prueba B: 8.1–8.4 pH; Especie de prueba agresiva 2: 8–8.3 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "precaucion",
+      "texto": "Especie de prueba agresiva 2 figura como «semiagresivo» y Especie de prueba B como «pacifico» (tamaño adulto máx.: 20 cm y 10 cm). Puede haber hostigamiento.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "datos_faltantes": []
+   }
+  ],
+  "acuario": [
+   {
+    "especie": "prueba_pacifico_a",
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: temperatura medida.",
+    "motivos": [
+     {
+      "criterio": "volumen",
+      "nombre": "Volumen del acuario",
+      "efecto": "sin_conflicto",
+      "texto": "Acuario: 200 L; mínimo orientativo de Especie de prueba A: 100 L.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "arrecife",
+      "nombre": "Acuario de arrecife",
+      "efecto": "sin_conflicto",
+      "texto": "La ficha indica adecuado para arrecife: «si».",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_temperatura",
+      "nombre": "Temperatura medida",
+      "efecto": "precaucion",
+      "texto": "Medido: 29 °C; rango de la ficha de Especie de prueba A: 24–27 °C. Está fuera del rango documentado. El motor de agua no evalúa este parámetro; la comparación usa la fuente de la ficha.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_ph",
+      "nombre": "pH medido",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 8.2 pH; rango de la ficha de Especie de prueba A: 8–8.3 pH.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_salinidad",
+      "nombre": "Salinidad medida",
+      "efecto": "sin_datos",
+      "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "prueba_pacifico_a",
+      "campo": "salinidad_ppt"
+     }
+    ]
+   },
+   {
+    "especie": "prueba_pacifico_b",
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: temperatura medida.",
+    "motivos": [
+     {
+      "criterio": "volumen",
+      "nombre": "Volumen del acuario",
+      "efecto": "sin_conflicto",
+      "texto": "Acuario: 200 L; mínimo orientativo de Especie de prueba B: 150 L.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "arrecife",
+      "nombre": "Acuario de arrecife",
+      "efecto": "sin_conflicto",
+      "texto": "La ficha indica adecuado para arrecife: «si».",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_temperatura",
+      "nombre": "Temperatura medida",
+      "efecto": "precaucion",
+      "texto": "Medido: 29 °C; rango de la ficha de Especie de prueba B: 23–26 °C. Está fuera del rango documentado. El motor de agua no evalúa este parámetro; la comparación usa la fuente de la ficha.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_ph",
+      "nombre": "pH medido",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 8.2 pH; rango de la ficha de Especie de prueba B: 8.1–8.4 pH.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_salinidad",
+      "nombre": "Salinidad medida",
+      "efecto": "sin_datos",
+      "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "prueba_pacifico_b",
+      "campo": "salinidad_ppt"
+     }
+    ]
+   },
+   {
+    "especie": "prueba_agresivo_2",
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: volumen del acuario, acuario de arrecife, temperatura medida.",
+    "motivos": [
+     {
+      "criterio": "volumen",
+      "nombre": "Volumen del acuario",
+      "efecto": "precaucion",
+      "texto": "Acuario: 200 L; mínimo orientativo de Especie de prueba agresiva 2: 300 L. Está por debajo del mínimo documentado.",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "arrecife",
+      "nombre": "Acuario de arrecife",
+      "efecto": "precaucion",
+      "texto": "La ficha indica adecuado para arrecife: «con_precaucion».",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_temperatura",
+      "nombre": "Temperatura medida",
+      "efecto": "precaucion",
+      "texto": "Medido: 29 °C; rango de la ficha de Especie de prueba agresiva 2: 24–27 °C. Está fuera del rango documentado. El motor de agua no evalúa este parámetro; la comparación usa la fuente de la ficha.",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_ph",
+      "nombre": "pH medido",
+      "efecto": "sin_conflicto",
+      "texto": "Medido: 8.2 pH; rango de la ficha de Especie de prueba agresiva 2: 8–8.3 pH.",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "agua_salinidad",
+      "nombre": "Salinidad medida",
+      "efecto": "sin_datos",
+      "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
+      "fuentes": [],
+      "confianza": null
+     }
+    ],
+    "datos_faltantes": [
+     {
+      "especie": "prueba_agresivo_2",
+      "campo": "salinidad_ppt"
+     }
+    ]
+   }
+  ],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 24,
+    "max": 26
+   },
+   "ph": {
+    "min": 8.1,
+    "max": 8.3
+   },
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [
+   {
+    "especie": "prueba_pacifico_a",
+    "campo": "salinidad_ppt"
+   },
+   {
+    "especie": "prueba_pacifico_b",
+    "campo": "salinidad_ppt"
+   },
+   {
+    "especie": "prueba_agresivo_2",
+    "campo": "salinidad_ppt"
+   }
+  ],
+  "fuentes": {
+   "prueba_fuente_1": {
+    "titulo": "Fuente ficticia 1 (solo pruebas)",
+    "url": "https://example.org/airi-prueba/fuente-1",
+    "tipo": "prueba"
+   },
+   "prueba_fuente_2": {
+    "titulo": "Fuente ficticia 2 (solo pruebas)",
+    "url": "https://example.org/airi-prueba/fuente-2",
+    "tipo": "prueba"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}

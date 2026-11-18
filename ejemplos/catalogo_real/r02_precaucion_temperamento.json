@@ -1,0 +1,128 @@
+{
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "entrada": {
+  "especies": [
+   "amphiprion_ocellaris",
+   "zebrasoma_flavescens"
+  ]
+ },
+ "salida": {
+  "version": "0.2.0",
+  "catalogo_version": "0.7.1",
+  "estado_global": "precaucion",
+  "etiqueta_global": "Precaución: revisar convivencia",
+  "especies": [
+   {
+    "id": "amphiprion_ocellaris",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Pez payaso común",
+    "nombre_cientifico": "Amphiprion ocellaris"
+   },
+   {
+    "id": "zebrasoma_flavescens",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Cirujano amarillo",
+    "nombre_cientifico": "Zebrasoma flavescens"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "amphiprion_ocellaris",
+     "zebrasoma_flavescens"
+    ],
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: temperamento, territorialidad.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 22.2 y 25.6 °C. Pez payaso común: 22.2–25.6 °C; Cirujano amarillo: 22.2–25.6 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8.1 y 8.4 pH. Pez payaso común: 8.1–8.4 pH; Cirujano amarillo: 8.1–8.4 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "precaucion",
+      "texto": "Cirujano amarillo figura como «semiagresivo» y Pez payaso común como «pacifico» (tamaño adulto máx.: 20 cm y 11 cm). Puede haber hostigamiento.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris",
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "criterio": "territorialidad",
+      "nombre": "Territorialidad",
+      "efecto": "precaucion",
+      "texto": "Ambas especies figuran como territoriales y al menos una no es pacífica: pueden disputarse refugios.",
+      "fuentes": [
+       "fishbase_amphiprion_ocellaris",
+       "liveaquaria_amphiprion_ocellaris",
+       "fishbase_zebrasoma_flavescens",
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "datos_faltantes": []
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 22.2,
+    "max": 25.6
+   },
+   "ph": {
+    "min": 8.1,
+    "max": 8.4
+   },
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [],
+  "fuentes": {
+   "liveaquaria_amphiprion_ocellaris": {
+    "titulo": "LiveAquaria — Ocellaris Clownfish",
+    "url": "https://www.liveaquaria.com/products/ocellaris-clownfish",
+    "tipo": "comercial"
+   },
+   "liveaquaria_zebrasoma_flavescens": {
+    "titulo": "LiveAquaria — Yellow Tang, Hawaii",
+    "url": "https://www.liveaquaria.com/products/yellow-tang-hawaii",
+    "tipo": "comercial"
+   },
+   "fishbase_amphiprion_ocellaris": {
+    "titulo": "FishBase — Amphiprion ocellaris, Clown anemonefish",
+    "url": "https://www.fishbase.se/summary/Amphiprion-ocellaris.html",
+    "tipo": "biología"
+   },
+   "fishbase_zebrasoma_flavescens": {
+    "titulo": "FishBase — Zebrasoma flavescens, Yellow tang",
+    "url": "https://www.fishbase.se/summary/Zebrasoma-flavescens.html",
+    "tipo": "biología"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}

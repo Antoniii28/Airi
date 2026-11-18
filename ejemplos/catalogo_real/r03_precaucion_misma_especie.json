@@ -1,0 +1,78 @@
+{
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "entrada": {
+  "especies": [
+   {
+    "id": "zebrasoma_flavescens",
+    "cantidad": 2
+   }
+  ]
+ },
+ "salida": {
+  "version": "0.2.0",
+  "catalogo_version": "0.7.1",
+  "estado_global": "precaucion",
+  "etiqueta_global": "Precaución: revisar convivencia",
+  "especies": [
+   {
+    "id": "zebrasoma_flavescens",
+    "cantidad": 2,
+    "encontrada": true,
+    "nombre_comun": "Cirujano amarillo",
+    "nombre_cientifico": "Zebrasoma flavescens"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "zebrasoma_flavescens",
+     "zebrasoma_flavescens"
+    ],
+    "estado": "precaucion",
+    "etiqueta": "Precaución: revisar convivencia",
+    "contradiccion": false,
+    "resumen": "Requiere precaución por: varios ejemplares de la misma especie.",
+    "motivos": [
+     {
+      "criterio": "misma_especie",
+      "nombre": "Varios ejemplares de la misma especie",
+      "efecto": "precaucion",
+      "texto": "Se piden 2 ejemplares de Cirujano amarillo, que figura como solitario y territorial.",
+      "fuentes": [
+       "fishbase_zebrasoma_flavescens",
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "datos_faltantes": []
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 22.2,
+    "max": 25.6
+   },
+   "ph": {
+    "min": 8.1,
+    "max": 8.4
+   },
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [],
+  "fuentes": {
+   "fishbase_zebrasoma_flavescens": {
+    "titulo": "FishBase — Zebrasoma flavescens, Yellow tang",
+    "url": "https://www.fishbase.se/summary/Zebrasoma-flavescens.html",
+    "tipo": "biología"
+   },
+   "liveaquaria_zebrasoma_flavescens": {
+    "titulo": "LiveAquaria — Yellow Tang, Hawaii",
+    "url": "https://www.liveaquaria.com/products/yellow-tang-hawaii",
+    "tipo": "comercial"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}
