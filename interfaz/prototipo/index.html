@@ -198,12 +198,21 @@ html[data-theme="dark"] nav#menu-principal .menu-cerrar:hover,html[data-theme="d
 }
 @media(prefers-reduced-motion:reduce){nav#menu-principal,.menu-fondo{transition:none}}
 
-/* Desvanecimiento progresivo del encabezado al desplazarse · Actividad de Paola */
+/* Encabezado accesible durante el desplazamiento · Actividad de Paola */
 header{
-  --encabezado-desvanecimiento:0;
-  opacity:calc(1 - var(--encabezado-desvanecimiento));
-  filter:blur(calc(var(--encabezado-desvanecimiento) * 7px));
-  transform:translateY(calc(var(--encabezado-desvanecimiento) * -12px));
+  position:sticky;
+  top:0;
+  z-index:1002;
+  transition:background-color .25s ease,box-shadow .25s ease,backdrop-filter .25s ease;
+}
+header.encabezado-desplazado{
+  background:rgba(9,40,77,.9);
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+  box-shadow:0 5px 18px rgba(9,40,77,.2);
+}
+html[data-theme="dark"] header.encabezado-desplazado{
+  background:rgba(7,19,33,.92);
 }
 
 </style>
@@ -403,17 +412,15 @@ document.getElementById('limpiar').addEventListener('click',()=>{params.forEach(
 </script>
 
 <script>
-/* El encabezado se desvanece gradualmente conforme la página baja. */
+/* Mantiene el encabezado visible y accesible mientras se desplaza la página. */
 (function(){
   const encabezado=document.querySelector('header');
   if(!encabezado)return;
-  const actualizarDesvanecimiento=()=>{
-    const progreso=Math.min(Math.max(window.scrollY/150,0),1);
-    encabezado.style.setProperty('--encabezado-desvanecimiento',progreso.toFixed(3));
-    encabezado.style.pointerEvents=progreso>=0.98?'none':'';
+  const actualizarEncabezado=()=>{
+    encabezado.classList.toggle('encabezado-desplazado',window.scrollY>20);
   };
-  window.addEventListener('scroll',actualizarDesvanecimiento,{passive:true});
-  actualizarDesvanecimiento();
+  window.addEventListener('scroll',actualizarEncabezado,{passive:true});
+  actualizarEncabezado();
 })();
 </script>
 
