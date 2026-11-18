@@ -289,10 +289,11 @@ const especies=[
 ];
 window.AIRIListaEspecies = especies.map(e=>({id:e[4],nombre:e[0],cientifico:e[1]}));
 const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const menuToggle = document.getElementById('menu-toggle');
 function cerrarMenu(){
  document.body.classList.remove('menu-abierto');
- menu?.setAttribute('aria-expanded','false');
- menu?.setAttribute('aria-label','Abrir menú de navegación');
+ menuToggle?.setAttribute('aria-expanded','false');
+ menuToggle?.setAttribute('aria-label','Abrir menú de navegación');
 }
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{
  document.querySelectorAll('nav [data-tab]').forEach(x=>x.setAttribute('aria-selected',String(x.dataset.tab===b.dataset.tab)));
