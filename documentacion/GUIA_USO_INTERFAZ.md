@@ -19,7 +19,9 @@ En la parte superior encontrarás seis secciones:
 - **Próximas versiones**
 - **Chat con AIRI**
 
-Pulsa el botón **Menú** (icono de tres líneas) para desplegar la navegación y selecciona una sección para cambiar de pantalla. El menú se cierra al elegir una opción o pulsar Escape. El logotipo de AIRI también permite volver a Inicio.
+Pulsa el botón **Menú** (icono de tres líneas), situado en la parte superior derecha, para abrir el panel de navegación desde el lado derecho. Selecciona una sección para cambiar de pantalla. Para cerrar el panel, pulsa la **×** de la esquina superior derecha o presiona Escape; al elegir una sección también se cierra. El logotipo de AIRI permite volver a Inicio.
+
+El encabezado permanece visible mientras te desplazas por la página. Al bajar, su fondo se vuelve translúcido y difuminado para que siga siendo posible acceder a Inicio y al Menú sin ocupar tanto espacio visual.
 
 En el encabezado encontrarás el control **Modo oscuro / Modo claro**. Puedes alternar la apariencia de toda la interfaz; la selección se conserva en el navegador para próximas visitas.
 
@@ -78,12 +80,12 @@ Esta pestaña permite comparar especies del catálogo y consultar seis escenario
 ### Comparar especies del catálogo
 
 1. En **Buscar especie**, escribe el nombre común o científico y selecciona una sugerencia.
-2. Repite la búsqueda hasta reunir al menos dos especies. Cada selección aparecerá como una etiqueta debajo del buscador; puedes quitarla con la ×.
+2. Repite la búsqueda hasta reunir entre dos y seis especies. Cada selección aparecerá como una etiqueta debajo del buscador; puedes quitarla con la ×.
 3. Pulsa **Comparar selección**.
 4. Revisa el resultado general, la evaluación de cada par, los motivos, la confianza, las fuentes y los datos faltantes.
 5. Para probar otra combinación, agrega o quita etiquetas y vuelve a comparar.
 
-La evaluación se solicita al módulo de compatibilidad con los identificadores de las fichas y el catálogo disponible. La interfaz presenta la respuesta; no contiene reglas biológicas ni realiza cálculos propios. El resultado es orientativo y no garantiza la convivencia ni el bienestar de los organismos. La ausencia de información nunca significa que dos especies sean compatibles.
+La evaluación se solicita al módulo externo de compatibilidad con los identificadores de las especies seleccionadas y el catálogo disponible. La interfaz presenta la respuesta; no contiene reglas biológicas ni realiza cálculos propios. Para realizar la comparación se necesita conexión a internet y que estén disponibles los archivos del módulo y del catálogo en sus respectivas ramas del proyecto. Esta integración requiere pruebas funcionales en navegador, por lo que esta guía no afirma que haya sido validada de extremo a extremo. El resultado es orientativo y no garantiza la convivencia ni el bienestar de los organismos. La ausencia de información nunca significa que dos especies sean compatibles.
 
 ### Consultar escenarios de demostración
 
@@ -91,7 +93,7 @@ En **Consultar un escenario de demostración**, selecciona uno de los seis casos
 
 **Estos escenarios son ficticios y utilizan especies y fuentes de prueba.** No son resultados biológicos reales ni recomendaciones para combinar organismos.
 
-Si una comparación o un ejemplo no carga, comprueba la conexión a internet y que las ramas que contienen el módulo, el catálogo y los ejemplos sigan disponibles.
+Si una comparación no carga, comprueba la conexión a internet y que los archivos del módulo y del catálogo sigan disponibles en sus ramas correspondientes. Si un escenario de demostración no carga, verifica también que los archivos de ejemplo estén accesibles. Si el problema continúa, informa al equipo; no interpretes la falta de respuesta como un resultado de compatibilidad.
 
 ## 6. Próximas versiones
 
@@ -136,6 +138,7 @@ La mascota presenta mensajes y estados de la interfaz; no realiza por sí misma 
 - La validación del formato no demuestra que una medición sea segura.
 - El motor solo evalúa los parámetros que tienen referencias documentadas en esta versión.
 - Las fichas de especies son preliminares y no determinan compatibilidad.
+- La comparación entre especies depende de un módulo y un catálogo externos; su integración funcional todavía requiere pruebas en navegador.
 - Los seis escenarios de compatibilidad son ejemplos ficticios de demostración.
 - El chat es experimental, requiere un servicio externo y puede proporcionar información incorrecta.
 - Las funciones de identificación por fotografías y aplicación móvil todavía no están implementadas.
