@@ -197,6 +197,15 @@ html[data-theme="dark"] nav#menu-principal .menu-cerrar:hover,html[data-theme="d
  .texto-control{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){nav#menu-principal,.menu-fondo{transition:none}}
+
+/* Desvanecimiento progresivo del encabezado al desplazarse · Actividad de Paola */
+header{
+  --encabezado-desvanecimiento:0;
+  opacity:calc(1 - var(--encabezado-desvanecimiento));
+  filter:blur(calc(var(--encabezado-desvanecimiento) * 7px));
+  transform:translateY(calc(var(--encabezado-desvanecimiento) * -12px));
+}
+
 </style>
 <link rel="stylesheet" href="../mascota/mascota.css">
 <style>
@@ -392,4 +401,20 @@ document.getElementById('limpiar').addEventListener('click',()=>{params.forEach(
  actualizar();
 })();
 </script>
+
+<script>
+/* El encabezado se desvanece gradualmente conforme la página baja. */
+(function(){
+  const encabezado=document.querySelector('header');
+  if(!encabezado)return;
+  const actualizarDesvanecimiento=()=>{
+    const progreso=Math.min(Math.max(window.scrollY/150,0),1);
+    encabezado.style.setProperty('--encabezado-desvanecimiento',progreso.toFixed(3));
+    encabezado.style.pointerEvents=progreso>=0.98?'none':'';
+  };
+  window.addEventListener('scroll',actualizarDesvanecimiento,{passive:true});
+  actualizarDesvanecimiento();
+})();
+</script>
+
 </body></html>
