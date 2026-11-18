@@ -1,0 +1,61 @@
+/* AIRI · Estilos del apartado «Fichas de especies». Usa la paleta del prototipo. */
+
+/* ── Cuadrícula de tarjetas (solo imagen y nombre) ── */
+/* auto-fill: con pocos resultados las tarjetas conservan su ancho en lugar de estirarse */
+#catalogo { align-items: stretch; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.ficha { padding: 0; overflow: hidden; display: flex; transition: transform .15s ease, box-shadow .15s ease; }
+.ficha:hover { transform: translateY(-2px); box-shadow: 0 6px 18px #09284D1f; }
+.ficha-abrir { all: unset; box-sizing: border-box; display: flex; flex-direction: column; width: 100%; cursor: pointer; border-radius: 12px; }
+.ficha-abrir:focus-visible { outline: 3px solid #0982C7; outline-offset: -3px; }
+
+.ficha-figura { display: block; margin: 0; position: relative; }
+.ficha-figura img, .ficha-sin-imagen { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: #e0f4f9; }
+.ficha-sin-imagen { display: flex; align-items: center; justify-content: center; color: #47667b; font-weight: 600; }
+.ficha-credito { position: absolute; left: 6px; bottom: 6px; max-width: calc(100% - 12px); font-size: 10.5px; line-height: 1.3; color: white; background: #09284Dcc; padding: 2px 6px; border-radius: 6px; }
+.ficha .ficha-credito { display: none; } /* en la tarjeta pequeña se ve solo en la ficha completa */
+
+.ficha-cuerpo { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px 12px; }
+.ficha .ficha-cuerpo { gap: 2px; flex: 1; }
+.ficha-titulo { font-size: 16px; font-weight: 700; line-height: 1.2; color: #09284D; }
+.ficha-cientifico { margin: 0; color: #47667b; font-size: 13px; }
+.ficha-ver { margin-top: auto; padding-top: 6px; display: flex; justify-content: space-between; font-size: 12px; color: #47667b; }
+.ficha-ver span { color: #076caa; font-weight: 700; }
+
+/* ── Ventana con la ficha completa ── */
+.ficha-dialogo { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; border: 0; border-radius: 16px; overflow: auto; background: #f1fbfd; color: #09284D; box-shadow: 0 20px 60px #09284D59; }
+.ficha-dialogo::backdrop { background: #09284Dad; }
+.ficha-dialogo h3 { margin: 0; font-size: 22px; line-height: 1.2; }
+.ficha-dialogo .ficha-cientifico { margin-top: -3px; font-size: 14px; }
+.ficha-dialogo .ficha-figura img, .ficha-dialogo .ficha-sin-imagen { aspect-ratio: 16 / 10; }
+.ficha-dialogo .ficha-cuerpo { padding: 14px 16px 18px; gap: 8px; }
+.ficha-cerrar { position: sticky; top: 8px; float: right; margin: 8px 8px -44px 0; z-index: 2; width: 36px; height: 36px; border-radius: 50%; padding: 0; font-size: 22px; line-height: 1; background: #ffffffe6; color: #09284D; box-shadow: 0 2px 8px #09284D33; }
+.ficha-cerrar:focus-visible { outline: 3px solid #0982C7; }
+
+/* Mosaico de seis datos cortos */
+.ficha-mosaico { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.ficha-dato { background: white; border: 1px solid #d6eaf1; border-radius: 8px; padding: 5px 8px; min-width: 0; }
+.ficha-dato dt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .03em; color: #47667b; font-weight: 700; }
+.ficha-dato dd { margin: 2px 0 0; font-size: 14px; }
+.ficha-dato .ficha-chip { margin: 0; }
+
+.ficha-chip { display: inline-block; padding: 1px 7px; border-radius: 999px; background: #e0f4f9; font-weight: 700; font-size: 12px; }
+.ficha-chip-sm { font-size: 11px; padding: 0 6px; margin-right: 3px; vertical-align: 1px; }
+.ficha-chip-pacifico, .ficha-chip-arrecife-si { background: #e1f6e8; }
+.ficha-chip-semiagresivo, .ficha-chip-arrecife-con_precaucion { background: #fff1df; }
+.ficha-chip-agresivo, .ficha-chip-arrecife-no { background: #fde2e1; }
+.ficha-nulo { color: #47667b; font-style: italic; font-size: 12px; }
+
+/* Texto corrido */
+.ficha-linea { margin: 0; font-size: 14px; line-height: 1.5; }
+
+/* Notas desplegables */
+.ficha-notas { font-size: 12.5px; color: #47667b; border-top: 1px solid #d6eaf1; padding-top: 8px; }
+.ficha-notas summary { cursor: pointer; font-weight: 700; color: #076caa; }
+.ficha-notas ul { margin: 6px 0 0; padding-left: 18px; line-height: 1.45; }
+.ficha-notas li { margin-bottom: 4px; }
+
+@media (max-width: 480px) {
+  .ficha-mosaico { grid-template-columns: 1fr 1fr; }
+  .ficha-dialogo h3 { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .ficha { transition: none; } .ficha:hover { transform: none; } }
