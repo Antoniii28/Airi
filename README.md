@@ -1,6 +1,6 @@
 # AIRI — Agente Inteligente para Acuarios Marinos
 
-**Versión actual: v0.4** · proyecto académico · prototipo web funcional con motor de reglas para el agua.
+**Motor de análisis del agua: v0.4** · **Interfaz y chat: v0.6** · proyecto académico · prototipo web.
 
 AIRI (Agente Inteligente para la Supervisión y Gestión de un Acuario Marino) ayuda a registrar mediciones del agua,
 las valida y las compara con **referencias científicas documentadas**, y explica el resultado con sus fuentes. Las
@@ -10,16 +10,17 @@ decisiones y cualquier acción sobre el acuario permanecen bajo **supervisión h
 > acciones físicas** (bombas, dosificadores, calentadores) y **no está conectado a sensores**. Sus sugerencias son
 > informativas.
 
-## Funciones implementadas (v0.4)
+## Funciones disponibles actualmente
 
 | Función | Qué hace | Dónde |
 |---|---|---|
-| **Interfaz web** | Cuatro pestañas: Inicio, Parámetros del agua, Fichas de especies, Próximas versiones. Funciona sin servidor ni instalación (abriendo el HTML) | [`interfaz/prototipo/`](interfaz/prototipo/index.html) |
+| **Interfaz web** | Seis secciones: Inicio, Parámetros del agua, Fichas de especies, Compatibilidad, Próximas versiones y Chat con AIRI. Incluye navegación adaptable, encabezado que permanece visible al desplazarse, menú lateral y cambio entre tema claro y oscuro. El chat requiere servidor local | [`interfaz/prototipo/`](interfaz/prototipo/index.html) |
 | **Registro y validación de mediciones** | Seis parámetros (temperatura °C, pH, salinidad ppt, amoníaco total, nitritos y nitratos en mg/L), origen MANUAL o SIMULADO. **Paso 1 · Validación de formato:** dato presente, numérico, no negativo y pH ≤ 14. No juzga si el valor es adecuado | `interfaz/prototipo/` |
 | **Motor de reglas para el agua** | **Paso 2 · Evaluación con referencias científicas.** Aplica el grafo de decisiones: valida unidad y límites de captura, compara con referencias del Manual Veterinario MSD y UF/IFAS y clasifica en **R1–R4**. Muestra alertas por severidad, sugerencias, fuentes y datos que faltan | [`motor/`](motor/README.md) (Python, referencia) · [`interfaz/motor/`](interfaz/motor/README.md) (JavaScript, misma salida) |
 | **Mascota AIRI** | Pecera animada en Inicio y asistente flotante en las demás pestañas. Refleja el resultado real (alerta, información insuficiente, error); el mensaje se cierra con «×» y se reabre tocando a AIRI. Admite movimiento reducido y ocultar la mascota | [`interfaz/mascota/`](interfaz/mascota/README.md) |
 | **Voz y ayuda** | Lee mensajes breves con la síntesis de voz del navegador (desactivada por defecto, sin micrófono ni servicios externos). Menú de ayuda por pantalla; perfiles y ajustes de voz guardados en el navegador; tono serio sin alarmismo ante alertas | `interfaz/mascota/` |
 | **Fichas de especies** | Seis fichas **preliminares** con buscador por nombre común o científico. No indican compatibilidad | `interfaz/prototipo/`, [`especies/`](especies/fichas/README.md) |
+| **Compatibilidad (integración en esta rama)** | Permite buscar especies por nombre común o científico, seleccionar de 2 a 6 y solicitar su comparación mediante el módulo `AIRICompatibilidad` y el catálogo de especies alojados en las ramas de trabajo correspondientes. La interfaz presenta los resultados, motivos, fuentes y datos faltantes; no contiene reglas biológicas propias. También incluye seis escenarios ficticios de demostración. La integración depende de la disponibilidad y compatibilidad de esos recursos externos y requiere pruebas funcionales en navegador antes de considerarse validada | [`interfaz/prototipo/`](interfaz/prototipo/index.html), `interfaz/prototipo/compatibilidad.js` |
 | **Chat con AIRI (v0.5–v0.6, experimental)** | Conversación orientativa con Gemini a través de un servidor local que guarda la clave (`python chat/servidor.py` y abrir http://127.0.0.1:8765/). Pide consentimiento, no analiza mediciones ni busca en internet. No funciona en GitHub Pages ni con doble clic. **v0.6:** lectura de respuestas en voz alta (voz preferida Microsoft Sabina), mascota que «piensa» y habla, y dictado por micrófono opcional con revisión antes de enviar ([`documentacion/MICROFONO_v0.6.md`](documentacion/MICROFONO_v0.6.md)) | [`chat/`](chat/README.md), [`interfaz/chat/`](interfaz/chat/chat.js) |
 | **Grafo de decisiones** | Grafo estático (PNG/SVG/PDF) y simulación interactiva en Google Colab | [`grafo/`](grafo/README.md) |
 | **Documentación** | Descripción y alcance, normativa funcional y de seguridad, fundamentación, referencias e identidad visual | [`documentacion/`](documentacion/), [`entregables/`](entregables/), [`identidad-visual/`](identidad-visual/README.md) |
@@ -39,9 +40,14 @@ no pudo evaluar en lugar de declarar que todo está bien. Detalle y fuentes en [
 
 ## Funciones previstas (no implementadas)
 
+**Nota sobre la compatibilidad:** en las etapas anteriores del proyecto, la evaluación entre especies todavía no estaba implementada. En la rama `equipo/paola-interfaz-documentacion` ya existe una interfaz que permite buscar y seleccionar especies, solicitar una comparación al módulo externo y consultar seis escenarios ficticios. La interfaz no realiza cálculos biológicos por sí misma. Esta integración todavía debe probarse funcionalmente en navegador y no representa una validación biológica ni confirma que esté integrada en `main`. Los escenarios ficticios no deben utilizarse para decidir qué especies introducir en un acuario.
+
+Siguen pendientes:
+
+- Pruebas funcionales en navegador de la comparación entre especies con el módulo y el catálogo de las ramas correspondientes; confirmar también el contrato de integración con el equipo.
+- Incorporar, si el equipo lo acuerda, los escenarios con fichas reales al selector de demostraciones. Actualmente la interfaz ofrece seis escenarios ficticios.
 - Referencias verificadas para temperatura, salinidad y nitratos (requieren decisión del equipo y fuentes adecuadas).
 - Fichas de especies con datos biológicos verificados y fuentes por afirmación.
-- Evaluación de compatibilidad entre especies.
 - Identificación probable de peces por fotografía, con permiso del usuario y confirmación humana.
 - Almacenamiento e historial de mediciones con tendencias.
 - Posible aplicación móvil.
@@ -74,7 +80,7 @@ ejecuta todas las celdas (usa valores simulados).
 README.md                  este documento
 index.html                 redirección a la interfaz web
 chat/                      servidor local del chat con Gemini (v0.5) y sus pruebas
-documentacion/             descripción, normativa básica y de seguridad, fundamentación, referencias
+documentacion/             descripción, normativa, fundamentación, referencias y [guía de uso de la interfaz](documentacion/GUIA_USO_INTERFAZ.md)
 entregables/               entregas académicas (normativa integrada, interfaz inicial v0.1, fichas)
 especies/                  catálogo preliminar (JSON), plantilla de fichas y fuentes
 grafo/                     grafo de decisiones (DOT, PNG, SVG, PDF) y notebook de Colab
@@ -119,6 +125,7 @@ python interfaz/diagnostico-voz/pruebas/e2e_diagnostico.py  # v0.6: página de d
 | Motor JavaScript (incluye los 34 casos de conformidad) | 5/5 |
 | Mascota · voz · personalidad de voz (Node) | 12/12 · 16/16 · 11/11 |
 | Navegador: mascota · voz · ajustes de voz · análisis (escritorio y celular) | 76/76 · 50/50 · 43/43 · 57/57 |
+| Compatibilidad entre especies (interfaz + módulo externo) | Pendiente de prueba funcional integral en navegador; no incluida en los resultados anteriores |
 | Chat v0.5: servidor · Markdown seguro · navegador (escritorio y celular), con Gemini simulado | 29/29 · 8/8 · 35/35 |
 | Voz v0.6: texto para hablar · «pensando» (Node) · lectura en voz alta · pensando · dictado · diagnóstico (navegador) | 8/8 · 3/3 · 24/24 · 17/17 · 41/41 · 17/17 |
 
@@ -132,12 +139,13 @@ Historial de pruebas, errores encontrados y su corrección: [`motor/PRUEBAS_v0.4
 - Sin historial: cada evaluación es independiente. No convierte densidad relativa a salinidad ni calcula NH₃ no
   ionizado.
 - Las fichas de especies son preliminares y están escritas en la interfaz; el catálogo JSON aún no es su fuente.
-- Probado en Chrome automatizado (escritorio y celular emulado). Falta probar en un teléfono físico, en Safari o Firefox,
-  y escuchar la voz en el equipo del usuario.
+- Probado en Chrome automatizado (escritorio y celular emulado) para las suites indicadas en la tabla. La comparación entre especies todavía requiere una prueba funcional integral en navegador. Falta probar en un teléfono físico, en Safari o Firefox, y escuchar la voz en el equipo del usuario.
 - Los archivos de normativa y las entregas anteriores se conservan como documentos de su etapa. El estado actual del
   proyecto es el que describe este README.
 
 ## Documentación del proyecto
+
+[Guía de uso de la interfaz](documentacion/GUIA_USO_INTERFAZ.md): recorrido por las secciones disponibles, pasos básicos y limitaciones del prototipo.
 
 1. [Descripción y alcance](documentacion/01_descripcion_agente.md): objetivo, entradas, funciones y etapas.
 2. [Normativa básica o funcional](documentacion/02_normativa_basica.md): reglas, permisos, prohibiciones y responsabilidades.
