@@ -25,7 +25,7 @@ En el encabezado encontrarás el control **Modo oscuro / Modo claro**. Puedes al
 
 ## 2. Inicio
 
-Es la pantalla de bienvenida. Presenta una pecera animada amplia en la parte superior, con el título «Bienvenido a AIRI» y su descripción superpuestos; debajo aparecen tres tarjetas con información sobre agua, especies y control humano: consulta de parámetros del agua, fichas iniciales de especies y supervisión humana.
+Es la pantalla de bienvenida. Presenta una pecera ilustrativa en la parte superior, con el título «Bienvenido a AIRI» centrado, y resume tres aspectos: consulta de parámetros del agua, fichas iniciales de especies y supervisión humana.
 
 La pecera animada de AIRI es un elemento visual. No representa un acuario real ni recibe información de sensores.
 
