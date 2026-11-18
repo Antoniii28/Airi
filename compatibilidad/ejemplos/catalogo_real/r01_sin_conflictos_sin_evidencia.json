@@ -10,7 +10,7 @@
   "version": "0.2.0",
   "catalogo_version": "0.7.1",
   "estado_global": "sin_datos",
-  "etiqueta_global": "Información insuficiente",
+  "etiqueta_global": "Faltan datos",
   "especies": [
    {
     "id": "amphiprion_ocellaris",
@@ -34,7 +34,7 @@
      "lysmata_amboinensis"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: no se detectaron conflictos, pero ninguna fuente confirma que puedan convivir.",
     "motivos": [

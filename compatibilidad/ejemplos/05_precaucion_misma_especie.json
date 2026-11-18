@@ -12,7 +12,7 @@
   "version": "0.2.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "precaucion",
-  "etiqueta_global": "Precaución",
+  "etiqueta_global": "Precaución: revisar convivencia",
   "especies": [
    {
     "id": "prueba_agresivo",
@@ -29,7 +29,7 @@
      "prueba_agresivo"
     ],
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: varios ejemplares de la misma especie.",
     "motivos": [

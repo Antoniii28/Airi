@@ -10,7 +10,7 @@
   "version": "0.2.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "incompatible",
-  "etiqueta_global": "Incompatible",
+  "etiqueta_global": "No compatibles",
   "especies": [
    {
     "id": "prueba_pacifico_a",
@@ -34,7 +34,7 @@
      "prueba_contradictoria"
     ],
     "estado": "incompatible",
-    "etiqueta": "Incompatible",
+    "etiqueta": "No compatibles",
     "contradiccion": true,
     "resumen": "Incompatible según: convivencia declarada en la ficha. Hay evidencia contradictoria: se aplica el resultado más restrictivo y conviene revisarlo.",
     "motivos": [

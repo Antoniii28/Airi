@@ -10,7 +10,7 @@
   "version": "0.2.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "compatible",
-  "etiqueta_global": "Compatible (orientativo)",
+  "etiqueta_global": "Compatible",
   "especies": [
    {
     "id": "prueba_pacifico_a",
@@ -34,7 +34,7 @@
      "prueba_pacifico_b"
     ],
     "estado": "compatible",
-    "etiqueta": "Compatible (orientativo)",
+    "etiqueta": "Compatible",
     "contradiccion": false,
     "resumen": "Compatible de forma orientativa: hay convivencia declarada con fuente y no se detectaron conflictos.",
     "motivos": [

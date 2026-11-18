@@ -11,7 +11,7 @@
   "version": "0.2.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "sin_datos",
-  "etiqueta_global": "Información insuficiente",
+  "etiqueta_global": "Faltan datos",
   "especies": [
    {
     "id": "prueba_pacifico_a",
@@ -42,7 +42,7 @@
      "prueba_sin_datos"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: faltan datos para evaluar.",
     "motivos": [],
@@ -67,7 +67,7 @@
      "especie_inexistente"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: especie no encontrada en el catálogo.",
     "motivos": [
@@ -93,7 +93,7 @@
      "especie_inexistente"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: especie no encontrada en el catálogo.",
     "motivos": [

@@ -82,7 +82,7 @@
   "version": "0.2.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "precaucion",
-  "etiqueta_global": "Precaución",
+  "etiqueta_global": "Precaución: revisar convivencia",
   "especies": [
    {
     "id": "prueba_pacifico_a",
@@ -113,7 +113,7 @@
      "prueba_pacifico_b"
     ],
     "estado": "compatible",
-    "etiqueta": "Compatible (orientativo)",
+    "etiqueta": "Compatible",
     "contradiccion": false,
     "resumen": "Compatible de forma orientativa: hay convivencia declarada con fuente y no se detectaron conflictos.",
     "motivos": [
@@ -166,7 +166,7 @@
      "prueba_agresivo_2"
     ],
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: temperamento.",
     "motivos": [
@@ -212,7 +212,7 @@
      "prueba_agresivo_2"
     ],
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: temperamento.",
     "motivos": [
@@ -257,7 +257,7 @@
    {
     "especie": "prueba_pacifico_a",
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: temperatura medida.",
     "motivos": [
@@ -320,7 +320,7 @@
    {
     "especie": "prueba_pacifico_b",
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: temperatura medida.",
     "motivos": [
@@ -383,7 +383,7 @@
    {
     "especie": "prueba_agresivo_2",
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: volumen del acuario, acuario de arrecife, temperatura medida.",
     "motivos": [

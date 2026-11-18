@@ -82,7 +82,7 @@
   "version": "0.2.0",
   "catalogo_version": "0.7.1",
   "estado_global": "incompatible",
-  "etiqueta_global": "Incompatible",
+  "etiqueta_global": "No compatibles",
   "especies": [
    {
     "id": "amphiprion_ocellaris",
@@ -113,7 +113,7 @@
      "zanclus_cornutus"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: faltan datos para evaluar.",
     "motivos": [
@@ -153,7 +153,7 @@
      "lysmata_amboinensis"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: no se detectaron conflictos, pero ninguna fuente confirma que puedan convivir.",
     "motivos": [
@@ -199,7 +199,7 @@
      "lysmata_amboinensis"
     ],
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: faltan datos para evaluar.",
     "motivos": [
@@ -238,7 +238,7 @@
    {
     "especie": "amphiprion_ocellaris",
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: faltan datos para evaluar.",
     "motivos": [
@@ -302,7 +302,7 @@
    {
     "especie": "zanclus_cornutus",
     "estado": "incompatible",
-    "etiqueta": "Incompatible",
+    "etiqueta": "No compatibles",
     "contradiccion": false,
     "resumen": "Incompatible según: acuario de arrecife.",
     "motivos": [
@@ -359,7 +359,7 @@
    {
     "especie": "lysmata_amboinensis",
     "estado": "sin_datos",
-    "etiqueta": "Información insuficiente",
+    "etiqueta": "Faltan datos",
     "contradiccion": false,
     "resumen": "Información insuficiente: faltan datos para evaluar.",
     "motivos": [

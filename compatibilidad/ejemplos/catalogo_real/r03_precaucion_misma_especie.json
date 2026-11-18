@@ -12,7 +12,7 @@
   "version": "0.2.0",
   "catalogo_version": "0.7.1",
   "estado_global": "precaucion",
-  "etiqueta_global": "Precaución",
+  "etiqueta_global": "Precaución: revisar convivencia",
   "especies": [
    {
     "id": "zebrasoma_flavescens",
@@ -29,7 +29,7 @@
      "zebrasoma_flavescens"
     ],
     "estado": "precaucion",
-    "etiqueta": "Precaución",
+    "etiqueta": "Precaución: revisar convivencia",
     "contradiccion": false,
     "resumen": "Requiere precaución por: varios ejemplares de la misma especie.",
     "motivos": [
