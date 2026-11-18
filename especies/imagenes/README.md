@@ -56,6 +56,33 @@ Guarda aquí una foto por especie con **exactamente** estos nombres:
 | Erizo de puntas largas | `diadema-setosum.jpg` |
 | Gusano plumero | `sabellastarte-sp.jpg` |
 | Pepino de mar negro | `holothuria-atra.jpg` |
+| Pez ángel francés | `pomacanthus-paru.jpg` |
+| Pez globo cara de perro | `arothron-nigropunctatus.jpg` |
+| Cirujano gemma | `zebrasoma-gemmatum.jpg` |
+| Cirujano desjardini | `zebrasoma-desjardinii.jpg` |
+| Pez payaso tomate | `amphiprion-frenatus.jpg` |
+| Pez payaso marrón | `amphiprion-biaculeatus.jpg` |
+| Cirujano chocolate | `acanthurus-pyroferus.jpg` |
+| Cirujano tomini | `ctenochaetus-tominiensis.jpg` |
+| Cirujano polvo azul | `acanthurus-leucosternon.jpg` |
+| Cirujano polvo café | `acanthurus-japonicus.jpg` |
+| Cirujano scopas | `zebrasoma-scopas.jpg` |
+| Lábrido limpiador | `labroides-dimidiatus.jpg` |
+| Pez ángel reina | `holacanthus-ciliaris.jpg` |
+| Gobio watchman | `cryptocentrus-cinctus.jpg` |
+| Pez ángel emperador | `pomacanthus-imperator.jpg` |
+| Estrella de mar cornuda | `protoreaster-lincki.jpg` |
+| Pez vaca | `lactoria-cornuta.jpg` |
+| Foxface magnífico | `siganus-magnificus.jpg` |
+| Cirujano pimienta | `prionurus-punctatus.jpg` |
+| Cirujano convicto | `acanthurus-triostegus.jpg` |
+| Damisela dominó | `dascyllus-trimaculatus.jpg` |
+| Tiburón bambú | `chiloscyllium-punctatum.jpg` |
+| Raya de manchas azules | `taeniura-lymma.jpg` |
+| Coral torch | `euphyllia-glabrescens.jpg` |
+| Camarón pimienta | `lysmata-wurdemanni.jpg` |
+| Pez león | `pterois-volitans.jpg` |
+| Almeja fuego | `ctenoides-scaber.jpg` |
 
 Si tu foto es `.png` o `.webp`, cambia también la extensión en el campo `imagen.archivo` del JSON.
 

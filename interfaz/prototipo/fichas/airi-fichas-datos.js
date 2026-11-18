@@ -1,10 +1,10 @@
 /* ═══ AIRI · Catálogo de fichas de especies (GENERADO, no editar) ═══
    Origen: especies/datos/catalogo_inicial.json · generador: especies/herramientas/generar_fichas.py
-   catalogo_inicial.json  sha256 01867ba23ac97f21fc11a4921bb0997a8387094941b1d8afd46add3f64a6ff7d */
+   catalogo_inicial.json  sha256 ebe9eaf47aa965c09624b3a0b759acf1eb919602d4a08bafe02c9ff430a3289f */
 (function (raiz) {
   "use strict";
   var datos = {
- "version": "0.7.1",
+ "version": "0.8",
  "estado": "fichas verificadas con fuentes; pendientes de revisión del equipo. No determinan compatibilidad entre especies.",
  "fecha_consulta": "2026-11-16",
  "responsable": "Brayan (rama equipo/brayan-fichas-especies)",
@@ -932,6 +932,441 @@
    "tipo": "comercial",
    "titulo": "Saltwaterfish — Marble Starfish: Red (Fromia sp.)",
    "url": "https://www.saltwaterfish.com/product-marble-starfish-red"
+  },
+  "worms_pomacanthus_paru": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Pomacanthus paru (Bloch, 1787) (AphiaID 276025)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=276025"
+  },
+  "fishbase_pomacanthus_paru": {
+   "tipo": "biología",
+   "titulo": "FishBase — Pomacanthus paru",
+   "url": "https://www.fishbase.se/summary/Pomacanthus-paru.html"
+  },
+  "liveaquaria_pomacanthus_paru": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — French Angelfish (Pomacanthus paru)",
+   "url": "https://www.liveaquaria.com/products/french-angelfish-1"
+  },
+  "worms_arothron_nigropunctatus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Arothron nigropunctatus (Bloch & Schneider, 1801) (AphiaID 219921)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219921"
+  },
+  "fishbase_arothron_nigropunctatus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Arothron nigropunctatus",
+   "url": "https://www.fishbase.se/summary/Arothron-nigropunctatus.html"
+  },
+  "liveaquaria_arothron_nigropunctatus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Arothron Dog Face Puffer (Arothron nigropunctatus)",
+   "url": "https://www.liveaquaria.com/products/arothron-dog-face-puffer"
+  },
+  "worms_zebrasoma_gemmatum": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Zebrasoma gemmatum (Valenciennes, 1835) (AphiaID 219680)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219680"
+  },
+  "fishbase_zebrasoma_gemmatum": {
+   "tipo": "biología",
+   "titulo": "FishBase — Zebrasoma gemmatum",
+   "url": "https://www.fishbase.se/summary/Zebrasoma-gemmatum.html"
+  },
+  "liveaquaria_zebrasoma_gemmatum": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Gemmatum Tang (Zebrasoma gemmatum)",
+   "url": "https://www.liveaquaria.com/products/gemmatum-tang"
+  },
+  "worms_zebrasoma_desjardinii": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Zebrasoma desjardinii (Bennett, 1836) (AphiaID 277555)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=277555"
+  },
+  "fishbase_zebrasoma_desjardinii": {
+   "tipo": "biología",
+   "titulo": "FishBase — Zebrasoma desjardinii",
+   "url": "https://www.fishbase.se/summary/Zebrasoma-desjardinii.html"
+  },
+  "liveaquaria_zebrasoma_desjardinii": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Desjardini Sailfin Tang (Zebrasoma desjardinii)",
+   "url": "https://www.liveaquaria.com/products/sailfin-tang-desjardini"
+  },
+  "worms_amphiprion_frenatus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Amphiprion frenatus Brevoort, 1856 (AphiaID 278394)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=278394"
+  },
+  "fishbase_amphiprion_frenatus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Amphiprion frenatus",
+   "url": "https://www.fishbase.se/summary/Amphiprion-frenatus.html"
+  },
+  "liveaquaria_amphiprion_frenatus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Tomato Clownfish (Amphiprion frenatus)",
+   "url": "https://www.liveaquaria.com/products/tomato-clownfish"
+  },
+  "worms_amphiprion_biaculeatus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Amphiprion biaculeatus (Bloch, 1790) (AphiaID 1605249)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=1605249"
+  },
+  "fishbase_amphiprion_biaculeatus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Premnas biaculeatus",
+   "url": "https://www.fishbase.se/summary/Premnas-biaculeatus.html"
+  },
+  "liveaquaria_amphiprion_biaculeatus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Maroon Clownfish",
+   "url": "https://www.liveaquaria.com/products/maroon-clownfish"
+  },
+  "worms_acanthurus_pyroferus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Acanthurus pyroferus Kittlitz, 1834 (AphiaID 219648)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219648"
+  },
+  "fishbase_acanthurus_pyroferus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Acanthurus pyroferus",
+   "url": "https://www.fishbase.se/summary/Acanthurus-pyroferus.html"
+  },
+  "liveaquaria_acanthurus_pyroferus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Mimic Lemon Peel Tang (Acanthurus pyroferus)",
+   "url": "https://www.liveaquaria.com/products/fijian-mimic-lemon-peel-tang"
+  },
+  "worms_ctenochaetus_tominiensis": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Ctenochaetus tominiensis Randall, 1955 (AphiaID 277562)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=277562"
+  },
+  "fishbase_ctenochaetus_tominiensis": {
+   "tipo": "biología",
+   "titulo": "FishBase — Ctenochaetus tominiensis",
+   "url": "https://www.fishbase.se/summary/Ctenochaetus-tominiensis.html"
+  },
+  "liveaquaria_ctenochaetus_tominiensis": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Bristletooth Tomini Tang (Ctenochaetus tominiensis)",
+   "url": "https://www.liveaquaria.com/products/bristletooth-tomini-tang"
+  },
+  "worms_acanthurus_leucosternon": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Acanthurus leucosternon Bennett, 1833 (AphiaID 219628)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219628"
+  },
+  "fishbase_acanthurus_leucosternon": {
+   "tipo": "biología",
+   "titulo": "FishBase — Acanthurus leucosternon",
+   "url": "https://www.fishbase.se/summary/Acanthurus-leucosternon.html"
+  },
+  "liveaquaria_acanthurus_leucosternon": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Powder Blue Tang",
+   "url": "https://www.liveaquaria.com/products/powder-blue-tang"
+  },
+  "saltwaterfish_acanthurus_leucosternon": {
+   "tipo": "comercial",
+   "titulo": "Saltwaterfish — Powder Blue Tang",
+   "url": "https://www.saltwaterfish.com/product-powder-blue-tang"
+  },
+  "worms_acanthurus_japonicus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Acanthurus japonicus (Schmidt, 1931) (AphiaID 272962)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=272962"
+  },
+  "fishbase_acanthurus_japonicus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Acanthurus japonicus",
+   "url": "https://www.fishbase.se/summary/Acanthurus-japonicus.html"
+  },
+  "liveaquaria_acanthurus_japonicus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Powder Brown Tang (Acanthurus japonicus)",
+   "url": "https://www.liveaquaria.com/products/powder-brown-tang"
+  },
+  "worms_zebrasoma_scopas": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Zebrasoma scopas (Cuvier, 1829) (AphiaID 219679)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219679"
+  },
+  "fishbase_zebrasoma_scopas": {
+   "tipo": "biología",
+   "titulo": "FishBase — Zebrasoma scopas",
+   "url": "https://www.fishbase.se/summary/Zebrasoma-scopas.html"
+  },
+  "liveaquaria_zebrasoma_scopas": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Scopas Tang (Zebrasoma scopas)",
+   "url": "https://www.liveaquaria.com/products/scopas-tang"
+  },
+  "worms_labroides_dimidiatus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Labroides dimidiatus (Valenciennes, 1839) (AphiaID 219014)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219014"
+  },
+  "fishbase_labroides_dimidiatus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Labroides dimidiatus",
+   "url": "https://www.fishbase.se/summary/Labroides-dimidiatus.html"
+  },
+  "liveaquaria_labroides_dimidiatus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Bluestreak Cleaner Wrasse (Labroides dimidiatus)",
+   "url": "https://www.liveaquaria.com/products/bluestreak-cleaner-wrasse"
+  },
+  "worms_holacanthus_ciliaris": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Holacanthus ciliaris (Linnaeus, 1758) (AphiaID 276012)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=276012"
+  },
+  "fishbase_holacanthus_ciliaris": {
+   "tipo": "biología",
+   "titulo": "FishBase — Holacanthus ciliaris",
+   "url": "https://www.fishbase.se/summary/Holacanthus-ciliaris.html"
+  },
+  "liveaquaria_holacanthus_ciliaris": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Queen Angelfish (Holacanthus ciliaris)",
+   "url": "https://www.liveaquaria.com/products/queen-angelfish"
+  },
+  "worms_cryptocentrus_cinctus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Cryptocentrus cinctus (Herre, 1936) (AphiaID 278326)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=278326"
+  },
+  "fishbase_cryptocentrus_cinctus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Cryptocentrus cinctus",
+   "url": "https://www.fishbase.se/summary/Cryptocentrus-cinctus.html"
+  },
+  "liveaquaria_cryptocentrus_cinctus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Spotted Watchman Goby (Cryptocentrus cinctus)",
+   "url": "https://www.liveaquaria.com/products/spotted-watchman-goby"
+  },
+  "worms_pomacanthus_imperator": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Pomacanthus imperator (Bloch, 1787) (AphiaID 220001)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=220001"
+  },
+  "fishbase_pomacanthus_imperator": {
+   "tipo": "biología",
+   "titulo": "FishBase — Pomacanthus imperator",
+   "url": "https://www.fishbase.se/summary/Pomacanthus-imperator.html"
+  },
+  "liveaquaria_pomacanthus_imperator": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Emperor Angelfish (Pomacanthus imperator)",
+   "url": "https://www.liveaquaria.com/products/emperor-angelfish"
+  },
+  "worms_protoreaster_lincki": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Protoreaster lincki (Blainville, 1830) (AphiaID 213286)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=213286"
+  },
+  "sealifebase_protoreaster_lincki": {
+   "tipo": "biología",
+   "titulo": "SeaLifeBase — Protoreaster lincki",
+   "url": "https://www.sealifebase.se/summary/Protoreaster-lincki.html"
+  },
+  "liveaquaria_protoreaster_lincki": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Red Knob Sea Star (Protoreaster linckii)",
+   "url": "https://www.liveaquaria.com/products/red-knob-sea-star"
+  },
+  "saltwaterfish_protoreaster_lincki": {
+   "tipo": "comercial",
+   "titulo": "Saltwaterfish — African Red Knob (Red Tip) Starfish",
+   "url": "https://www.saltwaterfish.com/product-african-red-knob-star"
+  },
+  "worms_lactoria_cornuta": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Lactoria cornuta (Linnaeus, 1758) (AphiaID 219904)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219904"
+  },
+  "fishbase_lactoria_cornuta": {
+   "tipo": "biología",
+   "titulo": "FishBase — Lactoria cornuta",
+   "url": "https://www.fishbase.se/summary/Lactoria-cornuta.html"
+  },
+  "liveaquaria_lactoria_cornuta": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Longhorn Cowfish (EXPERT ONLY)",
+   "url": "https://www.liveaquaria.com/products/longhorn-cowfish-expert-only"
+  },
+  "worms_siganus_magnificus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Siganus magnificus (Burgess, 1977) (AphiaID 273917)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=273917"
+  },
+  "fishbase_siganus_magnificus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Siganus magnificus",
+   "url": "https://www.fishbase.se/summary/Siganus-magnificus.html"
+  },
+  "liveaquaria_siganus_magnificus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Magnificent Foxface (Siganus magnificus)",
+   "url": "https://www.liveaquaria.com/products/magnificent-foxface"
+  },
+  "worms_prionurus_punctatus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Prionurus punctatus Gill, 1862 (AphiaID 282349)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=282349"
+  },
+  "fishbase_prionurus_punctatus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Prionurus punctatus",
+   "url": "https://www.fishbase.se/summary/Prionurus-punctatus.html"
+  },
+  "qualitymarine_prionurus_punctatus": {
+   "tipo": "comercial",
+   "titulo": "Quality Marine — Yellowtail Tang (Prionurus punctatus)",
+   "url": "https://www.qualitymarine.com/quality-marine/fish/tangs/prionurus/sawtail-yellowtail-31542/"
+  },
+  "worms_acanthurus_triostegus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Acanthurus triostegus (Linnaeus, 1758) (AphiaID 219630)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=219630"
+  },
+  "fishbase_acanthurus_triostegus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Acanthurus triostegus",
+   "url": "https://www.fishbase.se/summary/Acanthurus-triostegus.html"
+  },
+  "liveaquaria_acanthurus_triostegus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Convict Tang (Acanthurus triostegus)",
+   "url": "https://www.liveaquaria.com/products/convict-tang"
+  },
+  "worms_dascyllus_trimaculatus": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Dascyllus trimaculatus (Rüppell, 1829) (AphiaID 212846)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=212846"
+  },
+  "fishbase_dascyllus_trimaculatus": {
+   "tipo": "biología",
+   "titulo": "FishBase — Dascyllus trimaculatus",
+   "url": "https://www.fishbase.se/summary/Dascyllus-trimaculatus.html"
+  },
+  "liveaquaria_dascyllus_trimaculatus": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Three Spot Domino Damselfish (Dascyllus trimaculatus)",
+   "url": "https://www.liveaquaria.com/products/three-spot-domino-damselfish"
+  },
+  "worms_chiloscyllium_punctatum": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Chiloscyllium punctatum Müller & Henle, 1838 (AphiaID 277833)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=277833"
+  },
+  "fishbase_chiloscyllium_punctatum": {
+   "tipo": "biología",
+   "titulo": "FishBase — Chiloscyllium punctatum",
+   "url": "https://www.fishbase.se/summary/Chiloscyllium-punctatum.html"
+  },
+  "qualitymarine_chiloscyllium_punctatum": {
+   "tipo": "comercial",
+   "titulo": "Quality Marine — Bamboo Shark (Chiloscyllium sp.)",
+   "url": "https://www.qualitymarine.com/quality-marine/fish/sharks/chilocyllium/bamboo-29028/"
+  },
+  "saltwaterfish_chiloscyllium_punctatum": {
+   "tipo": "comercial",
+   "titulo": "Saltwaterfish — Brown Banded Bamboo Shark",
+   "url": "https://www.saltwaterfish.com/product-brown-banded-bamboo-shark"
+  },
+  "worms_taeniura_lymma": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Taeniura lymma (Fabricius, 1775) (AphiaID 217422)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=217422"
+  },
+  "fishbase_taeniura_lymma": {
+   "tipo": "biología",
+   "titulo": "FishBase — Taeniura lymma",
+   "url": "https://www.fishbase.se/summary/Taeniura-lymma.html"
+  },
+  "qualitymarine_taeniura_lymma": {
+   "tipo": "comercial",
+   "titulo": "Quality Marine — Blue Spotted Stingray (Taeniura lymma)",
+   "url": "https://www.qualitymarine.com/quality-marine/fish/rays/taeniura/blue-dot-lymma-27502/"
+  },
+  "worms_euphyllia_glabrescens": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Euphyllia glabrescens (Chamisso & Eysenhardt, 1821) (AphiaID 207617)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=207617"
+  },
+  "sealifebase_euphyllia_glabrescens": {
+   "tipo": "biología",
+   "titulo": "SeaLifeBase — Euphyllia glabrescens",
+   "url": "https://www.sealifebase.se/summary/Euphyllia-glabrescens.html"
+  },
+  "liveaquaria_euphyllia_glabrescens": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Torch Coral (Euphyllia glabrescens)",
+   "url": "https://www.liveaquaria.com/products/torch-coral"
+  },
+  "saltwaterfish_euphyllia_glabrescens": {
+   "tipo": "comercial",
+   "titulo": "Saltwaterfish — Torch Coral: Green w/ Purple Tips - Aquacultured",
+   "url": "https://www.saltwaterfish.com/product-green-torch-purple-tips"
+  },
+  "worms_lysmata_wurdemanni": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Lysmata wurdemanni (Gibbes, 1850) (AphiaID 158365)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=158365"
+  },
+  "sealifebase_lysmata_wurdemanni": {
+   "tipo": "biología",
+   "titulo": "SeaLifeBase — Lysmata wurdemanni",
+   "url": "https://www.sealifebase.se/summary/Lysmata-wurdemanni.html"
+  },
+  "liveaquaria_lysmata_wurdemanni": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Peppermint Shrimp (Lysmata wurdemanni)",
+   "url": "https://www.liveaquaria.com/products/peppermint-shrimp"
+  },
+  "saltwaterfish_lysmata_wurdemanni": {
+   "tipo": "comercial",
+   "titulo": "Saltwaterfish — Peppermint Shrimp",
+   "url": "https://www.saltwaterfish.com/product-peppermint-shrimp"
+  },
+  "worms_pterois_volitans": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Pterois volitans (Linnaeus, 1758) (AphiaID 159559)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=159559"
+  },
+  "fishbase_pterois_volitans": {
+   "tipo": "biología",
+   "titulo": "FishBase — Pterois volitans",
+   "url": "https://www.fishbase.se/summary/Pterois-volitans.html"
+  },
+  "liveaquaria_pterois_volitans": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Volitan Lionfish, Colored (Pterois volitans)",
+   "url": "https://www.liveaquaria.com/products/volitan-lionfish-colored"
+  },
+  "worms_ctenoides_scaber": {
+   "tipo": "taxonomía",
+   "titulo": "WoRMS — Ctenoides scaber (Born, 1778) (AphiaID 420747)",
+   "url": "https://www.marinespecies.org/aphia.php?p=taxdetails&id=420747"
+  },
+  "sealifebase_ctenoides_scaber": {
+   "tipo": "biología",
+   "titulo": "SeaLifeBase — Ctenoides scaber",
+   "url": "https://www.sealifebase.se/summary/Ctenoides-scaber.html"
+  },
+  "liveaquaria_ctenoides_scaber": {
+   "tipo": "comercial",
+   "titulo": "LiveAquaria — Flame Scallop (Red File Shell Clam) (Lima scabra)",
+   "url": "https://www.liveaquaria.com/products/flame-scallop-expert-only"
+  },
+  "saltwaterfish_ctenoides_scaber": {
+   "tipo": "comercial",
+   "titulo": "Saltwaterfish — Electric Flame Scallop (Lima sp.)",
+   "url": "https://www.saltwaterfish.com/product-flame-scallop"
   }
  },
  "especies": [
@@ -14094,6 +14529,6828 @@
      "confianza": "alta"
     }
    }
+  },
+  {
+   "id": "pomacanthus_paru",
+   "nombre_comun": "Pez ángel francés",
+   "otros_nombres": [
+    "French angelfish",
+    "Gallineta negra"
+   ],
+   "nombre_cientifico": "Pomacanthus paru",
+   "autoridad": "(Bloch, 1787)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/pomacanthus-paru.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/pomacanthus-paru.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Chaetodontiformes",
+    "familia": "Pomacanthidae",
+    "subfamilia": null,
+    "aphia_id": 276025,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Chaetodon paru Bloch, 1787 (combinación original)",
+     "Chaetodon aureus Bloch, 1787",
+     "Pomacanthus aureus"
+    ],
+    "fuentes": [
+     "worms_pomacanthus_paru",
+     "fishbase_pomacanthus_paru"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes someros; los adultos suelen ir en pareja, a menudo cerca de gorgonias (FishBase).",
+    "profundidad_m": {
+     "min": 3,
+     "max": 100
+    },
+    "distribucion": "Atlántico occidental: de Florida y las Bahamas a Brasil, incluidos el golfo de México y el Caribe; Atlántico oriental: isla Ascensión y peñascos de San Pedro y San Pablo.",
+    "fuentes": [
+     "fishbase_pomacanthus_paru"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 41.1,
+    "tipo": "longitud total",
+    "contraste": "Diferencia menor entre fuentes: FishBase 41.1 cm; LiveAquaria 15 in (≈ 38.1 cm).",
+    "fuentes": [
+     "fishbase_pomacanthus_paru",
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Omnívoro: come esponjas, algas, briozoos, zoantarios, gorgonias y tunicados (FishBase). En acuario: espirulina, algas marinas, preparados para peces ángel con esponja y mysis o camarón congelado, al menos tres veces al día (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pomacanthus_paru",
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 946.2,
+    "galones_us": 250,
+    "justificacion": "Cifra de LiveAquaria (250 gal), con abundante roca viva para esconderse y pastar.",
+    "fuentes": [
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Los adultos suelen ir en pareja; son monógamos y las parejas reproductoras defienden con fuerza su territorio. Los juveniles atienden estaciones de limpieza para otros peces (FishBase). En acuario tiende a dominar a sus compañeros (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pomacanthus_paru",
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Las parejas son muy territoriales (FishBase); necesita roca viva abundante para esconderse y pastar (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pomacanthus_paru",
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "no",
+    "fuentes": [
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 250 gal o más con abundante roca viva.",
+     "Alimentarlo al menos tres veces al día."
+    ],
+    "riesgos": [
+     "Pica corales y almejas.",
+     "Tiende a dominar el acuario."
+    ],
+    "fuentes": [
+     "liveaquaria_pomacanthus_paru"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 08/10/2009, según FishBase",
+    "fuentes": [
+     "fishbase_pomacanthus_paru"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_pomacanthus_paru",
+    "fishbase_pomacanthus_paru",
+    "liveaquaria_pomacanthus_paru",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez ángel francés",
+    "nombre_cientifico": "Pomacanthus paru",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Semiagresivo y dominante; necesita un acuario muy grande. Pica corales y almejas. Los juveniles limpian a otros peces.",
+     "fuentes": [
+      "fishbase_pomacanthus_paru",
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "no",
+     "explicacion": "LiveAquaria lo desaconseja: pica corales blandos y duros y el manto de las almejas.",
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "esponjas",
+      "algas",
+      "gorgonias y tunicados",
+      "preparados para peces ángel con esponja",
+      "mysis o camarón congelado"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_pomacanthus_paru",
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 946.2,
+     "galones_us": 250,
+     "justificacion": "Cifra de LiveAquaria (250 gal), con abundante roca viva para esconderse y pastar.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 41.1,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 1.9,
+      "max": 24.1,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": 23.3,
+     "nota": "Diferencia menor entre fuentes: FishBase 41.1 cm; LiveAquaria 15 in (≈ 38.1 cm).",
+     "fuentes": [
+      "fishbase_pomacanthus_paru",
+      "liveaquaria_pomacanthus_paru"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "arothron_nigropunctatus",
+   "nombre_comun": "Pez globo cara de perro",
+   "otros_nombres": [
+    "Dogface puffer",
+    "Blackspotted puffer"
+   ],
+   "nombre_cientifico": "Arothron nigropunctatus",
+   "autoridad": "(Bloch & Schneider, 1801)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/arothron-nigropunctatus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/arothron-nigropunctatus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Tetraodontiformes",
+    "familia": "Tetraodontidae",
+    "subfamilia": null,
+    "aphia_id": 219921,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Tetraodon nigropunctatus Bloch & Schneider, 1801 (combinación original)",
+     "Arothron citrinellus (Günther, 1870)"
+    ],
+    "fuentes": [
+     "worms_arothron_nigropunctatus",
+     "fishbase_arothron_nigropunctatus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes costeros, crestas y pendientes externas con abundantes invertebrados. A veces solitario; los adultos suelen ir en pareja (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 60
+    },
+    "distribucion": "Indo-Pacífico: de África oriental a Micronesia y Samoa, al norte hasta el sur de Japón y al sur hasta Nueva Gales del Sur. En el mar Rojo lo sustituye Arothron diadematus.",
+    "fuentes": [
+     "fishbase_arothron_nigropunctatus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 33.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 33 cm y LiveAquaria 13 in (≈ 33 cm) coinciden.",
+    "fuentes": [
+     "fishbase_arothron_nigropunctatus",
+     "liveaquaria_arothron_nigropunctatus"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come corales (sobre todo puntas de Acropora), crustáceos, moluscos, esponjas, tunicados y algas (FishBase). En acuario: alimentos cárneos variados como calamar, kril, almejas y camarón con concha, que le ayudan a desgastar sus dientes de crecimiento continuo (LiveAquaria).",
+    "fuentes": [
+     "fishbase_arothron_nigropunctatus",
+     "liveaquaria_arothron_nigropunctatus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 567.8,
+    "galones_us": 150,
+    "justificacion": "Cifra de los datos rápidos de LiveAquaria (150 gal); su descripción menciona 100 gal o más para un acuario solo de peces.",
+    "fuentes": [
+     "liveaquaria_arothron_nigropunctatus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "A veces solitario; los adultos suelen ir en pareja (FishBase). Tímido al principio; tolera a otros peces globo que no sean más agresivos que él. Se asusta con la red: conviene moverlo con un recipiente (LiveAquaria).",
+    "fuentes": [
+     "fishbase_arothron_nigropunctatus",
+     "liveaquaria_arothron_nigropunctatus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Tímido al principio; necesita un acuario amplio solo de peces (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_arothron_nigropunctatus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "no",
+    "fuentes": [
+     "liveaquaria_arothron_nigropunctatus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario solo de peces.",
+     "Alimentos con concha para desgastar los dientes.",
+     "Moverlo con un recipiente, no con red."
+    ],
+    "riesgos": [
+     "Se come corales e invertebrados.",
+     "Su carne es venenosa si se ingiere (FishBase)."
+    ],
+    "fuentes": [
+     "liveaquaria_arothron_nigropunctatus",
+     "fishbase_arothron_nigropunctatus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 07/06/2011, según FishBase",
+    "fuentes": [
+     "fishbase_arothron_nigropunctatus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_arothron_nigropunctatus",
+    "fishbase_arothron_nigropunctatus",
+    "liveaquaria_arothron_nigropunctatus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez globo cara de perro",
+    "nombre_cientifico": "Arothron nigropunctatus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Semiagresivo y con mucha personalidad. Se come los invertebrados, así que no es apto para arrecife. Necesita alimentos duros para desgastar sus dientes.",
+     "fuentes": [
+      "fishbase_arothron_nigropunctatus",
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "no",
+     "explicacion": "LiveAquaria lo desaconseja: se come los invertebrados del arrecife.",
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "corales e invertebrados",
+      "calamar y kril",
+      "almejas",
+      "camarón con concha"
+     ],
+     "nota": "FishBase incluye algas en su dieta natural; LiveAquaria lo clasifica como carnívoro.",
+     "fuentes": [
+      "fishbase_arothron_nigropunctatus",
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 567.8,
+     "galones_us": 150,
+     "justificacion": "Cifra de los datos rápidos de LiveAquaria (150 gal); su descripción menciona 100 gal o más para un acuario solo de peces.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 33.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 3.8,
+      "max": 25.4,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "FishBase 33 cm y LiveAquaria 13 in (≈ 33 cm) coinciden.",
+     "fuentes": [
+      "fishbase_arothron_nigropunctatus",
+      "liveaquaria_arothron_nigropunctatus"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "zebrasoma_gemmatum",
+   "nombre_comun": "Cirujano gemma",
+   "otros_nombres": [
+    "Gem tang",
+    "Gemmatum tang",
+    "Spotted tang"
+   ],
+   "nombre_cientifico": "Zebrasoma gemmatum",
+   "autoridad": "(Valenciennes, 1835)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/zebrasoma-gemmatum.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/zebrasoma-gemmatum.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 219680,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Acanthurus gemmatus Valenciennes, 1835 (combinación original)"
+    ],
+    "fuentes": [
+     "worms_zebrasoma_gemmatum",
+     "fishbase_zebrasoma_gemmatum"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes coralinos y rocosos; los juveniles viven en aguas someras (FishBase). LiveAquaria indica que procede de aguas más profundas y zonas de oleaje.",
+    "profundidad_m": {
+     "min": 10,
+     "max": 61,
+     "habitual": "25 m o más"
+    },
+    "distribucion": "Océano Índico occidental: Mozambique y Sudáfrica; también Madagascar, Reunión y Mauricio.",
+    "fuentes": [
+     "fishbase_zebrasoma_gemmatum",
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 22.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 22 cm y LiveAquaria 9 in (≈ 22.9 cm) prácticamente coinciden.",
+    "fuentes": [
+     "fishbase_zebrasoma_gemmatum",
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Herbívoro: necesita abundantes algas marinas y alga seca; también acepta alimentos cárneos (LiveAquaria). FishBase no detalla su dieta.",
+    "fuentes": [
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "baja"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": {
+     "min_c": 24,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_zebrasoma_gemmatum"
+     ]
+    },
+    "nota": "El rango de acuario no cae por completo dentro del rango natural registrado por FishBase."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 681.3,
+    "galones_us": 180,
+    "justificacion": "Cifra de LiveAquaria (180 gal), con mucho espacio libre para nadar y escondites.",
+    "fuentes": [
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Extremadamente territorial y solitario (FishBase). Puede ser agresivo con los de su especie y no convive bien con peces de forma parecida, sobre todo otros Zebrasoma (LiveAquaria).",
+    "fuentes": [
+     "fishbase_zebrasoma_gemmatum",
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Extremadamente territorial (FishBase); necesita espacio libre para nadar y escondites (LiveAquaria).",
+    "fuentes": [
+     "fishbase_zebrasoma_gemmatum",
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 180 gal o más.",
+     "Buena iluminación, espacio para nadar y escondites.",
+     "Dieta rica en algas."
+    ],
+    "riesgos": [
+     "Agresivo con otros cirujanos, sobre todo del género Zebrasoma."
+    ],
+    "fuentes": [
+     "liveaquaria_zebrasoma_gemmatum"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Datos insuficientes (DD), evaluada el 07/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_zebrasoma_gemmatum"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_zebrasoma_gemmatum",
+    "fishbase_zebrasoma_gemmatum",
+    "liveaquaria_zebrasoma_gemmatum",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano gemma",
+    "nombre_cientifico": "Zebrasoma gemmatum",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial",
+      "solitario"
+     ],
+     "descripcion": "Semiagresivo y muy territorial: solo uno por acuario y sin otros Zebrasoma. Muy cotizado y caro.",
+     "fuentes": [
+      "fishbase_zebrasoma_gemmatum",
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera uno de los cirujanos más deseables para arrecife.",
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas marinas",
+      "alga seca (nori)",
+      "alimentos cárneos ocasionales"
+     ],
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "baja"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 681.3,
+     "galones_us": 180,
+     "justificacion": "Cifra de LiveAquaria (180 gal), con mucho espacio libre para nadar y escondites.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 22.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "FishBase 22 cm y LiveAquaria 9 in (≈ 22.9 cm) prácticamente coinciden.",
+     "fuentes": [
+      "fishbase_zebrasoma_gemmatum",
+      "liveaquaria_zebrasoma_gemmatum"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "zebrasoma_desjardinii",
+   "nombre_comun": "Cirujano desjardini",
+   "otros_nombres": [
+    "Desjardini sailfin tang",
+    "Indian Ocean sailfin tang",
+    "Red Sea sailfin tang"
+   ],
+   "nombre_cientifico": "Zebrasoma desjardinii",
+   "autoridad": "(Bennett, 1836)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/zebrasoma-desjardinii.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/zebrasoma-desjardinii.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 277555,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Acanthurus desjardinii Bennett, 1836 (combinación original)",
+     "Zebrasoma desjardini (grafía alternativa)"
+    ],
+    "fuentes": [
+     "worms_zebrasoma_desjardinii",
+     "fishbase_zebrasoma_desjardinii"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Lagunas y arrecifes externos hasta más de 30 m; los juveniles viven en zonas protegidas del arrecife interior, a menudo entre corales cuerno de ciervo (FishBase).",
+    "profundidad_m": {
+     "min": 3,
+     "max": 30
+    },
+    "distribucion": "Océano Índico: de África oriental y el mar Rojo al mar de Andamán y Sumatra occidental; raro en la isla de Navidad.",
+    "fuentes": [
+     "fishbase_zebrasoma_desjardinii"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 40.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 40 cm (longitud habitual 32 cm) y LiveAquaria 16 in (≈ 40.6 cm) coinciden.",
+    "fuentes": [
+     "fishbase_zebrasoma_desjardinii",
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come algas filamentosas; en acuario necesita abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "media"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 681.3,
+    "galones_us": 180,
+    "justificacion": "Cifra de LiveAquaria (180 gal), para que tenga mucho espacio para nadar.",
+    "fuentes": [
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Los adultos suelen ir en pareja; los juveniles son solitarios (FishBase). Agresivo con los de su especie y a veces con otros cirujanos, pero pacífico con el resto; puede casi duplicar su tamaño aparente desplegando sus aletas (LiveAquaria).",
+    "fuentes": [
+     "fishbase_zebrasoma_desjardinii",
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio para nadar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 180 gal o más.",
+     "Solo uno por acuario, salvo en acuarios muy grandes.",
+     "Dieta rica en algas."
+    ],
+    "riesgos": [
+     "Agresivo con los de su especie y a veces con otros cirujanos."
+    ],
+    "fuentes": [
+     "liveaquaria_zebrasoma_desjardinii"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 07/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_zebrasoma_desjardinii"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_zebrasoma_desjardinii",
+    "fishbase_zebrasoma_desjardinii",
+    "liveaquaria_zebrasoma_desjardinii",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano desjardini",
+    "nombre_cientifico": "Zebrasoma desjardinii",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Agresivo con otros cirujanos y pacífico con el resto. Crece mucho: necesita un acuario muy grande.",
+     "fuentes": [
+      "fishbase_zebrasoma_desjardinii",
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas filamentosas",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "media"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 681.3,
+     "galones_us": 180,
+     "justificacion": "Cifra de LiveAquaria (180 gal), para que tenga mucho espacio para nadar.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 40.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "FishBase 40 cm (longitud habitual 32 cm) y LiveAquaria 16 in (≈ 40.6 cm) coinciden.",
+     "fuentes": [
+      "fishbase_zebrasoma_desjardinii",
+      "liveaquaria_zebrasoma_desjardinii"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "amphiprion_frenatus",
+   "nombre_comun": "Pez payaso tomate",
+   "otros_nombres": [
+    "Tomato clownfish",
+    "Bridled clownfish",
+    "Red clownfish"
+   ],
+   "nombre_cientifico": "Amphiprion frenatus",
+   "autoridad": "Brevoort, 1856",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/amphiprion-frenatus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/amphiprion-frenatus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Ovalentaria (incertae sedis)",
+    "familia": "Pomacentridae",
+    "subfamilia": null,
+    "aphia_id": 278394,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Amphiprion polylepis (Bleeker, 1877)",
+     "Prochilus polylepis Bleeker, 1877"
+    ],
+    "fuentes": [
+     "worms_amphiprion_frenatus",
+     "fishbase_amphiprion_frenatus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes de laguna y bahías; asociado a la anémona burbuja (Entacmaea quadricolor) (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 12
+    },
+    "distribucion": "Pacífico occidental: del golfo de Tailandia al suroeste de Palaos, al norte hasta el sur de Japón y al sur hasta Java.",
+    "fuentes": [
+     "fishbase_amphiprion_frenatus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 14.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia menor entre fuentes: FishBase 14 cm; LiveAquaria 5 in (≈ 12.7 cm) en el medio natural y unas 3.5 in (≈ 8.9 cm) en acuario.",
+    "fuentes": [
+     "fishbase_amphiprion_frenatus",
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come con voracidad la mayoría de los alimentos cárneos y preparados para herbívoros (LiveAquaria). FishBase no detalla su dieta.",
+    "fuentes": [
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "baja"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 113.6,
+    "galones_us": 30,
+    "justificacion": "Cifra de LiveAquaria (30 gal).",
+    "fuentes": [
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Monógamo y hermafrodita protándrico: nacen machos y el dominante se convierte en hembra. Los machos cuidan y oxigenan los huevos (FishBase). Muy resistente; algo territorial y cada vez más agresivo con los de su especie al crecer (LiveAquaria).",
+    "fuentes": [
+     "fishbase_amphiprion_frenatus",
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Defiende su anémona; sin anémona puede usar un coral como hospedador (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Anémona hospedadora (opcional).",
+     "Compañeros que no se lo puedan comer."
+    ],
+    "riesgos": [
+     "No conviene con peces tímidos o que comen despacio.",
+     "Agresivo con los de su especie."
+    ],
+    "fuentes": [
+     "liveaquaria_amphiprion_frenatus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 16/11/2010, según FishBase",
+    "fuentes": [
+     "fishbase_amphiprion_frenatus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_amphiprion_frenatus",
+    "fishbase_amphiprion_frenatus",
+    "liveaquaria_amphiprion_frenatus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez payaso tomate",
+    "nombre_cientifico": "Amphiprion frenatus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Resistente y fácil, pero territorial y más agresivo con la edad. Suele vivir en una anémona burbuja.",
+     "fuentes": [
+      "fishbase_amphiprion_frenatus",
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "alimentos cárneos",
+      "preparados para herbívoros"
+     ],
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "baja"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 113.6,
+     "galones_us": 30,
+     "justificacion": "Cifra de LiveAquaria (30 gal).",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 14.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 1.9,
+      "max": 10.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia menor entre fuentes: FishBase 14 cm; LiveAquaria 5 in (≈ 12.7 cm) en el medio natural y unas 3.5 in (≈ 8.9 cm) en acuario.",
+     "fuentes": [
+      "fishbase_amphiprion_frenatus",
+      "liveaquaria_amphiprion_frenatus"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "amphiprion_biaculeatus",
+   "nombre_comun": "Pez payaso marrón",
+   "otros_nombres": [
+    "Maroon clownfish",
+    "Spine-cheeked anemonefish",
+    "Premnas biaculeatus (nombre anterior)"
+   ],
+   "nombre_cientifico": "Amphiprion biaculeatus",
+   "autoridad": "(Bloch, 1790)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/amphiprion-biaculeatus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/amphiprion-biaculeatus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Ovalentaria (incertae sedis)",
+    "familia": "Pomacentridae",
+    "subfamilia": null,
+    "aphia_id": 1605249,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Chaetodon biaculeatus Bloch, 1790 (combinación original)",
+     "Premnas biaculeatus (nombre usado en acuariofilia)",
+     "Lutianus trifasciatus Schneider, 1801"
+    ],
+    "nota": "WoRMS acepta Amphiprion biaculeatus; Premnas biaculeatus es su nombre anterior y FishBase todavía lo usa.",
+    "fuentes": [
+     "worms_amphiprion_biaculeatus",
+     "fishbase_amphiprion_biaculeatus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Lagunas y arrecifes externos, sobre todo en aguas costeras protegidas; asociado a la anémona burbuja (Entacmaea quadricolor) (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 16
+    },
+    "distribucion": "Indo-Pacífico occidental: archipiélago indoaustraliano, de la India y Birmania a Filipinas, Nueva Guinea, Islas Salomón, Vanuatu y el norte de Australia.",
+    "fuentes": [
+     "fishbase_amphiprion_biaculeatus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 17.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia menor entre fuentes: FishBase 17 cm; LiveAquaria 6 in (≈ 15.2 cm).",
+    "fuentes": [
+     "fishbase_amphiprion_biaculeatus",
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come sobre todo zooplancton y algas bentónicas (FishBase). En acuario: alimentos cárneos como camarón congelado y preparados para herbívoros (LiveAquaria).",
+    "fuentes": [
+     "fishbase_amphiprion_biaculeatus",
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": null,
+    "rango_prudente": null,
+    "nota": "Los datos rápidos de LiveAquaria no indican pH para esta especie.",
+    "confianza": "baja"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_amphiprion_biaculeatus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 113.6,
+    "galones_us": 30,
+    "justificacion": "Cifra de LiveAquaria (30 gal), idealmente con una anémona hospedadora.",
+    "fuentes": [
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Suele vivir en pareja; el macho es mucho más pequeño que la hembra (FishBase). Agresivo con otros peces payaso: es difícil mantener más de uno salvo que sean pareja (LiveAquaria).",
+    "fuentes": [
+     "fishbase_amphiprion_biaculeatus",
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Defiende su anémona; pelea con los de su especie salvo en pareja (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 30 gal o más.",
+     "Anémona hospedadora deseable.",
+     "Solo uno o una pareja."
+    ],
+    "riesgos": [
+     "Agresivo con otros peces payaso.",
+     "Las espinas de sus mejillas se enredan en la red: hay que capturarlo con un recipiente."
+    ],
+    "fuentes": [
+     "liveaquaria_amphiprion_biaculeatus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 23/09/2021, según FishBase",
+    "fuentes": [
+     "fishbase_amphiprion_biaculeatus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_amphiprion_biaculeatus",
+    "fishbase_amphiprion_biaculeatus",
+    "liveaquaria_amphiprion_biaculeatus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez payaso marrón",
+    "nombre_cientifico": "Amphiprion biaculeatus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "agresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Agresivo, sobre todo con otros peces payaso: solo uno o una pareja. Suele vivir en una anémona burbuja.",
+     "fuentes": [
+      "fishbase_amphiprion_biaculeatus",
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "zooplancton",
+      "algas",
+      "camarón congelado",
+      "preparados para herbívoros"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_amphiprion_biaculeatus",
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 113.6,
+     "galones_us": 30,
+     "justificacion": "Cifra de LiveAquaria (30 gal), idealmente con una anémona hospedadora.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 17.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 1.3,
+      "max": 8.9,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia menor entre fuentes: FishBase 17 cm; LiveAquaria 6 in (≈ 15.2 cm).",
+     "fuentes": [
+      "fishbase_amphiprion_biaculeatus",
+      "liveaquaria_amphiprion_biaculeatus"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "acanthurus_pyroferus",
+   "nombre_comun": "Cirujano chocolate",
+   "otros_nombres": [
+    "Chocolate surgeonfish",
+    "Mimic lemonpeel tang",
+    "Mimic surgeon"
+   ],
+   "nombre_cientifico": "Acanthurus pyroferus",
+   "autoridad": "Kittlitz, 1834",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/acanthurus-pyroferus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/acanthurus-pyroferus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 219648,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Acanthurus armiger Valenciennes, 1835",
+     "Acanthurus celebicus Bleeker, 1853"
+    ],
+    "nota": "La foto muestra un juvenil amarillo, la fase que LiveAquaria vende como «Mimic Lemon Peel Tang».",
+    "fuentes": [
+     "worms_acanthurus_pyroferus",
+     "fishbase_acanthurus_pyroferus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Lagunas y arrecifes externos; prefiere zonas mixtas de coral, roca o arena en la base de arrecifes o cornisas; también arrecifes con limo (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 60,
+     "habitual": "5–40 m"
+    },
+    "distribucion": "Indo-Pacífico: de Seychelles a las Marquesas y Tuamotu, al norte hasta el sur de Japón y al sur hasta la Gran Barrera y Nueva Caledonia.",
+    "fuentes": [
+     "fishbase_acanthurus_pyroferus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 29.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia entre fuentes: FishBase 29 cm; LiveAquaria 8 in (≈ 20.3 cm).",
+    "fuentes": [
+     "fishbase_acanthurus_pyroferus",
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come algas (FishBase). En acuario: abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria). Es buen controlador de algas.",
+    "fuentes": [
+     "fishbase_acanthurus_pyroferus",
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 492.1,
+    "galones_us": 130,
+    "justificacion": "Cifra de LiveAquaria (130 gal), con abundante roca viva.",
+    "fuentes": [
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Vive solo (FishBase). Los juveniles imitan a peces ángel del género Centropyge, como el ángel limón; de adulto se vuelve marrón (FishBase, LiveAquaria). Agresivo con otros cirujanos y pacífico con el resto (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_pyroferus",
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita roca viva abundante donde establecer su territorio (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 130 gal o más con roca viva.",
+     "Dieta rica en algas."
+    ],
+    "riesgos": [
+     "Agresivo con otros cirujanos."
+    ],
+    "fuentes": [
+     "liveaquaria_acanthurus_pyroferus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 04/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_acanthurus_pyroferus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_acanthurus_pyroferus",
+    "fishbase_acanthurus_pyroferus",
+    "liveaquaria_acanthurus_pyroferus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano chocolate",
+    "nombre_cientifico": "Acanthurus pyroferus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial",
+      "solitario"
+     ],
+     "descripcion": "De juvenil es amarillo e imita al pez ángel limón; de adulto se vuelve color chocolate. Agresivo solo con otros cirujanos.",
+     "fuentes": [
+      "fishbase_acanthurus_pyroferus",
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_acanthurus_pyroferus",
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 492.1,
+     "galones_us": 130,
+     "justificacion": "Cifra de LiveAquaria (130 gal), con abundante roca viva.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 29.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 2.5,
+      "max": 15.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia entre fuentes: FishBase 29 cm; LiveAquaria 8 in (≈ 20.3 cm).",
+     "fuentes": [
+      "fishbase_acanthurus_pyroferus",
+      "liveaquaria_acanthurus_pyroferus"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "ctenochaetus_tominiensis",
+   "nombre_comun": "Cirujano tomini",
+   "otros_nombres": [
+    "Tomini tang",
+    "Bristletooth tomini tang",
+    "Tomini surgeonfish"
+   ],
+   "nombre_cientifico": "Ctenochaetus tominiensis",
+   "autoridad": "Randall, 1955",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/ctenochaetus-tominiensis.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/ctenochaetus-tominiensis.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 277562,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Ctenochaetus tominienis (grafía incorrecta)"
+    ],
+    "fuentes": [
+     "worms_ctenochaetus_tominiensis",
+     "fishbase_ctenochaetus_tominiensis"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Solo o en grupos pequeños en paredes con abundante coral de costas protegidas (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 45,
+     "habitual": "3–25 m"
+    },
+    "distribucion": "Pacífico centro-occidental: Indonesia, Filipinas, Papúa Nueva Guinea, norte de la Gran Barrera, Islas Salomón, Palaos, Vanuatu, Fiyi y Tonga.",
+    "fuentes": [
+     "fishbase_ctenochaetus_tominiensis"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 16.0,
+    "tipo": "longitud estándar",
+    "contraste": "FishBase 16 cm (longitud estándar) y LiveAquaria 6 in (≈ 15.2 cm) prácticamente coinciden.",
+    "fuentes": [
+     "fishbase_ctenochaetus_tominiensis",
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come algas y la microfauna que vive entre ellas (FishBase). En acuario: abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria).",
+    "fuentes": [
+     "fishbase_ctenochaetus_tominiensis",
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": {
+     "min_c": 24,
+     "max_c": 27,
+     "fuentes": [
+      "fishbase_ctenochaetus_tominiensis"
+     ]
+    },
+    "nota": "El rango de acuario no cae por completo dentro del rango natural registrado por FishBase."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 264.9,
+    "galones_us": 70,
+    "justificacion": "Cifra de LiveAquaria (70 gal).",
+    "fuentes": [
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Va solo o en grupos pequeños (FishBase). Agresivo con otros cirujanos y pacífico con el resto (LiveAquaria).",
+    "fuentes": [
+     "fishbase_ctenochaetus_tominiensis",
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita espacio para nadar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 70 gal o más.",
+     "Dieta rica en algas."
+    ],
+    "riesgos": [
+     "Agresivo con otros cirujanos."
+    ],
+    "fuentes": [
+     "liveaquaria_ctenochaetus_tominiensis"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 07/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_ctenochaetus_tominiensis"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_ctenochaetus_tominiensis",
+    "fishbase_ctenochaetus_tominiensis",
+    "liveaquaria_ctenochaetus_tominiensis",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano tomini",
+    "nombre_cientifico": "Ctenochaetus tominiensis",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Cirujano pequeño, agresivo solo con otros cirujanos. Buen pastador de algas.",
+     "fuentes": [
+      "fishbase_ctenochaetus_tominiensis",
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas y su microfauna",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_ctenochaetus_tominiensis",
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 264.9,
+     "galones_us": 70,
+     "justificacion": "Cifra de LiveAquaria (70 gal).",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 16.0,
+     "medida": "longitud estándar",
+     "tamano_venta_cm": {
+      "min": 1.9,
+      "max": 15.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "FishBase 16 cm (longitud estándar) y LiveAquaria 6 in (≈ 15.2 cm) prácticamente coinciden.",
+     "fuentes": [
+      "fishbase_ctenochaetus_tominiensis",
+      "liveaquaria_ctenochaetus_tominiensis"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "acanthurus_leucosternon",
+   "nombre_comun": "Cirujano polvo azul",
+   "otros_nombres": [
+    "Powder blue tang",
+    "Powder blue surgeonfish"
+   ],
+   "nombre_cientifico": "Acanthurus leucosternon",
+   "autoridad": "Bennett, 1833",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/acanthurus-leucosternon.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/acanthurus-leucosternon.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 219628,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Acanthurus delisiani Valenciennes, 1835",
+     "Hepatus leucosternon (Bennett, 1833)"
+    ],
+    "fuentes": [
+     "worms_acanthurus_leucosternon",
+     "fishbase_acanthurus_leucosternon"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes coralinos costeros e insulares, someros y de aguas claras, sobre todo planicies arrecifales y pendientes externas superiores (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 25
+    },
+    "distribucion": "Océano Índico: de África oriental al mar de Andamán, el suroeste de Indonesia y la isla de Navidad; llega hasta Bali.",
+    "fuentes": [
+     "fishbase_acanthurus_leucosternon"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 54.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia entre fuentes: FishBase registra 54 cm como máximo (longitud habitual 19 cm); Saltwaterfish indica 9 in (≈ 22.9 cm). LiveAquaria no publica datos rápidos.",
+    "fuentes": [
+     "fishbase_acanthurus_leucosternon",
+     "saltwaterfish_acanthurus_leucosternon"
+    ],
+    "confianza": "baja"
+   },
+   "alimentacion": {
+    "texto": "Come algas bentónicas: pequeñas algas dispersas y crecimientos en grietas (FishBase). En acuario: abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_leucosternon",
+     "liveaquaria_acanthurus_leucosternon"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": null,
+    "medio_natural": {
+     "min_c": 23,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_acanthurus_leucosternon"
+     ]
+    },
+    "nota": "LiveAquaria no publica datos rápidos de esta especie y Saltwaterfish no indica temperatura; solo se dispone del rango natural de FishBase."
+   },
+   "ph": {
+    "acuario": null,
+    "rango_prudente": null,
+    "nota": "Ninguna fuente consultada publica pH para esta especie.",
+    "confianza": "baja"
+   },
+   "salinidad": {
+    "acuario": null,
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "baja"
+   },
+   "volumen_minimo": {
+    "litros": 473.1,
+    "galones_us": 125,
+    "justificacion": "LiveAquaria recomienda 125 gal o más en su descripción; Saltwaterfish indica 120 gal.",
+    "fuentes": [
+     "liveaquaria_acanthurus_leucosternon",
+     "saltwaterfish_acanthurus_leucosternon"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Puede ir solo o en grandes grupos de alimentación; monógamo (FishBase). Extremadamente agresivo con otros cirujanos, sobre todo de forma y color parecidos: mejor uno solo por acuario, salvo en sistemas muy grandes y añadiéndolos a la vez (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_leucosternon",
+     "liveaquaria_acanthurus_leucosternon"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio para nadar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_acanthurus_leucosternon"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "saltwaterfish_acanthurus_leucosternon"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 125 gal o más.",
+     "Solo uno por acuario salvo en sistemas muy grandes.",
+     "Dieta rica en algas."
+    ],
+    "riesgos": [
+     "Muy agresivo con otros cirujanos.",
+     "Espina caudal muy afilada (Saltwaterfish)."
+    ],
+    "fuentes": [
+     "liveaquaria_acanthurus_leucosternon",
+     "saltwaterfish_acanthurus_leucosternon"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 03/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_acanthurus_leucosternon"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_acanthurus_leucosternon",
+    "fishbase_acanthurus_leucosternon",
+    "liveaquaria_acanthurus_leucosternon",
+    "saltwaterfish_acanthurus_leucosternon",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano polvo azul",
+    "nombre_cientifico": "Acanthurus leucosternon",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": "Saltwaterfish lo clasifica como semiagresivo; LiveAquaria lo describe como extremadamente agresivo con otros cirujanos.",
+     "fuentes": [
+      "saltwaterfish_acanthurus_leucosternon"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Muy agresivo con otros cirujanos: mejor uno solo por acuario. Necesita mucho espacio y algas.",
+     "fuentes": [
+      "fishbase_acanthurus_leucosternon",
+      "liveaquaria_acanthurus_leucosternon"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "Saltwaterfish lo considera apto para arrecife; LiveAquaria no publica este dato.",
+     "fuentes": [
+      "saltwaterfish_acanthurus_leucosternon"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas bentónicas",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": "Saltwaterfish lo clasifica como omnívoro.",
+     "fuentes": [
+      "fishbase_acanthurus_leucosternon",
+      "liveaquaria_acanthurus_leucosternon"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 23,
+     "max": 28,
+     "nota": "Rango del medio natural (FishBase): ninguna tienda consultada publica un rango de acuario.",
+     "fuentes": [
+      "fishbase_acanthurus_leucosternon"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 473.1,
+     "galones_us": 125,
+     "justificacion": "LiveAquaria recomienda 125 gal o más en su descripción; Saltwaterfish indica 120 gal.",
+     "nota": "Dos fuentes comerciales coinciden en unos 120–125 gal.",
+     "fuentes": [
+      "liveaquaria_acanthurus_leucosternon",
+      "saltwaterfish_acanthurus_leucosternon"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 54.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 2.5,
+      "max": 20.3,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": 13.8,
+     "nota": "Diferencia entre fuentes: FishBase registra 54 cm como máximo (longitud habitual 19 cm); Saltwaterfish indica 9 in (≈ 22.9 cm). LiveAquaria no publica datos rápidos.",
+     "fuentes": [
+      "fishbase_acanthurus_leucosternon",
+      "saltwaterfish_acanthurus_leucosternon"
+     ],
+     "confianza": "baja"
+    }
+   }
+  },
+  {
+   "id": "acanthurus_japonicus",
+   "nombre_comun": "Cirujano polvo café",
+   "otros_nombres": [
+    "Powder brown tang",
+    "Japan surgeonfish",
+    "White-faced surgeonfish"
+   ],
+   "nombre_cientifico": "Acanthurus japonicus",
+   "autoridad": "(Schmidt, 1931)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/acanthurus-japonicus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/acanthurus-japonicus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 272962,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Hepatus aliala japonicus Schmidt, 1931 (combinación original)"
+    ],
+    "fuentes": [
+     "worms_acanthurus_japonicus",
+     "fishbase_acanthurus_japonicus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Lagunas de aguas claras y arrecifes externos, normalmente en zonas someras expuestas (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 20,
+     "habitual": "5–15 m"
+    },
+    "distribucion": "Indo-Pacífico occidental: de Sulawesi (Indonesia) a Filipinas y las islas Ryukyu.",
+    "fuentes": [
+     "fishbase_acanthurus_japonicus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 23.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia menor entre fuentes: FishBase 23 cm; LiveAquaria 8 in (≈ 20.3 cm).",
+    "fuentes": [
+     "fishbase_acanthurus_japonicus",
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come algas (FishBase). En acuario: abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_japonicus",
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": {
+     "min_c": 24,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_acanthurus_japonicus"
+     ]
+    },
+    "nota": "El rango de acuario no cae por completo dentro del rango natural registrado por FishBase."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 492.1,
+    "galones_us": 130,
+    "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+    "fuentes": [
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Forma grupos pequeños o grandes y a veces va solo (FishBase). Mejor uno por acuario: los cirujanos de forma parecida pueden ser muy agresivos entre sí (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_japonicus",
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio para nadar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 130 gal o más.",
+     "Solo uno por acuario."
+    ],
+    "riesgos": [
+     "Agresión entre cirujanos de forma parecida."
+    ],
+    "fuentes": [
+     "liveaquaria_acanthurus_japonicus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 03/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_acanthurus_japonicus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_acanthurus_japonicus",
+    "fishbase_acanthurus_japonicus",
+    "liveaquaria_acanthurus_japonicus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano polvo café",
+    "nombre_cientifico": "Acanthurus japonicus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Semiagresivo: solo uno por acuario y con cuidado al juntarlo con otros cirujanos.",
+     "fuentes": [
+      "fishbase_acanthurus_japonicus",
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_acanthurus_japonicus",
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 492.1,
+     "galones_us": 130,
+     "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 23.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 5.1,
+      "max": 15.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia menor entre fuentes: FishBase 23 cm; LiveAquaria 8 in (≈ 20.3 cm).",
+     "fuentes": [
+      "fishbase_acanthurus_japonicus",
+      "liveaquaria_acanthurus_japonicus"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "zebrasoma_scopas",
+   "nombre_comun": "Cirujano scopas",
+   "otros_nombres": [
+    "Scopas tang",
+    "Brown scopas tang",
+    "Twotone tang"
+   ],
+   "nombre_cientifico": "Zebrasoma scopas",
+   "autoridad": "(Cuvier, 1829)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/zebrasoma-scopas.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/zebrasoma-scopas.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 219679,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Acanthurus scopas Cuvier, 1829 (combinación original)",
+     "Acanthurus altivelis Valenciennes, 1835"
+    ],
+    "fuentes": [
+     "worms_zebrasoma_scopas",
+     "fishbase_zebrasoma_scopas"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Zonas ricas en coral de lagunas y arrecifes externos; los juveniles son solitarios y viven entre corales (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 60
+    },
+    "distribucion": "Indo-Pacífico: de África oriental y las Mascareñas a las Tuamotu, al norte hasta el sur de Japón y al sur hasta Lord Howe y Rapa.",
+    "fuentes": [
+     "fishbase_zebrasoma_scopas"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 40.0,
+    "tipo": "longitud estándar",
+    "contraste": "Diferencia entre fuentes: FishBase 40 cm (longitud estándar); LiveAquaria 12 in (≈ 30.5 cm).",
+    "fuentes": [
+     "fishbase_zebrasoma_scopas",
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "baja"
+   },
+   "alimentacion": {
+    "texto": "Pasta algas, normalmente en grupos de unos 20 individuos; sus dientes faríngeos parecen adaptados a las algas filamentosas (FishBase). En acuario: abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria).",
+    "fuentes": [
+     "fishbase_zebrasoma_scopas",
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": {
+     "min_c": 25,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_zebrasoma_scopas"
+     ]
+    },
+    "nota": "El rango de acuario no cae por completo dentro del rango natural registrado por FishBase."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 492.1,
+    "galones_us": 130,
+    "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+    "fuentes": [
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Los adultos van en grupos pequeños y a veces en cardumen; los juveniles son solitarios (FishBase). Agresivo con los de su especie y con los cirujanos en general: mejor uno por acuario (LiveAquaria).",
+    "fuentes": [
+     "fishbase_zebrasoma_scopas",
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio para nadar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 130 gal o más.",
+     "Solo uno por acuario.",
+     "Dieta rica en algas."
+    ],
+    "riesgos": [
+     "Agresivo con otros cirujanos."
+    ],
+    "fuentes": [
+     "liveaquaria_zebrasoma_scopas"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 07/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_zebrasoma_scopas"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_zebrasoma_scopas",
+    "fishbase_zebrasoma_scopas",
+    "liveaquaria_zebrasoma_scopas",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano scopas",
+    "nombre_cientifico": "Zebrasoma scopas",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Semiagresivo con otros cirujanos: mejor uno por acuario. Buen pastador de algas.",
+     "fuentes": [
+      "fishbase_zebrasoma_scopas",
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas filamentosas",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_zebrasoma_scopas",
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 492.1,
+     "galones_us": 130,
+     "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 40.0,
+     "medida": "longitud estándar",
+     "tamano_venta_cm": {
+      "min": 2.5,
+      "max": 15.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia entre fuentes: FishBase 40 cm (longitud estándar); LiveAquaria 12 in (≈ 30.5 cm).",
+     "fuentes": [
+      "fishbase_zebrasoma_scopas",
+      "liveaquaria_zebrasoma_scopas"
+     ],
+     "confianza": "baja"
+    }
+   }
+  },
+  {
+   "id": "labroides_dimidiatus",
+   "nombre_comun": "Lábrido limpiador",
+   "otros_nombres": [
+    "Bluestreak cleaner wrasse",
+    "Cleaner wrasse"
+   ],
+   "nombre_cientifico": "Labroides dimidiatus",
+   "autoridad": "(Valenciennes, 1839)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/labroides-dimidiatus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/labroides-dimidiatus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Labriformes",
+    "familia": "Labridae",
+    "subfamilia": null,
+    "aphia_id": 219014,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Cossyphus dimidiatus Valenciennes, 1839 (combinación original)",
+     "Fissilabrus dimidiatus"
+    ],
+    "fuentes": [
+     "worms_labroides_dimidiatus",
+     "fishbase_labroides_dimidiatus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Zonas ricas en coral de lagunas interiores, planicies arrecifales y arrecifes externos (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 100,
+     "habitual": "1–30 m"
+    },
+    "distribucion": "Indo-Pacífico: del golfo Pérsico, el mar Rojo y África oriental a las islas de la Línea, Marquesas y Ducie; al norte hasta el sur de Japón y al sur hasta Lord Howe y Rapa.",
+    "fuentes": [
+     "fishbase_labroides_dimidiatus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 14.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 14 cm y LiveAquaria 5½ in (≈ 14 cm) coinciden.",
+    "fuentes": [
+     "fishbase_labroides_dimidiatus",
+     "liveaquaria_labroides_dimidiatus"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come ectoparásitos crustáceos y la mucosidad de otros peces (FishBase). En acuario necesita pequeñas porciones de alimento cárneo fresco varias veces al día, como mysis enriquecido, porque no puede comer mucho de una vez (LiveAquaria).",
+    "fuentes": [
+     "fishbase_labroides_dimidiatus",
+     "liveaquaria_labroides_dimidiatus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": {
+     "min_c": 24,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_labroides_dimidiatus"
+     ]
+    },
+    "nota": "El rango de acuario no cae por completo dentro del rango natural registrado por FishBase."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 340.7,
+    "galones_us": 90,
+    "justificacion": "Cifra de LiveAquaria (90 gal), con mucho espacio para nadar.",
+    "fuentes": [
+     "liveaquaria_labroides_dimidiatus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Mantiene «estaciones de limpieza» a las que otros peces acuden para que les quite parásitos; es monógamo y hermafrodita protogínico (FishBase). Muy activo y puede saltar fuera del acuario. Requiere cuidados avanzados: solo para acuaristas con experiencia (LiveAquaria).",
+    "fuentes": [
+     "fishbase_labroides_dimidiatus",
+     "liveaquaria_labroides_dimidiatus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Ocupa una estación de limpieza fija (FishBase).",
+    "fuentes": [
+     "fishbase_labroides_dimidiatus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_labroides_dimidiatus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 90 gal o más con tapa bien ajustada.",
+     "Varias tomas pequeñas de alimento al día.",
+     "Compañeros de forma y color distintos."
+    ],
+    "riesgos": [
+     "Puede saltar del acuario.",
+     "Cuidado difícil."
+    ],
+    "fuentes": [
+     "liveaquaria_labroides_dimidiatus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 12/05/2008, según FishBase",
+    "fuentes": [
+     "fishbase_labroides_dimidiatus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_labroides_dimidiatus",
+    "fishbase_labroides_dimidiatus",
+    "liveaquaria_labroides_dimidiatus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Lábrido limpiador",
+    "nombre_cientifico": "Labroides dimidiatus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico"
+     ],
+     "descripcion": "Pacífico: limpia de parásitos a otros peces. Difícil de mantener: necesita comer varias veces al día. Puede saltar.",
+     "fuentes": [
+      "fishbase_labroides_dimidiatus",
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "parásitos de otros peces",
+      "mysis enriquecido",
+      "alimento cárneo en porciones pequeñas"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_labroides_dimidiatus",
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 340.7,
+     "galones_us": 90,
+     "justificacion": "Cifra de LiveAquaria (90 gal), con mucho espacio para nadar.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 14.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "FishBase 14 cm y LiveAquaria 5½ in (≈ 14 cm) coinciden.",
+     "fuentes": [
+      "fishbase_labroides_dimidiatus",
+      "liveaquaria_labroides_dimidiatus"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "holacanthus_ciliaris",
+   "nombre_comun": "Pez ángel reina",
+   "otros_nombres": [
+    "Queen angelfish",
+    "Ángel reina"
+   ],
+   "nombre_cientifico": "Holacanthus ciliaris",
+   "autoridad": "(Linnaeus, 1758)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/holacanthus-ciliaris.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/holacanthus-ciliaris.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Chaetodontiformes",
+    "familia": "Pomacanthidae",
+    "subfamilia": null,
+    "aphia_id": 276012,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Chaetodon ciliaris Linnaeus, 1758 (combinación original)",
+     "Angelichthys ciliaris (Linnaeus, 1758)"
+    ],
+    "fuentes": [
+     "worms_holacanthus_ciliaris",
+     "fishbase_holacanthus_ciliaris"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes coralinos; se mueve entre gorgonias, látigos de mar y corales (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 70
+    },
+    "distribucion": "Atlántico occidental: de Florida y el golfo de México a Brasil; Atlántico centro-oriental: peñascos de San Pedro y San Pablo.",
+    "fuentes": [
+     "fishbase_holacanthus_ciliaris"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 45.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 45 cm y LiveAquaria 18 in (≈ 45.7 cm) coinciden.",
+    "fuentes": [
+     "fishbase_holacanthus_ciliaris",
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come casi exclusivamente esponjas, más pequeñas cantidades de algas, tunicados, hidroides y briozoos; los jóvenes quitan parásitos a otros peces (FishBase). En acuario: espirulina, algas, preparados para peces ángel, mysis y otros alimentos cárneos, al menos tres veces al día (LiveAquaria).",
+    "fuentes": [
+     "fishbase_holacanthus_ciliaris",
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 946.2,
+    "galones_us": 250,
+    "justificacion": "Cifra de LiveAquaria (250 gal), con escondites y roca viva para pastar.",
+    "fuentes": [
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Suele ir solo o en pareja (FishBase). Puede ser agresivo, así que debe ser el último en entrar al acuario. Es algo difícil: sufre con parámetros o dieta inadecuados (LiveAquaria).",
+    "fuentes": [
+     "fishbase_holacanthus_ciliaris",
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita escondites y roca viva para pastar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "con precaución",
+    "fuentes": [
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 250 gal o más.",
+     "Introducirlo el último."
+    ],
+    "riesgos": [
+     "Pica corales y almejas.",
+     "Sensible a parámetros del agua y dieta inadecuados."
+    ],
+    "fuentes": [
+     "liveaquaria_holacanthus_ciliaris"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 08/10/2009, según FishBase",
+    "fuentes": [
+     "fishbase_holacanthus_ciliaris"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_holacanthus_ciliaris",
+    "fishbase_holacanthus_ciliaris",
+    "liveaquaria_holacanthus_ciliaris",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez ángel reina",
+    "nombre_cientifico": "Holacanthus ciliaris",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Semiagresivo: debe ser el último pez en entrar. Pica corales y almejas. Necesita un acuario enorme.",
+     "fuentes": [
+      "fishbase_holacanthus_ciliaris",
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "LiveAquaria lo marca «con precaución»: tiende a picar corales duros y blandos y el manto de las almejas.",
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "esponjas",
+      "algas",
+      "preparados para peces ángel",
+      "mysis y alimentos cárneos"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_holacanthus_ciliaris",
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 946.2,
+     "galones_us": 250,
+     "justificacion": "Cifra de LiveAquaria (250 gal), con escondites y roca viva para pastar.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 45.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": 22.0,
+     "nota": "FishBase 45 cm y LiveAquaria 18 in (≈ 45.7 cm) coinciden.",
+     "fuentes": [
+      "fishbase_holacanthus_ciliaris",
+      "liveaquaria_holacanthus_ciliaris"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "cryptocentrus_cinctus",
+   "nombre_comun": "Gobio watchman",
+   "otros_nombres": [
+    "Yellow watchman goby",
+    "Yellow prawn goby",
+    "Spotted watchman goby"
+   ],
+   "nombre_cientifico": "Cryptocentrus cinctus",
+   "autoridad": "(Herre, 1936)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/cryptocentrus-cinctus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/cryptocentrus-cinctus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Gobiiformes",
+    "familia": "Gobiidae",
+    "subfamilia": null,
+    "aphia_id": 278326,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Smilogobius cinctus Herre, 1936 (combinación original)"
+    ],
+    "nota": "La ficha de LiveAquaria corresponde al «Spotted Watchman Goby», que la tienda describe como una variedad de color regional (Filipinas) de esta misma especie.",
+    "fuentes": [
+     "worms_cryptocentrus_cinctus",
+     "fishbase_cryptocentrus_cinctus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Zonas arenosas de lagunas someras y bahías costeras protegidas; vive en una madriguera con camarones alfeidos (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 25,
+     "habitual": "10–25 m"
+    },
+    "distribucion": "Pacífico occidental: de las islas Yaeyama (Japón) a Singapur y el sur de la Gran Barrera; Palaos y Truk en Micronesia.",
+    "fuentes": [
+     "fishbase_cryptocentrus_cinctus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 10.0,
+    "tipo": "longitud estándar",
+    "contraste": "FishBase 10 cm (longitud estándar) y LiveAquaria 4 in (≈ 10.2 cm) coinciden.",
+    "fuentes": [
+     "fishbase_cryptocentrus_cinctus",
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "En acuario: mysis, artemia, camarón y preparados congelados para carnívoros, al menos dos veces al día (LiveAquaria). FishBase no detalla su dieta.",
+    "fuentes": [
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "baja"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "media"
+    },
+    "medio_natural": {
+     "min_c": 22,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_cryptocentrus_cinctus"
+     ]
+    },
+    "nota": "El rango de acuario cae dentro del rango registrado en el medio natural."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 113.6,
+    "galones_us": 30,
+    "justificacion": "Cifra de LiveAquaria (30 gal), con cascajo de coral y fondo de arena.",
+    "fuentes": [
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Comparte madriguera con camarones alfeidos (FishBase). Le gusta asomarse detrás de las rocas. Rara vez es agresivo con otros peces, pero es territorial y pelea con los de su especie salvo que sean pareja. Puede saltar (LiveAquaria).",
+    "fuentes": [
+     "fishbase_cryptocentrus_cinctus",
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Excava en la arena; necesita cascajo de coral y fondo de arena (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 30 gal o más.",
+     "Fondo de arena y cascajo de coral.",
+     "Tapa bien ajustada."
+    ],
+    "riesgos": [
+     "Pelea con los de su especie salvo en pareja.",
+     "Puede saltar del acuario."
+    ],
+    "fuentes": [
+     "liveaquaria_cryptocentrus_cinctus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 27/08/2020, según FishBase",
+    "fuentes": [
+     "fishbase_cryptocentrus_cinctus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_cryptocentrus_cinctus",
+    "fishbase_cryptocentrus_cinctus",
+    "liveaquaria_cryptocentrus_cinctus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Gobio watchman",
+    "nombre_cientifico": "Cryptocentrus cinctus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico",
+      "territorial"
+     ],
+     "descripcion": "Pacífico con otros peces, pero territorial con los suyos. Vive en una madriguera, a veces con un camarón. Puede saltar.",
+     "fuentes": [
+      "fishbase_cryptocentrus_cinctus",
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "mysis",
+      "artemia",
+      "camarón",
+      "preparados congelados para carnívoros"
+     ],
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "baja"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 113.6,
+     "galones_us": 30,
+     "justificacion": "Cifra de LiveAquaria (30 gal), con cascajo de coral y fondo de arena.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 10.0,
+     "medida": "longitud estándar",
+     "tamano_venta_cm": {
+      "min": 2.5,
+      "max": 10.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "FishBase 10 cm (longitud estándar) y LiveAquaria 4 in (≈ 10.2 cm) coinciden.",
+     "fuentes": [
+      "fishbase_cryptocentrus_cinctus",
+      "liveaquaria_cryptocentrus_cinctus"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "pomacanthus_imperator",
+   "nombre_comun": "Pez ángel emperador",
+   "otros_nombres": [
+    "Emperor angelfish",
+    "Imperator angelfish"
+   ],
+   "nombre_cientifico": "Pomacanthus imperator",
+   "autoridad": "(Bloch, 1787)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/pomacanthus-imperator.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/pomacanthus-imperator.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Chaetodontiformes",
+    "familia": "Pomacanthidae",
+    "subfamilia": null,
+    "aphia_id": 220001,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Chaetodon imperator Bloch, 1787 (combinación original)",
+     "Acanthochaetodon imperator (Bloch, 1787)"
+    ],
+    "nota": "La foto muestra un juvenil, que es negro con anillos blancos y azules; el adulto es azul con rayas amarillas (LiveAquaria).",
+    "fuentes": [
+     "worms_pomacanthus_imperator",
+     "fishbase_pomacanthus_imperator"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Los juveniles viven bajo cornisas o en agujeros de arrecifes de laguna; los adultos, en cornisas y cuevas con abundante coral (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 100
+    },
+    "distribucion": "Indo-Pacífico: del mar Rojo y África oriental a las islas de la Línea y Tuamotu; al norte hasta el sur de Japón y Ogasawara; al sur hasta la Gran Barrera, Nueva Caledonia y las Australes.",
+    "fuentes": [
+     "fishbase_pomacanthus_imperator"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 40.0,
+    "tipo": "longitud estándar",
+    "contraste": "Diferencia menor entre fuentes: FishBase 40 cm (longitud estándar); LiveAquaria 15 in (≈ 38.1 cm).",
+    "fuentes": [
+     "fishbase_pomacanthus_imperator",
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come esponjas y otros organismos incrustantes, y también tunicados (FishBase). En acuario: espirulina, algas, preparados para peces ángel, mysis y otros alimentos cárneos (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pomacanthus_imperator",
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 832.7,
+    "galones_us": 220,
+    "justificacion": "Cifra de LiveAquaria (220 gal), con roca abundante y cuevas profundas.",
+    "fuentes": [
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Forma parejas; jóvenes y adultos pueden limpiar a peces mucho mayores (FishBase). Necesita mucha roca y cuevas profundas para sentirse seguro (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pomacanthus_imperator",
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita roca abundante y cuevas profundas (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "con precaución",
+    "fuentes": [
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 220 gal o más.",
+     "Roca abundante y cuevas profundas."
+    ],
+    "riesgos": [
+     "Pica corales y almejas."
+    ],
+    "fuentes": [
+     "liveaquaria_pomacanthus_imperator"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 08/10/2009, según FishBase",
+    "fuentes": [
+     "fishbase_pomacanthus_imperator"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_pomacanthus_imperator",
+    "fishbase_pomacanthus_imperator",
+    "liveaquaria_pomacanthus_imperator",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez ángel emperador",
+    "nombre_cientifico": "Pomacanthus imperator",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Semiagresivo. El juvenil tiene anillos azules y blancos; el adulto, rayas amarillas. Pica corales y almejas.",
+     "fuentes": [
+      "fishbase_pomacanthus_imperator",
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "LiveAquaria advierte que pica corales duros y blandos y almejas, aunque puede convivir con corales SPS y algunos corales blandos nocivos.",
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "esponjas y organismos incrustantes",
+      "algas",
+      "preparados para peces ángel",
+      "mysis"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_pomacanthus_imperator",
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 832.7,
+     "galones_us": 220,
+     "justificacion": "Cifra de LiveAquaria (220 gal), con roca abundante y cuevas profundas.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 40.0,
+     "medida": "longitud estándar",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": 25.0,
+     "nota": "Diferencia menor entre fuentes: FishBase 40 cm (longitud estándar); LiveAquaria 15 in (≈ 38.1 cm).",
+     "fuentes": [
+      "fishbase_pomacanthus_imperator",
+      "liveaquaria_pomacanthus_imperator"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "protoreaster_lincki",
+   "nombre_comun": "Estrella de mar cornuda",
+   "otros_nombres": [
+    "Red knob sea star",
+    "African red knob starfish",
+    "Red spine star"
+   ],
+   "nombre_cientifico": "Protoreaster lincki",
+   "autoridad": "(Blainville, 1830)",
+   "grupo": "estrella de mar",
+   "imagen": {
+    "archivo": "imagenes/protoreaster-lincki.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/protoreaster-lincki.jpg"
+   },
+   "taxonomia": {
+    "clase": "Asteroidea",
+    "orden": "Valvatida",
+    "familia": "Oreasteridae",
+    "subfamilia": null,
+    "aphia_id": 213286,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Asterias lincki de Blainville, 1830 (combinación original)",
+     "Pentaceros lincki (de Blainville, 1830)",
+     "Oreaster lincki (de Blainville, 1830)"
+    ],
+    "nota": "WoRMS escribe «lincki»; LiveAquaria usa la grafía «linckii».",
+    "fuentes": [
+     "worms_protoreaster_lincki",
+     "sealifebase_protoreaster_lincki"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Charcas de marea someras y arrecifes de hasta 100 ft (≈ 30 m) de profundidad (LiveAquaria). SeaLifeBase solo indica que es bentónica y tropical.",
+    "profundidad_m": {
+     "min": 0,
+     "max": 30
+    },
+    "distribucion": "Océano Índico (LiveAquaria); SeaLifeBase la registra en Omán.",
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki",
+     "sealifebase_protoreaster_lincki"
+    ],
+    "confianza": "baja"
+   },
+   "tamano_adulto": {
+    "max_cm": 30.5,
+    "tipo": "diámetro",
+    "contraste": "LiveAquaria y Saltwaterfish coinciden en 12 in (≈ 30.5 cm). SeaLifeBase no indica tamaño.",
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki",
+     "saltwaterfish_protoreaster_lincki"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "En acuario: almeja, camarón, pescado y calamar troceados una vez por semana. De pequeña come algas, pero al crecer come corales blandos, esponjas, gusanos tubícolas, almejas, estrellas y otros invertebrados (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki"
+    ],
+    "confianza": "baja"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "SeaLifeBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.023,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 75.7,
+    "galones_us": 20,
+    "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 20 Gallons»). LiveAquaria pide un acuario grande, sin dar una cifra.",
+    "fuentes": [
+     "saltwaterfish_protoreaster_lincki"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Muy sensible a los cambios bruscos de oxígeno, salinidad y pH; requiere aclimatación por goteo y nunca debe exponerse al aire (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita un acuario grande con roca viva abundante (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "no",
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki",
+     "saltwaterfish_protoreaster_lincki"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario grande con roca viva abundante.",
+     "Aclimatación por goteo, sin exponerla al aire.",
+     "Sin peces globo."
+    ],
+    "riesgos": [
+     "Se come corales e invertebrados.",
+     "No tolera cambios bruscos del agua, medicamentos con cobre ni nitratos altos."
+    ],
+    "fuentes": [
+     "liveaquaria_protoreaster_lincki"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "No evaluada por la UICN, según SeaLifeBase",
+    "fuentes": [
+     "sealifebase_protoreaster_lincki"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_protoreaster_lincki",
+    "sealifebase_protoreaster_lincki",
+    "liveaquaria_protoreaster_lincki",
+    "saltwaterfish_protoreaster_lincki",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "baja",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Estrella de mar cornuda",
+    "nombre_cientifico": "Protoreaster lincki",
+    "grupo": "estrella de mar",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": "LiveAquaria la clasifica como pacífica; Saltwaterfish, como semiagresiva.",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Al crecer se come corales e invertebrados: no es apta para arrecife. Muy sensible a los cambios del agua.",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "no",
+     "explicacion": "LiveAquaria y Saltwaterfish la consideran no apta: al crecer come corales blandos, esponjas, almejas y otros invertebrados.",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki",
+      "saltwaterfish_protoreaster_lincki"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "almeja, camarón, pescado y calamar troceados",
+      "invertebrados (al crecer)",
+      "algas (de pequeña)"
+     ],
+     "nota": "Saltwaterfish la clasifica como omnívora.",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ],
+     "confianza": "baja"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 75.7,
+     "galones_us": 20,
+     "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 20 Gallons»). LiveAquaria pide un acuario grande, sin dar una cifra.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "saltwaterfish_protoreaster_lincki"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 30.5,
+     "medida": "diámetro",
+     "tamano_venta_cm": {
+      "min": 5.1,
+      "max": 20.3,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "LiveAquaria y Saltwaterfish coinciden en 12 in (≈ 30.5 cm). SeaLifeBase no indica tamaño.",
+     "fuentes": [
+      "liveaquaria_protoreaster_lincki",
+      "saltwaterfish_protoreaster_lincki"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "lactoria_cornuta",
+   "nombre_comun": "Pez vaca",
+   "otros_nombres": [
+    "Longhorn cowfish",
+    "Pez vaca de cuernos largos"
+   ],
+   "nombre_cientifico": "Lactoria cornuta",
+   "autoridad": "(Linnaeus, 1758)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/lactoria-cornuta.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/lactoria-cornuta.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Tetraodontiformes",
+    "familia": "Ostraciidae",
+    "subfamilia": null,
+    "aphia_id": 219904,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Ostracion cornutus Linnaeus, 1758 (combinación original)",
+     "Lactoria cornutus (Linnaeus, 1758)"
+    ],
+    "fuentes": [
+     "worms_lactoria_cornuta",
+     "fishbase_lactoria_cornuta"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Costas de fondo fangoso o arenoso en bahías tranquilas, puertos y estuarios, y zonas con algas cerca de rocas o arrecifes. Los juveniles viven cerca de desembocaduras y en agua salobre (FishBase).",
+    "profundidad_m": {
+     "min": 1,
+     "max": 100,
+     "habitual": "1–50 m"
+    },
+    "distribucion": "Indo-Pacífico: del mar Rojo y África oriental a las Marquesas y Tuamotu; al norte hasta el sur de Japón y al sur hasta Lord Howe.",
+    "fuentes": [
+     "fishbase_lactoria_cornuta"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 46.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia entre fuentes: FishBase 46 cm (longitud habitual 40 cm); LiveAquaria 20 in (≈ 50.8 cm) en el medio natural y 16 in (≈ 40.6 cm) o menos en acuario.",
+    "fuentes": [
+     "fishbase_lactoria_cornuta",
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come invertebrados del fondo, que descubre soplando la arena (FishBase). En acuario: variedad de alimentos cárneos y vegetales; come despacio (LiveAquaria).",
+    "fuentes": [
+     "fishbase_lactoria_cornuta",
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 946.2,
+    "galones_us": 250,
+    "justificacion": "Cifra de LiveAquaria (250 gal).",
+    "fuentes": [
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Los adultos son solitarios y tímidos; los juveniles forman grupos pequeños (FishBase). Si se siente amenazado libera una toxina letal para los demás peces del acuario, incluidos otros peces vaca. Solo para expertos (LiveAquaria).",
+    "fuentes": [
+     "fishbase_lactoria_cornuta",
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "No tolera a otros peces vaca; necesita roca viva para raspar algas (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "con precaución",
+    "fuentes": [
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 250 gal o más.",
+     "Debe ser el primer pez en entrar.",
+     "Sin comedores agresivos."
+    ],
+    "riesgos": [
+     "Libera una toxina letal para los demás peces si se estresa o muere.",
+     "No tolera a otros peces vaca."
+    ],
+    "fuentes": [
+     "liveaquaria_lactoria_cornuta"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 18/08/2023, según FishBase",
+    "fuentes": [
+     "fishbase_lactoria_cornuta"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_lactoria_cornuta",
+    "fishbase_lactoria_cornuta",
+    "liveaquaria_lactoria_cornuta",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez vaca",
+    "nombre_cientifico": "Lactoria cornuta",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico",
+      "solitario"
+     ],
+     "descripcion": "Pacífico pero peligroso: si se estresa o muere libera una toxina que puede matar a los demás peces. Solo para expertos.",
+     "fuentes": [
+      "fishbase_lactoria_cornuta",
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "LiveAquaria lo marca «con precaución»: puede picar gusanos tubícolas.",
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "invertebrados del fondo",
+      "alimentos cárneos",
+      "alimentos vegetales"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_lactoria_cornuta",
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 946.2,
+     "galones_us": 250,
+     "justificacion": "Cifra de LiveAquaria (250 gal).",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 46.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 2.5,
+      "max": 12.7,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia entre fuentes: FishBase 46 cm (longitud habitual 40 cm); LiveAquaria 20 in (≈ 50.8 cm) en el medio natural y 16 in (≈ 40.6 cm) o menos en acuario.",
+     "fuentes": [
+      "fishbase_lactoria_cornuta",
+      "liveaquaria_lactoria_cornuta"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "siganus_magnificus",
+   "nombre_comun": "Foxface magnífico",
+   "otros_nombres": [
+    "Magnificent foxface",
+    "Magnificent rabbitfish",
+    "Andaman foxface"
+   ],
+   "nombre_cientifico": "Siganus magnificus",
+   "autoridad": "(Burgess, 1977)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/siganus-magnificus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/siganus-magnificus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Eupercaria (incertae sedis)",
+    "familia": "Siganidae",
+    "subfamilia": null,
+    "aphia_id": 273917,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Lo magnificus Burgess, 1977 (combinación original)"
+    ],
+    "fuentes": [
+     "worms_siganus_magnificus",
+     "fishbase_siganus_magnificus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes coralinos; los adultos van en pareja y los juveniles se esconden entre corales (FishBase).",
+    "profundidad_m": {
+     "min": 2,
+     "max": 30
+    },
+    "distribucion": "Océano Índico oriental: de Tailandia, incluidas las islas Similan, a Java (Indonesia).",
+    "fuentes": [
+     "fishbase_siganus_magnificus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 24.0,
+    "tipo": "longitud estándar",
+    "contraste": "FishBase 24 cm (longitud estándar) y LiveAquaria 9 in (≈ 22.9 cm) prácticamente coinciden.",
+    "fuentes": [
+     "fishbase_siganus_magnificus",
+     "liveaquaria_siganus_magnificus"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come algas y pequeños invertebrados (FishBase). En acuario: verduras frescas y algas indeseadas; puede picar pólipos de corales blandos y duros (LiveAquaria).",
+    "fuentes": [
+     "fishbase_siganus_magnificus",
+     "liveaquaria_siganus_magnificus"
+    ],
+    "confianza": "media"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": {
+     "min_c": 24,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_siganus_magnificus"
+     ]
+    },
+    "nota": "El rango de acuario no cae por completo dentro del rango natural registrado por FishBase."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 492.1,
+    "galones_us": 130,
+    "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+    "fuentes": [
+     "liveaquaria_siganus_magnificus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Los adultos van en pareja y a veces solos (FishBase). Muy pacífico salvo con otros peces conejo, y muy resistente. Sus espinas dorsales venenosas lo protegen de los depredadores (LiveAquaria).",
+    "fuentes": [
+     "fishbase_siganus_magnificus",
+     "liveaquaria_siganus_magnificus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Los juveniles se esconden entre corales (FishBase).",
+    "fuentes": [
+     "fishbase_siganus_magnificus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "con precaución",
+    "fuentes": [
+     "liveaquaria_siganus_magnificus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 130 gal o más.",
+     "Bien alimentado con algas."
+    ],
+    "riesgos": [
+     "Espinas dorsales venenosas.",
+     "Puede picar pólipos de coral si pasa hambre.",
+     "Agresivo con otros peces conejo."
+    ],
+    "fuentes": [
+     "liveaquaria_siganus_magnificus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 04/02/2009, según FishBase",
+    "fuentes": [
+     "fishbase_siganus_magnificus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_siganus_magnificus",
+    "fishbase_siganus_magnificus",
+    "liveaquaria_siganus_magnificus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Foxface magnífico",
+    "nombre_cientifico": "Siganus magnificus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico"
+     ],
+     "descripcion": "Pacífico y resistente, salvo con otros peces conejo. Espinas dorsales venenosas.",
+     "fuentes": [
+      "fishbase_siganus_magnificus",
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "Criterio de AIRI: LiveAquaria lo marca compatible, pero advierte que, si no está bien alimentado, puede picar corales LPS y blandos.",
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas",
+      "verduras frescas"
+     ],
+     "nota": "FishBase incluye pequeños invertebrados en su dieta natural.",
+     "fuentes": [
+      "fishbase_siganus_magnificus",
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "media"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 492.1,
+     "galones_us": 130,
+     "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 24.0,
+     "medida": "longitud estándar",
+     "tamano_venta_cm": {
+      "min": 5.1,
+      "max": 17.8,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "FishBase 24 cm (longitud estándar) y LiveAquaria 9 in (≈ 22.9 cm) prácticamente coinciden.",
+     "fuentes": [
+      "fishbase_siganus_magnificus",
+      "liveaquaria_siganus_magnificus"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "prionurus_punctatus",
+   "nombre_comun": "Cirujano pimienta",
+   "otros_nombres": [
+    "Yellowtail surgeonfish",
+    "Yellowtail tang",
+    "Cochinito punteado"
+   ],
+   "nombre_cientifico": "Prionurus punctatus",
+   "autoridad": "Gill, 1862",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/prionurus-punctatus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/prionurus-punctatus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 282349,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Xesurus punctatus (Gill, 1862)"
+    ],
+    "fuentes": [
+     "worms_prionurus_punctatus",
+     "fishbase_prionurus_punctatus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes someros, en cardúmenes; come algas en zonas rocosas (FishBase).",
+    "profundidad_m": {
+     "min": 5,
+     "max": 35,
+     "habitual": "6–12 m"
+    },
+    "distribucion": "Pacífico centro-oriental: del golfo de California a El Salvador, incluidas las islas Revillagigedo.",
+    "fuentes": [
+     "fishbase_prionurus_punctatus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 60.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 60 cm y Quality Marine «casi 24 in» (≈ 61 cm) coinciden.",
+    "fuentes": [
+     "fishbase_prionurus_punctatus",
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Come algas en zonas rocosas (FishBase). En acuario: dieta variada de alimentos cárneos y de algas varias veces al día; si faltan algas, láminas de alga (Quality Marine).",
+    "fuentes": [
+     "fishbase_prionurus_punctatus",
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 946.2,
+    "galones_us": 250,
+    "justificacion": "Cifra de Quality Marine (250 gal), porque el adulto crece mucho.",
+    "fuentes": [
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Vive en cardúmenes (FishBase). Puede ser agresivo con cirujanos de forma parecida; su espina caudal es muy afilada (Quality Marine).",
+    "fuentes": [
+     "fishbase_prionurus_punctatus",
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio para nadar y roca para pastar y esconderse (Quality Marine).",
+    "fuentes": [
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 250 gal o más.",
+     "Algas abundantes."
+    ],
+    "riesgos": [
+     "Puede picar invertebrados si pasa hambre.",
+     "Agresivo con cirujanos de forma parecida.",
+     "Espina caudal muy afilada."
+    ],
+    "fuentes": [
+     "qualitymarine_prionurus_punctatus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 06/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_prionurus_punctatus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_prionurus_punctatus",
+    "fishbase_prionurus_punctatus",
+    "qualitymarine_prionurus_punctatus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano pimienta",
+    "nombre_cientifico": "Prionurus punctatus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": "Quality Marine lo clasifica como «Social», pero advierte que puede ser agresivo con cirujanos de forma parecida.",
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "sociable"
+     ],
+     "descripcion": "Sociable: en el medio natural vive en grupos. Crece mucho y necesita un acuario enorme. Espina caudal muy afilada.",
+     "fuentes": [
+      "fishbase_prionurus_punctatus",
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "Quality Marine lo considera apto para arrecife, aunque puede picar pequeños invertebrados si no está bien alimentado.",
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas",
+      "láminas de alga",
+      "alimentos cárneos marinos"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_prionurus_punctatus",
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": "Rango de Quality Marine.",
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 946.2,
+     "galones_us": 250,
+     "justificacion": "Cifra de Quality Marine (250 gal), porque el adulto crece mucho.",
+     "nota": "Es el mínimo de una sola fuente comercial. LiveAquaria no vende esta especie.",
+     "fuentes": [
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 60.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "FishBase 60 cm y Quality Marine «casi 24 in» (≈ 61 cm) coinciden.",
+     "fuentes": [
+      "fishbase_prionurus_punctatus",
+      "qualitymarine_prionurus_punctatus"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "acanthurus_triostegus",
+   "nombre_comun": "Cirujano convicto",
+   "otros_nombres": [
+    "Convict tang",
+    "Convict surgeonfish",
+    "Cirujano reo"
+   ],
+   "nombre_cientifico": "Acanthurus triostegus",
+   "autoridad": "(Linnaeus, 1758)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/acanthurus-triostegus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/acanthurus-triostegus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Acanthuriformes",
+    "familia": "Acanthuridae",
+    "subfamilia": null,
+    "aphia_id": 219630,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Acanthurus hirudo Bennett, 1829",
+     "Acanthurus sandvicensis Streets, 1877"
+    ],
+    "fuentes": [
+     "worms_acanthurus_triostegus",
+     "fishbase_acanthurus_triostegus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Lagunas y arrecifes externos de sustrato duro; los jóvenes abundan en pozas de marea. A menudo se alimenta cerca de desagües de agua dulce (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 90
+    },
+    "distribucion": "Indo-Pacífico, salvo los mares que rodean la península arábiga; Pacífico oriental, del golfo de California a Panamá, incluidas las islas Revillagigedo, Cocos, Clipperton y Galápagos.",
+    "fuentes": [
+     "fishbase_acanthurus_triostegus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 27.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia entre fuentes: FishBase 27 cm (longitud habitual 17 cm); LiveAquaria 8 in (≈ 20.3 cm).",
+    "fuentes": [
+     "fishbase_acanthurus_triostegus",
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come algas filamentosas, a menudo en grandes grupos (FishBase). En acuario: abundantes algas marinas y alga seca al menos tres veces por semana (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_triostegus",
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 492.1,
+    "galones_us": 130,
+    "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+    "fuentes": [
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "A veces forma cardúmenes y grandes grupos de alimentación (FishBase). Otros cirujanos lo acosan; puede vivir en paz con otros convictos si se introducen todos a la vez (LiveAquaria).",
+    "fuentes": [
+     "fishbase_acanthurus_triostegus",
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio para nadar (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 130 gal o más.",
+     "Sin otras especies de cirujanos.",
+     "Si son varios, introducirlos a la vez."
+    ],
+    "riesgos": [
+     "Otros cirujanos lo acosan."
+    ],
+    "fuentes": [
+     "liveaquaria_acanthurus_triostegus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 04/05/2010, según FishBase",
+    "fuentes": [
+     "fishbase_acanthurus_triostegus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_acanthurus_triostegus",
+    "fishbase_acanthurus_triostegus",
+    "liveaquaria_acanthurus_triostegus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Cirujano convicto",
+    "nombre_cientifico": "Acanthurus triostegus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "sociable"
+     ],
+     "descripcion": "Más acosado que acosador: otros cirujanos lo molestan. Puede vivir en grupo si todos se introducen a la vez.",
+     "fuentes": [
+      "fishbase_acanthurus_triostegus",
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "herbivoro",
+     "alimentos": [
+      "algas filamentosas",
+      "algas marinas",
+      "alga seca (nori)"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_acanthurus_triostegus",
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 492.1,
+     "galones_us": 130,
+     "justificacion": "Cifra de los datos rápidos de LiveAquaria (130 gal); su descripción indica 125 gal o más.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 27.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": 8.8,
+     "nota": "Diferencia entre fuentes: FishBase 27 cm (longitud habitual 17 cm); LiveAquaria 8 in (≈ 20.3 cm).",
+     "fuentes": [
+      "fishbase_acanthurus_triostegus",
+      "liveaquaria_acanthurus_triostegus"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "dascyllus_trimaculatus",
+   "nombre_comun": "Damisela dominó",
+   "otros_nombres": [
+    "Domino damselfish",
+    "Three spot damselfish",
+    "Threespot dascyllus"
+   ],
+   "nombre_cientifico": "Dascyllus trimaculatus",
+   "autoridad": "(Rüppell, 1829)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/dascyllus-trimaculatus.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/dascyllus-trimaculatus.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Ovalentaria (incertae sedis)",
+    "familia": "Pomacentridae",
+    "subfamilia": null,
+    "aphia_id": 212846,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Dascyllus axillaris Smith, 1935",
+     "Dascyllus unicolor Bennett, 1831"
+    ],
+    "fuentes": [
+     "worms_dascyllus_trimaculatus",
+     "fishbase_dascyllus_trimaculatus"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Arrecifes coralinos y rocosos; los juveniles suelen vivir con grandes anémonas, erizos o pequeñas cabezas de coral (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 55
+    },
+    "distribucion": "Indo-Pacífico: del mar Rojo y África oriental a las islas de la Línea y Pitcairn; al norte hasta el sur de Japón y al sur hasta Sídney. No vive en Hawái ni en las Marquesas.",
+    "fuentes": [
+     "fishbase_dascyllus_trimaculatus"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 14.0,
+    "tipo": "longitud total",
+    "contraste": "FishBase 14 cm y LiveAquaria 5½ in (≈ 14 cm) coinciden.",
+    "fuentes": [
+     "fishbase_dascyllus_trimaculatus",
+     "liveaquaria_dascyllus_trimaculatus"
+    ],
+    "confianza": "alta"
+   },
+   "alimentacion": {
+    "texto": "Su contenido estomacal incluye algas, copépodos y otros crustáceos planctónicos (FishBase). En acuario: alimentos cárneos, preparados para herbívoros y escamas (LiveAquaria).",
+    "fuentes": [
+     "fishbase_dascyllus_trimaculatus",
+     "liveaquaria_dascyllus_trimaculatus"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 113.6,
+    "galones_us": 30,
+    "justificacion": "Cifra de LiveAquaria (30 gal).",
+    "fuentes": [
+     "liveaquaria_dascyllus_trimaculatus"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Vive en grupos pequeños o grandes; los machos cuidan y oxigenan los huevos (FishBase). Se vuelve más activo y agresivo con la edad; tolera agua de calidad deficiente, por eso es popular entre principiantes (LiveAquaria).",
+    "fuentes": [
+     "fishbase_dascyllus_trimaculatus",
+     "liveaquaria_dascyllus_trimaculatus"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Los juveniles se refugian en anémonas, erizos o cabezas de coral (FishBase).",
+    "fuentes": [
+     "fishbase_dascyllus_trimaculatus"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_dascyllus_trimaculatus"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 30 gal o más.",
+     "Compañeros más grandes que él."
+    ],
+    "riesgos": [
+     "Se vuelve agresivo con la edad."
+    ],
+    "fuentes": [
+     "liveaquaria_dascyllus_trimaculatus"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 23/09/2021, según FishBase",
+    "fuentes": [
+     "fishbase_dascyllus_trimaculatus"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_dascyllus_trimaculatus",
+    "fishbase_dascyllus_trimaculatus",
+    "liveaquaria_dascyllus_trimaculatus",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Damisela dominó",
+    "nombre_cientifico": "Dascyllus trimaculatus",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "agresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "sociable"
+     ],
+     "descripcion": "Resistente y fácil, pero muy agresivo de adulto. Los juveniles pueden vivir en una anémona.",
+     "fuentes": [
+      "fishbase_dascyllus_trimaculatus",
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria lo considera compatible con arrecife.",
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "omnivoro",
+     "alimentos": [
+      "algas",
+      "crustáceos planctónicos",
+      "alimentos cárneos",
+      "escamas"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_dascyllus_trimaculatus",
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 113.6,
+     "galones_us": 30,
+     "justificacion": "Cifra de LiveAquaria (30 gal).",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 14.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 2.5,
+      "max": 7.6,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "FishBase 14 cm y LiveAquaria 5½ in (≈ 14 cm) coinciden.",
+     "fuentes": [
+      "fishbase_dascyllus_trimaculatus",
+      "liveaquaria_dascyllus_trimaculatus"
+     ],
+     "confianza": "alta"
+    }
+   }
+  },
+  {
+   "id": "chiloscyllium_punctatum",
+   "nombre_comun": "Tiburón bambú",
+   "otros_nombres": [
+    "Brownbanded bamboo shark",
+    "Brown-banded catshark",
+    "Bambú estriado"
+   ],
+   "nombre_cientifico": "Chiloscyllium punctatum",
+   "autoridad": "Müller & Henle, 1838",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/chiloscyllium-punctatum.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/chiloscyllium-punctatum.jpg"
+   },
+   "taxonomia": {
+    "clase": "Elasmobranchii",
+    "orden": "Orectolobiformes",
+    "familia": "Hemiscylliidae",
+    "subfamilia": null,
+    "aphia_id": 277833,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Chiloscyllium margaritiferum Bleeker, 1863",
+     "Hemiscyllium punctatum (Müller & Henle, 1838)"
+    ],
+    "nota": "Quality Marine lo vende como «Bamboo Shark» (Chiloscyllium sp.), sin indicar especie; Saltwaterfish sí lo identifica como C. punctatum.",
+    "fuentes": [
+     "worms_chiloscyllium_punctatum",
+     "fishbase_chiloscyllium_punctatum"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Tiburón de fondo costero, común en arrecifes coralinos y a menudo en pozas de marea; puede sobrevivir hasta 12 horas fuera del agua (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 85
+    },
+    "distribucion": "Indo-Pacífico occidental: de las islas Andamán y la India a Filipinas, al norte hasta Japón y al sur hasta Australia.",
+    "fuentes": [
+     "fishbase_chiloscyllium_punctatum"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 132.0,
+    "tipo": "longitud total",
+    "contraste": "Diferencia entre fuentes: FishBase 132 cm (máximo); Saltwaterfish indica un tamaño medio de 30 in (≈ 76.2 cm); Quality Marine, casi 37 in (≈ 94 cm) para Chiloscyllium sp.",
+    "fuentes": [
+     "fishbase_chiloscyllium_punctatum",
+     "saltwaterfish_chiloscyllium_punctatum",
+     "qualitymarine_chiloscyllium_punctatum"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Probablemente come invertebrados del fondo y peces pequeños (FishBase). Cazador nocturno de peces y crustáceos (Saltwaterfish). En acuario necesita una dieta rica en alimentos cárneos (Quality Marine).",
+    "fuentes": [
+     "fishbase_chiloscyllium_punctatum",
+     "saltwaterfish_chiloscyllium_punctatum",
+     "qualitymarine_chiloscyllium_punctatum"
+    ],
+    "confianza": "media"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "qualitymarine_chiloscyllium_punctatum"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "El rango de acuario es de Quality Marine para su «Bamboo Shark» (Chiloscyllium sp.); ninguna fuente consultada da un rango específico de C. punctatum."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "qualitymarine_chiloscyllium_punctatum"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "qualitymarine_chiloscyllium_punctatum"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 1135.5,
+    "galones_us": 300,
+    "justificacion": "Saltwaterfish indica 300 gal o más para C. punctatum; Quality Marine también recomienda 300 gal o más para su «Bamboo Shark» (Chiloscyllium sp.).",
+    "fuentes": [
+     "saltwaterfish_chiloscyllium_punctatum",
+     "qualitymarine_chiloscyllium_punctatum"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Cazador nocturno; muy sensible a los cambios de los parámetros del agua (Saltwaterfish). Necesita fondo de arena fina y rocas estables con cuevas para descansar; es sensible al cobre y a los impulsos eléctricos (Quality Marine).",
+    "fuentes": [
+     "saltwaterfish_chiloscyllium_punctatum",
+     "qualitymarine_chiloscyllium_punctatum"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita cuevas y grietas estables para descansar y fondo de arena fina (Quality Marine).",
+    "fuentes": [
+     "qualitymarine_chiloscyllium_punctatum"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "no",
+    "fuentes": [
+     "saltwaterfish_chiloscyllium_punctatum"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 300 gal o más.",
+     "Fondo de arena fina y cuevas estables.",
+     "Sin cobre ni aparatos que generen impulsos eléctricos."
+    ],
+    "riesgos": [
+     "Se come peces pequeños y crustáceos.",
+     "Muy sensible a los cambios del agua y al cobre."
+    ],
+    "fuentes": [
+     "saltwaterfish_chiloscyllium_punctatum",
+     "qualitymarine_chiloscyllium_punctatum"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Casi amenazada (NT), evaluada el 19/09/2023, según FishBase",
+    "fuentes": [
+     "fishbase_chiloscyllium_punctatum"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_chiloscyllium_punctatum",
+    "fishbase_chiloscyllium_punctatum",
+    "qualitymarine_chiloscyllium_punctatum",
+    "saltwaterfish_chiloscyllium_punctatum",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Tiburón bambú",
+    "nombre_cientifico": "Chiloscyllium punctatum",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": "Saltwaterfish lo clasifica como semiagresivo; Quality Marine, como agresivo.",
+     "fuentes": [
+      "saltwaterfish_chiloscyllium_punctatum"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Tiburón de fondo, nocturno, que crece mucho: necesita un acuario enorme. Se come peces y crustáceos.",
+     "fuentes": [
+      "saltwaterfish_chiloscyllium_punctatum",
+      "qualitymarine_chiloscyllium_punctatum"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "no",
+     "explicacion": "Saltwaterfish lo considera no apto para arrecife.",
+     "fuentes": [
+      "saltwaterfish_chiloscyllium_punctatum"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "peces pequeños",
+      "crustáceos",
+      "invertebrados del fondo",
+      "alimentos cárneos"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_chiloscyllium_punctatum",
+      "saltwaterfish_chiloscyllium_punctatum",
+      "qualitymarine_chiloscyllium_punctatum"
+     ],
+     "confianza": "media"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": "Rango de Quality Marine para Chiloscyllium sp.",
+     "fuentes": [
+      "qualitymarine_chiloscyllium_punctatum"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 1135.5,
+     "galones_us": 300,
+     "justificacion": "Saltwaterfish indica 300 gal o más para C. punctatum; Quality Marine también recomienda 300 gal o más para su «Bamboo Shark» (Chiloscyllium sp.).",
+     "nota": "Dos fuentes comerciales coinciden en 300 gal.",
+     "fuentes": [
+      "saltwaterfish_chiloscyllium_punctatum",
+      "qualitymarine_chiloscyllium_punctatum"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 132.0,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "Diferencia entre fuentes: FishBase 132 cm (máximo); Saltwaterfish indica un tamaño medio de 30 in (≈ 76.2 cm); Quality Marine, casi 37 in (≈ 94 cm) para Chiloscyllium sp.",
+     "fuentes": [
+      "fishbase_chiloscyllium_punctatum",
+      "saltwaterfish_chiloscyllium_punctatum",
+      "qualitymarine_chiloscyllium_punctatum"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "taeniura_lymma",
+   "nombre_comun": "Raya de manchas azules",
+   "otros_nombres": [
+    "Bluespotted ribbontail ray",
+    "Blue spotted stingray",
+    "Ribbontail stingray"
+   ],
+   "nombre_cientifico": "Taeniura lymma",
+   "autoridad": "(Fabricius, 1775)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/taeniura-lymma.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/taeniura-lymma.jpg"
+   },
+   "taxonomia": {
+    "clase": "Elasmobranchii",
+    "orden": "Myliobatiformes",
+    "familia": "Dasyatidae",
+    "subfamilia": null,
+    "aphia_id": 217422,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Raja lymma Fabricius, 1775 (combinación original)",
+     "Trygon ornatus Gray, 1830"
+    ],
+    "fuentes": [
+     "worms_taeniura_lymma",
+     "fishbase_taeniura_lymma"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Alrededor de arrecifes coralinos. Con la marea alta entra en grupos en zonas arenosas someras para alimentarse y con la baja se refugia en cuevas y bajo cornisas; rara vez se entierra (FishBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 20
+    },
+    "distribucion": "Indo-Pacífico occidental: del golfo Pérsico, el mar Rojo y África oriental a las Islas Salomón; al norte hasta el sur de Japón y al sur hasta el norte de Australia.",
+    "fuentes": [
+     "fishbase_taeniura_lymma"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 35.0,
+    "tipo": "anchura del disco",
+    "contraste": "FishBase: 35 cm de anchura del disco (unos 70 cm de longitud total); Quality Marine: algo más de 12 in (≈ 30.5 cm).",
+    "fuentes": [
+     "fishbase_taeniura_lymma",
+     "qualitymarine_taeniura_lymma"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Come moluscos, gusanos, camarones y cangrejos (FishBase). En acuario necesita una dieta rica en alimentos cárneos (Quality Marine).",
+    "fuentes": [
+     "fishbase_taeniura_lymma",
+     "qualitymarine_taeniura_lymma"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "FishBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "qualitymarine_taeniura_lymma"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "qualitymarine_taeniura_lymma"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 946.2,
+    "galones_us": 250,
+    "justificacion": "Cifra de Quality Marine (250 gal), con amplias zonas abiertas para nadar.",
+    "fuentes": [
+     "qualitymarine_taeniura_lymma"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "FishBase advierte que no se adapta bien a los acuarios. Quality Marine la clasifica como agresiva y de cuidado difícil; es sociable con los de su especie y puede saltar.",
+    "fuentes": [
+     "fishbase_taeniura_lymma",
+     "qualitymarine_taeniura_lymma"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita fondo de arena fina y amplias zonas abiertas para nadar (Quality Marine).",
+    "fuentes": [
+     "qualitymarine_taeniura_lymma"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "con precaución",
+    "fuentes": [
+     "qualitymarine_taeniura_lymma",
+     "fishbase_taeniura_lymma"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 250 gal o más con mucho espacio abierto.",
+     "Arena fina.",
+     "Tapa bien ajustada.",
+     "Sin cobre."
+    ],
+    "riesgos": [
+     "Venenosa (FishBase): espina en la cola.",
+     "No se adapta bien al acuario (FishBase).",
+     "Se come crustáceos y moluscos."
+    ],
+    "fuentes": [
+     "qualitymarine_taeniura_lymma",
+     "fishbase_taeniura_lymma"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 01/09/2020, según FishBase",
+    "fuentes": [
+     "fishbase_taeniura_lymma"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_taeniura_lymma",
+    "fishbase_taeniura_lymma",
+    "qualitymarine_taeniura_lymma",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "baja",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Raya de manchas azules",
+    "nombre_cientifico": "Taeniura lymma",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "agresivo",
+     "nota": "Quality Marine indica «Behavior: Agressive».",
+     "fuentes": [
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "sociable"
+     ],
+     "descripcion": "Difícil: FishBase indica que no se adapta bien al acuario. Tiene una espina venenosa en la cola. Necesita un acuario enorme con arena fina.",
+     "fuentes": [
+      "fishbase_taeniura_lymma",
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "Criterio de AIRI: Quality Marine no indica si es apta para arrecife, pero en el medio natural come camarones y cangrejos (FishBase).",
+     "fuentes": [
+      "qualitymarine_taeniura_lymma",
+      "fishbase_taeniura_lymma"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "moluscos",
+      "gusanos",
+      "camarones y cangrejos",
+      "alimentos cárneos congelados o vivos"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_taeniura_lymma",
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": "Rango de Quality Marine.",
+     "fuentes": [
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 946.2,
+     "galones_us": 250,
+     "justificacion": "Cifra de Quality Marine (250 gal), con amplias zonas abiertas para nadar.",
+     "nota": "Es el mínimo de una sola fuente comercial. LiveAquaria no vende esta especie.",
+     "fuentes": [
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 35.0,
+     "medida": "anchura del disco",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": 20.3,
+     "nota": "FishBase: 35 cm de anchura del disco (unos 70 cm de longitud total); Quality Marine: algo más de 12 in (≈ 30.5 cm).",
+     "fuentes": [
+      "fishbase_taeniura_lymma",
+      "qualitymarine_taeniura_lymma"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "euphyllia_glabrescens",
+   "nombre_comun": "Coral torch",
+   "otros_nombres": [
+    "Torch coral",
+    "Trumpet coral (LiveAquaria)",
+    "Joker coral"
+   ],
+   "nombre_cientifico": "Euphyllia glabrescens",
+   "autoridad": "(Chamisso & Eysenhardt, 1821)",
+   "grupo": "coral",
+   "imagen": {
+    "archivo": "imagenes/euphyllia-glabrescens.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/euphyllia-glabrescens.jpg"
+   },
+   "taxonomia": {
+    "clase": "Anthozoa (Hexacorallia)",
+    "orden": "Scleractinia",
+    "familia": "Euphylliidae",
+    "subfamilia": null,
+    "aphia_id": 207617,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Caryophyllia glabrescens Chamisso & Eysenhardt, 1821 (combinación original)",
+     "Catalaphyllia okinawaensis Eguchi & Shirai, 1977"
+    ],
+    "nota": "Es un coral duro de pólipo grande (LPS). LiveAquaria lo sitúa en la familia Caryophylliidae; WoRMS, en Euphylliidae.",
+    "fuentes": [
+     "worms_euphyllia_glabrescens",
+     "sealifebase_euphyllia_glabrescens"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Puede ser común en lagunas protegidas y pendientes arrecifales; también en arrecifes de franja (SeaLifeBase).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 40
+    },
+    "distribucion": "Indo-Pacífico.",
+    "fuentes": [
+     "sealifebase_euphyllia_glabrescens"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": null,
+    "tipo": "colonia",
+    "contraste": "SeaLifeBase no indica el tamaño de la colonia (solo el de sus coralitos, unos 3 cm).",
+    "fuentes": [
+     "sealifebase_euphyllia_glabrescens"
+    ],
+    "confianza": "baja"
+   },
+   "alimentacion": {
+    "texto": "Necesita luz moderada; se beneficia de alimento adicional semanal (microplancton o artemia) y de aportes de calcio, estroncio y oligoelementos (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_euphyllia_glabrescens"
+    ],
+    "confianza": "baja"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "SeaLifeBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.023,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 189.2,
+    "galones_us": 50,
+    "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 50 Gallons») para torch corals vendidos como Euphyllia glabrescens.",
+    "fuentes": [
+     "saltwaterfish_euphyllia_glabrescens"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Sus pólipos largos y ondulantes están visibles de día y de noche. De noche extiende tentáculos barredores de varias pulgadas que pican a otros corales. Es moderadamente difícil y necesita excelente calidad de agua (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_euphyllia_glabrescens"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita mucho espacio respecto a otros animales sésiles (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_euphyllia_glabrescens"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_euphyllia_glabrescens",
+     "saltwaterfish_euphyllia_glabrescens"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Espacio libre a su alrededor.",
+     "Luz y corriente moderadas.",
+     "Calcio, estroncio y oligoelementos."
+    ],
+    "riesgos": [
+     "Sus tentáculos barredores pican a otros corales."
+    ],
+    "fuentes": [
+     "liveaquaria_euphyllia_glabrescens"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 27/10/2023, según SeaLifeBase",
+    "otros": "Incluido en el Apéndice II de CITES (SeaLifeBase): su comercio internacional está regulado. SeaLifeBase registra un alto nivel de blanqueamiento en Palaos.",
+    "fuentes": [
+     "sealifebase_euphyllia_glabrescens"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_euphyllia_glabrescens",
+    "sealifebase_euphyllia_glabrescens",
+    "liveaquaria_euphyllia_glabrescens",
+    "saltwaterfish_euphyllia_glabrescens",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "cuidado_coral": {
+    "iluminacion": "moderada",
+    "corriente": "media",
+    "ubicacion": "fondo (LiveAquaria) o cualquiera (Saltwaterfish)",
+    "suplementos": "magnesio, calcio, estroncio y oligoelementos",
+    "fuentes": [
+     "liveaquaria_euphyllia_glabrescens",
+     "saltwaterfish_euphyllia_glabrescens"
+    ]
+   },
+   "ficha_airi": {
+    "nombre_comun": "Coral torch",
+    "nombre_cientifico": "Euphyllia glabrescens",
+    "grupo": "coral",
+    "temperamento": {
+     "valor": "agresivo",
+     "nota": "LiveAquaria lo clasifica como agresivo; Saltwaterfish, como pacífico.",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Coral duro (LPS) de tentáculos largos. Sus tentáculos barredores pican a otros corales: hay que dejarle espacio.",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria y Saltwaterfish lo consideran apto, siempre que se le deje espacio respecto a otros corales.",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens",
+      "saltwaterfish_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "fotosintetico",
+     "alimentos": [
+      "luz moderada",
+      "microplancton o artemia semanal",
+      "calcio, estroncio y oligoelementos"
+     ],
+     "nota": "Saltwaterfish lo clasifica como filtrador.",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": "Rango de LiveAquaria.",
+     "fuentes": [
+      "liveaquaria_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 189.2,
+     "galones_us": 50,
+     "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 50 Gallons») para torch corals vendidos como Euphyllia glabrescens.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "saltwaterfish_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": null,
+     "medida": "colonia",
+     "tamano_venta_cm": {
+      "min": 1.3,
+      "max": 13.3,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "SeaLifeBase no indica el tamaño de la colonia (solo el de sus coralitos, unos 3 cm).",
+     "fuentes": [
+      "sealifebase_euphyllia_glabrescens"
+     ],
+     "confianza": "baja"
+    }
+   }
+  },
+  {
+   "id": "lysmata_wurdemanni",
+   "nombre_comun": "Camarón pimienta",
+   "otros_nombres": [
+    "Peppermint shrimp",
+    "Veined shrimp",
+    "Caribbean cleaner shrimp"
+   ],
+   "nombre_cientifico": "Lysmata wurdemanni",
+   "autoridad": "(Gibbes, 1850)",
+   "grupo": "crustáceo",
+   "imagen": {
+    "archivo": "imagenes/lysmata-wurdemanni.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/lysmata-wurdemanni.jpg"
+   },
+   "taxonomia": {
+    "clase": "Malacostraca",
+    "orden": "Decapoda",
+    "familia": "Lysmatidae",
+    "subfamilia": null,
+    "aphia_id": 158365,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Hippolyte wurdemanni Gibbes, 1850 (combinación original)",
+     "Hippolysmata wurdemanni (Gibbes, 1850)"
+    ],
+    "nota": "LiveAquaria lo sitúa en la familia Hippolytidae; WoRMS, en Lysmatidae. LiveAquaria advierte que el complejo de camarones «peppermint» del Atlántico occidental se revisó en 2006, así que el animal vendido puede ser otra especie de Lysmata muy parecida.",
+    "fuentes": [
+     "worms_lysmata_wurdemanni",
+     "sealifebase_lysmata_wurdemanni"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Bentónico, de 0 a 37 m (SeaLifeBase). En el medio natural suele vivir en las grietas verticales del arrecife; algunos, dentro de esponjas tubulares (LiveAquaria).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 37
+    },
+    "distribucion": "Atlántico occidental.",
+    "fuentes": [
+     "sealifebase_lysmata_wurdemanni",
+     "liveaquaria_lysmata_wurdemanni"
+    ],
+    "confianza": "media"
+   },
+   "tamano_adulto": {
+    "max_cm": 5.1,
+    "tipo": "longitud total",
+    "contraste": "LiveAquaria y Saltwaterfish coinciden en 2 in (≈ 5.1 cm); SeaLifeBase solo da la longitud del caparazón (0.7 cm).",
+    "fuentes": [
+     "liveaquaria_lysmata_wurdemanni",
+     "saltwaterfish_lysmata_wurdemanni",
+     "sealifebase_lysmata_wurdemanni"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "Carroñero: come detritos, restos de comida y materia orgánica en descomposición; algunos individuos controlan la anémona plaga Aiptasia y otros no. Acepta casi todos los alimentos preparados (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_lysmata_wurdemanni"
+    ],
+    "confianza": "media"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "SeaLifeBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 37.9,
+    "galones_us": 10,
+    "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 10 Gallons»).",
+    "fuentes": [
+     "saltwaterfish_lysmata_wurdemanni"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Muy social y pacífico con casi todos los habitantes del arrecife. Necesita escondites y zonas abiertas donde buscar alimento, y yodo para mudar bien (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_lysmata_wurdemanni"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita roca viva con escondites (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_lysmata_wurdemanni"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_lysmata_wurdemanni",
+     "saltwaterfish_lysmata_wurdemanni"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Roca viva con escondites.",
+     "Yodo para la muda."
+    ],
+    "riesgos": [
+     "No tolera medicamentos con cobre ni nitratos altos."
+    ],
+    "fuentes": [
+     "liveaquaria_lysmata_wurdemanni"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "No evaluado por la UICN, según SeaLifeBase",
+    "fuentes": [
+     "sealifebase_lysmata_wurdemanni"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_lysmata_wurdemanni",
+    "sealifebase_lysmata_wurdemanni",
+    "liveaquaria_lysmata_wurdemanni",
+    "saltwaterfish_lysmata_wurdemanni",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Camarón pimienta",
+    "nombre_cientifico": "Lysmata wurdemanni",
+    "grupo": "crustáceo",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico",
+      "sociable"
+     ],
+     "descripcion": "Pacífico y sociable. Limpia restos de comida y algunos se comen la plaga Aiptasia.",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria y Saltwaterfish lo consideran apto para arrecife.",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni",
+      "saltwaterfish_lysmata_wurdemanni"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "detritos y restos de comida",
+      "Aiptasia (algunos individuos)",
+      "alimentos preparados"
+     ],
+     "nota": "Saltwaterfish lo clasifica como omnívoro.",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ],
+     "confianza": "media"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": "Rango de LiveAquaria.",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 37.9,
+     "galones_us": 10,
+     "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 10 Gallons»).",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "saltwaterfish_lysmata_wurdemanni"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 5.1,
+     "medida": "longitud total",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "LiveAquaria y Saltwaterfish coinciden en 2 in (≈ 5.1 cm); SeaLifeBase solo da la longitud del caparazón (0.7 cm).",
+     "fuentes": [
+      "liveaquaria_lysmata_wurdemanni",
+      "saltwaterfish_lysmata_wurdemanni",
+      "sealifebase_lysmata_wurdemanni"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "pterois_volitans",
+   "nombre_comun": "Pez león",
+   "otros_nombres": [
+    "Red lionfish",
+    "Volitan lionfish",
+    "Turkeyfish"
+   ],
+   "nombre_cientifico": "Pterois volitans",
+   "autoridad": "(Linnaeus, 1758)",
+   "grupo": "pez",
+   "imagen": {
+    "archivo": "imagenes/pterois-volitans.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/pterois-volitans.jpg"
+   },
+   "taxonomia": {
+    "clase": "Teleostei",
+    "orden": "Perciformes",
+    "familia": "Scorpaenidae",
+    "subfamilia": null,
+    "aphia_id": 159559,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Gasterosteus volitans Linnaeus, 1758 (combinación original)"
+    ],
+    "nota": "LiveAquaria indica que es muy parecido al pez león Miles (Pterois miles), propio del océano Índico, que tiene menos espinas en las aletas dorsal y anal.",
+    "fuentes": [
+     "worms_pterois_volitans",
+     "fishbase_pterois_volitans"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Lagunas y arrecifes externos, desde aguas costeras turbias hasta 50 m. De día se esconde casi inmóvil, a menudo cabeza abajo (FishBase).",
+    "profundidad_m": {
+     "min": 2,
+     "max": 55
+    },
+    "distribucion": "Océano Pacífico: de las islas Cocos-Keeling y Australia occidental a las Marquesas y Pitcairn; al norte hasta el sur de Japón y Corea.",
+    "fuentes": [
+     "fishbase_pterois_volitans"
+    ],
+    "confianza": "alta"
+   },
+   "tamano_adulto": {
+    "max_cm": 45.7,
+    "tipo": "longitud total",
+    "contraste": "Diferencia menor entre fuentes: FishBase 45.7 cm; LiveAquaria 15 in (≈ 38.1 cm).",
+    "fuentes": [
+     "fishbase_pterois_volitans",
+     "liveaquaria_pterois_volitans"
+    ],
+    "confianza": "media"
+   },
+   "alimentacion": {
+    "texto": "De noche caza peces pequeños, camarones y cangrejos acorralándolos con sus grandes aletas pectorales (FishBase). En acuario, al principio camarón vivo; después puede aceptar camarón crudo, pescado y calamar congelados (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pterois_volitans",
+     "liveaquaria_pterois_volitans"
+    ],
+    "confianza": "alta"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "media"
+    },
+    "medio_natural": {
+     "min_c": 22,
+     "max_c": 28,
+     "fuentes": [
+      "fishbase_pterois_volitans"
+     ]
+    },
+    "nota": "El rango de acuario cae dentro del rango registrado en el medio natural."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.02,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 454.2,
+    "galones_us": 120,
+    "justificacion": "Cifra de LiveAquaria (120 gal), con numerosos escondites.",
+    "fuentes": [
+     "liveaquaria_pterois_volitans"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Suele ser solitario (FishBase). Se esconde mientras se aclimata y después pasa más tiempo a la vista (LiveAquaria).",
+    "fuentes": [
+     "fishbase_pterois_volitans",
+     "liveaquaria_pterois_volitans"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Necesita numerosos escondites (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_pterois_volitans"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "con precaución",
+    "fuentes": [
+     "liveaquaria_pterois_volitans"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Acuario de 120 gal o más con escondites.",
+     "Sin peces pequeños ni camarones."
+    ],
+    "riesgos": [
+     "Espinas dorsales, pélvicas y anales venenosas: la picadura es como la de una abeja pero más fuerte (LiveAquaria; FishBase lo clasifica como venenoso).",
+     "Se come peces pequeños y crustáceos."
+    ],
+    "fuentes": [
+     "liveaquaria_pterois_volitans",
+     "fishbase_pterois_volitans"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "Preocupación menor (LC), evaluada el 03/03/2015, según FishBase",
+    "fuentes": [
+     "fishbase_pterois_volitans"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_pterois_volitans",
+    "fishbase_pterois_volitans",
+    "liveaquaria_pterois_volitans",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "media",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Pez león",
+    "nombre_cientifico": "Pterois volitans",
+    "grupo": "pez",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "solitario"
+     ],
+     "descripcion": "Depredador: se come peces pequeños y crustáceos. Sus espinas son venenosas.",
+     "fuentes": [
+      "fishbase_pterois_volitans",
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "LiveAquaria lo marca «con precaución»: puede comerse peces pequeños, camarones y otros crustáceos.",
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "carnivoro",
+     "alimentos": [
+      "peces pequeños",
+      "camarones y cangrejos",
+      "camarón crudo",
+      "pescado y calamar congelados"
+     ],
+     "nota": null,
+     "fuentes": [
+      "fishbase_pterois_volitans",
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "alta"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 454.2,
+     "galones_us": 120,
+     "justificacion": "Cifra de LiveAquaria (120 gal), con numerosos escondites.",
+     "nota": "Es el mínimo recomendado por una sola fuente comercial; ninguna fuente científica consultada establece un litraje.",
+     "fuentes": [
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 45.7,
+     "medida": "longitud total",
+     "tamano_venta_cm": {
+      "min": 7.6,
+      "max": 15.2,
+      "nota": "Tamaño habitual al comprarlo, según la fuente comercial; no es el tamaño adulto."
+     },
+     "talla_madurez_cm": null,
+     "nota": "Diferencia menor entre fuentes: FishBase 45.7 cm; LiveAquaria 15 in (≈ 38.1 cm).",
+     "fuentes": [
+      "fishbase_pterois_volitans",
+      "liveaquaria_pterois_volitans"
+     ],
+     "confianza": "media"
+    }
+   }
+  },
+  {
+   "id": "ctenoides_scaber",
+   "nombre_comun": "Almeja fuego",
+   "otros_nombres": [
+    "Flame scallop",
+    "Red file shell clam",
+    "Rough fileclam",
+    "Lima scabra (nombre comercial)"
+   ],
+   "nombre_cientifico": "Ctenoides scaber",
+   "autoridad": "(Born, 1778)",
+   "grupo": "almeja",
+   "imagen": {
+    "archivo": "imagenes/ctenoides-scaber.jpg",
+    "autor": "Brayan",
+    "licencia": null,
+    "url_origen": null,
+    "fecha_consulta": "2026-11-18",
+    "origen": "ia",
+    "nota": "Imagen ilustrativa generada con IA; no es una fotografía real.",
+    "ruta_web": "fichas/imagenes/ctenoides-scaber.jpg"
+   },
+   "taxonomia": {
+    "clase": "Bivalvia",
+    "orden": "Limida",
+    "familia": "Limidae",
+    "subfamilia": null,
+    "aphia_id": 420747,
+    "estado_worms": "aceptado",
+    "rango": "especie",
+    "sinonimos": [
+     "Lima scabra (Born, 1778)",
+     "Lima aspera Thiele, 1918"
+    ],
+    "nota": "LiveAquaria la vende como Lima scabra, sinónimo de Ctenoides scaber según WoRMS. Aunque en inglés se llama «scallop» (vieira), es una lima de la familia Limidae, no una vieira verdadera.",
+    "fuentes": [
+     "worms_ctenoides_scaber",
+     "sealifebase_ctenoides_scaber"
+    ],
+    "confianza": "alta"
+   },
+   "habitat": {
+    "texto": "Bentónica, de 0 a 141 m (SeaLifeBase). Construye un pequeño nido de piedrecitas y trozos de coral donde se encaja (LiveAquaria).",
+    "profundidad_m": {
+     "min": 0,
+     "max": 141
+    },
+    "distribucion": "Atlántico centro-occidental: Estados Unidos y Bonaire (SeaLifeBase).",
+    "fuentes": [
+     "sealifebase_ctenoides_scaber",
+     "liveaquaria_ctenoides_scaber"
+    ],
+    "confianza": "media"
+   },
+   "tamano_adulto": {
+    "max_cm": 7.6,
+    "tipo": "longitud de la concha",
+    "contraste": "Diferencia entre fuentes: LiveAquaria 3 in (≈ 7.6 cm); Saltwaterfish 4 in (≈ 10.2 cm) para una Lima sp. SeaLifeBase no indica tamaño.",
+    "fuentes": [
+     "liveaquaria_ctenoides_scaber",
+     "saltwaterfish_ctenoides_scaber"
+    ],
+    "confianza": "baja"
+   },
+   "alimentacion": {
+    "texto": "Filtradora y no fotosintética: necesita microplancton en suspensión, fitoplancton y alimentos orgánicos, que hay que darle a cada una con una pipeta, corriente arriba (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_ctenoides_scaber"
+    ],
+    "confianza": "media"
+   },
+   "temperatura": {
+    "acuario": {
+     "min_c": 22.2,
+     "max_c": 25.6,
+     "original": "72–78 °F",
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ],
+     "confianza": "baja"
+    },
+    "medio_natural": null,
+    "nota": "SeaLifeBase no indica rango de temperatura para esta especie."
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ]
+    },
+    "rango_prudente": {
+     "min": 8.1,
+     "max": 8.3,
+     "criterio": "Intersección con la tabla MSD para agua salada (7.8–8.3)."
+    },
+    "confianza": "media"
+   },
+   "salinidad": {
+    "acuario": {
+     "gravedad_especifica_min": 1.023,
+     "gravedad_especifica_max": 1.025,
+     "unidad": "gravedad específica (adimensional)",
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ]
+    },
+    "referencia": "Agua de mar media: 35 ppt (UF/IFAS).",
+    "confianza": "media"
+   },
+   "volumen_minimo": {
+    "litros": 75.7,
+    "galones_us": 20,
+    "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 20 gallons») para una Lima sp.",
+    "fuentes": [
+     "saltwaterfish_ctenoides_scaber"
+    ],
+    "confianza": "baja"
+   },
+   "comportamiento": {
+    "texto": "Si se siente amenazada escapa nadando: cierra sus valvas de golpe y se impulsa por el agua. Tolera a todos los animales que no intenten comérsela y puede vivir en grupo. Solo para expertos (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_ctenoides_scaber"
+    ],
+    "confianza": "media"
+   },
+   "territorialidad_refugio": {
+    "texto": "Se encaja en un nido de piedras y trozos de coral (LiveAquaria).",
+    "fuentes": [
+     "liveaquaria_ctenoides_scaber"
+    ],
+    "confianza": "media"
+   },
+   "compatibilidad_arrecife": {
+    "valor": "sí",
+    "fuentes": [
+     "liveaquaria_ctenoides_scaber",
+     "saltwaterfish_ctenoides_scaber"
+    ],
+    "confianza": "baja"
+   },
+   "convivencia": {
+    "condiciones": [
+     "Arrecife maduro.",
+     "Fitoplancton y alimento orgánico para cada individuo.",
+     "Calcio y alcalinidad adecuados."
+    ],
+    "riesgos": [
+     "No tolera medicamentos con cobre ni nitratos altos.",
+     "Cuidado muy difícil: solo para expertos."
+    ],
+    "fuentes": [
+     "liveaquaria_ctenoides_scaber"
+    ],
+    "confianza": "baja"
+   },
+   "conservacion": {
+    "uicn": "No evaluada por la UICN, según SeaLifeBase",
+    "fuentes": [
+     "sealifebase_ctenoides_scaber"
+    ]
+   },
+   "fuentes_verificadas": [
+    "worms_ctenoides_scaber",
+    "sealifebase_ctenoides_scaber",
+    "liveaquaria_ctenoides_scaber",
+    "saltwaterfish_ctenoides_scaber",
+    "msd_tabla_referencia",
+    "ufifas_ph_sal_temp"
+   ],
+   "fecha_consulta": "2026-11-18",
+   "nivel_confianza_global": "baja",
+   "estado_verificacion": "verificada; pendiente de revisión del equipo",
+   "ficha_airi": {
+    "nombre_comun": "Almeja fuego",
+    "nombre_cientifico": "Ctenoides scaber",
+    "grupo": "almeja",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ],
+     "confianza": "baja"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico",
+      "sociable"
+     ],
+     "descripcion": "Pacífica pero muy difícil (solo expertos): hay que alimentarla una a una con plancton. Nada cerrando sus valvas.",
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "LiveAquaria y Saltwaterfish la consideran apta para arrecife.",
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber",
+      "saltwaterfish_ctenoides_scaber"
+     ],
+     "confianza": "baja"
+    },
+    "alimentacion": {
+     "tipo": "filtrador",
+     "alimentos": [
+      "microplancton",
+      "fitoplancton",
+      "alimentos orgánicos líquidos"
+     ],
+     "nota": null,
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ],
+     "confianza": "media"
+    },
+    "temperatura_c": {
+     "min": 22.2,
+     "max": 25.6,
+     "nota": "Rango de LiveAquaria.",
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber"
+     ],
+     "confianza": "baja"
+    },
+    "litraje_recomendado_l": {
+     "min": 75.7,
+     "galones_us": 20,
+     "justificacion": "Cifra de Saltwaterfish («Minimum Tank Size: 20 gallons») para una Lima sp.",
+     "nota": "Es el mínimo de una sola fuente comercial y corresponde a una Lima sp., no necesariamente a C. scaber.",
+     "fuentes": [
+      "saltwaterfish_ctenoides_scaber"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 7.6,
+     "medida": "longitud de la concha",
+     "tamano_venta_cm": null,
+     "talla_madurez_cm": null,
+     "nota": "Diferencia entre fuentes: LiveAquaria 3 in (≈ 7.6 cm); Saltwaterfish 4 in (≈ 10.2 cm) para una Lima sp. SeaLifeBase no indica tamaño.",
+     "fuentes": [
+      "liveaquaria_ctenoides_scaber",
+      "saltwaterfish_ctenoides_scaber"
+     ],
+     "confianza": "baja"
+    }
+   }
   }
  ],
  "ficha_airi_valores": {
@@ -14130,7 +21387,8 @@
    "caracol",
    "erizo de mar",
    "gusano",
-   "pepino de mar"
+   "pepino de mar",
+   "almeja"
   ]
  }
 };

@@ -107,7 +107,7 @@
     return '<details class="ficha-notas"><summary>Notas y fuentes</summary><ul>' + items.join("") + "</ul></details>";
   }
 
-  var GRUPOS = { "pez": "Pez", "estrella de mar": "Estrella de mar", "crustáceo": "Crustáceo", "coral": "Coral", "anémona": "Anémona", "caracol": "Caracol", "erizo de mar": "Erizo de mar", "gusano": "Gusano", "pepino de mar": "Pepino de mar" };
+  var GRUPOS = { "pez": "Pez", "estrella de mar": "Estrella de mar", "crustáceo": "Crustáceo", "coral": "Coral", "anémona": "Anémona", "caracol": "Caracol", "erizo de mar": "Erizo de mar", "gusano": "Gusano", "pepino de mar": "Pepino de mar", "almeja": "Almeja" };
 
   // Tarjeta de la cuadrícula: solo imagen, nombre y nombre científico. Toda la tarjeta abre la ficha.
   function tarjeta(e) {

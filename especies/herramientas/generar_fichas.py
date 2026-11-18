@@ -41,7 +41,7 @@ CAMPOS_OBLIGATORIOS = [
     "fecha_consulta", "nivel_confianza_global",
 ]
 NIVELES = {"alta", "media", "baja"}
-GRUPOS = {"pez", "estrella de mar", "crustáceo", "coral", "anémona", "caracol", "erizo de mar", "gusano", "pepino de mar"}
+GRUPOS = {"pez", "estrella de mar", "crustáceo", "coral", "anémona", "caracol", "erizo de mar", "gusano", "pepino de mar", "almeja"}
 VALORES_FICHA = {
     "temperamento": {"pacifico", "semiagresivo", "agresivo"},
     "etiquetas": {"pacifico", "territorial", "solitario", "sociable"},

@@ -1,4 +1,4 @@
-# AIRI — Contrato de datos de las fichas de especies (v0.7.1)
+# AIRI — Contrato de datos de las fichas de especies (v0.8)
 
 Documento para **Yair** (compatibilidad) y **Paola** (interfaz). Describe cómo leer el catálogo sin depender de su estructura interna. Fuente única: `especies/datos/catalogo_inicial.json`.
 
@@ -14,7 +14,7 @@ Documento para **Yair** (compatibilidad) y **Paola** (interfaz). Describe cómo 
 | Campo | Tipo | Valores |
 |---|---|---|
 | `nombre_comun`, `nombre_cientifico` | texto | — |
-| `grupo` | texto | `pez`, `estrella de mar`, `crustáceo`, `coral`, `anémona`, `caracol`, `erizo de mar`, `gusano`, `pepino de mar` |
+| `grupo` | texto | `pez`, `estrella de mar`, `crustáceo`, `coral`, `anémona`, `caracol`, `erizo de mar`, `gusano`, `pepino de mar`, `almeja` |
 | `temperamento.valor` | texto | `pacifico`, `semiagresivo`, `agresivo` |
 | `comportamiento.etiquetas` | lista | `pacifico`, `territorial`, `solitario`, `sociable` (puede estar vacía) |
 | `comportamiento.descripcion` | texto | — |
@@ -151,7 +151,7 @@ Las fichas **no dictaminan compatibilidad**. Sí registran hechos con fuente que
 - `temperatura`, `ph`, `salinidad`, `volumen_minimo`, `alimentacion` y `comportamiento` pasaron de `null` a objetos con valores, fuente y confianza.
 - `compatibilidad` (siempre `null` en v0.1) se sustituyó por `compatibilidad_arrecife` y `convivencia`, que describen hechos y no un veredicto entre especies.
 
-## Listado de IDs (52 especies)
+## Listado de IDs (79 especies)
 | `id` | Nombre común | Nombre científico | Grupo | Imagen |
 |---|---|---|---|---|
 | `amphiprion_ocellaris` | Pez payaso común | *Amphiprion ocellaris* | pez | sí |
@@ -206,3 +206,30 @@ Las fichas **no dictaminan compatibilidad**. Sí registran hechos con fuente que
 | `diadema_setosum` | Erizo de puntas largas | *Diadema setosum* | erizo de mar | sí |
 | `sabellastarte_sp` | Gusano plumero | *Sabellastarte sp.* | gusano | sí |
 | `holothuria_atra` | Pepino de mar negro | *Holothuria atra* | pepino de mar | sí |
+| `pomacanthus_paru` | Pez ángel francés | *Pomacanthus paru* | pez | sí |
+| `arothron_nigropunctatus` | Pez globo cara de perro | *Arothron nigropunctatus* | pez | sí |
+| `zebrasoma_gemmatum` | Cirujano gemma | *Zebrasoma gemmatum* | pez | sí |
+| `zebrasoma_desjardinii` | Cirujano desjardini | *Zebrasoma desjardinii* | pez | sí |
+| `amphiprion_frenatus` | Pez payaso tomate | *Amphiprion frenatus* | pez | sí |
+| `amphiprion_biaculeatus` | Pez payaso marrón | *Amphiprion biaculeatus* | pez | sí |
+| `acanthurus_pyroferus` | Cirujano chocolate | *Acanthurus pyroferus* | pez | sí |
+| `ctenochaetus_tominiensis` | Cirujano tomini | *Ctenochaetus tominiensis* | pez | sí |
+| `acanthurus_leucosternon` | Cirujano polvo azul | *Acanthurus leucosternon* | pez | sí |
+| `acanthurus_japonicus` | Cirujano polvo café | *Acanthurus japonicus* | pez | sí |
+| `zebrasoma_scopas` | Cirujano scopas | *Zebrasoma scopas* | pez | sí |
+| `labroides_dimidiatus` | Lábrido limpiador | *Labroides dimidiatus* | pez | sí |
+| `holacanthus_ciliaris` | Pez ángel reina | *Holacanthus ciliaris* | pez | sí |
+| `cryptocentrus_cinctus` | Gobio watchman | *Cryptocentrus cinctus* | pez | sí |
+| `pomacanthus_imperator` | Pez ángel emperador | *Pomacanthus imperator* | pez | sí |
+| `protoreaster_lincki` | Estrella de mar cornuda | *Protoreaster lincki* | estrella de mar | sí |
+| `lactoria_cornuta` | Pez vaca | *Lactoria cornuta* | pez | sí |
+| `siganus_magnificus` | Foxface magnífico | *Siganus magnificus* | pez | sí |
+| `prionurus_punctatus` | Cirujano pimienta | *Prionurus punctatus* | pez | sí |
+| `acanthurus_triostegus` | Cirujano convicto | *Acanthurus triostegus* | pez | sí |
+| `dascyllus_trimaculatus` | Damisela dominó | *Dascyllus trimaculatus* | pez | sí |
+| `chiloscyllium_punctatum` | Tiburón bambú | *Chiloscyllium punctatum* | pez | sí |
+| `taeniura_lymma` | Raya de manchas azules | *Taeniura lymma* | pez | sí |
+| `euphyllia_glabrescens` | Coral torch | *Euphyllia glabrescens* | coral | sí |
+| `lysmata_wurdemanni` | Camarón pimienta | *Lysmata wurdemanni* | crustáceo | sí |
+| `pterois_volitans` | Pez león | *Pterois volitans* | pez | sí |
+| `ctenoides_scaber` | Almeja fuego | *Ctenoides scaber* | almeja | sí |
