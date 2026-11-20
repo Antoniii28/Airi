@@ -15,8 +15,8 @@
     if (inicio) {
       contenedor = document.createElement("div");
       contenedor.className = "airi-m-contenedor-pecera";
-      var parrafo = inicio.querySelector("p");
-      inicio.insertBefore(contenedor, parrafo ? parrafo.nextSibling : null);
+      var encabezado = inicio.querySelector(".inicio-hero");
+      inicio.insertBefore(contenedor, encabezado ? encabezado.nextSibling : inicio.firstChild);
     }
     var pestanaActiva = function () {
       var b = document.querySelector('[data-tab][aria-selected="true"]');
