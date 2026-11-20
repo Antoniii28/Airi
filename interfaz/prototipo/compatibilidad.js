@@ -5,12 +5,17 @@
   const moduloUrl="https://raw.githubusercontent.com/Antoniii28/Airi/equipo/yair-compatibilidad/compatibilidad/airi-compatibilidad.js";
   const catalogoUrl="https://raw.githubusercontent.com/Antoniii28/Airi/equipo/brayan-fichas-especies/especies/datos/catalogo_inicial.json";
   const ejemplos=[
-    ["01_compatible_sustentado.json","Compatible (orientativo)"],
-    ["02_incompatible_rangos.json","Incompatible por rangos"],
-    ["03_contradiccion.json","Evidencia contradictoria"],
-    ["04_sin_datos.json","Información insuficiente"],
-    ["05_precaucion_misma_especie.json","Precaución: misma especie"],
-    ["06_acuario_con_motor.json","Acuario y datos del motor"]
+    {file:"01_compatible_sustentado.json",label:"Compatible (orientativo)",ficticio:true},
+    {file:"02_incompatible_rangos.json",label:"Incompatible por rangos",ficticio:true},
+    {file:"03_contradiccion.json",label:"Evidencia contradictoria",ficticio:true},
+    {file:"04_sin_datos.json",label:"Información insuficiente",ficticio:true},
+    {file:"05_precaucion_misma_especie.json",label:"Precaución: misma especie",ficticio:true},
+    {file:"06_acuario_con_motor.json",label:"Acuario y datos del motor",ficticio:true},
+    {file:"catalogo_real/r01_sin_conflictos_sin_evidencia.json",label:"Sin conflictos y sin evidencia",ficticio:false},
+    {file:"catalogo_real/r02_precaucion_temperamento.json",label:"Precaución por temperamento",ficticio:false},
+    {file:"catalogo_real/r03_precaucion_misma_especie.json",label:"Precaución: misma especie (catálogo real)",ficticio:false},
+    {file:"catalogo_real/r04_sin_ph_documentado.json",label:"pH sin documentar",ficticio:false},
+    {file:"catalogo_real/r05_acuario_arrecife.json",label:"Evaluación de acuario de arrecife",ficticio:false}
   ];
   const select=document.getElementById("compat-ejemplo"), salida=document.getElementById("compat-resultado");
   const buscar=document.getElementById("compat-buscar"), sugerencias=document.getElementById("compat-sugerencias");
@@ -129,12 +134,27 @@
   });
   document.addEventListener("click",ev=>{if(!ev.target.closest("#compatibilidad .compat-selector")){sugerencias.hidden=true;buscar.setAttribute("aria-expanded","false");}});
   pintarEtiquetas();
-  ejemplos.forEach(([file,label])=>{const option=document.createElement("option");option.value=file;option.textContent=label;select.appendChild(option);});
+  const gruposEjemplos=[
+    {label:"Escenarios ficticios de demostración",ficticio:true},
+    {label:"Ejemplos con el catálogo real",ficticio:false}
+  ];
+  gruposEjemplos.forEach(grupo=>{
+    const optgroup=document.createElement("optgroup");
+    optgroup.label=grupo.label;
+    ejemplos.filter(e=>e.ficticio===grupo.ficticio).forEach(e=>{
+      const option=document.createElement("option");
+      option.value=e.file;
+      option.textContent=e.label;
+      option.dataset.ficticio=String(e.ficticio);
+      optgroup.appendChild(option);
+    });
+    select.appendChild(optgroup);
+  });
 
   async function cargarEjemplo(){
     const file=select.value;if(!file){salida.innerHTML='<p class="muted">Selecciona un escenario o elige especies para comparar.</p>';salida.setAttribute("aria-busy","false");return;}
     mostrarCarga("Cargando escenario de demostración…");
-    try{const response=await fetch(base+encodeURIComponent(file),{cache:"no-store"});if(!response.ok)throw new Error("No fue posible consultar el ejemplo ("+response.status+").");const json=await response.json();if(!json.salida||!json.entrada)throw new Error("El archivo no tiene la estructura esperada.");render(json,true);}
+    try{const response=await fetch(base+encodeURIComponent(file),{cache:"no-store"});if(!response.ok)throw new Error("No fue posible consultar el ejemplo ("+response.status+").");const json=await response.json();if(!json.salida||!json.entrada)throw new Error("El archivo no tiene la estructura esperada.");render(json,select.selectedOptions[0]?.dataset.ficticio==="true");}
     catch(error){salida.innerHTML='<p class="compat-error" role="alert">'+esc(error.message)+'</p><p class="muted">Comprueba tu conexión y que la rama de ejemplos siga disponible.</p>';salida.setAttribute("aria-busy","false");}
   }
   select.addEventListener("change",cargarEjemplo);
