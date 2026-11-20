@@ -196,7 +196,7 @@
   }
 
   async function cargarEjemplo(){
-    const file=select.value;if(!file){salida.innerHTML='<p class="muted">Selecciona un escenario o elige especies para comparar.</p>';salida.setAttribute("aria-busy","false");return;}
+    const file=select.value;if(!file){salida.innerHTML='<p class="muted">Selecciona un ejemplo de demostración para consultar un resultado preparado.</p>';salida.setAttribute("aria-busy","false");return;}
     mostrarCarga("Cargando escenario de demostración…");
     try{const response=await fetch(base+encodeURIComponent(file),{cache:"no-store"});if(!response.ok)throw new Error("No fue posible consultar el ejemplo ("+response.status+").");const json=await response.json();if(!json.salida||!json.entrada)throw new Error("El archivo no tiene la estructura esperada.");render(json,select.selectedOptions[0]?.dataset.ficticio==="true");}
     catch(error){salida.innerHTML='<p class="compat-error" role="alert">'+esc(error.message)+'</p><p class="muted">Comprueba tu conexión y que la rama de ejemplos siga disponible.</p>';salida.setAttribute("aria-busy","false");}
