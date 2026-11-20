@@ -1,11 +1,11 @@
-# AIRI · Contrato del evaluador de compatibilidad (v0.2.0, propuesta)
+# AIRI · Contrato del evaluador de compatibilidad (v0.3.0, propuesta)
 
 **Responsable:** Yair (rama `equipo/yair-compatibilidad`).  
 **Estado:** propuesta para revisión del equipo. Los nombres de estados y campos **no están aprobados**; si el equipo los
 cambia, se actualizan este documento, `ESTADOS`/`ETIQUETAS` en `airi-compatibilidad.js`, las pruebas y los ejemplos.  
-**Comprobado por:** `compatibilidad/pruebas/compatibilidad.test.js` (25 pruebas).  
+**Comprobado por:** `compatibilidad/pruebas/compatibilidad.test.js` (26 pruebas).  
 **Datos:** las fichas reales de Brayan (`especies/datos/catalogo_inicial.json`, contrato `especies/CONTRATO_FICHAS.md`,
-v0.7.1 con 52 especies, PR #17). Los datos ficticios de `datos_prueba/` solo cubren casos que las fichas reales aún no
+v0.8 con 79 especies, PR #17). Los datos ficticios de `datos_prueba/` solo cubren casos que las fichas reales aún no
 tienen (relaciones declaradas, contradicciones).
 
 ## 1. Llamada
@@ -72,6 +72,7 @@ motivo) porque no se sabe cuál es la correcta.
 | `contradiccion` | booleano | `true` si hay evidencia a favor y en contra: se aplicó lo más restrictivo y conviene revisión humana |
 | `resumen` | texto | Una frase para mostrar o leer en voz alta |
 | `motivos` | lista | `{ criterio, nombre, efecto, texto, fuentes, confianza }`. `efecto` es un estado o `"sin_conflicto"` |
+| `notas_convivencia` | lista | `{ especie, tipo, texto, fuentes, confianza }` con los textos de `convivencia.condiciones` (`tipo: "condicion"`) y `convivencia.riesgos` (`tipo: "riesgo"`) de las fichas del par (o de la especie, frente al acuario). Son **informativos**: la interfaz debe mostrarlos, pero no cambian el estado. Vacía si la especie no está en el catálogo |
 | `datos_faltantes` | lista | `{ especie, campo }` |
 
 ## 4. Estados (propuestos) y cómo se decide
@@ -106,8 +107,9 @@ dentro de rangos no confirma bienestar y la salinidad aún no se puede comparar.
 
 ## 5. Propuesta para Brayan: `convivencia.relaciones`
 
-El catálogo (v0.7.1) describe la convivencia en texto libre (`convivencia.condiciones`/`riesgos`). Interpretar texto
-libre no es fiable, así que el módulo **no lo lee** para decidir. Se propone añadir una lista estructurada, sin
+El catálogo (v0.8) describe la convivencia en texto libre (`convivencia.condiciones`/`riesgos`). Interpretar texto
+libre no es fiable, así que el módulo **no lo usa para decidir**: desde la v0.3.0 lo devuelve tal cual, con sus fuentes,
+en `notas_convivencia` para que la interfaz lo muestre y no se pierda. Se propone añadir una lista estructurada, sin
 cambiar los campos existentes:
 
 ```json
@@ -138,7 +140,7 @@ Hasta que existan relaciones en el catálogo real, ningún par real puede salir 
 
 ## 6. Ejemplos para Paola
 
-- `compatibilidad/ejemplos/catalogo_real/*.json`: **fichas reales** del catálogo v0.7.1 de Brayan — sin conflictos
+- `compatibilidad/ejemplos/catalogo_real/*.json`: **fichas reales** del catálogo v0.8 de Brayan — sin conflictos
   pero sin evidencia (`sin_datos`), precaución por temperamento, varios cirujanos amarillos, especie sin pH documentado
   y acuario de arrecife con la salida del motor.
 - `compatibilidad/ejemplos/*.json`: **datos de prueba ficticios** para los casos que las fichas reales aún no tienen:
@@ -153,3 +155,4 @@ Se regeneran con `node compatibilidad/herramientas/generar_ejemplos.js [--catalo
 |---|---|---|
 | 0.1.0 | Propuesta inicial | — |
 | 0.2.0 | Revisión del PR #19: (1) las fuentes de una relación deben existir en `catalogo.fuentes`; (2) el pH pasa a ser dato esencial para `compatible`; (3) ids de especies y fuentes con `Map`/propiedades propias, ids repetidos en el catálogo → `sin_datos`; ejemplos con las fichas reales | Estructura de salida sin cambios. Algunos pares que antes salían `compatible` sin pH ahora salen `sin_datos` |
+| 0.3.0 | Observación de Paola: los textos de `convivencia.condiciones` y `convivencia.riesgos` (catálogo v0.8) se devuelven en `notas_convivencia`, con fuentes, sin cambiar el estado | Campo nuevo en cada resultado; los demás campos no cambian |

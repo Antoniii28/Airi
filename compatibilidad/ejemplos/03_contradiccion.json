@@ -7,7 +7,7 @@
   ]
  },
  "salida": {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "incompatible",
   "etiqueta_global": "No compatibles",
@@ -92,6 +92,7 @@
       "confianza": "baja"
      }
     ],
+    "notas_convivencia": [],
     "datos_faltantes": []
    }
   ],

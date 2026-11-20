@@ -1,5 +1,5 @@
 {
- "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.8 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
  "entrada": {
   "especies": [
    "amphiprion_ocellaris",
@@ -79,8 +79,8 @@
   }
  },
  "salida": {
-  "version": "0.2.0",
-  "catalogo_version": "0.7.1",
+  "version": "0.3.0",
+  "catalogo_version": "0.8",
   "estado_global": "incompatible",
   "etiqueta_global": "No compatibles",
   "especies": [
@@ -140,6 +140,86 @@
       "confianza": "baja"
      }
     ],
+    "notas_convivencia": [
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "condicion",
+      "texto": "Puede mantenerse con otros peces payaso si se introducen en el acuario al mismo tiempo.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "riesgo",
+      "texto": "Defiende los huevos frente a otros habitantes del acuario.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Solo para aficionados expertos.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Roca viva con algas y esponjas.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Varias comidas al día.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Rara vez sobrevive en acuario (FishBase).",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Come pólipos y corales.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Puede amenazar a invertebrados pequeños.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     }
+    ],
     "datos_faltantes": [
      {
       "especie": "zanclus_cornutus",
@@ -191,6 +271,76 @@
       "confianza": "baja"
      }
     ],
+    "notas_convivencia": [
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "condicion",
+      "texto": "Puede mantenerse con otros peces payaso si se introducen en el acuario al mismo tiempo.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "riesgo",
+      "texto": "Defiende los huevos frente a otros habitantes del acuario.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Compañeros pacíficos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Yodo suficiente para que mude y crezca.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "Peces halcón, peces león y camarones o cangrejos depredadores pueden comérselo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera nitratos altos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera medicamentos con cobre ni cambios bruscos de salinidad, pH u oxígeno; requiere aclimatación por goteo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     }
+    ],
     "datos_faltantes": []
    },
    {
@@ -222,6 +372,118 @@
       "fuentes": [
        "liveaquaria_zanclus_cornutus",
        "liveaquaria_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     }
+    ],
+    "notas_convivencia": [
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Solo para aficionados expertos.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Roca viva con algas y esponjas.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Varias comidas al día.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Rara vez sobrevive en acuario (FishBase).",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Come pólipos y corales.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Puede amenazar a invertebrados pequeños.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Compañeros pacíficos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Yodo suficiente para que mude y crezca.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "Peces halcón, peces león y camarones o cangrejos depredadores pueden comérselo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera nitratos altos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera medicamentos con cobre ni cambios bruscos de salinidad, pH u oxígeno; requiere aclimatación por goteo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
       ],
       "confianza": "baja"
      }
@@ -292,6 +554,26 @@
       "confianza": null
      }
     ],
+    "notas_convivencia": [
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "condicion",
+      "texto": "Puede mantenerse con otros peces payaso si se introducen en el acuario al mismo tiempo.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "riesgo",
+      "texto": "Defiende los huevos frente a otros habitantes del acuario.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     }
+    ],
     "datos_faltantes": [
      {
       "especie": "amphiprion_ocellaris",
@@ -343,6 +625,68 @@
       "texto": "No se compara: la ficha expresa la salinidad en gravedad específica y el motor en ppt; su conversión depende de la temperatura y aún no hay una conversión acordada con fuente.",
       "fuentes": [],
       "confianza": null
+     }
+    ],
+    "notas_convivencia": [
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Solo para aficionados expertos.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Roca viva con algas y esponjas.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "condicion",
+      "texto": "Varias comidas al día.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Rara vez sobrevive en acuario (FishBase).",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Come pólipos y corales.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zanclus_cornutus",
+      "tipo": "riesgo",
+      "texto": "Puede amenazar a invertebrados pequeños.",
+      "fuentes": [
+       "liveaquaria_zanclus_cornutus",
+       "fishbase_zanclus_cornutus"
+      ],
+      "confianza": "baja"
      }
     ],
     "datos_faltantes": [
@@ -412,6 +756,58 @@
       "confianza": null
      }
     ],
+    "notas_convivencia": [
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Compañeros pacíficos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Yodo suficiente para que mude y crezca.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "Peces halcón, peces león y camarones o cangrejos depredadores pueden comérselo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera nitratos altos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera medicamentos con cobre ni cambios bruscos de salinidad, pH u oxígeno; requiere aclimatación por goteo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     }
+    ],
     "datos_faltantes": [
      {
       "especie": "lysmata_amboinensis",
@@ -466,6 +862,11 @@
     "titulo": "LiveAquaria — Scarlet Skunk Cleaner Shrimp",
     "url": "https://www.liveaquaria.com/products/scarlet-skunk-cleaner-shrimp",
     "tipo": "comercial"
+   },
+   "sealifebase_lysmata_amboinensis": {
+    "titulo": "SeaLifeBase — Lysmata amboinensis",
+    "url": "https://www.sealifebase.se/summary/Lysmata-amboinensis.html",
+    "tipo": "biología"
    },
    "fishbase_amphiprion_ocellaris": {
     "titulo": "FishBase — Amphiprion ocellaris, Clown anemonefish",

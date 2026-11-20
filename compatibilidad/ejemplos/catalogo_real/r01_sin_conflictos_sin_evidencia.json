@@ -1,5 +1,5 @@
 {
- "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.8 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
  "entrada": {
   "especies": [
    "amphiprion_ocellaris",
@@ -7,8 +7,8 @@
   ]
  },
  "salida": {
-  "version": "0.2.0",
-  "catalogo_version": "0.7.1",
+  "version": "0.3.0",
+  "catalogo_version": "0.8",
   "estado_global": "sin_datos",
   "etiqueta_global": "Faltan datos",
   "especies": [
@@ -72,6 +72,76 @@
       "confianza": "baja"
      }
     ],
+    "notas_convivencia": [
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "condicion",
+      "texto": "Puede mantenerse con otros peces payaso si se introducen en el acuario al mismo tiempo.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "riesgo",
+      "texto": "Defiende los huevos frente a otros habitantes del acuario.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Compañeros pacíficos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "condicion",
+      "texto": "Yodo suficiente para que mude y crezca.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "Peces halcón, peces león y camarones o cangrejos depredadores pueden comérselo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera nitratos altos.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "lysmata_amboinensis",
+      "tipo": "riesgo",
+      "texto": "No tolera medicamentos con cobre ni cambios bruscos de salinidad, pH u oxígeno; requiere aclimatación por goteo.",
+      "fuentes": [
+       "liveaquaria_lysmata_amboinensis",
+       "sealifebase_lysmata_amboinensis"
+      ],
+      "confianza": "baja"
+     }
+    ],
     "datos_faltantes": []
    }
   ],
@@ -98,6 +168,11 @@
     "titulo": "LiveAquaria — Scarlet Skunk Cleaner Shrimp",
     "url": "https://www.liveaquaria.com/products/scarlet-skunk-cleaner-shrimp",
     "tipo": "comercial"
+   },
+   "sealifebase_lysmata_amboinensis": {
+    "titulo": "SeaLifeBase — Lysmata amboinensis",
+    "url": "https://www.sealifebase.se/summary/Lysmata-amboinensis.html",
+    "tipo": "biología"
    }
   },
   "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."

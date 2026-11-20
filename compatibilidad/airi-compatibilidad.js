@@ -19,7 +19,7 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
-  var VERSION = "0.2.0";
+  var VERSION = "0.3.0";
 
   // Nombres de estado PROPUESTOS (pendientes de aprobación del equipo). Si el equipo los cambia,
   // solo se edita esta tabla: el resto del módulo usa las claves internas.
@@ -80,7 +80,7 @@
   }
 
   // ── Adaptador de ficha ───────────────────────────────────────────────────────
-  // Único punto que conoce el esquema de Brayan (catálogo v0.7.1, especies/CONTRATO_FICHAS.md: «ficha_airi» y campos
+  // Único punto que conoce el esquema de Brayan (catálogo v0.8, especies/CONTRATO_FICHAS.md: «ficha_airi» y campos
   // completos). Si el esquema cambia, solo se ajusta esta función. Campo ausente o vacío → null.
   function rango(r, claveMin, claveMax, fuentes, confianza) {
     if (!esObjeto(r) || !esNumero(r[claveMin]) || !esNumero(r[claveMax]) || r[claveMin] > r[claveMax]) return null;
@@ -115,7 +115,8 @@
       tamano_max_cm: dato(fa.tamano_adulto_cm, "max"),
       // Propuesta de ampliación para Brayan (ver CONTRATO.md §5): relaciones estructuradas.
       relaciones: Array.isArray(conv.relaciones) ? conv.relaciones.filter(esObjeto) : [],
-      convivencia_texto: { condiciones: lista(conv.condiciones), riesgos: lista(conv.riesgos), fuentes: lista(conv.fuentes) }
+      convivencia_texto: { condiciones: lista(conv.condiciones), riesgos: lista(conv.riesgos), fuentes: lista(conv.fuentes),
+        confianza: conv.confianza || null }
     };
   }
 
@@ -228,6 +229,22 @@
     return base;
   }
 
+  // Textos de «convivencia.condiciones» y «convivencia.riesgos» de las fichas (catálogo v0.8). Son texto libre:
+  // se devuelven para que la interfaz los muestre, pero NO se interpretan ni cambian el estado.
+  function notasConvivencia(fichasPar) {
+    var out = [];
+    fichasPar.forEach(function (f) {
+      var c = f.convivencia_texto;
+      [["condicion", c.condiciones], ["riesgo", c.riesgos]].forEach(function (par) {
+        par[1].forEach(function (texto) {
+          if (typeof texto !== "string" || !texto.trim()) return;
+          out.push({ especie: f.id, tipo: par[0], texto: texto.trim(), fuentes: c.fuentes.slice(), confianza: c.confianza });
+        });
+      });
+    });
+    return out;
+  }
+
   // ── Par de especies (o varios ejemplares de una misma especie) ──────────────
   function evaluarPar(a, b, cantidadA, registro) {
     var misma = a.id === b.id, h = [], falt = [];
@@ -272,7 +289,8 @@
       : !!(a.temperatura && b.temperatura && a.ph && b.ph && a.temperamento && b.temperamento);
     var d = decidir(h, esenciales);
     return { especies: [a.id, b.id], estado: d.estado, etiqueta: ETIQUETAS[d.estado], contradiccion: d.contradiccion,
-      resumen: resumen(d.estado, d.contradiccion, h, falt), motivos: h, datos_faltantes: falt };
+      resumen: resumen(d.estado, d.contradiccion, h, falt), motivos: h,
+      notas_convivencia: notasConvivencia(misma ? [a] : [a, b]), datos_faltantes: falt };
   }
 
   function tamanos(x, y) {
@@ -289,7 +307,7 @@
       dup.join(", ") + ".", [], null));
     return { especies: ids.length === 1 ? [ids[0], ids[0]] : ids, estado: ESTADOS.SIN_DATOS, etiqueta: ETIQUETAS.sin_datos,
       contradiccion: false, resumen: "Información insuficiente: " + (dup.length ? "ficha no utilizable" : "especie no encontrada") +
-        " en el catálogo.", motivos: h,
+        " en el catálogo.", motivos: h, notas_convivencia: [],
       datos_faltantes: ids.map(function (id) { return { especie: id, campo: "ficha" }; }) };
   }
 
@@ -342,7 +360,8 @@
     // es «sin_datos» (nunca «compatible»). Además, ninguna regla frente al acuario aporta evidencia positiva.
     var d = decidir(h, false);
     return { especie: f.id, estado: d.estado, etiqueta: ETIQUETAS[d.estado], contradiccion: d.contradiccion,
-      resumen: resumen(d.estado, d.contradiccion, h, falt), motivos: h, datos_faltantes: falt };
+      resumen: resumen(d.estado, d.contradiccion, h, falt), motivos: h,
+      notas_convivencia: notasConvivencia([f]), datos_faltantes: falt };
   }
 
   // ── Entrada ──────────────────────────────────────────────────────────────────
@@ -429,7 +448,7 @@
     // Fuentes citadas, resueltas con el registro del catálogo (solo propiedades propias).
     var fuentes = {}, citadas = new Set();
     todos.forEach(function (r) {
-      r.motivos.forEach(function (m) {
+      r.motivos.concat(r.notas_convivencia).forEach(function (m) {
         m.fuentes.forEach(function (id) {
           if (citadas.has(id)) return;
           citadas.add(id);

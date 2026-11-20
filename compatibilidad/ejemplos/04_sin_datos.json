@@ -8,7 +8,7 @@
   ]
  },
  "salida": {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "catalogo_version": "prueba-0.1",
   "estado_global": "sin_datos",
   "etiqueta_global": "Faltan datos",
@@ -46,6 +46,7 @@
     "contradiccion": false,
     "resumen": "Información insuficiente: faltan datos para evaluar.",
     "motivos": [],
+    "notas_convivencia": [],
     "datos_faltantes": [
      {
       "especie": "prueba_sin_datos",
@@ -80,6 +81,7 @@
       "confianza": null
      }
     ],
+    "notas_convivencia": [],
     "datos_faltantes": [
      {
       "especie": "especie_inexistente",
@@ -106,6 +108,7 @@
       "confianza": null
      }
     ],
+    "notas_convivencia": [],
     "datos_faltantes": [
      {
       "especie": "especie_inexistente",

@@ -166,6 +166,25 @@ test("ids repetidos en el catálogo: la ficha no se usa (sin_datos) y se explica
   assert.match(p.motivos[0].texto, /repetido en el catálogo/);
 });
 
+test("notas de convivencia (condiciones y riesgos en texto) se devuelven con fuentes y no cambian el estado", () => {
+  const cat = JSON.parse(JSON.stringify(PRUEBA));
+  const b = cat.especies.find((e) => e.id === "prueba_pacifico_b");
+  b.convivencia = { condiciones: ["Mejor en grupo (dato ficticio)."], riesgos: ["Defiende su refugio (dato ficticio).", "  "],
+    fuentes: ["prueba_fuente_2"], confianza: "baja" };
+  const antes = ev({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"] }).pares[0];
+  const r = C.evaluar({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"], acuario: {} }, cat);
+  const p = r.pares[0];
+  assert.equal(p.estado, antes.estado);
+  assert.deepEqual(p.motivos, antes.motivos);
+  assert.deepEqual(p.notas_convivencia, [
+    { especie: "prueba_pacifico_b", tipo: "condicion", texto: "Mejor en grupo (dato ficticio).", fuentes: ["prueba_fuente_2"], confianza: "baja" },
+    { especie: "prueba_pacifico_b", tipo: "riesgo", texto: "Defiende su refugio (dato ficticio).", fuentes: ["prueba_fuente_2"], confianza: "baja" }
+  ]);
+  assert.ok(r.fuentes.prueba_fuente_2.url);
+  assert.equal(r.acuario.find((a) => a.especie === "prueba_pacifico_b").notas_convivencia.length, 2);
+  assert.deepEqual(r.acuario.find((a) => a.especie === "prueba_pacifico_a").notas_convivencia, []);
+});
+
 test("una relación sin fuentes no cuenta como evidencia", () => {
   const cat = JSON.parse(JSON.stringify(PRUEBA));
   cat.especies.find((e) => e.id === "prueba_pacifico_a").convivencia.relaciones[0].fuentes = [];
@@ -223,8 +242,10 @@ test("contrato de salida: claves, estados y etiquetas", () => {
   const r = ev({ especies: ["prueba_pacifico_a", "prueba_pacifico_b"], acuario: { volumen_l: 300 } });
   assert.deepEqual(Object.keys(r), ["version", "catalogo_version", "estado_global", "etiqueta_global", "especies", "pares",
     "acuario", "intervalo_comun", "datos_faltantes", "fuentes", "aviso"]);
-  assert.deepEqual(Object.keys(r.pares[0]), ["especies", "estado", "etiqueta", "contradiccion", "resumen", "motivos", "datos_faltantes"]);
-  assert.deepEqual(Object.keys(r.acuario[0]), ["especie", "estado", "etiqueta", "contradiccion", "resumen", "motivos", "datos_faltantes"]);
+  const claves = ["estado", "etiqueta", "contradiccion", "resumen", "motivos", "notas_convivencia", "datos_faltantes"];
+  assert.deepEqual(Object.keys(r.pares[0]), ["especies"].concat(claves));
+  assert.deepEqual(Object.keys(r.acuario[0]), ["especie"].concat(claves));
+  assert.deepEqual(Object.keys(ev({ especies: ["prueba_pacifico_a", "no_existe"] }).pares[0]), ["especies"].concat(claves));
   assert.deepEqual(Object.keys(r.pares[0].motivos[0]), ["criterio", "nombre", "efecto", "texto", "fuentes", "confianza"]);
   assert.deepEqual(Object.values(C.ESTADOS), ["compatible", "precaucion", "incompatible", "sin_datos"]);
   assert.equal(C.ETIQUETAS.sin_datos, "Faltan datos");  // F-06
@@ -282,6 +303,11 @@ test("fichas reales de Brayan: resultados esperados", { skip: CON_FICHAS ? false
   // Toda fuente citada existe en el registro del catálogo.
   const todas = C.evaluar({ especies: [...ids].slice(0, 12) }, real);
   for (const [id, f] of Object.entries(todas.fuentes)) assert.ok(!f.no_registrada && f.url, id);
+  // Las condiciones y riesgos en texto de las fichas llegan al resultado.
+  const notas = p.notas_convivencia;
+  assert.ok(notas.some((n) => n.especie === "amphiprion_ocellaris" && n.tipo === "riesgo"));
+  assert.ok(notas.some((n) => n.especie === "zebrasoma_flavescens"));
+  for (const n of notas) assert.ok(n.fuentes.length && n.texto, JSON.stringify(n));
 });
 
 test("no modifica el catálogo (objeto congelado) y es determinista", () => {

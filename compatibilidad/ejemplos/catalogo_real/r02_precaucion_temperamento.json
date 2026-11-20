@@ -1,5 +1,5 @@
 {
- "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.7.1 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
+ "_nota": "EJEMPLO CON LAS FICHAS REALES del catálogo 0.8 (especies/datos/catalogo_inicial.json). Resultado orientativo; no es un dictamen.",
  "entrada": {
   "especies": [
    "amphiprion_ocellaris",
@@ -7,8 +7,8 @@
   ]
  },
  "salida": {
-  "version": "0.2.0",
-  "catalogo_version": "0.7.1",
+  "version": "0.3.0",
+  "catalogo_version": "0.8",
   "estado_global": "precaucion",
   "etiqueta_global": "Precaución: revisar convivencia",
   "especies": [
@@ -83,6 +83,53 @@
        "liveaquaria_zebrasoma_flavescens"
       ],
       "confianza": "media"
+     }
+    ],
+    "notas_convivencia": [
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "condicion",
+      "texto": "Puede mantenerse con otros peces payaso si se introducen en el acuario al mismo tiempo.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "amphiprion_ocellaris",
+      "tipo": "riesgo",
+      "texto": "Defiende los huevos frente a otros habitantes del acuario.",
+      "fuentes": [
+       "liveaquaria_amphiprion_ocellaris"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zebrasoma_flavescens",
+      "tipo": "condicion",
+      "texto": "Un solo ejemplar por acuario, salvo que varios se introduzcan a la vez.",
+      "fuentes": [
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zebrasoma_flavescens",
+      "tipo": "condicion",
+      "texto": "Dieta rica en algas para reducir la agresividad.",
+      "fuentes": [
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "baja"
+     },
+     {
+      "especie": "zebrasoma_flavescens",
+      "tipo": "riesgo",
+      "texto": "Agresión hacia otros peces cirujano y hacia los de su especie.",
+      "fuentes": [
+       "liveaquaria_zebrasoma_flavescens"
+      ],
+      "confianza": "baja"
      }
     ],
     "datos_faltantes": []
