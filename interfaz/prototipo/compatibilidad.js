@@ -17,11 +17,11 @@
     {file:"catalogo_real/r04_sin_ph_documentado.json",label:"pH sin documentar",ficticio:false},
     {file:"catalogo_real/r05_acuario_arrecife.json",label:"Evaluación de acuario de arrecife",ficticio:false}
   ];
-  const select=document.getElementById("compat-ejemplo"), salida=document.getElementById("compat-resultado");
+  const select=document.getElementById("compat-ejemplo"), escenario=document.getElementById("compat-escenario"), salida=document.getElementById("compat-resultado");
   const buscar=document.getElementById("compat-buscar"), sugerencias=document.getElementById("compat-sugerencias");
   const etiquetas=document.getElementById("compat-especies-seleccionadas"), comparar=document.getElementById("compat-comparar");
   const estadoSeleccion=document.getElementById("compat-seleccion-estado");
-  if(!select||!salida||!buscar||!sugerencias||!etiquetas||!comparar)return;
+  if(!select||!escenario||!salida||!buscar||!sugerencias||!etiquetas||!comparar)return;
 
   const estilos=document.createElement("style");
   estilos.textContent=
@@ -109,7 +109,8 @@
   let catalogoPromise=null;
   function obtenerCatalogo(){if(!catalogoPromise)catalogoPromise=fetch(catalogoUrl,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("No se pudo consultar el catálogo de especies ("+r.status+").");return r.json();}).catch(error=>{catalogoPromise=null;throw error;});return catalogoPromise;}
 
-  const listaEspecies=Array.isArray(window.AIRIListaEspecies)?window.AIRIListaEspecies:[];
+  let listaEspecies=[];
+  let catalogoDisponible=false;
   const seleccionadas=new Map();
   function pintarEtiquetas(){
     etiquetas.innerHTML=seleccionadas.size?Array.from(seleccionadas.values()).map(e=>'<span class="compat-etiqueta">'+esc(e.nombre)+' <button type="button" class="compat-quitar" data-quitar="'+esc(e.id)+'" aria-label="Quitar '+esc(e.nombre)+'">×</button></span>').join(""):'<span class="muted">Aún no has seleccionado especies.</span>';
@@ -117,7 +118,7 @@
   function pintarSugerencias(){
     const q=buscar.value.trim().toLocaleLowerCase("es");
     const coincidencias=listaEspecies.filter(e=>!seleccionadas.has(e.id)&&(!q||(e.nombre+" "+e.cientifico).toLocaleLowerCase("es").includes(q)));
-    sugerencias.innerHTML=coincidencias.map(e=>'<button type="button" role="option" aria-selected="false" class="compat-sugerencia" data-especie="'+esc(e.id)+'">'+esc(e.nombre)+' <em>('+esc(e.cientifico)+')</em></button>').join("")||'<p class="muted">No hay más coincidencias.</p>';
+    sugerencias.innerHTML=coincidencias.map(e=>'<button type="button" role="option" aria-selected="false" class="compat-sugerencia" data-especie="'+esc(e.id)+'">'+esc(e.nombre)+(e.cientifico?' <em>('+esc(e.cientifico)+')</em>':"")+'</button>').join("")||'<p class="muted">No hay más coincidencias.</p>';
     sugerencias.hidden=!q||!coincidencias.length;buscar.setAttribute("aria-expanded",String(!sugerencias.hidden));
   }
   buscar.addEventListener("input",pintarSugerencias);
@@ -127,10 +128,11 @@
     const e=listaEspecies.find(x=>x.id===boton.dataset.especie);if(!e)return;
     seleccionadas.set(e.id,e);pintarEtiquetas();buscar.value="";sugerencias.hidden=true;buscar.setAttribute("aria-expanded","false");buscar.focus();
     estadoSeleccion.textContent=seleccionadas.size+" especie(s) seleccionada(s).";
+    actualizarBoton();
   });
   etiquetas.addEventListener("click",ev=>{
     const boton=ev.target.closest("[data-quitar]");if(!boton)return;
-    seleccionadas.delete(boton.dataset.quitar);pintarEtiquetas();estadoSeleccion.textContent="Selección actualizada.";
+    seleccionadas.delete(boton.dataset.quitar);pintarEtiquetas();estadoSeleccion.textContent="Selección actualizada.";actualizarBoton();
   });
   document.addEventListener("click",ev=>{if(!ev.target.closest("#compatibilidad .compat-selector")){sugerencias.hidden=true;buscar.setAttribute("aria-expanded","false");}});
   pintarEtiquetas();
@@ -151,6 +153,48 @@
     select.appendChild(optgroup);
   });
 
+  function actualizarBoton(){
+    const cantidad=seleccionadas.size;
+    comparar.disabled=!catalogoDisponible||!escenario.value||cantidad<2||cantidad>6;
+  }
+  escenario.addEventListener("change",()=>{
+    estadoSeleccion.textContent=escenario.value
+      ?"Escenario seleccionado. Ahora elige al menos dos especies."
+      :"Selecciona un escenario y al menos dos especies.";
+    actualizarBoton();
+  });
+  async function cargarListaEspecies(){
+    try{
+      const catalogo=await obtenerCatalogo();
+      if(!Array.isArray(catalogo.especies))throw new Error("El catálogo no contiene una lista válida de especies.");
+      listaEspecies=catalogo.especies
+        .filter(e=>e&&typeof e.id==="string"&&e.id.trim())
+        .map(e=>({
+          id:e.id,
+          nombre:e.nombre_comun||e.ficha_airi?.nombre_comun||e.id,
+          cientifico:e.nombre_cientifico||e.ficha_airi?.nombre_cientifico||""
+        }));
+      catalogoDisponible=true;
+      estadoSeleccion.textContent="Catálogo cargado: "+listaEspecies.length+" especies disponibles.";
+      pintarSugerencias();
+    }catch(error){
+      catalogoDisponible=false;
+      estadoSeleccion.textContent="No se pudo cargar el catálogo: "+error.message;
+    }
+    actualizarBoton();
+  }
+  async function obtenerAcuarioEscenario(){
+    if(escenario.value==="solo_especies")return null;
+    if(escenario.value==="arrecife_300"){
+      const response=await fetch(base+encodeURIComponent("catalogo_real/r05_acuario_arrecife.json"),{cache:"no-store"});
+      if(!response.ok)throw new Error("No fue posible cargar la configuración del escenario de arrecife ("+response.status+").");
+      const ejemplo=await response.json();
+      if(!ejemplo.entrada||!ejemplo.entrada.acuario)throw new Error("El escenario de arrecife no contiene una configuración de acuario válida.");
+      return ejemplo.entrada.acuario;
+    }
+    throw new Error("Selecciona un escenario de evaluación válido.");
+  }
+
   async function cargarEjemplo(){
     const file=select.value;if(!file){salida.innerHTML='<p class="muted">Selecciona un escenario o elige especies para comparar.</p>';salida.setAttribute("aria-busy","false");return;}
     mostrarCarga("Cargando escenario de demostración…");
@@ -161,18 +205,33 @@
 
   comparar.addEventListener("click",async()=>{
     const ids=Array.from(seleccionadas.keys());
+    if(!escenario.value){estadoSeleccion.textContent="Selecciona un escenario antes de comparar.";return;}
     if(ids.length<2){estadoSeleccion.textContent="Selecciona al menos dos especies para realizar la comparación.";return;}
     if(ids.length>6){estadoSeleccion.textContent="Puedes seleccionar hasta seis especies.";return;}
-    estadoSeleccion.textContent="Preparando la comparación…";select.value="";mostrarCarga("Consultando el módulo y el catálogo de especies…");comparar.disabled=true;
+    estadoSeleccion.textContent="Preparando la comparación…";
+    mostrarCarga("Consultando el módulo, el catálogo y el escenario seleccionado…");
+    comparar.disabled=true;
     try{
-      await cargarScript(moduloUrl);const catalogo=await obtenerCatalogo();
+      await cargarScript(moduloUrl);
+      const catalogo=await obtenerCatalogo();
       if(!window.AIRICompatibilidad||typeof window.AIRICompatibilidad.evaluar!=="function")throw new Error("El módulo de compatibilidad no está disponible.");
-      const resultado=window.AIRICompatibilidad.evaluar({especies:ids},catalogo);
-      render({salida:resultado},false);estadoSeleccion.textContent="Comparación generada con el módulo de compatibilidad.";
+      const entrada={especies:ids};
+      const acuario=await obtenerAcuarioEscenario();
+      if(acuario)entrada.acuario=acuario;
+      const resultado=window.AIRICompatibilidad.evaluar(entrada,catalogo);
+      render({salida:resultado},false);
+      estadoSeleccion.textContent=escenario.value==="arrecife_300"
+        ?"Evaluación generada con las especies seleccionadas y la configuración del acuario de arrecife de ejemplo."
+        :"Evaluación generada para la convivencia entre las especies seleccionadas.";
     }catch(error){
-      salida.innerHTML='<p class="compat-error" role="alert">'+esc(error.message)+'</p><p class="muted">La comparación requiere conexión a internet y que estén disponibles las ramas del módulo y del catálogo.</p>';
-      salida.setAttribute("aria-busy","false");estadoSeleccion.textContent="No fue posible completar la comparación.";
-    }finally{comparar.disabled=false;}
+      salida.innerHTML='<p class="compat-error" role="alert">'+esc(error.message)+'</p><p class="muted">La comparación requiere conexión a internet y disponibilidad del módulo y del catálogo.</p>';
+      salida.setAttribute("aria-busy","false");
+      estadoSeleccion.textContent="No fue posible completar la evaluación.";
+    }finally{
+      actualizarBoton();
+    }
   });
+  cargarListaEspecies();
+  actualizarBoton();
   cargarEjemplo();
 })();
