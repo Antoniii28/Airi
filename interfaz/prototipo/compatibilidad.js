@@ -27,6 +27,13 @@
   '#compatibilidad .compat-estado{display:inline-block;padding:7px 11px;border-radius:9px;font-weight:750;margin:7px 0}'+
   '#compatibilidad .compat-compatible{background:#d8f1df;color:#185b32}#compatibilidad .compat-precaucion{background:#ffedcf;color:#754300}#compatibilidad .compat-incompatible{background:#fbdedc;color:#86251f}#compatibilidad .compat-sin_datos{background:#dce8ee;color:#29485a}'+
   '#compatibilidad .compat-motivo{border-left:3px solid #78b8ce;padding:9px 12px;margin:10px 0;background:#e3f0f6;color:#09284d;border-radius:0 8px 8px 0}#compatibilidad .compat-motivo p,#compatibilidad .compat-motivo small{color:#173b56}'+
+  '#compatibilidad .compat-notas{margin-top:16px;padding:12px;border:1px solid #b9d5e2;border-radius:10px;background:#f7fbfd}'+
+  '#compatibilidad .compat-notas h4{margin:0 0 6px}#compatibilidad .compat-notas-aviso{margin:0 0 10px;font-size:13px}'+
+  '#compatibilidad .compat-nota{padding:10px 0;border-top:1px solid #c4dce8}#compatibilidad .compat-nota:first-of-type{border-top:0}'+
+  '#compatibilidad .compat-nota-cabecera{display:flex;align-items:center;gap:8px;flex-wrap:wrap}'+
+  '#compatibilidad .compat-nota-tipo{display:inline-block;padding:4px 8px;border-radius:7px;font-size:12px;font-weight:700}'+
+  '#compatibilidad .compat-nota-condicion{background:#dceef7;color:#174e70}#compatibilidad .compat-nota-riesgo{background:#ffedcf;color:#754300}'+
+  '#compatibilidad .compat-nota p{margin:7px 0}'+
   '#compatibilidad .compat-faltante{display:inline-block;background:#ffedcf;color:#754300;border-radius:7px;padding:5px 8px;margin:4px;font-size:13px}'+
   '#compatibilidad .compat-aviso{background:#e1eff7;border:1px solid #a9cbdc;border-radius:10px;padding:13px;line-height:1.55;color:#123b56}'+
   '#compatibilidad .compat-tabla{width:100%;border-collapse:collapse;margin-top:8px}#compatibilidad .compat-tabla th,#compatibilidad .compat-tabla td{text-align:left;padding:8px;border-bottom:1px solid #c4dce8;font-size:14px;color:#173b56}#compatibilidad .compat-tabla th{color:#09284d}'+
@@ -35,6 +42,10 @@
   'html[data-theme="dark"] #compatibilidad .compat-selector,html[data-theme="dark"] #compatibilidad .compat-bloque{background:#22364a;border-color:#405970;color:#e5edf5}'+
   'html[data-theme="dark"] #compatibilidad .compat-selector h3,html[data-theme="dark"] #compatibilidad .compat-bloque h3,html[data-theme="dark"] #compatibilidad .compat-bloque p,html[data-theme="dark"] #compatibilidad .compat-bloque li,html[data-theme="dark"] #compatibilidad .compat-bloque small,html[data-theme="dark"] #compatibilidad .compat-bloque h4{color:#e5edf5}'+
   'html[data-theme="dark"] #compatibilidad .compat-motivo{background:#172a3d;color:#e5edf5;border-left-color:#65b8df}html[data-theme="dark"] #compatibilidad .compat-motivo p,html[data-theme="dark"] #compatibilidad .compat-motivo small{color:#d3e1ec}'+
+  'html[data-theme="dark"] #compatibilidad .compat-notas{background:#1b3044;border-color:#405970}'+
+  'html[data-theme="dark"] #compatibilidad .compat-nota{border-color:#405970}'+
+  'html[data-theme="dark"] #compatibilidad .compat-nota-condicion{background:#29485f;color:#d8efff}'+
+  'html[data-theme="dark"] #compatibilidad .compat-nota-riesgo{background:#594326;color:#ffe4b7}'+
   'html[data-theme="dark"] #compatibilidad .compat-aviso{background:#263f55;border-color:#496b87;color:#e5edf5}html[data-theme="dark"] #compatibilidad .compat-tabla th,html[data-theme="dark"] #compatibilidad .compat-tabla td{color:#e5edf5;border-color:#405970}'+
   '@media(max-width:640px){#compatibilidad .compat-tabla th,#compatibilidad .compat-tabla td{padding:6px;font-size:12px}}';
   document.head.appendChild(estilos);
@@ -55,11 +66,24 @@
       (m.efecto?' <span class="tag">'+esc(m.efecto)+'</span>':'')+'<p>'+esc(m.texto||"Sin descripción.")+'</p>'+
       '<small>Confianza: '+esc(m.confianza||"No indicada")+' · Fuentes: '+sourceLinks(m.fuentes,sources)+'</small></div>').join("");
   }
+  function renderNotasConvivencia(notas,sources,names){
+    if(!Array.isArray(notas)||!notas.length)return "";
+    return '<section class="compat-notas"><h4>Condiciones y riesgos de convivencia</h4>'+
+      '<p class="compat-notas-aviso">Información tomada de las fichas. Estas notas son informativas y no modifican el estado de compatibilidad.</p>'+
+      notas.map(n=>{
+        const riesgo=n.tipo==="riesgo",tipo=riesgo?"Riesgo":n.tipo==="condicion"?"Condición":"Nota";
+        const especie=names.get(n.especie)||n.especie||"Especie";
+        return '<div class="compat-nota"><div class="compat-nota-cabecera"><span class="compat-nota-tipo compat-nota-'+(riesgo?"riesgo":"condicion")+'">'+tipo+'</span><strong>'+esc(especie)+'</strong></div>'+
+          '<p>'+esc(n.texto||"Sin descripción disponible.")+'</p>'+
+          '<small>Confianza: '+esc(n.confianza||"No indicada")+' · Fuentes: '+sourceLinks(n.fuentes,sources)+'</small></div>';
+      }).join("")+'</section>';
+  }
   function renderResultado(data,sources,names){
     const n=Array.isArray(data.especies)?data.especies.map(id=>names.get(id)||id).join(" + "):(names.get(data.especie)||data.especie||"Evaluación");
     const contradiction=data.contradiccion?'<p class="compat-error"><strong>Atención:</strong> hay evidencia contradictoria. El módulo aplicó el resultado más restrictivo; requiere revisión humana.</p>':"";
     return '<article class="compat-bloque"><h3>'+esc(n)+'</h3><span class="compat-estado compat-'+estadoClass(data.estado)+'">'+esc(data.etiqueta||estadoLabel(data.estado))+'</span>'+
       '<p>'+esc(data.resumen||"Sin resumen disponible.")+'</p>'+contradiction+'<h4>Motivos</h4>'+renderMotivos(data.motivos,sources)+
+      renderNotasConvivencia(data.notas_convivencia,sources,names)+
       (data.datos_faltantes?.length?'<h4>Datos faltantes en esta evaluación</h4>'+data.datos_faltantes.map(x=>'<span class="compat-faltante">'+esc(x.especie||"Acuario")+': '+esc(x.campo)+'</span>').join(""):"")+'</article>';
   }
   function render(json,ficticio){
