@@ -102,7 +102,7 @@
   function mostrarCarga(m){salida.innerHTML='<p class="compat-cargando" role="status">'+esc(m)+'</p>';salida.setAttribute("aria-busy","true");}
   function cargarScript(url){return new Promise((resolve,reject)=>{if(window.AIRICompatibilidad)return resolve();const script=document.createElement("script");script.src=url;script.onload=resolve;script.onerror=()=>reject(new Error("No se pudo cargar el módulo de compatibilidad."));document.head.appendChild(script);});}
   let catalogoPromise=null;
-  function obtenerCatalogo(){if(!catalogoPromise)catalogoPromise=fetch(catalogoUrl,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("No se pudo consultar el catálogo de especies ("+r.status+").");return r.json();});return catalogoPromise;}
+  function obtenerCatalogo(){if(!catalogoPromise)catalogoPromise=fetch(catalogoUrl,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("No se pudo consultar el catálogo de especies ("+r.status+").");return r.json();}).catch(error=>{catalogoPromise=null;throw error;});return catalogoPromise;}
 
   const listaEspecies=Array.isArray(window.AIRIListaEspecies)?window.AIRIListaEspecies:[];
   const seleccionadas=new Map();
