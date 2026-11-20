@@ -1,0 +1,642 @@
+{
+ "version": "prueba-0.1",
+ "estado": "DATOS DE PRUEBA FICTICIOS para el módulo de compatibilidad. No describen especies reales ni deben mostrarse como información biológica.",
+ "advertencias": [
+  "Especies, nombres científicos, rangos y fuentes inventados para probar el algoritmo. El esquema imita el catálogo v0.5 de Brayan (rama equipo/brayan-fichas-especies) más el campo propuesto convivencia.relaciones."
+ ],
+ "fuentes": {
+  "prueba_fuente_1": {
+   "tipo": "prueba",
+   "titulo": "Fuente ficticia 1 (solo pruebas)",
+   "url": "https://example.org/airi-prueba/fuente-1"
+  },
+  "prueba_fuente_2": {
+   "tipo": "prueba",
+   "titulo": "Fuente ficticia 2 (solo pruebas)",
+   "url": "https://example.org/airi-prueba/fuente-2"
+  }
+ },
+ "especies": [
+  {
+   "id": "prueba_pacifico_a",
+   "nombre_comun": "Especie de prueba A",
+   "nombre_cientifico": "Probatus alfa",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba A",
+    "nombre_cientifico": "Probatus alfa",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico"
+     ],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": {
+     "min": 24,
+     "max": 27,
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 100,
+     "justificacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 8,
+     "medida": "longitud total",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    }
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.0,
+     "max": 8.3,
+     "fuentes": [
+      "prueba_fuente_1"
+     ]
+    },
+    "confianza": "media"
+   },
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [
+     "prueba_fuente_1"
+    ],
+    "confianza": "media",
+    "relaciones": [
+     {
+      "con": {
+       "temperamento": "pacifico"
+      },
+      "efecto": "compatible",
+      "motivo": "Convive con compañeros pacíficos (dato ficticio).",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prueba_pacifico_b",
+   "nombre_comun": "Especie de prueba B",
+   "nombre_cientifico": "Probatus beta",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba B",
+    "nombre_cientifico": "Probatus beta",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico",
+      "sociable"
+     ],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": {
+     "min": 23,
+     "max": 26,
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 150,
+     "justificacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 10,
+     "medida": "longitud total",
+     "fuentes": [
+      "prueba_fuente_1"
+     ],
+     "confianza": "media"
+    }
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.1,
+     "max": 8.4,
+     "fuentes": [
+      "prueba_fuente_1"
+     ]
+    },
+    "confianza": "media"
+   },
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [],
+    "confianza": null,
+    "relaciones": []
+   }
+  },
+  {
+   "id": "prueba_frio",
+   "nombre_comun": "Especie de prueba fría",
+   "nombre_cientifico": "Frigidus gamma",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba fría",
+    "nombre_cientifico": "Frigidus gamma",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico"
+     ],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": {
+     "min": 10,
+     "max": 16,
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 200,
+     "justificacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 12,
+     "medida": "longitud total",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    }
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": {
+    "acuario": {
+     "min": 7.9,
+     "max": 8.2,
+     "fuentes": [
+      "prueba_fuente_2"
+     ]
+    },
+    "confianza": "media"
+   },
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [],
+    "confianza": null,
+    "relaciones": []
+   }
+  },
+  {
+   "id": "prueba_agresivo",
+   "nombre_comun": "Especie de prueba agresiva",
+   "nombre_cientifico": "Ferox delta",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba agresiva",
+    "nombre_cientifico": "Ferox delta",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial",
+      "solitario"
+     ],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "no",
+     "explicacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": {
+     "min": 24,
+     "max": 28,
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 400,
+     "justificacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 30,
+     "medida": "longitud total",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    }
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.0,
+     "max": 8.4,
+     "fuentes": [
+      "prueba_fuente_2"
+     ]
+    },
+    "confianza": "media"
+   },
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [
+     "prueba_fuente_2"
+    ],
+    "confianza": "media",
+    "relaciones": [
+     {
+      "con": {
+       "genero": "Ferox"
+      },
+      "efecto": "incompatible",
+      "motivo": "Agresión hacia otras especies del género Ferox (dato ficticio).",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prueba_agresivo_2",
+   "nombre_comun": "Especie de prueba agresiva 2",
+   "nombre_cientifico": "Ferox zeta",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba agresiva 2",
+    "nombre_cientifico": "Ferox zeta",
+    "temperamento": {
+     "valor": "semiagresivo",
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "territorial"
+     ],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "con_precaucion",
+     "explicacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": {
+     "min": 24,
+     "max": 27,
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 300,
+     "justificacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 20,
+     "medida": "longitud total",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    }
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.0,
+     "max": 8.3,
+     "fuentes": [
+      "prueba_fuente_2"
+     ]
+    },
+    "confianza": "media"
+   },
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [],
+    "confianza": null,
+    "relaciones": []
+   }
+  },
+  {
+   "id": "prueba_sin_datos",
+   "nombre_comun": "Especie de prueba sin datos",
+   "nombre_cientifico": "Ignotus epsilon",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba sin datos",
+    "nombre_cientifico": "Ignotus epsilon",
+    "temperamento": {
+     "valor": null,
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "comportamiento": {
+     "etiquetas": [],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [],
+     "confianza": null
+    },
+    "adecuado_arrecife": {
+     "valor": null,
+     "explicacion": "Dato de prueba.",
+     "fuentes": [],
+     "confianza": null
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": null,
+    "litraje_recomendado_l": null,
+    "tamano_adulto_cm": null
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": null,
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [],
+    "confianza": null,
+    "relaciones": []
+   }
+  },
+  {
+   "id": "prueba_contradictoria",
+   "nombre_comun": "Especie de prueba contradictoria",
+   "nombre_cientifico": "Contrarius eta",
+   "grupo": "pez",
+   "ficha_airi": {
+    "nombre_comun": "Especie de prueba contradictoria",
+    "nombre_cientifico": "Contrarius eta",
+    "temperamento": {
+     "valor": "pacifico",
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "comportamiento": {
+     "etiquetas": [
+      "pacifico"
+     ],
+     "descripcion": "Texto de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "adecuado_arrecife": {
+     "valor": "si",
+     "explicacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "alimentacion": {
+     "tipo": null,
+     "alimentos": [],
+     "nota": null,
+     "fuentes": [],
+     "confianza": null
+    },
+    "temperatura_c": {
+     "min": 24,
+     "max": 26,
+     "nota": null,
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    },
+    "litraje_recomendado_l": {
+     "min": 120,
+     "justificacion": "Dato de prueba.",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "baja"
+    },
+    "tamano_adulto_cm": {
+     "max": 9,
+     "medida": "longitud total",
+     "fuentes": [
+      "prueba_fuente_2"
+     ],
+     "confianza": "media"
+    }
+   },
+   "taxonomia": {
+    "familia": "Familia de prueba"
+   },
+   "ph": {
+    "acuario": {
+     "min": 8.0,
+     "max": 8.3,
+     "fuentes": [
+      "prueba_fuente_2"
+     ]
+    },
+    "confianza": "media"
+   },
+   "convivencia": {
+    "condiciones": [],
+    "riesgos": [],
+    "fuentes": [
+     "prueba_fuente_2"
+    ],
+    "confianza": "media",
+    "relaciones": [
+     {
+      "con": {
+       "id": "prueba_pacifico_a"
+      },
+      "efecto": "incompatible",
+      "motivo": "Conflicto con la especie de prueba A (dato ficticio que contradice la ficha de A).",
+      "fuentes": [
+       "prueba_fuente_2"
+      ],
+      "confianza": "baja"
+     }
+    ]
+   }
+  }
+ ]
+}

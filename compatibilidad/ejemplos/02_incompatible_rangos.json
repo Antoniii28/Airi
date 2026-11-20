@@ -1,0 +1,103 @@
+{
+ "_nota": "EJEMPLO CON DATOS DE PRUEBA FICTICIOS (compatibilidad/datos_prueba). No es información biológica real.",
+ "entrada": {
+  "especies": [
+   "prueba_pacifico_b",
+   "prueba_frio"
+  ]
+ },
+ "salida": {
+  "version": "0.3.0",
+  "catalogo_version": "prueba-0.1",
+  "estado_global": "incompatible",
+  "etiqueta_global": "No compatibles",
+  "especies": [
+   {
+    "id": "prueba_pacifico_b",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba B",
+    "nombre_cientifico": "Probatus beta"
+   },
+   {
+    "id": "prueba_frio",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba fría",
+    "nombre_cientifico": "Frigidus gamma"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "prueba_pacifico_b",
+     "prueba_frio"
+    ],
+    "estado": "incompatible",
+    "etiqueta": "No compatibles",
+    "contradiccion": false,
+    "resumen": "Incompatible según: rangos de temperatura.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "incompatible",
+      "texto": "Los rangos documentados no se solapan. Especie de prueba B: 23–26 °C; Especie de prueba fría: 10–16 °C.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8.1 y 8.2 pH. Especie de prueba B: 8.1–8.4 pH; Especie de prueba fría: 7.9–8.2 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Especie de prueba B «pacifico», Especie de prueba fría «pacifico».",
+      "fuentes": [
+       "prueba_fuente_1",
+       "prueba_fuente_2"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "notas_convivencia": [],
+    "datos_faltantes": []
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": null,
+   "ph": {
+    "min": 8.1,
+    "max": 8.2
+   },
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [],
+  "fuentes": {
+   "prueba_fuente_1": {
+    "titulo": "Fuente ficticia 1 (solo pruebas)",
+    "url": "https://example.org/airi-prueba/fuente-1",
+    "tipo": "prueba"
+   },
+   "prueba_fuente_2": {
+    "titulo": "Fuente ficticia 2 (solo pruebas)",
+    "url": "https://example.org/airi-prueba/fuente-2",
+    "tipo": "prueba"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}

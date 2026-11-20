@@ -1,0 +1,108 @@
+{
+ "_nota": "EJEMPLO CON DATOS DE PRUEBA FICTICIOS (compatibilidad/datos_prueba). No es información biológica real.",
+ "entrada": {
+  "especies": [
+   "prueba_pacifico_a",
+   "prueba_pacifico_b"
+  ]
+ },
+ "salida": {
+  "version": "0.3.0",
+  "catalogo_version": "prueba-0.1",
+  "estado_global": "compatible",
+  "etiqueta_global": "Compatible",
+  "especies": [
+   {
+    "id": "prueba_pacifico_a",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba A",
+    "nombre_cientifico": "Probatus alfa"
+   },
+   {
+    "id": "prueba_pacifico_b",
+    "cantidad": 1,
+    "encontrada": true,
+    "nombre_comun": "Especie de prueba B",
+    "nombre_cientifico": "Probatus beta"
+   }
+  ],
+  "pares": [
+   {
+    "especies": [
+     "prueba_pacifico_a",
+     "prueba_pacifico_b"
+    ],
+    "estado": "compatible",
+    "etiqueta": "Compatible",
+    "contradiccion": false,
+    "resumen": "Compatible de forma orientativa: hay convivencia declarada con fuente y no se detectaron conflictos.",
+    "motivos": [
+     {
+      "criterio": "temperatura",
+      "nombre": "Rangos de temperatura",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 24 y 26 °C. Especie de prueba A: 24–27 °C; Especie de prueba B: 23–26 °C. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "ph",
+      "nombre": "Rangos de pH",
+      "efecto": "sin_conflicto",
+      "texto": "Los rangos documentados coinciden entre 8.1 y 8.3 pH. Especie de prueba A: 8–8.3 pH; Especie de prueba B: 8.1–8.4 pH. Compartir rango no demuestra que puedan convivir.",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "temperamento",
+      "nombre": "Temperamento",
+      "efecto": "sin_conflicto",
+      "texto": "Temperamentos documentados: Especie de prueba A «pacifico», Especie de prueba B «pacifico».",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     },
+     {
+      "criterio": "relacion",
+      "nombre": "Convivencia declarada en la ficha",
+      "efecto": "compatible",
+      "texto": "Ficha de Especie de prueba A: Convive con compañeros pacíficos (dato ficticio). (aplica a Especie de prueba B)",
+      "fuentes": [
+       "prueba_fuente_1"
+      ],
+      "confianza": "media"
+     }
+    ],
+    "notas_convivencia": [],
+    "datos_faltantes": []
+   }
+  ],
+  "acuario": [],
+  "intervalo_comun": {
+   "temperatura_c": {
+    "min": 24,
+    "max": 26
+   },
+   "ph": {
+    "min": 8.1,
+    "max": 8.3
+   },
+   "nota": "Intersección de los rangos documentados. Que exista no demuestra que las especies puedan convivir."
+  },
+  "datos_faltantes": [],
+  "fuentes": {
+   "prueba_fuente_1": {
+    "titulo": "Fuente ficticia 1 (solo pruebas)",
+    "url": "https://example.org/airi-prueba/fuente-1",
+    "tipo": "prueba"
+   }
+  },
+  "aviso": "Evaluación orientativa basada en las fichas y fuentes del catálogo. No garantiza la convivencia ni el bienestar de los organismos; la falta de datos nunca equivale a compatibilidad. Las decisiones sobre introducir animales las toma una persona."
+ }
+}
